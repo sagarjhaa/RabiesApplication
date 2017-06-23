@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using RabiesApplication.Models;
 
-namespace RabiesApp.Models
+namespace RabiesApplication.Models
 {
     public class Bite : IActive,IModel,IAuditable
     {
@@ -51,8 +51,8 @@ namespace RabiesApp.Models
 
 
 
-        public virtual ICollection<Animal> Animals { get; set; }
-        public virtual ICollection<HumanVictim> HumanVictims { get; set; }
+        //public virtual ICollection<Animal> Animals { get; set; }
+        //public virtual ICollection<HumanVictim> HumanVictims { get; set; }
         public virtual ICollection<Action> Actions { get; set; }
 
         public DateTimeOffset RecordCreated { get; set; }

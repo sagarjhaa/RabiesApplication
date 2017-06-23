@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using Microsoft.Ajax.Utilities;
-using RabiesApp.Models;
+using RabiesApplication.Models;
 using RabiesApplication.Web.Models;
 
 

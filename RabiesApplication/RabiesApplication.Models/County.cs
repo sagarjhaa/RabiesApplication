@@ -1,6 +1,6 @@
 ﻿using RabiesApplication.Models;
 
-namespace RabiesApp.Models
+namespace RabiesApplication.Models
 {
     public class County:IActive
     {
