@@ -48,15 +48,16 @@ namespace RabiesApp.Models
         public string EmployeeAssignedId { get; set; }
         
         public bool Active { get; set; }
-        public DateTimeOffset DateCreated { get; set; }
-        public DateTimeOffset? DateEdited { get; set; }
-        public string MemberCreatedId { get; set; }
-        public string MemberEditedId { get; set; }
+
 
 
         public virtual ICollection<Animal> Animals { get; set; }
         public virtual ICollection<HumanVictim> HumanVictims { get; set; }
         public virtual ICollection<Action> Actions { get; set; }
 
+        public DateTimeOffset RecordCreated { get; set; }
+        public DateTimeOffset? RecordEdited { get; set; }
+        public string EmployeeCreatedId { get; set; }
+        public string EmployeeEditedId { get; set; }
     }
 }

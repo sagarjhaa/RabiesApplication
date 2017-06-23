@@ -9,7 +9,7 @@ using RabiesApplication.Models;
 
 namespace RabiesApp.Models
 {
-    public class Vet : IActive,IModel,IPerson
+    public class Vet : IActive,IModel,IPerson,IAuditable
     {
 
         public string Id { get; set; }
@@ -39,15 +39,11 @@ namespace RabiesApp.Models
 
         public string Comments { get; set; }
 
-        public bool IsActive { get; set; }
-        public string EmployeecreatedId { get; set; }
-
-
-        public string EmployeeeditedId { get; set; }
-        public DateTimeOffset Recordcreated { get; set; }
-        public DateTimeOffset? Recordedited { get; set; }
-
         public IEnumerable<Animal> Animals { get; set; }
         public bool Active { get; set; }
+        public DateTimeOffset RecordCreated { get; set; }
+        public DateTimeOffset? RecordEdited { get; set; }
+        public string EmployeeCreatedId { get; set; }
+        public string EmployeeEditedId { get; set; }
     }
 }
