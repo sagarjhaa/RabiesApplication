@@ -19,13 +19,13 @@ namespace RabiesApplication.Web.Repositories
             var user = new UserRepository().GetUserID(System.Web.HttpContext.Current.User);
             if (model.Id == null)
             {
-                model.DateCreated = DateTimeOffset.Now;
-                model.MemberCreatedId = user;
+                model.RecordCreated = DateTimeOffset.Now;
+                model.EmployeeCreatedId = user;
             }
             else
             {
-                model.DateEdited = DateTimeOffset.Now;
-                model.MemberEditedId = user;
+                model.RecordEdited = DateTimeOffset.Now;
+                model.EmployeeEditedId = user;
             }
             return base.InsertOrUpdateAsync(model);
         }
