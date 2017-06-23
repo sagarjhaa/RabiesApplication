@@ -10,21 +10,21 @@ namespace RabiesApp.Models
         public string Id { get; set; }
         public byte[] RowVersion { get; set; }
 
-        public int? BiteId { get; set; }
+        public string BiteId { get; set; }
 
         public Bite Bite { get; set; }
 
 
-        public int? VetId { get; set; }
+        public string VetId { get; set; }
         public Vet Vet { get; set; }
 
         public bool IsVictim { get; set; }
 
-        public int SpeciesId { get; set; }
+        public string SpeciesId { get; set; }
 
         public Species Species { get; set; }
 
-        public int BreedId { get; set; }
+        public string BreedId { get; set; }
         public Breed Breed { get; set; }
 
         public string  Name { get; set; }

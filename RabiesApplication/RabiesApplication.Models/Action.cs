@@ -11,7 +11,7 @@ namespace RabiesApp.Models
 
         [Required]
         public string ActionType { get; set; }
-        public int BiteId { get; set; }
+        public string BiteId { get; set; }
         public Bite Bites { get; set; }
         [Required]
         public string Comments { get; set; }
