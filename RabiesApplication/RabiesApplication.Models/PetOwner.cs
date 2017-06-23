@@ -14,7 +14,7 @@ namespace RabiesApp.Models
         public string Id { get; set; }
         public byte[] RowVersion { get; set; }
 
-        public int AnimalId { get; set; }
+        public string AnimalId { get; set; }
 
         [ForeignKey("AnimalId")]
         public Animal Animal { get; set; }
