@@ -1,0 +1,137 @@
+﻿@model RabiesApplication.Models.Bite
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Bite</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BiteStatus.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BiteStatus.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City.CityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City.CityName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State.StateName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State.StateName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RowVersion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RowVersion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BiteDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BiteDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BiteReportDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BiteReportDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BiteReportedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BiteReportedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeAssignedId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeAssignedId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecordCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecordCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecordEdited)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecordEdited)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeCreatedId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeCreatedId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeEditedId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeEditedId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
