@@ -4,16 +4,19 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using RabiesApplication.Models;
 using RabiesApplication.Web;
+using RabiesApplication.Web.Repositories;
 
 namespace RabiesApplication.Web.Controllers
 {
     public class BitesController : Controller
     {
         private DataContext db = new DataContext();
+        private readonly BiteRepository biteRepository = new BiteRepository();
 
         // GET: Bites
         public ActionResult Index()
@@ -38,33 +41,53 @@ namespace RabiesApplication.Web.Controllers
         }
 
         // GET: Bites/Create
-        public ActionResult Create()
+        public async Task<ActionResult> BiteForm(int? id)
         {
             ViewBag.BiteStatusId = new SelectList(db.BiteStatuses, "Id", "Description");
             ViewBag.CityId = new SelectList(db.Cities, "Id", "CityName");
+            ViewBag.EmployeeAssignedId = new SelectList(db.Users, "Id", "Email");
+            ViewBag.EmployeecreatedId = new SelectList(db.Users, "Id", "Email");
             ViewBag.StateId = new SelectList(db.States, "Id", "StateName");
-            return View();
+
+            var bite = new Bite();
+
+            if (id != null)
+            {
+                bite = await db.Bites.FindAsync(id);
+                if (bite == null)
+                {
+                    return HttpNotFound();
+                }
+            }
+
+            return View(bite);
         }
 
-        // POST: Bites/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Bites/Save
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,RowVersion,CityId,StateId,BiteDate,BiteReportDate,BiteReportedBy,BiteStatusId,Comments,EmployeeAssignedId,Active,RecordCreated,RecordEdited,EmployeeCreatedId,EmployeeEditedId")] Bite bite)
+        public async Task<ActionResult> Save(Bite bite)
         {
+            //Remove checking on EmployeecreatedId
+            ModelState.Remove("EmployeecreatedId");
+
+
             if (ModelState.IsValid)
             {
-                db.Bites.Add(bite);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                await biteRepository.InsertOrUpdateAsync(bite);
+                await biteRepository.SaveChangesAsync();
+                return View("Index");
+                //return RedirectToAction("Create", "HumanVictims", new { id = bite.Id });
             }
 
             ViewBag.BiteStatusId = new SelectList(db.BiteStatuses, "Id", "Description", bite.BiteStatusId);
             ViewBag.CityId = new SelectList(db.Cities, "Id", "CityName", bite.CityId);
+            ViewBag.EmployeeAssignedId = new SelectList(db.Users, "Id", "Email", bite.EmployeeAssignedId);
+            ViewBag.EmployeecreatedId = new SelectList(db.Users, "Id", "Email", bite.EmployeeCreatedId);
             ViewBag.StateId = new SelectList(db.States, "Id", "StateName", bite.StateId);
-            return View(bite);
+            return View("BiteForm", bite);
         }
+
 
         // GET: Bites/Edit/5
         public ActionResult Edit(string id)

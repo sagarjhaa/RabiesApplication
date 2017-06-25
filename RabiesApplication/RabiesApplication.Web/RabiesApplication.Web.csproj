@@ -282,7 +282,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-    <Content Include="Views\Bites\Create.cshtml" />
+    <Content Include="Views\Bites\BiteForm.cshtml" />
     <Content Include="Views\Bites\Delete.cshtml" />
     <Content Include="Views\Bites\Details.cshtml" />
     <Content Include="Views\Bites\Edit.cshtml" />
