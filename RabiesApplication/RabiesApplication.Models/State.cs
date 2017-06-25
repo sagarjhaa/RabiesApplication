@@ -13,8 +13,6 @@ namespace RabiesApplication.Models
         [Required]
         public string  StateShortName { get; set; }
 
-        
-
         public IEnumerable<City> Cities { get; set; }
 
         public IEnumerable<County> Counties { get; set; }

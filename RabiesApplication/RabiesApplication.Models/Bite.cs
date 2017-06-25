@@ -34,22 +34,17 @@ namespace RabiesApplication.Models
         //Where did we get this information from
         public string BiteReportedBy { get; set; }
 
-      
-
         public int BiteStatusId { get; set; }
 
         public BiteStatus BiteStatus { get; set; }
 
         public string Comments { get; set; }
 
-
         //public DateTimeOffset? InvestigationCompletionDate { get; set; }
         
         public string EmployeeAssignedId { get; set; }
         
         public bool Active { get; set; }
-
-
 
         //public virtual ICollection<Animal> Animals { get; set; }
         //public virtual ICollection<HumanVictim> HumanVictims { get; set; }

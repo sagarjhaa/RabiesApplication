@@ -15,9 +15,9 @@ namespace RabiesApplication.Web
 
         //public DbSet<Investigation> Investigations { get; set; }
 
-        //public DbSet<State> States { get; set; }
-        //public DbSet<City> Cities { get; set; }
-        //public DbSet<BiteStatus> BiteStatuses { get; set; }
+        public DbSet<State> States { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<BiteStatus> BiteStatuses { get; set; }
 
         public DbSet<Bite> Bites { get; set; }
 
@@ -30,7 +30,7 @@ namespace RabiesApplication.Web
 
         //public DbSet<PetOwner> PetOwners { get; set; }
 
-        //public DbSet<County> Counties { get; set; }
+        public DbSet<County> Counties { get; set; }
         //public DbSet<Specimen> Specimens { get; set; }
 
 

@@ -14,5 +14,6 @@ namespace RabiesApplication.Models
         public State State { get; set; }
 
         public bool Active { get; set; }
+
     }
 }
