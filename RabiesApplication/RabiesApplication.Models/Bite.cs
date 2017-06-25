@@ -53,7 +53,7 @@ namespace RabiesApplication.Models
 
         //public virtual ICollection<Animal> Animals { get; set; }
         //public virtual ICollection<HumanVictim> HumanVictims { get; set; }
-        public virtual ICollection<Action> Actions { get; set; }
+        //public virtual ICollection<Action> Actions { get; set; }
 
         public DateTimeOffset RecordCreated { get; set; }
         public DateTimeOffset? RecordEdited { get; set; }
