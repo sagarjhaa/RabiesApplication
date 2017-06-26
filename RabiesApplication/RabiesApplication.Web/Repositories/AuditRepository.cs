@@ -9,8 +9,8 @@ using RabiesApplication.Web.Models;
 namespace RabiesApplication.Web.Repositories
 {
 
-    public abstract class AuditRepository<TEntity> : ModelRepository<TEntity>
-        where TEntity : class, IModel, IAuditable
+    public abstract class AuditRepository<TEntity> : ActiveRepository<TEntity>
+        where TEntity : class, IModel, IAuditable,IActive
     {
 
         public override Task InsertOrUpdateAsync(TEntity model)
