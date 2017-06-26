@@ -26,5 +26,13 @@ namespace RabiesApplication.Web.Repositories
         }
     }
 
+    public class BiteStatusRepository : ActiveRepository<BiteStatus>
+    {
+        public override IQueryable<BiteStatus> All()
+        {
+            return base.All().Where(c => c.Active == Constant.Active);
+        }
+    }
+
 
 }
