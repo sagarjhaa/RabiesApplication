@@ -13,16 +13,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.BiteStatus.Description)
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BiteStatus)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.City.CityName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State.StateName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RowVersion)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.BiteDate)
@@ -30,35 +27,16 @@
         <th>
             @Html.DisplayNameFor(model => model.BiteReportDate)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BiteReportedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Comments)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmployeeAssignedId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Active)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RecordCreated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RecordEdited)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmployeeCreatedId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmployeeEditedId)
-        </th>
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.BiteStatus.Description)
         </td>
@@ -66,45 +44,16 @@
             @Html.DisplayFor(modelItem => item.City.CityName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.State.StateName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RowVersion)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.BiteDate)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.BiteReportDate)
         </td>
+      
         <td>
-            @Html.DisplayFor(modelItem => item.BiteReportedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Comments)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeAssignedId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Active)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RecordCreated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RecordEdited)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeCreatedId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeEditedId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
     </tr>
 }
