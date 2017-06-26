@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using RabiesApplication.Web.Models;
+using RabiesApplication.Web.Repositories;
 
 namespace RabiesApplication.Web.Controllers
 {
@@ -147,14 +148,23 @@ namespace RabiesApplication.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterMember model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser { UserName = model.RegisterViewModel.Email, Email = model.RegisterViewModel.Email };
+                var result = await UserManager.CreateAsync(user, model.RegisterViewModel.Password);
                 if (result.Succeeded)
                 {
+                    //Add the member to the Member's table too
+                    model.Employee.Id = user.Id;
+                    model.Employee.Active = Models.Constant.Active;
+
+                    EmployeeRepository memberRepository = new EmployeeRepository();
+                    await memberRepository.InsertOrUpdateAsync(model.Employee);
+                    await memberRepository.SaveChangesAsync();
+
+
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
