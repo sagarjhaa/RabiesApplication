@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using RabiesApplication.Models;
 using RabiesApplication.Web;
+using RabiesApplication.Web.Models;
 using RabiesApplication.Web.Repositories;
 
 namespace RabiesApplication.Web.Controllers
@@ -16,42 +17,27 @@ namespace RabiesApplication.Web.Controllers
     public class BitesController : Controller
     {
         private DataContext db = new DataContext();
-        private readonly BiteRepository biteRepository = new BiteRepository();
+        private readonly BiteRepository _biteRepository = new BiteRepository();
         private readonly StatesRepository _statesRepository = new StatesRepository();
         private readonly CitiesRepository _citiesRepository = new CitiesRepository();
         private readonly EmployeeRepository _employee = new EmployeeRepository();
+        private readonly BiteStatus _biteStatus = new BiteStatus();
 
         // GET: Bites
         public ActionResult Index()
         {
-            var bites = db.Bites.Include(b => b.BiteStatus).Include(b => b.City).Include(b => b.State);
+            var bites = _biteRepository.All();
             return View(bites.ToList());
         }
 
-        // GET: Bites/Details/5
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Bite bite = db.Bites.Find(id);
-            if (bite == null)
-            {
-                return HttpNotFound();
-            }
-            return View(bite);
-        }
-
-        // GET: Bites/Create
-        public async Task<ActionResult> BiteForm(int? id)
+        public async Task<ActionResult> BiteForm(string id)
         {
             ViewBag.StateId = new SelectList(_statesRepository.All(), "Id", "StateName");
             ViewBag.CityId = new SelectList(_citiesRepository.All(), "Id", "CityName");
             ViewBag.Employee = new SelectList(_employee.All(), "Id", "FirstName");
             ViewBag.BiteStatusId = new SelectList(db.BiteStatuses, "Id", "Description");
 
-            
+
             var bite = new Bite();
 
             if (id != null)
@@ -66,6 +52,7 @@ namespace RabiesApplication.Web.Controllers
             return View(bite);
         }
 
+
         // POST: Bites/Save
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -77,9 +64,9 @@ namespace RabiesApplication.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                await biteRepository.InsertOrUpdateAsync(bite);
-                await biteRepository.SaveChangesAsync();
-                return View("Index");
+                await _biteRepository.InsertOrUpdateAsync(bite);
+                await _biteRepository.SaveChangesAsync();
+                return RedirectToAction("Index");
                 //return RedirectToAction("Create", "HumanVictims", new { id = bite.Id });
             }
 
@@ -91,43 +78,21 @@ namespace RabiesApplication.Web.Controllers
             return View("BiteForm", bite);
         }
 
+        // GET: Bites/Details/5
+        //public ActionResult Details(string id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Bite bite = db.Bites.Find(id);
+        //    if (bite == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(bite);
+        //}
 
-        // GET: Bites/Edit/5
-        public ActionResult Edit(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Bite bite = db.Bites.Find(id);
-            if (bite == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.BiteStatusId = new SelectList(db.BiteStatuses, "Id", "Description", bite.BiteStatusId);
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "CityName", bite.CityId);
-            ViewBag.StateId = new SelectList(db.States, "Id", "StateName", bite.StateId);
-            return View(bite);
-        }
-
-        // POST: Bites/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,RowVersion,CityId,StateId,BiteDate,BiteReportDate,BiteReportedBy,BiteStatusId,Comments,EmployeeAssignedId,Active,RecordCreated,RecordEdited,EmployeeCreatedId,EmployeeEditedId")] Bite bite)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(bite).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.BiteStatusId = new SelectList(db.BiteStatuses, "Id", "Description", bite.BiteStatusId);
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "CityName", bite.CityId);
-            ViewBag.StateId = new SelectList(db.States, "Id", "StateName", bite.StateId);
-            return View(bite);
-        }
 
         // GET: Bites/Delete/5
         public ActionResult Delete(string id)
@@ -149,9 +114,10 @@ namespace RabiesApplication.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Bite bite = db.Bites.Find(id);
-            db.Bites.Remove(bite);
-            db.SaveChanges();
+            Bite bite = _biteRepository.GetById(id).Result;
+            bite.Active = Constant.Deactive;
+            _biteRepository.InsertOrUpdateAsync(bite);
+            _biteRepository.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 

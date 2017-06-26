@@ -19,11 +19,6 @@ namespace RabiesApplication.Web.Repositories
             {
                 model.Active = Constant.Active;
             }
-            //else
-            //{
-            //    model.DateEdited = DateTimeOffset.Now;
-            //    model.MemberEditedId = user;
-            //}
             return base.InsertOrUpdateAsync(model);
         }
     }

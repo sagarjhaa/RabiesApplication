@@ -67,14 +67,16 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.BiteStatusId, "BiteStatusId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("BiteStatusId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.BiteStatusId, "", new { @class = "text-danger" })
+        @if (Model.BiteStatusId != null)
+        {
+          <div class="form-group">
+                @Html.LabelFor(model => model.BiteStatusId, "BiteStatusId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("BiteStatusId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.BiteStatusId, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-
+        }
 
         <div class="form-group">
             @Html.LabelFor(model => model.EmployeeAssignedId, "EmployeeAssignedId", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -84,14 +86,14 @@
             </div>
         </div>
 
-        @*@Html.HiddenFor(model => model.EmployeecreatedId,new {Value = User.Identity.GetUserId()})*@
-        @*@Html.HiddenFor(model => model.Recordcreated, new {Value = DateTime.Now})
-            @Html.HiddenFor(model => model.IsActive, new {Value = true})*@
 
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.Active)
+                @Html.HiddenFor(model => model.EmployeeCreatedId)
+                @Html.HiddenFor(model => model.RecordCreated)
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>

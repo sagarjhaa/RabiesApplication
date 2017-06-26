@@ -13,4 +13,10 @@ namespace RabiesApplication.Web.Models
 
         public static string OrganizationCcbh = "1";
     }
+
+    public class BiteStatusConstant
+    {
+        public static string New = "1";
+        public static string Open = "2";
+    }
 }
