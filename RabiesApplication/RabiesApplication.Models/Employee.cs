@@ -18,7 +18,6 @@ namespace RabiesApplication.Models
         [Display(Name = "Organization")]
         public Organization Organization { get; set; }
 
-        [Required]
         public string OrganizationId { get; set; }
 
         [Timestamp]

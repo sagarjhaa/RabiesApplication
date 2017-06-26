@@ -10,5 +10,7 @@ namespace RabiesApplication.Web.Models
     {
         public static bool Active = true;
         public static bool Deactive = false;
+
+        public static string OrganizationCcbh = "1";
     }
 }
