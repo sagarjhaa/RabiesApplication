@@ -24,11 +24,11 @@ namespace RabiesApplication.Models
 
         [Required]
         //When bite happened
-        public DateTimeOffset BiteDate { get; set; }
+        public DateTimeOffset? BiteDate { get; set; }
 
         [Required]
         //When it was reported to us
-        public DateTimeOffset BiteReportDate { get; set; }
+        public DateTimeOffset? BiteReportDate { get; set; }
 
         [Required]
         //Where did we get this information from
