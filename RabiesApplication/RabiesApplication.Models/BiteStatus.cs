@@ -3,13 +3,15 @@ using RabiesApplication.Models;
 
 namespace RabiesApplication.Models
 {
-    public class BiteStatus : IActive
+    public class BiteStatus :IModel, IActive
     {
 
-        public int Id { get; set; }
+        public string Id { get; set; }
+        public byte[] RowVersion { get; set; }
 
         [Required]
         public string Description { get; set; }
         public bool Active { get; set; }
+
     }
 }

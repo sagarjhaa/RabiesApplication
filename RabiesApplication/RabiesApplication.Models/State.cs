@@ -4,10 +4,12 @@ using RabiesApplication.Models;
 
 namespace RabiesApplication.Models
 {
-    public class State : IActive
+    public class State :IModel, IActive
     {
 
-        public int Id { get; set; }
+        public string Id { get; set; }
+        public byte[] RowVersion { get; set; }
+
         [Required]
         public string StateName { get; set; }
         [Required]

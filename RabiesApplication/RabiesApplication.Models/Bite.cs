@@ -11,13 +11,13 @@ namespace RabiesApplication.Models
         public byte[] RowVersion { get; set; }
 
         //Which city the bite occured
-        public int CityId { get; set; }
+        public string CityId { get; set; }
 
         public City City { get; set; }
 
         //What state the bite occured
         //It will be Ohio for us
-        public int StateId { get; set; }
+        public string StateId { get; set; }
 
         public State State { get; set; }
 
@@ -34,7 +34,7 @@ namespace RabiesApplication.Models
         //Where did we get this information from
         public string BiteReportedBy { get; set; }
 
-        public int BiteStatusId { get; set; }
+        public string BiteStatusId { get; set; }
 
         public BiteStatus BiteStatus { get; set; }
 

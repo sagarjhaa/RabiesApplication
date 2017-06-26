@@ -3,9 +3,10 @@ using RabiesApplication.Models;
 
 namespace RabiesApplication.Models
 {
-    public class City : IActive
+    public class City :IModel, IActive
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
+        public byte[] RowVersion { get; set; }
 
         [Required]
         public string CityName { get; set; }

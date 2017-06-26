@@ -2,9 +2,10 @@
 
 namespace RabiesApplication.Models
 {
-    public class County:IActive
+    public class County:IModel,IActive
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
+        public byte[] RowVersion { get; set; }
 
         public string Name { get; set; }
 
