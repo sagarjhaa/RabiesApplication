@@ -13,12 +13,12 @@ namespace RabiesApplication.Web.Migrations
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         RowVersion = c.Binary(),
-                        CityId = c.Int(nullable: false),
-                        StateId = c.Int(nullable: false),
+                        CityId = c.String(maxLength: 128),
+                        StateId = c.String(maxLength: 128),
                         BiteDate = c.DateTimeOffset(nullable: false, precision: 7),
                         BiteReportDate = c.DateTimeOffset(nullable: false, precision: 7),
                         BiteReportedBy = c.String(nullable: false),
-                        BiteStatusId = c.Int(nullable: false),
+                        BiteStatusId = c.String(maxLength: 128),
                         Comments = c.String(),
                         EmployeeAssignedId = c.String(),
                         Active = c.Boolean(nullable: false),
@@ -28,9 +28,9 @@ namespace RabiesApplication.Web.Migrations
                         EmployeeEditedId = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.BiteStatus", t => t.BiteStatusId, cascadeDelete: true)
-                .ForeignKey("dbo.Cities", t => t.CityId, cascadeDelete: true)
-                .ForeignKey("dbo.States", t => t.StateId, cascadeDelete: true)
+                .ForeignKey("dbo.BiteStatus", t => t.BiteStatusId)
+                .ForeignKey("dbo.Cities", t => t.CityId)
+                .ForeignKey("dbo.States", t => t.StateId)
                 .Index(t => t.CityId)
                 .Index(t => t.StateId)
                 .Index(t => t.BiteStatusId);
@@ -39,7 +39,8 @@ namespace RabiesApplication.Web.Migrations
                 "dbo.BiteStatus",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.String(nullable: false, maxLength: 128),
+                        RowVersion = c.Binary(),
                         Description = c.String(nullable: false),
                         Active = c.Boolean(nullable: false),
                     })
@@ -49,25 +50,43 @@ namespace RabiesApplication.Web.Migrations
                 "dbo.Cities",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.String(nullable: false, maxLength: 128),
+                        RowVersion = c.Binary(),
                         CityName = c.String(nullable: false),
-                        StateId = c.Int(nullable: false),
+                        StateId = c.String(maxLength: 128),
                         Active = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.States", t => t.StateId, cascadeDelete: false)
+                .ForeignKey("dbo.States", t => t.StateId)
                 .Index(t => t.StateId);
             
             CreateTable(
                 "dbo.States",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.String(nullable: false, maxLength: 128),
+                        RowVersion = c.Binary(),
                         StateName = c.String(nullable: false),
                         StateShortName = c.String(nullable: false),
                         Active = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Counties",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        RowVersion = c.Binary(),
+                        Name = c.String(),
+                        Fips = c.Int(nullable: false),
+                        Active = c.Boolean(nullable: false),
+                        StateId = c.Int(nullable: false),
+                        State_Id = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.States", t => t.State_Id)
+                .Index(t => t.State_Id);
             
             CreateTable(
                 "dbo.Employees",
@@ -199,6 +218,7 @@ namespace RabiesApplication.Web.Migrations
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.Employees", "OrganizationId", "dbo.Organizations");
+            DropForeignKey("dbo.Counties", "State_Id", "dbo.States");
             DropForeignKey("dbo.Bites", "StateId", "dbo.States");
             DropForeignKey("dbo.Bites", "CityId", "dbo.Cities");
             DropForeignKey("dbo.Cities", "StateId", "dbo.States");
@@ -211,6 +231,7 @@ namespace RabiesApplication.Web.Migrations
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.Employees", new[] { "OrganizationId" });
             DropIndex("dbo.Employees", new[] { "Id" });
+            DropIndex("dbo.Counties", new[] { "State_Id" });
             DropIndex("dbo.Cities", new[] { "StateId" });
             DropIndex("dbo.Bites", new[] { "BiteStatusId" });
             DropIndex("dbo.Bites", new[] { "StateId" });
@@ -222,6 +243,7 @@ namespace RabiesApplication.Web.Migrations
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Organizations");
             DropTable("dbo.Employees");
+            DropTable("dbo.Counties");
             DropTable("dbo.States");
             DropTable("dbo.Cities");
             DropTable("dbo.BiteStatus");

@@ -5,7 +5,7 @@ namespace RabiesApplication.Models
 {
     public class BiteStatus :IModel, IActive
     {
-
+        [Key]
         public string Id { get; set; }
         public byte[] RowVersion { get; set; }
 

@@ -186,13 +186,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706251806169_Initial-Create.cs" />
-    <Compile Include="Migrations\201706251806169_Initial-Create.Designer.cs">
-      <DependentUpon>201706251806169_Initial-Create.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706252237183_AddCountyTable.cs" />
-    <Compile Include="Migrations\201706252237183_AddCountyTable.Designer.cs">
-      <DependentUpon>201706252237183_AddCountyTable.cs</DependentUpon>
+    <Compile Include="Migrations\201706261417191_InitialCreate.cs" />
+    <Compile Include="Migrations\201706261417191_InitialCreate.Designer.cs">
+      <DependentUpon>201706261417191_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -309,11 +305,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706251806169_Initial-Create.resx">
-      <DependentUpon>201706251806169_Initial-Create.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706252237183_AddCountyTable.resx">
-      <DependentUpon>201706252237183_AddCountyTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706261417191_InitialCreate.resx">
+      <DependentUpon>201706261417191_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

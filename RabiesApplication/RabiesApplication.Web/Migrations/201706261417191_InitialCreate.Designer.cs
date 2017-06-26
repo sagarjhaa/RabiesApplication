@@ -13,7 +13,7 @@ namespace RabiesApplication.Web.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201706251806169_Initial-Create"; }
+            get { return "201706261417191_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

@@ -6,7 +6,7 @@ namespace RabiesApplication.Models
 {
     public class State :IModel, IActive
     {
-
+        [Key]
         public string Id { get; set; }
         public byte[] RowVersion { get; set; }
 
