@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RabiesApplication.Models
 {
-    public class Employee : IModel, IOrganizationModel, IEmployeeBase, IAuditable
+    public class Employee : IModel, IOrganizationModel, IEmployeeBase, IAuditable, IActive
     {
         public string Id { get; set; }
         [Required]
@@ -66,7 +66,7 @@ namespace RabiesApplication.Models
 
         public string Zip4 { get; set; }
 
-        public byte Active { get; set; }
+        public bool Active { get; set; }
 
 
         public DateTimeOffset RecordCreated { get; set; }

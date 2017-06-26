@@ -202,6 +202,7 @@
     <Compile Include="Repositories\BiteRepository.cs" />
     <Compile Include="Repositories\DataContext.cs" />
     <Compile Include="Repositories\LookupRepository.cs" />
+    <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\ModelRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Startup.cs" />
