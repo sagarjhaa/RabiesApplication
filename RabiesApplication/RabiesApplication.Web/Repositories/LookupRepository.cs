@@ -7,21 +7,14 @@ using RabiesApplication.Models;
 
 namespace RabiesApplication.Web.Repositories
 {
-    public class StatesRepository :BaseRepository<State>
+    public class StatesRepository :ActiveRepository<State>
     {
-        public override Task<State> GetById(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override Task InsertOrUpdateAsync(State model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<State> GetAllStates()
-        {
-            return Context.States.AsQueryable();
-        }
     }
+
+    public class CitiesRepository : ActiveRepository<City>
+    {
+        
+    }
+
+
 }
