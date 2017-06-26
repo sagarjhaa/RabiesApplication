@@ -17,6 +17,8 @@ namespace RabiesApplication.Web.Controllers
     {
         private DataContext db = new DataContext();
         private readonly BiteRepository biteRepository = new BiteRepository();
+        private readonly StatesRepository _statesRepository = new StatesRepository();
+        private readonly CitiesRepository _citiesRepository = new CitiesRepository();
 
         // GET: Bites
         public ActionResult Index()
@@ -43,11 +45,15 @@ namespace RabiesApplication.Web.Controllers
         // GET: Bites/Create
         public async Task<ActionResult> BiteForm(int? id)
         {
+            ViewBag.StateId = new SelectList(_statesRepository.All(), "Id", "StateName");
+            ViewBag.CityId = new SelectList(_citiesRepository.All(), "Id", "CityName");
+
+
             ViewBag.BiteStatusId = new SelectList(db.BiteStatuses, "Id", "Description");
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "CityName");
+            
             ViewBag.EmployeeAssignedId = new SelectList(db.Users, "Id", "Email");
             ViewBag.EmployeecreatedId = new SelectList(db.Users, "Id", "Email");
-            ViewBag.StateId = new SelectList(db.States, "Id", "StateName");
+            
 
             var bite = new Bite();
 
