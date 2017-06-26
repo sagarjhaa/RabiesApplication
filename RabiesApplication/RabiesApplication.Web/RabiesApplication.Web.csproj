@@ -190,6 +190,10 @@
     <Compile Include="Migrations\201706261417191_InitialCreate.Designer.cs">
       <DependentUpon>201706261417191_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706261448509_ChangeEmployeeTableActiveField.cs" />
+    <Compile Include="Migrations\201706261448509_ChangeEmployeeTableActiveField.Designer.cs">
+      <DependentUpon>201706261448509_ChangeEmployeeTableActiveField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Constant.cs" />
@@ -308,6 +312,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706261417191_InitialCreate.resx">
       <DependentUpon>201706261417191_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706261448509_ChangeEmployeeTableActiveField.resx">
+      <DependentUpon>201706261448509_ChangeEmployeeTableActiveField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

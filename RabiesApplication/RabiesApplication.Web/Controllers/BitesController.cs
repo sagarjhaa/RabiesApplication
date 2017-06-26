@@ -19,6 +19,7 @@ namespace RabiesApplication.Web.Controllers
         private readonly BiteRepository biteRepository = new BiteRepository();
         private readonly StatesRepository _statesRepository = new StatesRepository();
         private readonly CitiesRepository _citiesRepository = new CitiesRepository();
+        private readonly EmployeeRepository _employee = new EmployeeRepository();
 
         // GET: Bites
         public ActionResult Index()
@@ -47,14 +48,10 @@ namespace RabiesApplication.Web.Controllers
         {
             ViewBag.StateId = new SelectList(_statesRepository.All(), "Id", "StateName");
             ViewBag.CityId = new SelectList(_citiesRepository.All(), "Id", "CityName");
-
-
+            ViewBag.Employee = new SelectList(_employee.All(), "Id", "FirstName");
             ViewBag.BiteStatusId = new SelectList(db.BiteStatuses, "Id", "Description");
-            
-            ViewBag.EmployeeAssignedId = new SelectList(db.Users, "Id", "Email");
-            ViewBag.EmployeecreatedId = new SelectList(db.Users, "Id", "Email");
-            
 
+            
             var bite = new Bite();
 
             if (id != null)
