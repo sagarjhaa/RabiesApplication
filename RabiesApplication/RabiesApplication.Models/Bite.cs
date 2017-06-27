@@ -13,13 +13,13 @@ namespace RabiesApplication.Models
         //Which city the bite occured
         public string CityId { get; set; }
 
-        public City City { get; set; }
+        public  City City { get; set; }
 
         //What state the bite occured
         //It will be Ohio for us
         public string StateId { get; set; }
 
-        public State State { get; set; }
+        public  State State { get; set; }
 
 
         [Required]
@@ -36,7 +36,7 @@ namespace RabiesApplication.Models
 
         public string BiteStatusId { get; set; }
 
-        public BiteStatus BiteStatus { get; set; }
+        public  BiteStatus BiteStatus { get; set; }
 
         public string Comments { get; set; }
 
