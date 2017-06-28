@@ -1,12 +1,12 @@
 ﻿@using Microsoft.AspNet.Identity
-@model RabiesApplication.Models.Bite
+@model RabiesApplication.Web.ViewModels.BiteViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Bite Form";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Bite Form</h2>
 
 
 @using (Html.BeginForm("Save", "Bites"))
@@ -14,77 +14,76 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Bite</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.BiteDate, htmlAttributes: new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.Bite.BiteDate, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BiteDate, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.BiteDate, "", new {@class = "text-danger"})
-            </div>
-        </div>
-
-        
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.BiteReportDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BiteReportDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BiteReportDate, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Bite.BiteDate, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Bite.BiteDate, "", new {@class = "text-danger"})
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BiteReportedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Bite.BiteReportDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BiteReportedBy, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BiteReportedBy, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Bite.BiteReportDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Bite.BiteReportDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.StateId, "StateId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Bite.BiteReportedBy, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("StateId", (SelectList) ViewBag.StateId, htmlAttributes: new { @class = "form-control" })
-                @*@Html.DropDownListFor(model => model.StateId, (SelectList) ViewBag.StateId, htmlAttributes: new { @class = "form-control" })*@
-                @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Bite.BiteReportedBy, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Bite.BiteReportedBy, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CityId, "CityId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Bite.StateId, "StateId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CityId", null, htmlAttributes: new { @class = "form-control" })
-                @*@Html.DropDownListFor(model => model.CityId, (SelectList) ViewBag.CityId, htmlAttributes: new { @class = "form-control" })*@
-                @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
+                @*@Html.DropDownList("StateId", (SelectList) ViewBag.StateId, htmlAttributes: new { @class = "form-control" })*@
+                @Html.DropDownListFor(model => model.Bite.StateId,new SelectList(Model.States,"Id","StateName"), htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Bite.StateId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Comments, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Bite.CityId, "CityId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Comments, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Comments, "", new { @class = "text-danger" })
+                @*@Html.DropDownList("CityId", null, htmlAttributes: new { @class = "form-control" })*@
+                @Html.DropDownListFor(model => model.Bite.CityId, new SelectList(Model.Cities,"Id","CityName"), htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Bite.CityId, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        @if (Model.BiteStatusId != null)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Bite.Comments, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Bite.Comments, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Bite.Comments, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @if (Model.Bite.BiteStatusId != null)
         {
           <div class="form-group">
-                @Html.LabelFor(model => model.BiteStatusId, "BiteStatusId", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Bite.BiteStatusId, "BiteStatusId", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("BiteStatusId", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.BiteStatusId, "", new { @class = "text-danger" })
+                    @*@Html.DropDownList("BiteStatusId", null, htmlAttributes: new { @class = "form-control" })*@
+                    @Html.DropDownListFor(model => model.Bite.BiteStatusId,new SelectList(Model.BiteStatuses,"Id","Description"),htmlAttributes:new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Bite.BiteStatusId, "", new { @class = "text-danger" })
                 </div>
             </div>
         }
 
         <div class="form-group">
-            @Html.LabelFor(model => model.EmployeeAssignedId, "EmployeeAssignedId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Bite.EmployeeAssignedId, "EmployeeAssignedId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Employee", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.EmployeeAssignedId, "", new { @class = "text-danger" })
+                @*@Html.DropDownList("Employee", null, htmlAttributes: new { @class = "form-control" })*@
+                @Html.DropDownListFor(model => model.Bite.EmployeeAssignedId,new SelectList(Model.Employees,"Id","FirstName"),htmlAttributes:new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Bite.EmployeeAssignedId, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -92,11 +91,11 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                @Html.HiddenFor(model => model.Id)
-                @Html.HiddenFor(model => model.Active)
-                @Html.HiddenFor(model => model.EmployeeCreatedId)
-                @Html.HiddenFor(model => model.RecordCreated)
-                <input type="submit" value="Create" class="btn btn-default" />
+                @Html.HiddenFor(model => model.Bite.Id)
+                @Html.HiddenFor(model => model.Bite.Active)
+                @Html.HiddenFor(model => model.Bite.EmployeeCreatedId)
+                @Html.HiddenFor(model => model.Bite.RecordCreated)
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>

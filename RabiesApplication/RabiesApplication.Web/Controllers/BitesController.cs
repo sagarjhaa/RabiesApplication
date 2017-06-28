@@ -11,6 +11,7 @@ using RabiesApplication.Models;
 using RabiesApplication.Web;
 using RabiesApplication.Web.Models;
 using RabiesApplication.Web.Repositories;
+using RabiesApplication.Web.ViewModels;
 
 namespace RabiesApplication.Web.Controllers
 {
@@ -32,31 +33,29 @@ namespace RabiesApplication.Web.Controllers
 
         public async Task<ActionResult> BiteForm(string id)
         {
-            ViewBag.StateId = new SelectList(_statesRepository.All(), "Id", "StateName");
-            ViewBag.CityId = new SelectList(_citiesRepository.All(), "Id", "CityName");
-            ViewBag.Employee = new SelectList(_employeeRepository.All(), "Id", "FirstName");
-            ViewBag.BiteStatusId = new SelectList(_biteStatusRepository.All(), "Id", "Description");
-
-
-            var bite = new Bite();
+           
+            var biteViewModel = new BiteViewModel
+            {
+                Bite = new Bite(),
+                Cities = _citiesRepository.All(),
+                States = _statesRepository.All(),
+                Employees = _employeeRepository.All(),
+                BiteStatuses = _biteStatusRepository.All()
+            };
 
             if (id != null)
             {
-                bite = await _biteRepository.GetById(id);
+                biteViewModel.Bite = await _biteRepository.GetById(id);
 
                 
-                if (bite == null)
+                if (biteViewModel.Bite == null)
                 {
                     return HttpNotFound();
                 }
 
-                ViewBag.StateId = new SelectList(_statesRepository.All(), "Id", "StateName", bite.StateId);
-                ViewBag.CityId = new SelectList(_citiesRepository.All(), "Id", "CityName", bite.CityId);
-                ViewBag.Employee = new SelectList(_employeeRepository.All(), "Id", "FirstName", bite.EmployeeAssignedId);
-                ViewBag.BiteStatusId = new SelectList(_biteStatusRepository.All(), "Id", "Description", bite.BiteStatusId);
             }
 
-            return View(bite);
+            return View(biteViewModel);
         }
 
 
@@ -66,7 +65,7 @@ namespace RabiesApplication.Web.Controllers
         public async Task<ActionResult> Save(Bite bite)
         {
             //Remove checking on EmployeecreatedId
-            ModelState.Remove("EmployeecreatedId");
+            //ModelState.Remove("EmployeecreatedId");
 
 
             if (ModelState.IsValid)
@@ -77,11 +76,16 @@ namespace RabiesApplication.Web.Controllers
                 //return RedirectToAction("Create", "HumanVictims", new { id = bite.Id });
             }
 
-            ViewBag.StateId = new SelectList(_statesRepository.All(), "Id", "StateName");
-            ViewBag.CityId = new SelectList(_citiesRepository.All(), "Id", "CityName");
-            ViewBag.Employee = new SelectList(_employeeRepository.All(), "Id", "FirstName");
-            ViewBag.BiteStatusId = new SelectList(_biteStatusRepository.All(), "Id", "Description");
-            return View("BiteForm", bite);
+            var biteViewModel = new BiteViewModel
+            {
+                Bite = bite,
+                Cities = _citiesRepository.All(),
+                States = _statesRepository.All(),
+                Employees = _employeeRepository.All(),
+                BiteStatuses = _biteStatusRepository.All()
+            };
+
+            return View("BiteForm", biteViewModel);
         }
 
         // GET: Bites/Delete/5
