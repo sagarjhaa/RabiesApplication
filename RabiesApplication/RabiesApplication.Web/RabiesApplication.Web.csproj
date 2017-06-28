@@ -311,6 +311,7 @@
     <Content Include="Views\Bites\Index.cshtml" />
     <Content Include="Views\HumanVictims\HumanVictimForm.cshtml" />
     <Content Include="Views\HumanVictims\Delete.cshtml" />
+    <Content Include="Views\HumanVictimList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

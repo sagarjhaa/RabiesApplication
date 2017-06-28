@@ -1,0 +1,159 @@
+﻿@model IEnumerable<RabiesApplication.Models.HumanVictim>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Bite.CityId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City.CityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.County.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State.StateName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RowVersion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dateofbirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Addressline1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Addressline2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zipcode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contactnumber1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contactnumber2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BiteType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BiteTypeNonBite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostExposureProphylaxis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MedicalTreatmentProvider)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RecordCreated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RecordEdited)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeCreatedId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeEditedId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bite.CityId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City.CityName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.County.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.State.StateName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RowVersion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dateofbirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Addressline1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Addressline2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zipcode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contactnumber1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contactnumber2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BiteType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BiteTypeNonBite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostExposureProphylaxis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MedicalTreatmentProvider)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RecordCreated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RecordEdited)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeCreatedId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeEditedId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
