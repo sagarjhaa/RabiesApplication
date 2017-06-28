@@ -83,9 +83,10 @@ namespace RabiesApplication.Web.Controllers
         public async Task<ActionResult> DeleteConfirmed(string id)
         {
             HumanVictim humanVictim = await db.HumanVictims.FindAsync(id);
+            var biteId = humanVictim.BiteId;
             db.HumanVictims.Remove(humanVictim);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details","Bites",new {id = biteId });
         }
 
         protected override void Dispose(bool disposing)
