@@ -10,15 +10,11 @@ namespace RabiesApplication.Web.Controllers
 {
     public class HumanVictimsController : Controller
     {
-        private DataContext db = new DataContext();
-
-        private HumanVictimRepository _humanVictimRepository = new HumanVictimRepository();
+        private readonly HumanVictimRepository _humanVictimRepository = new HumanVictimRepository();
         private readonly StatesRepository _statesRepository = new StatesRepository();
         private readonly CountiesRepository _countyRepository = new CountiesRepository();
         private readonly CitiesRepository _citiesRepository = new CitiesRepository();
        
-        
-
         // GET: HumanVictims/Create
         public ActionResult HumanVictimForm(string biteId,string victimId)
         {
@@ -70,7 +66,7 @@ namespace RabiesApplication.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HumanVictim humanVictim = await db.HumanVictims.FindAsync(id);
+            HumanVictim humanVictim = await _humanVictimRepository.GetById(id);
             if (humanVictim == null)
             {
                 return HttpNotFound();
@@ -83,20 +79,12 @@ namespace RabiesApplication.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(string id)
         {
-            HumanVictim humanVictim = await db.HumanVictims.FindAsync(id);
+            HumanVictim humanVictim = await _humanVictimRepository.GetById(id);
             var biteId = humanVictim.BiteId;
-            db.HumanVictims.Remove(humanVictim);
-            await db.SaveChangesAsync();
+            await _humanVictimRepository.DeleteAsync(humanVictim.Id);
+            await _humanVictimRepository.SaveChangesAsync();
             return RedirectToAction("Details","Bites",new {id = biteId });
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }
