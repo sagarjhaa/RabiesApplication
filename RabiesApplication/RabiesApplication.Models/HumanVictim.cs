@@ -4,7 +4,7 @@ using RabiesApplication.Models;
 
 namespace RabiesApp.Models
 {
-    public class HumanVictim : IPerson, IModel,IAuditable
+    public class HumanVictim : IPerson, IModel,IAuditable,IActive
     {
 
         public string Id { get; set; }
@@ -37,5 +37,6 @@ namespace RabiesApp.Models
         public DateTimeOffset? RecordEdited { get; set; }
         public string EmployeeCreatedId { get; set; }
         public string EmployeeEditedId { get; set; }
+        public bool Active { get; set; }
     }
 }

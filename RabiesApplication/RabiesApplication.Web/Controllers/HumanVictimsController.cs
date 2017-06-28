@@ -14,32 +14,13 @@ namespace RabiesApplication.Web.Controllers
 {
     public class HumanVictimsController : Controller
     {
-        private DataContext db = new DataContext();
+        private HumanVicim
 
-        // GET: HumanVictims
-        public async Task<ActionResult> Index()
-        {
-            var humanVictims = db.HumanVictims.Include(h => h.Bite).Include(h => h.City).Include(h => h.County).Include(h => h.State);
-            return View(await humanVictims.ToListAsync());
-        }
-
-        // GET: HumanVictims/Details/5
-        public async Task<ActionResult> Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            HumanVictim humanVictim = await db.HumanVictims.FindAsync(id);
-            if (humanVictim == null)
-            {
-                return HttpNotFound();
-            }
-            return View(humanVictim);
-        }
+       
+        
 
         // GET: HumanVictims/Create
-        public ActionResult Create()
+        public ActionResult HumanVictimForm()
         {
             ViewBag.BiteId = new SelectList(db.Bites, "Id", "CityId");
             ViewBag.CityId = new SelectList(db.Cities, "Id", "CityName");
@@ -62,45 +43,6 @@ namespace RabiesApplication.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BiteId = new SelectList(db.Bites, "Id", "CityId", humanVictim.BiteId);
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "CityName", humanVictim.CityId);
-            ViewBag.CountyId = new SelectList(db.Counties, "Id", "Name", humanVictim.CountyId);
-            ViewBag.StateId = new SelectList(db.States, "Id", "StateName", humanVictim.StateId);
-            return View(humanVictim);
-        }
-
-        // GET: HumanVictims/Edit/5
-        public async Task<ActionResult> Edit(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            HumanVictim humanVictim = await db.HumanVictims.FindAsync(id);
-            if (humanVictim == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.BiteId = new SelectList(db.Bites, "Id", "CityId", humanVictim.BiteId);
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "CityName", humanVictim.CityId);
-            ViewBag.CountyId = new SelectList(db.Counties, "Id", "Name", humanVictim.CountyId);
-            ViewBag.StateId = new SelectList(db.States, "Id", "StateName", humanVictim.StateId);
-            return View(humanVictim);
-        }
-
-        // POST: HumanVictims/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,RowVersion,BiteId,FirstName,LastName,Dateofbirth,Age,Addressline1,Addressline2,CityId,CountyId,StateId,Zipcode,Contactnumber1,Contactnumber2,BiteType,BiteTypeNonBite,PostExposureProphylaxis,MedicalTreatmentProvider,RecordCreated,RecordEdited,EmployeeCreatedId,EmployeeEditedId")] HumanVictim humanVictim)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(humanVictim).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
             ViewBag.BiteId = new SelectList(db.Bites, "Id", "CityId", humanVictim.BiteId);
             ViewBag.CityId = new SelectList(db.Cities, "Id", "CityName", humanVictim.CityId);
             ViewBag.CountyId = new SelectList(db.Counties, "Id", "Name", humanVictim.CountyId);

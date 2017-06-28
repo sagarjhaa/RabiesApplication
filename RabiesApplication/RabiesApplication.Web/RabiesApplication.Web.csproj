@@ -218,12 +218,14 @@
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\BiteRepository.cs" />
     <Compile Include="Repositories\DataContext.cs" />
+    <Compile Include="Repositories\HumanVictimRepository.cs" />
     <Compile Include="Repositories\LookupRepository.cs" />
     <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\ModelRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\BiteViewModel.cs" />
+    <Compile Include="ViewModels\HumanVictimViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -303,11 +305,8 @@
     <Content Include="Views\Bites\Details.cshtml" />
     <Content Include="Views\Bites\Edit.cshtml" />
     <Content Include="Views\Bites\Index.cshtml" />
-    <Content Include="Views\HumanVictims\Create.cshtml" />
+    <Content Include="Views\HumanVictims\HumanVictimForm.cshtml" />
     <Content Include="Views\HumanVictims\Delete.cshtml" />
-    <Content Include="Views\HumanVictims\Details.cshtml" />
-    <Content Include="Views\HumanVictims\Edit.cshtml" />
-    <Content Include="Views\HumanVictims\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
