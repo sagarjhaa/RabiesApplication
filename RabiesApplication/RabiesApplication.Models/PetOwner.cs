@@ -28,12 +28,12 @@ namespace RabiesApp.Models
         public int? Age { get; set; }
         public string Addressline1 { get; set; }
         public string Addressline2 { get; set; }
-        public int CityId { get; set; }
+        public string CityId { get; set; }
 
         public City City { get; set; }
 
-        public int CountyId { get; set; }
-        public int StateId { get; set; }
+        public string CountyId { get; set; }
+        public string StateId { get; set; }
 
         public State State { get; set; }
 

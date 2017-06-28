@@ -17,9 +17,9 @@ namespace RabiesApp.Models
         public int? Age { get; set; }
         public string Addressline1 { get; set; }
         public string Addressline2 { get; set; }
-        public int CityId { get; set; }
-        public int CountyId { get; set; }
-        public int StateId { get; set; }
+        public string CityId { get; set; }
+        public string CountyId { get; set; }
+        public string StateId { get; set; }
         public int Zipcode { get; set; }
         public string Contactnumber1 { get; set; }
         public string Contactnumber2 { get; set; }
