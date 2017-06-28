@@ -9,7 +9,7 @@
 
 <div id="BiteInformation">
     <h4>Bite</h4>
-    <hr/>
+    <hr />
 
     <div class="row">
         <div class="col-md-3">@Html.DisplayNameFor(model => model.BiteStatus.Description)</div>
@@ -58,7 +58,8 @@
 <div class="row">
     <div class="col-md-6">
         <p>Section for Human Victims</p>
-        @Html.ActionLink("Add","HumanVictimForm","HumanVictims",new {biteId = Model.Id})
+        @Html.ActionLink("Add Human Victim","HumanVictimForm","HumanVictims",new {biteId = Model.Id},null)
+       @*"HumanVictimForm", "HumanVictims", new { biteId = Model.Id })*@
 
     </div>
 

@@ -32,8 +32,8 @@ namespace RabiesApplication.Models
         public string StateId { get; set; }
 
         public State State { get; set; }
-
-        public int Zipcode { get; set; }
+        [Required]
+        public int? Zipcode { get; set; }
         public string Contactnumber1 { get; set; }
         public string Contactnumber2 { get; set; }
 

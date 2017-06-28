@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using RabiesApp.Models;
-using RabiesApplication.Web;
+using RabiesApplication.Models;
 using RabiesApplication.Web.Repositories;
 using RabiesApplication.Web.ViewModels;
 
@@ -19,9 +12,9 @@ namespace RabiesApplication.Web.Controllers
         private DataContext db = new DataContext();
 
         private HumanVictimRepository _humanVictimRepository = new HumanVictimRepository();
-        private StatesRepository _statesRepository = new StatesRepository();
-        private CountiesRepository _countyRepository = new CountiesRepository();
-        private CitiesRepository _citiesRepository = new CitiesRepository();
+        private readonly StatesRepository _statesRepository = new StatesRepository();
+        private readonly CountiesRepository _countyRepository = new CountiesRepository();
+        private readonly CitiesRepository _citiesRepository = new CitiesRepository();
        
         
 
@@ -36,13 +29,11 @@ namespace RabiesApplication.Web.Controllers
                 Cities = _citiesRepository.All()
             };
 
-
             if (victimId != null)
             {
 
             }
 
-            
             return View(humanVicitmViewModel);
         }
 
@@ -51,20 +42,24 @@ namespace RabiesApplication.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,RowVersion,BiteId,FirstName,LastName,Dateofbirth,Age,Addressline1,Addressline2,CityId,CountyId,StateId,Zipcode,Contactnumber1,Contactnumber2,BiteType,BiteTypeNonBite,PostExposureProphylaxis,MedicalTreatmentProvider,RecordCreated,RecordEdited,EmployeeCreatedId,EmployeeEditedId")] HumanVictim humanVictim)
+        public async Task<ActionResult> Save(HumanVictim humanVictim)
         {
             if (ModelState.IsValid)
             {
-                db.HumanVictims.Add(humanVictim);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                await _humanVictimRepository.InsertOrUpdateAsync(humanVictim);
+                await _humanVictimRepository.SaveChangesAsync();
+                return RedirectToAction("Details", "Bites", new {id = humanVictim.BiteId});
             }
 
-            ViewBag.BiteId = new SelectList(db.Bites, "Id", "CityId", humanVictim.BiteId);
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "CityName", humanVictim.CityId);
-            ViewBag.CountyId = new SelectList(db.Counties, "Id", "Name", humanVictim.CountyId);
-            ViewBag.StateId = new SelectList(db.States, "Id", "StateName", humanVictim.StateId);
-            return View(humanVictim);
+            var humanVicitmViewModel = new HumanVictimViewModel
+            {
+                HumanVictim = humanVictim,
+                States = _statesRepository.All(),
+                Counties = _countyRepository.All(),
+                Cities = _citiesRepository.All()
+            };
+
+            return View("HumanVictimForm",humanVictim);
         }
 
         // GET: HumanVictims/Delete/5

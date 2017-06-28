@@ -2,7 +2,6 @@
 using System.Data.Entity;
 using RabiesApplication.Models;
 using RabiesApplication.Web.Models;
-using RabiesApp.Models;
 
 namespace RabiesApplication.Web
 {
