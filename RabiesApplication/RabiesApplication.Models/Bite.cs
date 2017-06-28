@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using RabiesApplication.Models;
 
@@ -24,10 +25,12 @@ namespace RabiesApplication.Models
 
         [Required]
         //When bite happened
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}",ApplyFormatInEditMode = true)]
         public DateTimeOffset? BiteDate { get; set; }
 
         [Required]
         //When it was reported to us
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}",ApplyFormatInEditMode = true)]
         public DateTimeOffset? BiteReportDate { get; set; }
 
         [Required]

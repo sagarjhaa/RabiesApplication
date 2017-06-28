@@ -43,10 +43,17 @@ namespace RabiesApplication.Web.Controllers
             if (id != null)
             {
                 bite = await _biteRepository.GetById(id);
+
+                
                 if (bite == null)
                 {
                     return HttpNotFound();
                 }
+
+                ViewBag.StateId = new SelectList(_statesRepository.All(), "Id", "StateName", bite.StateId);
+                ViewBag.CityId = new SelectList(_citiesRepository.All(), "Id", "CityName", bite.CityId);
+                ViewBag.Employee = new SelectList(_employeeRepository.All(), "Id", "FirstName", bite.EmployeeAssignedId);
+                ViewBag.BiteStatusId = new SelectList(_biteStatusRepository.All(), "Id", "Description", bite.BiteStatusId);
             }
 
             return View(bite);

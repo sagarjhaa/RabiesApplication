@@ -6,17 +6,22 @@ using System.Threading.Tasks;
 
 namespace RabiesApplication.Web.Models
 {
-    public class Constant
+    public static class Constant
     {
-        public static bool Active = true;
-        public static bool Deactive = false;
+        public const bool Active = true;
+        public const bool Deactive = false;
 
-        public static string OrganizationCcbh = "1";
+        public const string OrganizationCcbh = "1";
+
+        //Todo All models with DateTimeOffset needs to show date in MM/DD/YYYY Format
+        //public const string DateFormat = "{0:MM/dd/yyyy}";
+
     }
 
-    public class BiteStatusConstant
+    public static class BiteStatusConstant
     {
-        public static string New = "1";
-        public static string Open = "2";
+        public const string New = "1";
+        public const string Open = "2";
     }
+
 }
