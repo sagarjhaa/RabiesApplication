@@ -31,7 +31,7 @@ namespace RabiesApplication.Web.Controllers
 
             if (victimId != null)
             {
-
+                humanVicitmViewModel.HumanVictim = _humanVictimRepository.GetById(victimId).Result;
             }
 
             return View(humanVicitmViewModel);

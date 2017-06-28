@@ -23,6 +23,7 @@ namespace RabiesApplication.Web.Controllers
         private readonly CitiesRepository _citiesRepository = new CitiesRepository();
         private readonly EmployeeRepository _employeeRepository = new EmployeeRepository();
         private readonly BiteStatusRepository _biteStatusRepository = new BiteStatusRepository();
+        private readonly HumanVictimRepository _humanVictimRepository = new HumanVictimRepository();
 
         // GET: Bites
         public ActionResult Index()
@@ -100,7 +101,18 @@ namespace RabiesApplication.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(bite);
+
+            var bitedetailsViewModel = new BiteDetailsViewModel
+            {
+                Bite = bite,
+                HumanVictims = _humanVictimRepository.GetAllByBiteId(id),
+                States = _statesRepository.All(),
+                Cities = _citiesRepository.All(),
+                Employees = _employeeRepository.All()
+            };
+
+
+            return View(bitedetailsViewModel);
         }
 
         // GET: Bites/Delete/5

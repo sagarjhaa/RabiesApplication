@@ -1,10 +1,13 @@
 ﻿@model IEnumerable<RabiesApplication.Models.HumanVictim>
 
 
-<table class="table">
+<table class="table table-condensed table-bordered table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Bite.CityId)
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.City.CityName)
@@ -14,30 +17,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.State.StateName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RowVersion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Dateofbirth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Age)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Addressline1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Addressline2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Zipcode)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Contactnumber1)
@@ -57,28 +36,17 @@
         <th>
             @Html.DisplayNameFor(model => model.MedicalTreatmentProvider)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RecordCreated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RecordEdited)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmployeeCreatedId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmployeeEditedId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Active)
-        </th>
+     
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Bite.CityId)
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.City.CityName)
@@ -88,30 +56,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.State.StateName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RowVersion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dateofbirth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Age)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Addressline1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Addressline2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Zipcode)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Contactnumber1)
@@ -132,24 +76,8 @@
             @Html.DisplayFor(modelItem => item.MedicalTreatmentProvider)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RecordCreated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RecordEdited)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeCreatedId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeEditedId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Active)
-        </td>
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+            @Html.ActionLink("Edit", "HumanVictimForm","HumanVictims", new { id=item.Id,victimId = item.Id },null) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

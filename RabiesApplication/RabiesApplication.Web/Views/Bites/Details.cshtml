@@ -9,8 +9,11 @@
 
 <div id="BiteInformation">
     <h4>Bite</h4>
+    <p class="pull-right">
+        @Html.ActionLink("Edit", "BiteForm", new { id = Model.Bite.Id },htmlAttributes:new {@class="btn btn-primary"}) |
+        @Html.ActionLink("Back to List", "Index",null, htmlAttributes: new { @class = "btn btn-primary" })
+    </p>
     <hr />
-
     <div class="row">
         <div class="col-md-3">@Html.DisplayNameFor(model => model.Bite.BiteStatus.Description)</div>
         <div class="col-md-3">@Html.DisplayFor(model => model.Bite.BiteStatus.Description)</div>
@@ -49,26 +52,21 @@
 
 </div>
 
-<p>
-    @Html.ActionLink("Edit", "BiteForm", new { id = Model.Bite.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
 
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <p>Section for Human Victims</p>
-        @Html.ActionLink("Add Human Victim","HumanVictimForm","HumanVictims",new {biteId = Model.Bite.Id},null)
+        @Html.ActionLink("Add Human Victim","HumanVictimForm","HumanVictims",new {biteId = Model.Bite.Id},htmlAttributes:new {@class="btn btn-primary pull-right"})
 
-        @Html.Partial("_HumanVictimList",Model.HumanVictims);
-
-        @*"HumanVictimForm", "HumanVictims", new { biteId = Model.Id })*@
+        @Html.Partial("_HumanVictimList",Model.HumanVictims)
 
     </div>
 
-    <div class="col-md-6">
+    @*<div class="col-md-6">
         <p>Section for Pet Victims</p>
-    </div>
+    </div>*@
 </div>
 
 <div class="row">
