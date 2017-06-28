@@ -14,7 +14,7 @@ namespace RabiesApplication.Web.Controllers
 {
     public class HumanVictimsController : Controller
     {
-        private HumanVicim
+        private DataContext db = new DataContext();
 
        
         
