@@ -198,6 +198,10 @@
     <Compile Include="Migrations\201706261511045_RemoveOrganizationfromEmployee.Designer.cs">
       <DependentUpon>201706261511045_RemoveOrganizationfromEmployee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706281401271_AddTables.cs" />
+    <Compile Include="Migrations\201706281401271_AddTables.Designer.cs">
+      <DependentUpon>201706281401271_AddTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Constant.cs" />
@@ -322,6 +326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706261511045_RemoveOrganizationfromEmployee.resx">
       <DependentUpon>201706261511045_RemoveOrganizationfromEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706281401271_AddTables.resx">
+      <DependentUpon>201706281401271_AddTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
