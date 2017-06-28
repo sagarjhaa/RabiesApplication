@@ -7,11 +7,12 @@
 
 <h2>Bite Details</h2>
 
+
 <div id="BiteInformation">
     <h4>Bite</h4>
     <p class="pull-right">
-        @Html.ActionLink("Edit", "BiteForm", new { id = Model.Bite.Id },htmlAttributes:new {@class="btn btn-primary"}) |
-        @Html.ActionLink("Back to List", "Index",null, htmlAttributes: new { @class = "btn btn-primary" })
+        @Html.ActionLink("Edit", "BiteForm", new { id = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary" }) |
+        @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
     </p>
     <hr />
     <div class="row">
@@ -58,15 +59,15 @@
 <div class="row">
     <div class="col-md-12">
         <p>Section for Human Victims</p>
-        @Html.ActionLink("Add Human Victim","HumanVictimForm","HumanVictims",new {biteId = Model.Bite.Id},htmlAttributes:new {@class="btn btn-primary pull-right"})
+        @Html.ActionLink("Add Human Victim", "HumanVictimForm", "HumanVictims", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right" })
 
-        @Html.Partial("_HumanVictimList",Model.HumanVictims)
+        @Html.Partial("_HumanVictimList", Model.HumanVictims)
 
     </div>
 
     @*<div class="col-md-6">
-        <p>Section for Pet Victims</p>
-    </div>*@
+            <p>Section for Pet Victims</p>
+        </div>*@
 </div>
 
 <div class="row">
@@ -74,3 +75,17 @@
         <p>Section for Animal Information</p>
     </div>
 </div>
+
+
+
+<script>
+    $(document)
+        .ready(function () {
+            var message = "@ViewBag.StatusMessage";
+            if (message != null) {
+                toastr.info("@ViewBag.StatusMessage");
+            }
+        });
+</script>
+
+

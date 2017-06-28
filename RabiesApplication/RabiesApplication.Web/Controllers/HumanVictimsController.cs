@@ -2,6 +2,7 @@
 using System.Net;
 using System.Web.Mvc;
 using RabiesApplication.Models;
+using RabiesApplication.Web.Models;
 using RabiesApplication.Web.Repositories;
 using RabiesApplication.Web.ViewModels;
 
@@ -48,7 +49,7 @@ namespace RabiesApplication.Web.Controllers
             {
                 await _humanVictimRepository.InsertOrUpdateAsync(humanVictim);
                 await _humanVictimRepository.SaveChangesAsync();
-                return RedirectToAction("Details", "Bites", new {id = humanVictim.BiteId});
+                return RedirectToAction("Details", "Bites", new {id = humanVictim.BiteId,Message = Constant.ManageMessageId.AddHumanVictimSuccess});
             }
 
             var humanVicitmViewModel = new HumanVictimViewModel
@@ -59,7 +60,7 @@ namespace RabiesApplication.Web.Controllers
                 Cities = _citiesRepository.All()
             };
 
-            return View("HumanVictimForm",humanVictim);
+            return View("HumanVictimForm", humanVicitmViewModel);
         }
 
         // GET: HumanVictims/Delete/5
