@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using RabiesApplication.Models;
 
-namespace RabiesApp.Models
+namespace RabiesApplication.Models
 {
     public class Animal : IModel
     {

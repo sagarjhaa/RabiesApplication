@@ -17,6 +17,14 @@ namespace RabiesApplication.Web.Repositories
         }
     }
 
+    public class CountiesRepository : ActiveRepository<County>
+    {
+        public override IQueryable<County> All()
+        {
+            return base.All().Where(s => s.Active == Constant.Active);
+        }
+    }
+
     public class CitiesRepository : ActiveRepository<City>
     {
         

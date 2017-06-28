@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RabiesApplication.Models;
 
-namespace RabiesApp.Models
+namespace RabiesApplication.Models
 {
     public class Vet : IActive,IModel,IPerson,IAuditable
     {

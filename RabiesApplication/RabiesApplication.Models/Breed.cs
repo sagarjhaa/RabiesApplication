@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using RabiesApplication.Models;
 
-namespace RabiesApp.Models
+namespace RabiesApplication.Models
 {
     public class Breed : IActive, IModel,IAuditable
     {

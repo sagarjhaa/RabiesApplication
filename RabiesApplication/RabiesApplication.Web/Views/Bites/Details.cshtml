@@ -50,6 +50,25 @@
 </div>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "BiteForm", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <p>Section for Human Victims</p>
+        @Html.ActionLink("Add","HumanVictimForm","HumanVictims",new {biteId = Model.Id})
+
+    </div>
+
+    <div class="col-md-6">
+        <p>Section for Pet Victims</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <p>Section for Animal Information</p>
+    </div>
+</div>

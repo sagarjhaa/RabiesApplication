@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RabiesApp.Models
+namespace RabiesApplication.Models
 {
     public interface IPerson
     {

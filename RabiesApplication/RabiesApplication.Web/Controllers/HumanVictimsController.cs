@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using RabiesApp.Models;
 using RabiesApplication.Web;
+using RabiesApplication.Web.Repositories;
+using RabiesApplication.Web.ViewModels;
 
 namespace RabiesApplication.Web.Controllers
 {
@@ -16,17 +18,32 @@ namespace RabiesApplication.Web.Controllers
     {
         private DataContext db = new DataContext();
 
+        private HumanVictimRepository _humanVictimRepository = new HumanVictimRepository();
+        private StatesRepository _statesRepository = new StatesRepository();
+        private CountiesRepository _countyRepository = new CountiesRepository();
+        private CitiesRepository _citiesRepository = new CitiesRepository();
        
         
 
         // GET: HumanVictims/Create
-        public ActionResult HumanVictimForm()
+        public ActionResult HumanVictimForm(string biteId,string victimId)
         {
-            ViewBag.BiteId = new SelectList(db.Bites, "Id", "CityId");
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "CityName");
-            ViewBag.CountyId = new SelectList(db.Counties, "Id", "Name");
-            ViewBag.StateId = new SelectList(db.States, "Id", "StateName");
-            return View();
+            var humanVicitmViewModel = new HumanVictimViewModel
+            {
+                HumanVictim = new HumanVictim(biteId),
+                States = _statesRepository.All(),
+                Counties = _countyRepository.All(),
+                Cities = _citiesRepository.All()
+            };
+
+
+            if (victimId != null)
+            {
+
+            }
+
+            
+            return View(humanVicitmViewModel);
         }
 
         // POST: HumanVictims/Create
