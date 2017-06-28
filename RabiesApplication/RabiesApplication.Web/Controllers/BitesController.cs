@@ -72,8 +72,7 @@ namespace RabiesApplication.Web.Controllers
             {
                 await _biteRepository.InsertOrUpdateAsync(bite);
                 await _biteRepository.SaveChangesAsync();
-                return RedirectToAction("Index");
-                //return RedirectToAction("Create", "HumanVictims", new { id = bite.Id });
+                return RedirectToAction("Details",new {id = bite.Id});
             }
 
             var biteViewModel = new BiteViewModel
@@ -86,6 +85,22 @@ namespace RabiesApplication.Web.Controllers
             };
 
             return View("BiteForm", biteViewModel);
+        }
+
+
+        // GET: Bites/Details/5
+        public async Task<ActionResult> Details(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Bite bite =await _biteRepository.GetById(id);
+            if (bite == null)
+            {
+                return HttpNotFound();
+            }
+            return View(bite);
         }
 
         // GET: Bites/Delete/5

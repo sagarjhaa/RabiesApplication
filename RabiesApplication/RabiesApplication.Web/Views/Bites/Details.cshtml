@@ -1,130 +1,54 @@
 ﻿@model RabiesApplication.Models.Bite
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Bite Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Bite Details</h2>
 
-<div>
+<div id="BiteInformation">
     <h4>Bite</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.BiteStatus.Description)
-        </dt>
+    <hr/>
 
-        <dd>
-            @Html.DisplayFor(model => model.BiteStatus.Description)
-        </dd>
+    <div class="row">
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.BiteStatus.Description)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.BiteStatus.Description)</div>
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.City.CityName)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.City.CityName)</div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.City.CityName)
-        </dt>
+    <div class="row">
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.State.StateName)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.State.StateName)</div>
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.RowVersion)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.RowVersion)</div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.City.CityName)
-        </dd>
+    <div class="row">
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.BiteDate)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.BiteDate)</div>
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.BiteReportDate)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.BiteReportDate)</div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.State.StateName)
-        </dt>
+    <div class="row">
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.BiteReportedBy)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.BiteReportedBy)</div>
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.EmployeeAssignedId)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.EmployeeAssignedId)</div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.State.StateName)
-        </dd>
+    <div class="row">
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.Comments)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.Comments)</div>
+        <div class="col-md-3"></div>
+        <div class="col-md-3"></div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RowVersion)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.RowVersion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BiteDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BiteDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BiteReportDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BiteReportDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BiteReportedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BiteReportedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Comments)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Comments)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EmployeeAssignedId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmployeeAssignedId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Active)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Active)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RecordCreated)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RecordCreated)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RecordEdited)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RecordEdited)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EmployeeCreatedId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmployeeCreatedId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EmployeeEditedId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmployeeEditedId)
-        </dd>
-
-    </dl>
 </div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
