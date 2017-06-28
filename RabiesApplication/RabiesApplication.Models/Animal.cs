@@ -4,7 +4,7 @@ using RabiesApplication.Models;
 
 namespace RabiesApplication.Models
 {
-    public class Animal : IModel
+    public class Animal : IModel,IAuditable
     {
 
         public string Id { get; set; }
@@ -50,9 +50,10 @@ namespace RabiesApplication.Models
 
         public string QuarantineVerification { get; set; }
 
-        public string EmployeecreatedId { get; set; }
-        public string EmployeeeditedId { get; set; }
-        public DateTimeOffset Recordcreated { get; set; }
-        public DateTimeOffset? Recordedited { get; set; }
+
+        public DateTimeOffset RecordCreated { get; set; }
+        public DateTimeOffset? RecordEdited { get; set; }
+        public string EmployeeCreatedId { get; set; }
+        public string EmployeeEditedId { get; set; }        
     }
 }
