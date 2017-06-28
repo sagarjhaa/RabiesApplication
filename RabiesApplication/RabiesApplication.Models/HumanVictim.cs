@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RabiesApplication.Models
 {
-    public class HumanVictim : IPerson, IModel,IAuditable,IActive
+    public class HumanVictim : IPerson, IModel,IAuditable
     {
 
         public string Id { get; set; }
@@ -54,7 +54,7 @@ namespace RabiesApplication.Models
         public DateTimeOffset? RecordEdited { get; set; }
         public string EmployeeCreatedId { get; set; }
         public string EmployeeEditedId { get; set; }
-        public bool Active { get; set; }
+        
 
         public HumanVictim()
         {

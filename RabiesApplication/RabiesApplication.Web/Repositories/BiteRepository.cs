@@ -9,7 +9,7 @@ using RabiesApplication.Web.Models;
 
 namespace RabiesApplication.Web.Repositories
 {
-    public class BiteRepository : AuditRepository<Bite>
+    public class BiteRepository : ActiveRepository<Bite>
     {
         public override Task InsertOrUpdateAsync(Bite model)
         {

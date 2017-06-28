@@ -1,8 +1,9 @@
-﻿using RabiesApplication.Models;
+﻿using System;
+using RabiesApplication.Models;
 
 namespace RabiesApplication.Models
 {
-    public class County:IModel,IActive
+    public class County:IModel,IActive,IAuditable
     {
         public string Id { get; set; }
         public byte[] RowVersion { get; set; }
@@ -16,5 +17,9 @@ namespace RabiesApplication.Models
         public int StateId { get; set; }
 
         public State State { get; set; }
+        public DateTimeOffset RecordCreated { get; set; }
+        public DateTimeOffset? RecordEdited { get; set; }
+        public string EmployeeCreatedId { get; set; }
+        public string EmployeeEditedId { get; set; }
     }
 }

@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using RabiesApplication.Models;
 
 namespace RabiesApplication.Models
 {
-    public class State :IModel, IActive
+    public class State :IModel, IActive, IAuditable
     {
         [Key]
         public string Id { get; set; }
@@ -19,5 +20,9 @@ namespace RabiesApplication.Models
 
         public IEnumerable<County> Counties { get; set; }
         public bool Active { get; set; }
+        public DateTimeOffset RecordCreated { get; set; }
+        public DateTimeOffset? RecordEdited { get; set; }
+        public string EmployeeCreatedId { get; set; }
+        public string EmployeeEditedId { get; set; }
     }
 }
