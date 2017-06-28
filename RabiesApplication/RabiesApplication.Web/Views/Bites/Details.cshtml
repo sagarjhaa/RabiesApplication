@@ -1,4 +1,4 @@
-﻿@model RabiesApplication.Models.Bite
+﻿@model RabiesApplication.Web.ViewModels.BiteDetailsViewModel
 
 @{
     ViewBag.Title = "Bite Details";
@@ -12,36 +12,36 @@
     <hr />
 
     <div class="row">
-        <div class="col-md-3">@Html.DisplayNameFor(model => model.BiteStatus.Description)</div>
-        <div class="col-md-3">@Html.DisplayFor(model => model.BiteStatus.Description)</div>
-        <div class="col-md-3">@Html.DisplayNameFor(model => model.City.CityName)</div>
-        <div class="col-md-3">@Html.DisplayFor(model => model.City.CityName)</div>
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.Bite.BiteStatus.Description)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.Bite.BiteStatus.Description)</div>
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.Bite.City.CityName)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.Bite.City.CityName)</div>
     </div>
 
     <div class="row">
-        <div class="col-md-3">@Html.DisplayNameFor(model => model.State.StateName)</div>
-        <div class="col-md-3">@Html.DisplayFor(model => model.State.StateName)</div>
-        <div class="col-md-3">@Html.DisplayNameFor(model => model.RowVersion)</div>
-        <div class="col-md-3">@Html.DisplayFor(model => model.RowVersion)</div>
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.Bite.State.StateName)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.Bite.State.StateName)</div>
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.Bite.RowVersion)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.Bite.RowVersion)</div>
     </div>
 
     <div class="row">
-        <div class="col-md-3">@Html.DisplayNameFor(model => model.BiteDate)</div>
-        <div class="col-md-3">@Html.DisplayFor(model => model.BiteDate)</div>
-        <div class="col-md-3">@Html.DisplayNameFor(model => model.BiteReportDate)</div>
-        <div class="col-md-3">@Html.DisplayFor(model => model.BiteReportDate)</div>
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.Bite.BiteDate)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.Bite.BiteDate)</div>
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.Bite.BiteReportDate)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.Bite.BiteReportDate)</div>
     </div>
 
     <div class="row">
-        <div class="col-md-3">@Html.DisplayNameFor(model => model.BiteReportedBy)</div>
-        <div class="col-md-3">@Html.DisplayFor(model => model.BiteReportedBy)</div>
-        <div class="col-md-3">@Html.DisplayNameFor(model => model.EmployeeAssignedId)</div>
-        <div class="col-md-3">@Html.DisplayFor(model => model.EmployeeAssignedId)</div>
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.Bite.BiteReportedBy)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.Bite.BiteReportedBy)</div>
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.Bite.EmployeeAssignedId)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.Bite.EmployeeAssignedId)</div>
     </div>
 
     <div class="row">
-        <div class="col-md-3">@Html.DisplayNameFor(model => model.Comments)</div>
-        <div class="col-md-3">@Html.DisplayFor(model => model.Comments)</div>
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.Bite.Comments)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.Bite.Comments)</div>
         <div class="col-md-3"></div>
         <div class="col-md-3"></div>
     </div>
@@ -50,7 +50,7 @@
 </div>
 
 <p>
-    @Html.ActionLink("Edit", "BiteForm", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "BiteForm", new { id = Model.Bite.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
 
@@ -58,8 +58,11 @@
 <div class="row">
     <div class="col-md-6">
         <p>Section for Human Victims</p>
-        @Html.ActionLink("Add Human Victim","HumanVictimForm","HumanVictims",new {biteId = Model.Id},null)
-       @*"HumanVictimForm", "HumanVictims", new { biteId = Model.Id })*@
+        @Html.ActionLink("Add Human Victim","HumanVictimForm","HumanVictims",new {biteId = Model.Bite.Id},null)
+
+        @Html.Partial("_HumanVictimList",Model.HumanVictims);
+
+        @*"HumanVictimForm", "HumanVictims", new { biteId = Model.Id })*@
 
     </div>
 
