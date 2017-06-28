@@ -182,6 +182,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BitesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HumanVictimsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -302,6 +303,11 @@
     <Content Include="Views\Bites\Details.cshtml" />
     <Content Include="Views\Bites\Edit.cshtml" />
     <Content Include="Views\Bites\Index.cshtml" />
+    <Content Include="Views\HumanVictims\Create.cshtml" />
+    <Content Include="Views\HumanVictims\Delete.cshtml" />
+    <Content Include="Views\HumanVictims\Details.cshtml" />
+    <Content Include="Views\HumanVictims\Edit.cshtml" />
+    <Content Include="Views\HumanVictims\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
