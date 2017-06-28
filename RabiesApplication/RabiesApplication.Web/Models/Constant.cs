@@ -16,6 +16,16 @@ namespace RabiesApplication.Web.Models
         //Todo All models with DateTimeOffset needs to show date in MM/DD/YYYY Format
         //public const string DateFormat = "{0:MM/dd/yyyy}";
 
+
+        #region HELPER
+        public enum ManageMessageId
+        {
+            SavedBiteDataSuccess,
+            AddHumanVictimSuccess,
+            EditHumanVictimSuccess,
+            DeleteHumanVictimSuccess
+        }
+        #endregion
     }
 
     public static class BiteStatusConstant
@@ -24,4 +34,6 @@ namespace RabiesApplication.Web.Models
         public const string Open = "2";
     }
 
+
+    
 }
