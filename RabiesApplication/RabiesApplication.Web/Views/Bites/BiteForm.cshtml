@@ -46,7 +46,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.StateId, "StateId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("StateId", (SelectList) ViewBag.StateId, htmlAttributes: new { @class = "form-control" })
+                @*@Html.DropDownList("StateId", (SelectList) ViewBag.StateId, htmlAttributes: new { @class = "form-control" })*@
+                @Html.DropDownListFor(model => model.StateId, (SelectList) ViewBag.StateId, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -54,7 +55,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CityId, "CityId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CityId", null, htmlAttributes: new { @class = "form-control" })
+                @*@Html.DropDownList("CityId", null, htmlAttributes: new { @class = "form-control" })*@
+                @Html.DropDownListFor(model => model.CityId, (SelectList) ViewBag.CityId, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
             </div>
         </div>

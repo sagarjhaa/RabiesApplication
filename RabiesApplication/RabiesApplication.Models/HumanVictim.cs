@@ -18,8 +18,13 @@ namespace RabiesApp.Models
         public string Addressline1 { get; set; }
         public string Addressline2 { get; set; }
         public string CityId { get; set; }
+        public City City { get; set; }
+
         public string CountyId { get; set; }
+        public County County { get; set; }
+
         public string StateId { get; set; }
+        public State State { get; set; }
         public int Zipcode { get; set; }
         public string Contactnumber1 { get; set; }
         public string Contactnumber2 { get; set; }
