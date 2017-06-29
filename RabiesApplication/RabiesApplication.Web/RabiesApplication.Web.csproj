@@ -211,6 +211,10 @@
     <Compile Include="Migrations\201706281656568_AddActiveToHumanVictim.Designer.cs">
       <DependentUpon>201706281656568_AddActiveToHumanVictim.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706282359136_ChangeInRepository_ImplementIAuditable.cs" />
+    <Compile Include="Migrations\201706282359136_ChangeInRepository_ImplementIAuditable.Designer.cs">
+      <DependentUpon>201706282359136_ChangeInRepository_ImplementIAuditable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Constant.cs" />
@@ -390,6 +394,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706281656568_AddActiveToHumanVictim.resx">
       <DependentUpon>201706281656568_AddActiveToHumanVictim.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706282359136_ChangeInRepository_ImplementIAuditable.resx">
+      <DependentUpon>201706282359136_ChangeInRepository_ImplementIAuditable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
