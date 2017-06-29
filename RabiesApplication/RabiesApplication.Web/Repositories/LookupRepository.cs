@@ -58,19 +58,23 @@ namespace RabiesApplication.Web.Repositories
             return base.All().Where(s => s.Active.Equals(Constant.Active)).OrderBy(s => s.Description);
         }
 
-        public SelectList GetList()
-        {
-            var newItem = new SelectListItem()
-            {
-                Text = "Select One",
-                Value = "",
-                Selected = true
-            };
+        //public List<SelectListItem> GetList()
+        //{
+        //    var newItem = new SelectListItem()
+        //    {
+        //        Text = "Select One",
+        //        Value = "",
+        //        Selected = true
+        //    };
 
-            var selectList = new SelectList(All(),"Id","Description",newItem);
+        //    var selectList = new SelectList(All(),"Id","Description",newItem);
 
-            return selectList;
-        }
+        //    var Items = new List<SelectListItem>();
+            
+
+
+        //    return selectList;
+        //}
     }
 
 }

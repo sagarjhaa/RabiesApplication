@@ -12,7 +12,7 @@ namespace RabiesApplication.Web.ViewModels
     {
         public Animal Animal { get; set; }
         public IEnumerable<Breed> Breeds { get; set; }
-        public SelectList Specieses { get; set; }
+        public IEnumerable<Species> Specieses { get; set; }
         public IEnumerable<Vet> Vets { get; set; }
         public IEnumerable<Employee> Employees { get; set; }
     }

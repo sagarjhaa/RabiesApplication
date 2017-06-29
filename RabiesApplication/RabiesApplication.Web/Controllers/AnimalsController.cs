@@ -30,7 +30,7 @@ namespace RabiesApplication.Web.Controllers
             {
                 Animal = new Animal(biteId),
                 Breeds = _breedRepository.All(),
-                Specieses = _speciesRepository.GetList(),
+                Specieses = _speciesRepository.All(),
                 Employees = _employeeRepository.All(),
                 Vets = _vetRepository.All()
             };
@@ -51,7 +51,7 @@ namespace RabiesApplication.Web.Controllers
             {
                 Animal = new Animal(biteId),
                 Breeds = _breedRepository.All(),
-                Specieses = _speciesRepository.GetList(),
+                Specieses = _speciesRepository.All(),
                 Employees = _employeeRepository.All(),
                 Vets = _vetRepository.All()
             };
@@ -81,7 +81,7 @@ namespace RabiesApplication.Web.Controllers
             {
                 Animal = animal,
                 Breeds = _breedRepository.All(),
-                Specieses = _speciesRepository.GetList(),
+                Specieses = _speciesRepository.All(),
                 Employees = _employeeRepository.All(),
                 Vets = _vetRepository.All()
             };

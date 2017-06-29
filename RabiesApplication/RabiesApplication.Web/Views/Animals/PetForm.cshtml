@@ -20,7 +20,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Animal.VetId, "VetId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Animal.VetId, new SelectList(Model.Vets,"Id",""), htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Animal.VetId, new SelectList(Model.Vets,"Id","Name"), "Select Vet", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Animal.VetId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -28,8 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Animal.SpeciesId, "SpeciesId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.DropDownListFor(model => model.Animal.SpeciesId, new SelectList(Model.Specieses,"Id","Description"), htmlAttributes: new { @class = "form-control" })*@
-                @Html.DropDownListFor(model => model.Animal.SpeciesId, Model.Specieses, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Animal.SpeciesId, new SelectList(Model.Specieses,"Id","Description"), "Select Species", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Animal.SpeciesId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -37,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Animal.BreedId, "BreedId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Animal.BreedId, new SelectList(Model.Breeds,"Id", "Description"), htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Animal.BreedId, new SelectList(Model.Breeds,"Id", "Description"), "Select Breed", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Animal.BreedId, "", new { @class = "text-danger" })
             </div>
         </div>
