@@ -16,26 +16,28 @@ namespace RabiesApplication.Web.Controllers
     {
         private DataContext db = new DataContext();
 
-        
-
-        
 
         // GET: Animals/Create
-        public ActionResult Create()
+        public ActionResult Create(string id)
         {
             ViewBag.BiteId = new SelectList(db.Bites, "Id", "CityId");
             ViewBag.BreedId = new SelectList(db.Breeds, "Id", "Description");
             ViewBag.SpeciesId = new SelectList(db.Species, "Id", "Description");
             ViewBag.VetId = new SelectList(db.Vets, "Id", "FirstName");
+
+            if (id != null)
+            {
+                
+            }
+
+
             return View();
         }
 
         // POST: Animals/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,RowVersion,BiteId,VetId,IsVictim,SpeciesId,BreedId,Name,Sex,IsVacinated,VaccineDate,VaccineExpirationDate,TagNumber,IsVacinatedPost,IsVacinatedPrior,IsQuarantine,IsQuarantineCompleted,QuarantineVerification,RecordCreated,RecordEdited,EmployeeCreatedId,EmployeeEditedId")] Animal animal)
+        public async Task<ActionResult> Create( Animal animal)
         {
             if (ModelState.IsValid)
             {
