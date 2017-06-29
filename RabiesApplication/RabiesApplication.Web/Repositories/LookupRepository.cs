@@ -46,7 +46,7 @@ namespace RabiesApplication.Web.Repositories
     {
         public override IQueryable<Breed> All()
         {
-            return base.All().Where(b => b.Active.Equals(Constant.Active));
+            return base.All().Where(b => b.Active.Equals(Constant.Active)).OrderBy(b => b.Description);
         }
     }
 
@@ -54,7 +54,7 @@ namespace RabiesApplication.Web.Repositories
     {
         public override IQueryable<Species> All()
         {
-            return base.All().Where(b => b.Active.Equals(Constant.Active));
+            return base.All().Where(s => s.Active.Equals(Constant.Active)).OrderBy(s => s.Description);
         }
     }
 
