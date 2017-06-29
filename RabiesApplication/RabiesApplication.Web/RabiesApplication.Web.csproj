@@ -229,6 +229,10 @@
     <Compile Include="Migrations\201706291713221_Insert_Breed_Species.Designer.cs">
       <DependentUpon>201706291713221_Insert_Breed_Species.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706291805063_RequiredFieldBreedSpecies.cs" />
+    <Compile Include="Migrations\201706291805063_RequiredFieldBreedSpecies.Designer.cs">
+      <DependentUpon>201706291805063_RequiredFieldBreedSpecies.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Constant.cs" />
@@ -423,6 +427,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706291713221_Insert_Breed_Species.resx">
       <DependentUpon>201706291713221_Insert_Breed_Species.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706291805063_RequiredFieldBreedSpecies.resx">
+      <DependentUpon>201706291805063_RequiredFieldBreedSpecies.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
