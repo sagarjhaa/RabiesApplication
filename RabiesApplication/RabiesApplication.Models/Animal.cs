@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using RabiesApplication.Models;
+using RabiesApplication.Models.BusinessLogic;
 
 namespace RabiesApplication.Models
 {
@@ -32,10 +33,11 @@ namespace RabiesApplication.Models
         //Todo check if needs to add SprayNeuter
         public bool Sex { get; set; }
 
-
+        
         public bool IsVacinated { get; set; }
-
+        [IfVacinatedCheckDates]
         public DateTime? VaccineDate { get; set; }
+        [IfVacinatedCheckDates]
         public DateTime? VaccineExpirationDate { get; set; }
 
         public int? TagNumber { get; set; }
