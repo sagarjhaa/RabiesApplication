@@ -23,7 +23,13 @@ namespace RabiesApplication.Web.Controllers
         private readonly CitiesRepository _citiesRepository = new CitiesRepository();
         private readonly EmployeeRepository _employeeRepository = new EmployeeRepository();
         private readonly BiteStatusRepository _biteStatusRepository = new BiteStatusRepository();
+
         private readonly HumanVictimRepository _humanVictimRepository = new HumanVictimRepository();
+
+        private readonly AnimalRepository _animalRepository = new AnimalRepository();
+        private readonly BreedRepository _breedRepository = new BreedRepository();
+        private readonly SpeciesRepository _speciesRepository = new SpeciesRepository();
+        private readonly VetRepository _vetRepository = new VetRepository();
 
         // GET: Bites
         public ActionResult Index()
@@ -116,7 +122,12 @@ namespace RabiesApplication.Web.Controllers
                 HumanVictims = _humanVictimRepository.GetAllByBiteId(id),
                 States = _statesRepository.All(),
                 Cities = _citiesRepository.All(),
-                Employees = _employeeRepository.All()
+                Employees = _employeeRepository.All(),
+
+                Animal = _animalRepository.GetAllPetVictims(id),
+                Breeds = _breedRepository.All(),
+                Specieses = _speciesRepository.All(),
+                Vets = _vetRepository.All()
             };
 
 

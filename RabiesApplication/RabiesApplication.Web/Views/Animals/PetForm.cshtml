@@ -147,7 +147,7 @@
             <div class="col-md-offset-2 col-md-10">
                 @Html.HiddenFor(model => model.Animal.Id)
                 @Html.HiddenFor(model => model.Animal.BiteId)
-                @Html.HiddenFor(model => model.Animal.IsVictim, new { value = true })
+                @Html.HiddenFor(model => model.Animal.IsVictim, new { Value = "true" })
                 <input type="submit" value="Save" class="btn btn-default"/>
             </div>
         </div>
