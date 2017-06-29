@@ -23,8 +23,8 @@ namespace RabiesApplication.Web.Controllers
         private readonly EmployeeRepository _employeeRepository = new EmployeeRepository();
         private readonly VetRepository _vetRepository = new VetRepository();
 
-        // GET: Animals/Create
-        public ActionResult PetForm(string biteId,string petid)
+        // GET: Animals/PetForm
+        public ActionResult PetForm(string biteId,string petId)
         {
             var PetFormViewModel = new AnimalViewModel
             {
@@ -35,13 +35,34 @@ namespace RabiesApplication.Web.Controllers
                 Vets = _vetRepository.All()
             };
 
-            if (petid != null)
+            if (petId != null)
             {
-                PetFormViewModel.Animal =  _animalRepository.GetById(petid).Result;
+                PetFormViewModel.Animal =  _animalRepository.GetById(petId).Result;
             }
 
 
             return View(PetFormViewModel);
+        }
+
+        // GET: Animal/AnimalForm
+        public ActionResult AnimalForm(string biteId, string animalId)
+        {
+            var animalFormViewModel = new AnimalViewModel
+            {
+                Animal = new Animal(biteId),
+                Breeds = _breedRepository.All(),
+                Specieses = _speciesRepository.All(),
+                Employees = _employeeRepository.All(),
+                Vets = _vetRepository.All()
+            };
+
+            if (animalId != null)
+            {
+                animalFormViewModel.Animal = _animalRepository.GetById(animalId).Result;
+            }
+
+
+            return View(animalFormViewModel);
         }
 
         // POST: Animals/Create
@@ -64,7 +85,9 @@ namespace RabiesApplication.Web.Controllers
                 Employees = _employeeRepository.All(),
                 Vets = _vetRepository.All()
             };
-            return View("PetForm",PetFormViewModel);
+            
+            return Redirect(HttpContext.Request.UrlReferrer.ToString());
+            //return View("PetForm",PetFormViewModel);
         }
 
        
