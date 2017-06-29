@@ -85,9 +85,9 @@ namespace RabiesApplication.Web.Controllers
                 Employees = _employeeRepository.All(),
                 Vets = _vetRepository.All()
             };
-            
-            return Redirect(HttpContext.Request.UrlReferrer.ToString());
-            //return View("PetForm",PetFormViewModel);
+
+            //return Redirect(HttpContext.Request.UrlReferrer.ToString());
+            return View("PetForm", PetFormViewModel);
         }
 
        
