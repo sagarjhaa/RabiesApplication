@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using RabiesApplication.Models;
-using RabiesApplication.Models.BusinessLogic;
+using RabiesApplication.Models.CustomValidation;
 
 namespace RabiesApplication.Models
 {
