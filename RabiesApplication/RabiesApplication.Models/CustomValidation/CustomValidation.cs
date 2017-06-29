@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RabiesApplication.Models;
 
-namespace RabiesApplication.Models.BusinessLogic
+namespace RabiesApplication.Models.CustomValidation
 {
     public class IfVacinatedCheckDates : ValidationAttribute
     {
@@ -23,7 +23,7 @@ namespace RabiesApplication.Models.BusinessLogic
                 return new ValidationResult("Remove Vaccination dates when pet not vaccinated");
             }
 
-            if (!pet.VaccineDate.HasValue && !pet.VaccineExpirationDate.HasValue)
+            if (!(pet.VaccineDate.HasValue && pet.VaccineExpirationDate.HasValue))
             {
                 return new ValidationResult("Please enter Vaccination Date and  Expiration Date");
             }
