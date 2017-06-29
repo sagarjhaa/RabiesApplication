@@ -65,10 +65,10 @@ namespace RabiesApplication.Web.Controllers
             return View(animalFormViewModel);
         }
 
-        // POST: Animals/Create
+        // POST: Animals/SavePet
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Save( Animal animal)
+        public async Task<ActionResult> SavePet( Animal animal)
         {
             if (ModelState.IsValid)
             {
@@ -85,12 +85,35 @@ namespace RabiesApplication.Web.Controllers
                 Employees = _employeeRepository.All(),
                 Vets = _vetRepository.All()
             };
-
-            //return Redirect(HttpContext.Request.UrlReferrer.ToString());
             return View("PetForm", PetFormViewModel);
         }
 
-       
+
+
+        // POST: Animals/SaveAnimal
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SaveAnimal(Animal animal)
+        {
+            if (ModelState.IsValid)
+            {
+                await _animalRepository.InsertOrUpdateAsync(animal);
+                await _animalRepository.SaveChangesAsync();
+                return RedirectToAction("Details", "Bites", new { id = animal.BiteId, Message = Constant.ManageMessageId.SavePetVictimDataSuccess });
+            }
+
+            var AnimalFormViewModel = new AnimalViewModel
+            {
+                Animal = animal,
+                Breeds = _breedRepository.All(),
+                Specieses = _speciesRepository.All(),
+                Employees = _employeeRepository.All(),
+                Vets = _vetRepository.All()
+            };
+            return View("AnimalForm", AnimalFormViewModel);
+        }
+
+
         // GET: Animals/Delete/5
         public async Task<ActionResult> Delete(string id)
         {

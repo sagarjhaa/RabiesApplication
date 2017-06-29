@@ -15,5 +15,10 @@ namespace RabiesApplication.Web.Repositories
         {
             return All().Where(p => p.IsVictim.Equals(Constant.Active)).Where(p => p.BiteId.Equals(biteId)).Include("Breed").Include("Species");
         }
+
+        public IQueryable<Animal> GetAllAnimals(string biteId)
+        {
+            return All().Where(p => p.IsVictim.Equals(Constant.Deactive)).Where(p => p.BiteId.Equals(biteId)).Include("Breed").Include("Species");
+        }
     }
 }

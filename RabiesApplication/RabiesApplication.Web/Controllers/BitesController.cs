@@ -126,7 +126,8 @@ namespace RabiesApplication.Web.Controllers
                 Cities = _citiesRepository.All(),
                 Employees = _employeeRepository.All(),
 
-                Animal = _animalRepository.GetAllPetVictims(id),
+                Pets = _animalRepository.GetAllPetVictims(id),
+                Animal = _animalRepository.GetAllAnimals(id),
                 Breeds = _breedRepository.All(),
                 Specieses = _speciesRepository.All(),
                 Vets = _vetRepository.All()

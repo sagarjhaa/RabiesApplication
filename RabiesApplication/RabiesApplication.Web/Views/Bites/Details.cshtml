@@ -81,7 +81,7 @@
         </p>
         @if (Model.Animal.Any())
         {
-            @Html.Partial("_PetsList", Model.Animal)
+            @Html.Partial("_PetsList", Model.Pets)
         }
         else
         {
@@ -95,8 +95,16 @@
     <div class="col-md-12">
         <p class="pull-right">
             <h3>Animal Information</h3>
-
+            @Html.ActionLink("Add Animal Information", "AnimalForm", "Animals", new {biteId = Model.Bite.Id}, htmlAttributes: new {@class = "btn btn-primary pull-right"})
         </p>
+        @if (Model.Animal.Any())
+        {
+            @Html.Partial("_PetsList", Model.Animal)
+        }
+        else
+        {
+            <h4> Add animal information here..</h4>
+        }
     </div>
 </div>
 

@@ -18,12 +18,12 @@ namespace RabiesApplication.Web.ViewModels
         public IEnumerable<State> States { get; set; }
         public IEnumerable<County> Counties { get; set; }
         public IEnumerable<City> Cities { get; set; }
-        
+
 
         #endregion
 
         #region Pet
-
+        public IEnumerable<Animal> Pets { get; set; }
         public IEnumerable<Animal> Animal { get; set; }
         public IEnumerable<Breed> Breeds { get; set; }
         public IEnumerable<Species> Specieses { get; set; }
