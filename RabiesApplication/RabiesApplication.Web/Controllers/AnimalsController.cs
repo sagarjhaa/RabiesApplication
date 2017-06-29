@@ -24,11 +24,11 @@ namespace RabiesApplication.Web.Controllers
         private readonly VetRepository _vetRepository = new VetRepository();
 
         // GET: Animals/Create
-        public ActionResult PetForm(string biteid,string petid)
+        public ActionResult PetForm(string biteId,string petid)
         {
             var PetFormViewModel = new AnimalViewModel
             {
-                Animal = new Animal(biteid),
+                Animal = new Animal(biteId),
                 Breeds = _breedRepository.All(),
                 Specieses = _speciesRepository.All(),
                 Employees = _employeeRepository.All(),
@@ -47,20 +47,24 @@ namespace RabiesApplication.Web.Controllers
         // POST: Animals/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create( Animal animal)
+        public async Task<ActionResult> Save( Animal animal)
         {
             if (ModelState.IsValid)
             {
-                db.Animals.Add(animal);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                await _animalRepository.InsertOrUpdateAsync(animal);
+                await _animalRepository.SaveChangesAsync();
+                return RedirectToAction("Details","Bites",new {id = animal.BiteId});
             }
 
-            ViewBag.BiteId = new SelectList(db.Bites, "Id", "CityId", animal.BiteId);
-            ViewBag.BreedId = new SelectList(db.Breeds, "Id", "Description", animal.BreedId);
-            ViewBag.SpeciesId = new SelectList(db.Species, "Id", "Description", animal.SpeciesId);
-            ViewBag.VetId = new SelectList(db.Vets, "Id", "FirstName", animal.VetId);
-            return View(animal);
+            var PetFormViewModel = new AnimalViewModel
+            {
+                Animal = animal,
+                Breeds = _breedRepository.All(),
+                Specieses = _speciesRepository.All(),
+                Employees = _employeeRepository.All(),
+                Vets = _vetRepository.All()
+            };
+            return View("PetForm",animal);
         }
 
        

@@ -64,15 +64,12 @@
         @Html.Partial("_HumanVictimList", Model.HumanVictims)
 
     </div>
-
-    @*<div class="col-md-6">
-            <p>Section for Pet Victims</p>
-        </div>*@
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <p>Section for Animal Information</p>
+        @Html.ActionLink("Add Pet Information","PetForm","Animals",new {biteId = Model.Bite.Id},htmlAttributes:new {@class = "btn btn-primary pull-right"})
     </div>
 </div>
 

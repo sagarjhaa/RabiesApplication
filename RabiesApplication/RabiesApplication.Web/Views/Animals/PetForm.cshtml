@@ -8,7 +8,7 @@
 <h2>Pet Form</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Save","Animals")) 
 {
     @Html.AntiForgeryToken()
     
@@ -20,7 +20,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Animal.VetId, "VetId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("VetId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Animal.VetId, new SelectList(Model.Vets,"Id",""), htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Animal.VetId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Animal.SpeciesId, "SpeciesId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("SpeciesId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Animal.SpeciesId, new SelectList(Model.Specieses,"Id",""), htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Animal.SpeciesId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -36,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Animal.BreedId, "BreedId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("BreedId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Animal.BreedId, new SelectList(Model.Breeds,"Id",""), htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Animal.BreedId, "", new { @class = "text-danger" })
             </div>
         </div>
