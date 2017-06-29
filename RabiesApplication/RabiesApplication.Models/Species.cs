@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace RabiesApplication.Models
         public byte[] RowVersion { get; set; }
 
         [Required]
+        [DisplayName("Species")]
         public string Description { get; set; }
 
         public bool Active { get; set; }

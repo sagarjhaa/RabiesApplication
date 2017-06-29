@@ -45,7 +45,7 @@ namespace RabiesApplication.Web.Controllers
             {
                 await _humanVictimRepository.InsertOrUpdateAsync(humanVictim);
                 await _humanVictimRepository.SaveChangesAsync();
-                return RedirectToAction("Details", "Bites", new {id = humanVictim.BiteId,Message = Constant.ManageMessageId.AddHumanVictimSuccess});
+                return RedirectToAction("Details", "Bites", new {id = humanVictim.BiteId,Message = Constant.ManageMessageId.SaveHumanVictimDataSuccess});
             }
 
             var humanVicitmViewModel = new HumanVictimViewModel

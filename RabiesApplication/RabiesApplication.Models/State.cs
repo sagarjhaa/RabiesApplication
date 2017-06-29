@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using RabiesApplication.Models;
 
@@ -12,6 +13,7 @@ namespace RabiesApplication.Models
         public byte[] RowVersion { get; set; }
 
         [Required]
+        [DisplayName("State")]
         public string StateName { get; set; }
         [Required]
         public string  StateShortName { get; set; }

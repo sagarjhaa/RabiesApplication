@@ -21,9 +21,11 @@ namespace RabiesApplication.Web.Models
         public enum ManageMessageId
         {
             SavedBiteDataSuccess,
-            AddHumanVictimSuccess,
-            EditHumanVictimSuccess,
-            DeleteHumanVictimSuccess
+            SaveHumanVictimDataSuccess,
+            DeleteHumanVictimSuccess,
+            ErrorHumanVictimData,
+            SavePetVictimDataSuccess,
+            DeletePetVictimSuccess
         }
         #endregion
     }

@@ -9,7 +9,7 @@
 
 
 <div id="BiteInformation">
-    <h4>Bite</h4>
+    <h3>Bite</h3>
     <p class="pull-right">
         @Html.ActionLink("Edit", "BiteForm", new { id = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary" }) |
         @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
@@ -54,37 +54,68 @@
 </div>
 
 
-
-
 <div class="row">
     <div class="col-md-12">
-        <p>Section for Human Victims</p>
-        @Html.ActionLink("Add Human Victim", "HumanVictimForm", "HumanVictims", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right" })
+        <p class="pull-right">
+            <h3>Human Victims</h3>
+            @Html.ActionLink("Add Human Victim", "HumanVictimForm", "HumanVictims", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right" })
+        </p>
+        @if (Model.HumanVictims.Any())
+        {
+            @Html.Partial("_HumanVictimList", Model.HumanVictims)
+        }
+        else
+        {
+            <h4> Is there any human victims?..Add here</h4>
+        }
 
-        @Html.Partial("_HumanVictimList", Model.HumanVictims)
 
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-12">
-        <p>Section for Animal Information</p>
-        @Html.ActionLink("Add Pet Information","PetForm","Animals",new {biteId = Model.Bite.Id},htmlAttributes:new {@class = "btn btn-primary pull-right"})
+        <p class="pull-right">
+            <h3>Pet Victims</h3>
+            @Html.ActionLink("Add Pet Information", "PetForm", "Animals", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right" })
+        </p>
+        @if (Model.Animal.Any())
+        {
+            @Html.Partial("_PetsList", Model.Animal)
+        }
+        else
+        {
+            <h4> Is there any pet victims?..Add here</h4>
+        }
 
-        @Html.Partial("_PetsList", Model.Animal)
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <p class="pull-right">
+            <h3>Animal Information</h3>
+
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <p class="pull-right">
+            <h3>Animal Owner Information</h3>
+
+        </p>
     </div>
 </div>
 
 
 
 <script>
-    $(document)
-        .ready(function () {
-            var message = "@ViewBag.StatusMessage";
-            if (message != null) {
-                toastr.info("@ViewBag.StatusMessage");
-            }
-        });
-</script>
+            $(document)
+                .ready(function () {
+                    toastr.info("@ViewBag.StatusMessage");
+                });
+        </script>
 
 

@@ -100,9 +100,11 @@ namespace RabiesApplication.Web.Controllers
         {
             ViewBag.StatusMessage =
                   message == Constant.ManageMessageId.SavedBiteDataSuccess ? "Bite data saved successfully."
-                : message == Constant.ManageMessageId.AddHumanVictimSuccess ? "Human victim added successfully."
-                : message == Constant.ManageMessageId.EditHumanVictimSuccess ? "Human victim edited successfully."
-                : message == Constant.ManageMessageId.DeleteHumanVictimSuccess ? "Human victim deleted successfully"
+                : message == Constant.ManageMessageId.SaveHumanVictimDataSuccess ? "Victim data saved successfully."
+                : message == Constant.ManageMessageId.DeleteHumanVictimSuccess ? "Victim deleted successfully."
+                : message == Constant.ManageMessageId.ErrorHumanVictimData ? "Error saving Victim data."
+                : message == Constant.ManageMessageId.SavePetVictimDataSuccess ? "Pet data saved successfully"
+                : message == Constant.ManageMessageId.DeletePetVictimSuccess ? "Pet data deleted successfully"
                 : "";
 
 

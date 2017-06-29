@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using RabiesApplication.Models;
@@ -10,6 +11,7 @@ namespace RabiesApplication.Models
         public string Id { get; set; }
         public byte[] RowVersion { get; set; }
         [Required]
+        [DisplayName("Breed")]
         public string Description { get; set; }
         
         public bool Active { get; set; }

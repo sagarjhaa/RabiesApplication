@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using RabiesApplication.Models;
 using RabiesApplication.Web;
+using RabiesApplication.Web.Models;
 using RabiesApplication.Web.Repositories;
 using RabiesApplication.Web.ViewModels;
 
@@ -16,7 +17,6 @@ namespace RabiesApplication.Web.Controllers
 {
     public class AnimalsController : Controller
     {
-        private DataContext db = new DataContext();
         private readonly AnimalRepository _animalRepository = new AnimalRepository();
         private readonly BreedRepository _breedRepository = new BreedRepository();
         private readonly SpeciesRepository _speciesRepository = new SpeciesRepository();
@@ -53,7 +53,7 @@ namespace RabiesApplication.Web.Controllers
             {
                 await _animalRepository.InsertOrUpdateAsync(animal);
                 await _animalRepository.SaveChangesAsync();
-                return RedirectToAction("Details","Bites",new {id = animal.BiteId});
+                return RedirectToAction("Details","Bites",new {id = animal.BiteId, Message = Constant.ManageMessageId.SavePetVictimDataSuccess });
             }
 
             var PetFormViewModel = new AnimalViewModel
@@ -64,7 +64,7 @@ namespace RabiesApplication.Web.Controllers
                 Employees = _employeeRepository.All(),
                 Vets = _vetRepository.All()
             };
-            return View("PetForm",animal);
+            return View("PetForm",PetFormViewModel);
         }
 
        
@@ -75,7 +75,7 @@ namespace RabiesApplication.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Animal animal = await db.Animals.FindAsync(id);
+            Animal animal = await _animalRepository.GetById(id);
             if (animal == null)
             {
                 return HttpNotFound();
@@ -88,10 +88,11 @@ namespace RabiesApplication.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(string id)
         {
-            Animal animal = await db.Animals.FindAsync(id);
-            db.Animals.Remove(animal);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            var animal = _animalRepository.GetById(id).Result;
+            var biteId = animal.BiteId;
+            await _animalRepository.DeleteAsync(id);
+            await _animalRepository.SaveChangesAsync();
+            return RedirectToAction("Details","Bites",new { id = biteId, Message = Constant.ManageMessageId.DeletePetVictimSuccess});
         }
 
       
