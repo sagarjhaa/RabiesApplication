@@ -363,6 +363,7 @@
     <Content Include="Views\Shared\_HumanVictimList.cshtml" />
     <Content Include="Views\Animals\PetForm.cshtml" />
     <Content Include="Views\Animals\Delete.cshtml" />
+    <Content Include="Views\Shared\_PetsList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
