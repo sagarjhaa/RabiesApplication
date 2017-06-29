@@ -360,7 +360,7 @@
     <Content Include="Views\HumanVictims\HumanVictimForm.cshtml" />
     <Content Include="Views\HumanVictims\Delete.cshtml" />
     <Content Include="Views\Shared\_HumanVictimList.cshtml" />
-    <Content Include="Views\Animals\Create.cshtml" />
+    <Content Include="Views\Animals\PetForm.cshtml" />
     <Content Include="Views\Animals\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
