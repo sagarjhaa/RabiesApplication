@@ -233,6 +233,7 @@
     <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\ModelRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\VetRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AnimalViewModel.cs" />
     <Compile Include="ViewModels\BiteDetailsViewModel.cs" />

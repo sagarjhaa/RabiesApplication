@@ -9,29 +9,39 @@ using System.Web;
 using System.Web.Mvc;
 using RabiesApplication.Models;
 using RabiesApplication.Web;
+using RabiesApplication.Web.Repositories;
+using RabiesApplication.Web.ViewModels;
 
 namespace RabiesApplication.Web.Controllers
 {
     public class AnimalsController : Controller
     {
         private DataContext db = new DataContext();
-
+        private readonly AnimalRepository _animalRepository = new AnimalRepository();
+        private readonly BreedRepository _breedRepository = new BreedRepository();
+        private readonly SpeciesRepository _speciesRepository = new SpeciesRepository();
+        private readonly EmployeeRepository _employeeRepository = new EmployeeRepository();
+        private readonly VetRepository _vetRepository = new VetRepository();
 
         // GET: Animals/Create
-        public ActionResult Create(string id)
+        public ActionResult PetForm(string biteid,string petid)
         {
-            ViewBag.BiteId = new SelectList(db.Bites, "Id", "CityId");
-            ViewBag.BreedId = new SelectList(db.Breeds, "Id", "Description");
-            ViewBag.SpeciesId = new SelectList(db.Species, "Id", "Description");
-            ViewBag.VetId = new SelectList(db.Vets, "Id", "FirstName");
-
-            if (id != null)
+            var PetFormViewModel = new AnimalViewModel
             {
-                
+                Animal = new Animal(biteid),
+                Breeds = _breedRepository.All(),
+                Specieses = _speciesRepository.All(),
+                Employees = _employeeRepository.All(),
+                Vets = _vetRepository.All()
+            };
+
+            if (petid != null)
+            {
+                PetFormViewModel.Animal =  _animalRepository.GetById(petid).Result;
             }
 
 
-            return View();
+            return View(PetFormViewModel);
         }
 
         // POST: Animals/Create

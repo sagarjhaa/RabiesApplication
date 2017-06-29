@@ -42,5 +42,20 @@ namespace RabiesApplication.Web.Repositories
         }
     }
 
+    public class BreedRepository : ActiveRepository<Breed>
+    {
+        public override IQueryable<Breed> All()
+        {
+            return base.All().Where(b => b.Active.Equals(Constant.Active));
+        }
+    }
+
+    public class SpeciesRepository : ActiveRepository<Species>
+    {
+        public override IQueryable<Species> All()
+        {
+            return base.All().Where(b => b.Active.Equals(Constant.Active));
+        }
+    }
 
 }
