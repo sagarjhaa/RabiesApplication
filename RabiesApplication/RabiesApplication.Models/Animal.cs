@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using RabiesApplication.Models;
 using RabiesApplication.Models.CustomValidation;
@@ -21,10 +22,11 @@ namespace RabiesApplication.Models
 
         public bool IsVictim { get; set; }
 
+        [Required]
         public string SpeciesId { get; set; }
 
         public Species Species { get; set; }
-
+        [Required]
         public string BreedId { get; set; }
         public Breed Breed { get; set; }
 

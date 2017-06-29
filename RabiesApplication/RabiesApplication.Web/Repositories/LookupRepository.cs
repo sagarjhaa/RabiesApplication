@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using RabiesApplication.Models;
 using RabiesApplication.Web.Models;
 
@@ -55,6 +56,20 @@ namespace RabiesApplication.Web.Repositories
         public override IQueryable<Species> All()
         {
             return base.All().Where(s => s.Active.Equals(Constant.Active)).OrderBy(s => s.Description);
+        }
+
+        public SelectList GetList()
+        {
+            var newItem = new SelectListItem()
+            {
+                Text = "Select One",
+                Value = "",
+                Selected = true
+            };
+
+            var selectList = new SelectList(All(),"Id","Description",newItem);
+
+            return selectList;
         }
     }
 

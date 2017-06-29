@@ -28,7 +28,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Animal.SpeciesId, "SpeciesId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Animal.SpeciesId, new SelectList(Model.Specieses,"Id","Description"), htmlAttributes: new { @class = "form-control" })
+                @*@Html.DropDownListFor(model => model.Animal.SpeciesId, new SelectList(Model.Specieses,"Id","Description"), htmlAttributes: new { @class = "form-control" })*@
+                @Html.DropDownListFor(model => model.Animal.SpeciesId, Model.Specieses, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Animal.SpeciesId, "", new { @class = "text-danger" })
             </div>
         </div>
