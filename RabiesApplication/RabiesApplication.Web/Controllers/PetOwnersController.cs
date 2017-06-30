@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using RabiesApplication.Models;
 using RabiesApplication.Web;
 using RabiesApplication.Web.Repositories;
+using RabiesApplication.Web.ViewModels;
 
 namespace RabiesApplication.Web.Controllers
 {
@@ -22,12 +23,23 @@ namespace RabiesApplication.Web.Controllers
 
       
         // GET: PetOwners/Create
-        public ActionResult PetOwnerForm()
+        public ActionResult PetOwnerForm(string id,string animalId)
         {
-            ViewBag.AnimalId = new SelectList(db.Animals, "Id", "BiteId");
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "CityName");
-            ViewBag.StateId = new SelectList(db.States, "Id", "StateName");
-            return View();
+            var petOwnerViewModel = new PetOwnerViewModel()
+            {
+                PetOwner = new PetOwner(),
+                States = _statesRepository.All(),
+                Counties = _countyRepository.All(),
+                Cities = _citiesRepository.All()
+            };
+
+
+            if (id != null)
+            {
+                petOwnerViewModel.PetOwner = _petOwnerRepository.GetById(id).Result;
+            }
+            
+            return View(petOwnerViewModel);
         }
 
         // POST: PetOwners/Create
@@ -39,15 +51,19 @@ namespace RabiesApplication.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.PetOwners.Add(petOwner);
-                await db.SaveChangesAsync();
+                await _petOwnerRepository.InsertOrUpdateAsync(petOwner);
+                await _petOwnerRepository.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AnimalId = new SelectList(db.Animals, "Id", "BiteId", petOwner.AnimalId);
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "CityName", petOwner.CityId);
-            ViewBag.StateId = new SelectList(db.States, "Id", "StateName", petOwner.StateId);
-            return View(petOwner);
+            var petOwnerViewModel = new PetOwnerViewModel()
+            {
+                PetOwner = petOwner,
+                States = _statesRepository.All(),
+                Counties = _countyRepository.All(),
+                Cities = _citiesRepository.All()
+            };
+            return View("PetOwnerForm", petOwnerViewModel);
         }
 
         // GET: PetOwners/Delete/5
