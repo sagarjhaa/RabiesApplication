@@ -384,6 +384,7 @@
     <Content Include="Views\Animals\Delete.cshtml" />
     <Content Include="Views\Shared\_PetsList.cshtml" />
     <Content Include="Views\Animals\AnimalForm.cshtml" />
+    <Content Include="Views\Shared\_AnimalList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
