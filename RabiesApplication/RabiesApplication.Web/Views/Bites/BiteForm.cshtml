@@ -43,8 +43,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Bite.StateId, "StateId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.DropDownList("StateId", (SelectList) ViewBag.StateId, htmlAttributes: new { @class = "form-control" })*@
-                @Html.DropDownListFor(model => model.Bite.StateId,new SelectList(Model.States,"Id","StateName"), htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Bite.StateId,new SelectList(Model.States,"Id","StateName"),"Select State", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Bite.StateId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -52,8 +51,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Bite.CityId, "CityId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.DropDownList("CityId", null, htmlAttributes: new { @class = "form-control" })*@
-                @Html.DropDownListFor(model => model.Bite.CityId, new SelectList(Model.Cities,"Id","CityName"), htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Bite.CityId, new SelectList(Model.Cities,"Id","CityName"), "Select City", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Bite.CityId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -71,7 +69,6 @@
           <div class="form-group">
                 @Html.LabelFor(model => model.Bite.BiteStatusId, "BiteStatusId", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @*@Html.DropDownList("BiteStatusId", null, htmlAttributes: new { @class = "form-control" })*@
                     @Html.DropDownListFor(model => model.Bite.BiteStatusId,new SelectList(Model.BiteStatuses,"Id","Description"),htmlAttributes:new {@class = "form-control"})
                     @Html.ValidationMessageFor(model => model.Bite.BiteStatusId, "", new { @class = "text-danger" })
                 </div>
@@ -81,7 +78,6 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Bite.EmployeeAssignedId, "EmployeeAssignedId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.DropDownList("Employee", null, htmlAttributes: new { @class = "form-control" })*@
                 @Html.DropDownListFor(model => model.Bite.EmployeeAssignedId,new SelectList(Model.Employees,"Id","FirstName"),htmlAttributes:new {@class = "form-control"})
                 @Html.ValidationMessageFor(model => model.Bite.EmployeeAssignedId, "", new { @class = "text-danger" })
             </div>
