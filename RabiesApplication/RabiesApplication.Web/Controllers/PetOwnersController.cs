@@ -17,17 +17,19 @@ namespace RabiesApplication.Web.Controllers
     public class PetOwnersController : Controller
     {
         private readonly PetOwnerRepository _petOwnerRepository = new PetOwnerRepository();
+        private readonly AnimalRepository _animalRepository = new AnimalRepository();
         private readonly StatesRepository _statesRepository = new StatesRepository();
         private readonly CountiesRepository _countyRepository = new CountiesRepository();
         private readonly CitiesRepository _citiesRepository = new CitiesRepository();
 
       
         // GET: PetOwners/Create
-        public ActionResult PetOwnerForm(string id,string animalId)
+        public ActionResult PetOwnerForm(string id,string animalId,string biteId)
         {
             var petOwnerViewModel = new PetOwnerViewModel()
             {
                 PetOwner = new PetOwner(),
+                Animals =  _animalRepository.GetAllAnimals(biteId),
                 States = _statesRepository.All(),
                 Counties = _countyRepository.All(),
                 Cities = _citiesRepository.All()
@@ -53,7 +55,7 @@ namespace RabiesApplication.Web.Controllers
             {
                 await _petOwnerRepository.InsertOrUpdateAsync(petOwner);
                 await _petOwnerRepository.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details","Bites",petOwner.Animal.BiteId);
             }
 
             var petOwnerViewModel = new PetOwnerViewModel()
@@ -73,7 +75,7 @@ namespace RabiesApplication.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PetOwner petOwner = await db.PetOwners.FindAsync(id);
+            PetOwner petOwner = await _petOwnerRepository.GetById(id);
             if (petOwner == null)
             {
                 return HttpNotFound();
@@ -82,23 +84,23 @@ namespace RabiesApplication.Web.Controllers
         }
 
         // POST: PetOwners/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string id)
-        {
-            PetOwner petOwner = await db.PetOwners.FindAsync(id);
-            db.PetOwners.Remove(petOwner);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> DeleteConfirmed(string id)
+        //{
+        //    PetOwner petOwner = await db.PetOwners.FindAsync(id);
+        //    db.PetOwners.Remove(petOwner);
+        //    await db.SaveChangesAsync();
+        //    return RedirectToAction("Index");
+        //}
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }
