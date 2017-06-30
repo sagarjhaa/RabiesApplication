@@ -9,22 +9,18 @@ using System.Web;
 using System.Web.Mvc;
 using RabiesApplication.Models;
 using RabiesApplication.Web;
+using RabiesApplication.Web.Repositories;
 
 namespace RabiesApplication.Web.Controllers
 {
     public class PetOwnersController : Controller
     {
-        private DataContext db = new DataContext();
+        private readonly PetOwnerRepository _petOwnerRepository = new PetOwnerRepository();
+        private readonly StatesRepository _statesRepository = new StatesRepository();
+        private readonly CountiesRepository _countyRepository = new CountiesRepository();
+        private readonly CitiesRepository _citiesRepository = new CitiesRepository();
 
-        // GET: PetOwners
-        public async Task<ActionResult> Index()
-        {
-            var petOwners = db.PetOwners.Include(p => p.Animal).Include(p => p.City).Include(p => p.State);
-            return View(await petOwners.ToListAsync());
-        }
-
-       
-
+      
         // GET: PetOwners/Create
         public ActionResult PetOwnerForm()
         {

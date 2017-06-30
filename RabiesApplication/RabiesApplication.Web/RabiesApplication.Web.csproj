@@ -258,6 +258,7 @@
     <Compile Include="ViewModels\BiteDetailsViewModel.cs" />
     <Compile Include="ViewModels\BiteViewModel.cs" />
     <Compile Include="ViewModels\HumanVictimViewModel.cs" />
+    <Compile Include="ViewModels\PetOwnerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
