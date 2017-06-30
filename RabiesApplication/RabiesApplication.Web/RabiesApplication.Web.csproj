@@ -390,6 +390,7 @@
     <Content Include="Views\Shared\_AnimalList.cshtml" />
     <Content Include="Views\PetOwners\PetOwnerForm.cshtml" />
     <Content Include="Views\PetOwners\Delete.cshtml" />
+    <Content Include="Views\Shared\_PetOwner.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
