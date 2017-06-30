@@ -194,6 +194,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HumanVictimsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PetOwnersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -386,6 +387,8 @@
     <Content Include="Views\Shared\_PetsList.cshtml" />
     <Content Include="Views\Animals\AnimalForm.cshtml" />
     <Content Include="Views\Shared\_AnimalList.cshtml" />
+    <Content Include="Views\PetOwners\PetOwnerForm.cshtml" />
+    <Content Include="Views\PetOwners\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
