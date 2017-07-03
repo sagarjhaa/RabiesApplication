@@ -76,7 +76,7 @@ namespace RabiesApplication.Web.Controllers
             {
                 await _animalRepository.InsertOrUpdateAsync(animal);
                 await _animalRepository.SaveChangesAsync();
-                return RedirectToAction("Details","Bites",new {id = animal.BiteId, Message = Constant.ManageMessageId.SavePetVictimDataSuccess });
+                return RedirectToAction("Details","Bites",new {biteId = animal.BiteId, Message = Constant.ManageMessageId.SavePetVictimDataSuccess });
             }
 
             var PetFormViewModel = new AnimalViewModel
