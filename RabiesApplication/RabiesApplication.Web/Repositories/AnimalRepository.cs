@@ -11,6 +11,11 @@ namespace RabiesApplication.Web.Repositories
 {
     public class AnimalRepository : AuditRepository<Animal>
     {
+        public override Task<Animal> GetById(string animalId)
+        {
+            return Context.Animals.Include("Breed").Include("Species").FirstOrDefaultAsync(a => a.Id.Equals(animalId));
+        }
+
         public IQueryable<Animal> GetAllPetVictims(string biteId)
         {
             return All().Where(p => p.IsVictim.Equals(Constant.Active)).Where(p => p.BiteId.Equals(biteId)).Include("Breed").Include("Species");
