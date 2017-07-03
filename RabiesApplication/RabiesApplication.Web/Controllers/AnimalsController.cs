@@ -99,7 +99,7 @@ namespace RabiesApplication.Web.Controllers
             {
                 await _animalRepository.InsertOrUpdateAsync(animal);
                 await _animalRepository.SaveChangesAsync();
-                return RedirectToAction("Details", "Bites", new { id = animal.BiteId, Message = Constant.ManageMessageId.SavePetVictimDataSuccess });
+                return RedirectToAction("Details", "Bites", new { biteId = animal.BiteId, Message = Constant.ManageMessageId.SavePetVictimDataSuccess });
             }
 
             var AnimalFormViewModel = new AnimalViewModel
@@ -138,7 +138,7 @@ namespace RabiesApplication.Web.Controllers
             var biteId = animal.BiteId;
             await _animalRepository.DeleteAsync(id);
             await _animalRepository.SaveChangesAsync();
-            return RedirectToAction("Details","Bites",new { id = biteId, Message = Constant.ManageMessageId.DeletePetVictimSuccess});
+            return RedirectToAction("Details","Bites",new { biteId = biteId, Message = Constant.ManageMessageId.DeletePetVictimSuccess});
         }
 
       

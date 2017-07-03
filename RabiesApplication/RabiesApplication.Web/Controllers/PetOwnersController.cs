@@ -56,7 +56,7 @@ namespace RabiesApplication.Web.Controllers
                 await _petOwnerRepository.InsertOrUpdateAsync(petOwner);
                 await _petOwnerRepository.SaveChangesAsync();
                 var biteId = _animalRepository.GetById(petOwner.AnimalId).Result.BiteId;
-                return RedirectToAction("Details","Bites",new {id = biteId});
+                return RedirectToAction("Details","Bites",new { biteId = biteId});
             }
 
             var petOwnerViewModel = new PetOwnerViewModel()

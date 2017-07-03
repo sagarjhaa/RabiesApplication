@@ -81,7 +81,7 @@ namespace RabiesApplication.Web.Controllers
             {
                 await _biteRepository.InsertOrUpdateAsync(bite);
                 await _biteRepository.SaveChangesAsync();
-                return RedirectToAction("Details",new {id = bite.Id,Message = Constant.ManageMessageId.SavedBiteDataSuccess});
+                return RedirectToAction("Details",new { biteId = bite.Id,Message = Constant.ManageMessageId.SavedBiteDataSuccess});
             }
 
             var biteViewModel = new BiteViewModel
