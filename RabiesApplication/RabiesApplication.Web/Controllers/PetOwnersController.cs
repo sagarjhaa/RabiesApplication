@@ -52,6 +52,8 @@ namespace RabiesApplication.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Save(PetOwner petOwner)
         {
+            ModelState.Remove("RecordCreated");
+
             if (ModelState.IsValid)
             {
                 await _petOwnerRepository.InsertOrUpdateAsync(petOwner);
@@ -63,6 +65,7 @@ namespace RabiesApplication.Web.Controllers
             var petOwnerViewModel = new PetOwnerViewModel()
             {
                 PetOwner = petOwner,
+                Animal = _animalRepository.GetById(petOwner.AnimalId).Result,
                 States = _statesRepository.All(),
                 Counties = _countyRepository.All(),
                 Cities = _citiesRepository.All()

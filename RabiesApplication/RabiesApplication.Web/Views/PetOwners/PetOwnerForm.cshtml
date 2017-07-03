@@ -121,7 +121,7 @@
                 @Html.HiddenFor(model => model.PetOwner.Id)
                 @Html.HiddenFor(model => model.PetOwner.EmployeeCreatedId)
                 @Html.HiddenFor(model => model.PetOwner.RecordCreated)
-                @Html.HiddenFor(model => model.PetOwner.AnimalId,Model.Animal.Id)
+                @Html.HiddenFor(model => model.PetOwner.AnimalId,new {@Value = Model.Animal.Id})
 
                 <input type="submit" value="Create" class="btn btn-default"/>
             </div>
