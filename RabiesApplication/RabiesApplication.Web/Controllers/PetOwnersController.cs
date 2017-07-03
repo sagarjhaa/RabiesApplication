@@ -24,7 +24,7 @@ namespace RabiesApplication.Web.Controllers
 
       
         // GET: PetOwners/Create
-        public ActionResult PetOwnerForm(string id,string animalId,string biteId)
+        public ActionResult PetOwnerForm(string animalId,string ownerId)
         {
             var petOwnerViewModel = new PetOwnerViewModel()
             {
@@ -36,9 +36,10 @@ namespace RabiesApplication.Web.Controllers
             };
 
 
-            if (id != null)
+            if (animalId != null)
             {
-                petOwnerViewModel.PetOwner = _petOwnerRepository.GetById(id).Result;
+                petOwnerViewModel.PetOwner = _petOwnerRepository.GetById(ownerId).Result;
+                    //GetOwnerByAnimalId(animalId);
             }
             
             return View(petOwnerViewModel);
