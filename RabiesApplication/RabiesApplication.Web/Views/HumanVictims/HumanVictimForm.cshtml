@@ -13,7 +13,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>HumanVictim</h4>
+        <h4>Human Victim</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -63,25 +63,25 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.HumanVictim.CityId, "CityId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.HumanVictim.CityId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.HumanVictim.CityId,new SelectList(Model.Cities,"Id","CityName"), htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.HumanVictim.CityId,new SelectList(Model.Cities,"Id","CityName"),"Select City", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.HumanVictim.CityId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.HumanVictim.CountyId, "CountyId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.HumanVictim.CountyId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.HumanVictim.CountyId, new SelectList(Model.Counties,"Id","CountyName"), htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.HumanVictim.CountyId, new SelectList(Model.Counties,"Id","CountyName"),"Select County", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.HumanVictim.CountyId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.HumanVictim.StateId, "StateId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.HumanVictim.StateId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.HumanVictim.StateId, new SelectList(Model.States,"Id","StateName"), htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.HumanVictim.StateId, new SelectList(Model.States,"Id","StateName"),"Select State", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.HumanVictim.StateId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -151,15 +151,11 @@
         
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
