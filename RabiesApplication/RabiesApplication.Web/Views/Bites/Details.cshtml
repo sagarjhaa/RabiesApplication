@@ -97,7 +97,7 @@
             <h3>Animal Information</h3>
             @if (Model.Animal != null)
             {
-                @Html.ActionLink("Add Animal Information", "AnimalForm", "Animals", new {biteId = Model.Bite.Id}, htmlAttributes: new {@class = "btn btn-primary pull-right disabled"})
+                @Html.ActionLink("Add Animal Information", "AnimalForm", "Animals", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right disabled" })
             }
             else
             {
@@ -122,16 +122,14 @@
             <h3>Animal Owner Information</h3>
             @if (Model.PetOwner != null)
             {
-                @Html.ActionLink("Add Animal Owner", "PetOwnerForm", "PetOwners",null, htmlAttributes: new {@class = "btn btn-primary pull-right disabled"})
+                @Html.ActionLink("Add Animal Owner", "PetOwnerForm", "PetOwners", null, htmlAttributes: new { @class = "btn btn-primary pull-right disabled" })
             }
             else
             {
                 if (Model.Animal != null)
-                 {
+                {
                     @Html.ActionLink("Add Animal Owner", "PetOwnerForm", "PetOwners", new { animalId = Model.Animal.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right" })
                 }
-
-
             }
         </p>
         @if (Model.PetOwner != null)
@@ -149,10 +147,10 @@
 
 
 <script>
-            $(document)
-                .ready(function () {
-                    toastr.info("@ViewBag.StatusMessage");
-                });
-        </script>
+    $(document)
+        .ready(function () {
+            toastr.info("@ViewBag.StatusMessage");
+        });
+</script>
 
 
