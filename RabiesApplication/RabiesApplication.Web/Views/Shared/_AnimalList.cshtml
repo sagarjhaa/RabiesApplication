@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RabiesApplication.Models.Animal>
+﻿@model RabiesApplication.Models.Animal
 
 
 <table class="table table-bordered table-striped">
@@ -23,29 +23,33 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@*@foreach (var item in Model) {*@
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
+            @Html.DisplayFor(model => model.Name)
+        </td>                
         <td>
-            @Html.DisplayFor(modelItem => item.Breed.Description)
-        </td>
+            model
+            @Html.DisplayFor(model => model.Breed.Description)
+        </td>                
         <td>
-            @Html.DisplayFor(modelItem => item.Species.Description)
-        </td>
+            model
+            @Html.DisplayFor(model => model.Species.Description)
+        </td>                
         <td>
-            @Html.DisplayFor(modelItem => item.IsVacinated)
-        </td>
+            model
+            @Html.DisplayFor(model => model.IsVacinated)
+        </td>                
         <td>
-            @Html.DisplayFor(modelItem => item.IsQuarantine)
+            model
+            @Html.DisplayFor(model => model.IsQuarantine)
         </td>
         
         <td>
-            @Html.ActionLink("Edit", "AnimalForm","Animals", new {biteId = item.BiteId,animalId = item.Id},null) |
-            @Html.ActionLink("Delete", "Delete","Animals", new {id = item.Id},null)
+            @Html.ActionLink("Edit", "AnimalForm","Animals", new {biteId = Model.BiteId,animalId = Model.Id},null) |
+            @Html.ActionLink("Delete", "Delete","Animals", new {id = Model.Id},null)
         </td>
     </tr>
-}
+@*}*@
 
 </table>

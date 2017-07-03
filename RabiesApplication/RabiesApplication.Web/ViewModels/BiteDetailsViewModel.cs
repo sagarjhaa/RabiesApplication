@@ -24,7 +24,7 @@ namespace RabiesApplication.Web.ViewModels
 
         #region Pet
         public IEnumerable<Animal> Pets { get; set; }
-        public IEnumerable<Animal> Animal { get; set; }
+        public Animal Animal { get; set; }
         //public IEnumerable<Breed> Breeds { get; set; }
         //public IEnumerable<Species> Specieses { get; set; }
         //public IEnumerable<Vet> Vets { get; set; }

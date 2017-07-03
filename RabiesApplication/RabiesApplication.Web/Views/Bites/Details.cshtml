@@ -95,7 +95,7 @@
     <div class="col-md-12">
         <p class="pull-right">
             <h3>Animal Information</h3>
-            @if (Model.Animal.Any())
+            @if (Model.Animal != null)
             {
                 @Html.ActionLink("Add Animal Information", "AnimalForm", "Animals", new {biteId = Model.Bite.Id}, htmlAttributes: new {@class = "btn btn-primary pull-right disabled"})
             }
@@ -105,7 +105,7 @@
             }
 
         </p>
-        @if (Model.Animal.Any())
+        @if (Model.Animal != null)
         {
             @Html.Partial("_AnimalList", Model.Animal)
         }
@@ -120,7 +120,7 @@
     <div class="col-md-12">
         <p class="pull-right">
             <h3>Animal Owner Information</h3>
-            @if (Model.Animal.Any())
+            @if (Model.Animal != null)
             {
                 @Html.ActionLink("Add Animal Owner", "PetOwnerForm", "PetOwners", new {biteId = Model.Bite.Id}, htmlAttributes: new {@class = "btn btn-primary pull-right"})
             }

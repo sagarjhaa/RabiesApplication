@@ -98,7 +98,7 @@ namespace RabiesApplication.Web.Controllers
 
 
         // GET: Bites/Details/5
-        public async Task<ActionResult> Details(string id, Constant.ManageMessageId? message)
+        public async Task<ActionResult> Details(string biteId, Constant.ManageMessageId? message)
         {
             ViewBag.StatusMessage =
                   message == Constant.ManageMessageId.SavedBiteDataSuccess ? "Bite data saved successfully."
@@ -110,11 +110,11 @@ namespace RabiesApplication.Web.Controllers
                 : "";
 
 
-            if (id == null)
+            if (biteId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Bite bite =await _biteRepository.GetById(id);
+            Bite bite =await _biteRepository.GetById(biteId);
             if (bite == null)
             {
                 return HttpNotFound();
@@ -123,17 +123,9 @@ namespace RabiesApplication.Web.Controllers
             var bitedetailsViewModel = new BiteDetailsViewModel
             {
                 Bite = bite,
-                HumanVictims = _humanVictimRepository.GetAllByBiteId(id),
-                //States = _statesRepository.All(),
-                //Cities = _citiesRepository.All(),
-                //Employees = _employeeRepository.All(),
-
-                Pets = _animalRepository.GetAllPetVictims(id),
-                Animal = _animalRepository.GetAnimalByBiteId(id),
-                //Breeds = _breedRepository.All(),
-                //Specieses = _speciesRepository.All(),
-                //Vets = _vetRepository.All(),
-                //PetOwner = _petOwnerRepository.GetById()
+                HumanVictims = _humanVictimRepository.GetAllByBiteId(biteId),
+                Pets = _animalRepository.GetAllPetVictims(biteId),
+                Animal = _animalRepository.GetByBiteId(biteId),
             };
 
 
