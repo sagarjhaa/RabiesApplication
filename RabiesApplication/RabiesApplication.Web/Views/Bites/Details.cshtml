@@ -120,7 +120,14 @@
     <div class="col-md-12">
         <p class="pull-right">
             <h3>Animal Owner Information</h3>
-            @Html.ActionLink("Add Animal Owner", "PetOwnerForm", "PetOwners", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right" })
+            @if (Model.Animal.Any())
+            {
+                @Html.ActionLink("Add Animal Owner", "PetOwnerForm", "PetOwners", new {biteId = Model.Bite.Id}, htmlAttributes: new {@class = "btn btn-primary pull-right"})
+            }
+            else
+            {
+                @Html.ActionLink("Add Animal Owner", "PetOwnerForm", "PetOwners", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right disabled" })
+            }
         </p>
     </div>
 </div>
