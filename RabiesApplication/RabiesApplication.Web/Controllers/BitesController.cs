@@ -125,8 +125,8 @@ namespace RabiesApplication.Web.Controllers
                 Bite = bite,
                 HumanVictims = _humanVictimRepository.GetAllByBiteId(biteId),
                 Pets = _animalRepository.GetAllPetVictims(biteId),
-                Animal = _animalRepository.GetByBiteId(biteId),
-                PetOwner = _petOwnerRepository.GetOwnerByBiteId(biteId)
+                Animal = _animalRepository.GetAnimalByBiteId(biteId),
+                PetOwner = _petOwnerRepository.GetAnimalOwnerByBiteId(biteId)
             };
 
 

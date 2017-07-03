@@ -16,9 +16,9 @@ namespace RabiesApplication.Web.Repositories
             return All().Where(p => p.IsVictim.Equals(Constant.Active)).Where(p => p.BiteId.Equals(biteId)).Include("Breed").Include("Species");
         }
 
-        public Animal GetByBiteId(string biteId)
+        public Animal GetAnimalByBiteId(string biteId)
         {
-            return Context.Animals.Include("Breed").Include("Species").SingleOrDefault(model => model.BiteId.Equals(biteId));
+            return Context.Animals.Include("Breed").Include("Species").Where(p => p.IsVictim.Equals(Constant.Deactive)).SingleOrDefault(model => model.BiteId.Equals(biteId));
         }
 
         public override Task DeleteAsync(string animalId)
