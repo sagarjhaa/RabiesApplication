@@ -15,6 +15,7 @@ namespace RabiesApplication.Models
         public Bite Bite { get; set; }
 
         [DisplayName("First Name")]
+        [Required]
         public string FirstName { get; set; }
 
         [DisplayName("Last Name")]
