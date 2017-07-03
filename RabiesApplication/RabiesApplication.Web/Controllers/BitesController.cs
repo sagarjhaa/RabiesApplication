@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using RabiesApplication.Models;
 using RabiesApplication.Web;
+using RabiesApplication.Web.Hubs;
 using RabiesApplication.Web.Models;
 using RabiesApplication.Web.Repositories;
 using RabiesApplication.Web.ViewModels;
@@ -81,6 +82,8 @@ namespace RabiesApplication.Web.Controllers
             {
                 await _biteRepository.InsertOrUpdateAsync(bite);
                 await _biteRepository.SaveChangesAsync();
+
+                BiteUpdatesHub.BiteUpdates();
                 return RedirectToAction("Details",new {id = bite.Id,Message = Constant.ManageMessageId.SavedBiteDataSuccess});
             }
 
@@ -185,5 +188,12 @@ namespace RabiesApplication.Web.Controllers
 
 
         
+    }
+
+    public class temp 
+    {
+        Parallel 
+
+
     }
 }

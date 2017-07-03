@@ -9,9 +9,9 @@
 
     @*Todo Check to clear the direct CDN links to toastr and use the installed version*@ 
     <script src="https://code.jquery.com/jquery-3.2.1.js"integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" />
-
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css"/>
+    
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -46,6 +46,24 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+
+<script>
+    $(function () {
+        //Reference the auto-generated proxy of the hub.
+        var hub = $.connection.biteUpdatesHub;
+        hub.client.addMessageToPage = function(bite) {
+            console.log(bite);
+        }
+        //Start the connection
+        $.connection.hub.start()
+            .done(function() {
+                hub.server.biteUpdates();
+            });
+    });
+</script>
+
 </body>
 </html>
