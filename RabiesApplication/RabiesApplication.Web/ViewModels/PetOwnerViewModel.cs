@@ -11,7 +11,7 @@ namespace RabiesApplication.Web.ViewModels
     {
         public PetOwner PetOwner { get; set; }
 
-        public IEnumerable<Animal> Animals { get; set; }
+        public Animal Animal { get; set; }
 
         public IEnumerable<City> Cities { get; set; }
 

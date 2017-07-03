@@ -29,7 +29,7 @@ namespace RabiesApplication.Web.Controllers
             var petOwnerViewModel = new PetOwnerViewModel()
             {
                 PetOwner = new PetOwner(),
-                Animals =  _animalRepository.GetAllAnimals(biteId),
+                Animal =  _animalRepository.GetById(animalId).Result,
                 States = _statesRepository.All(),
                 Counties = _countyRepository.All(),
                 Cities = _citiesRepository.All()
