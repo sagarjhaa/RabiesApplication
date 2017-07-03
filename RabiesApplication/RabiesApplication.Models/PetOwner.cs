@@ -32,10 +32,10 @@ namespace RabiesApplication.Models
         public DateTimeOffset? Dateofbirth { get; set; }
         public int? Age { get; set; }
 
-        [DisplayName("Address line 1")]
+        [DisplayName("Addressline 1")]
         public string Addressline1 { get; set; }
 
-        [DisplayName("Address line 2")]
+        [DisplayName("Addressline 2")]
         public string Addressline2 { get; set; }
 
         [DisplayName("City")]
@@ -43,6 +43,7 @@ namespace RabiesApplication.Models
 
         public City City { get; set; }
 
+        [DisplayName("County")]
         public string CountyId { get; set; }
 
         [DisplayName("State")]
