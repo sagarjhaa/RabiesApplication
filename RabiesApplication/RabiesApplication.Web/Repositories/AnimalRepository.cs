@@ -28,7 +28,7 @@ namespace RabiesApplication.Web.Repositories
 
         public Animal GetByBiteId(string biteId)
         {
-            return Context.Animals.SingleOrDefault(model => model.BiteId.Equals(biteId));
+            return Context.Animals.Include("Breed").Include("Species").SingleOrDefault(model => model.BiteId.Equals(biteId));
         }
     }
 }

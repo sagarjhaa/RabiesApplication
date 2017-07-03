@@ -17,8 +17,9 @@ namespace RabiesApplication.Web.Repositories
         public PetOwner GetOwnerByBiteId(string biteId)
         {
             var animal = Context.Animals.Where(a => a.BiteId.Equals(biteId)).ToList();
+            if (!animal.Any()) return null;
             var animalId = animal[0].Id;
-            return Context.PetOwners.FirstOrDefault(o => o.AnimalId.Equals(animalId));
+            return Context.PetOwners.Include("State").Include("City").FirstOrDefault(o => o.AnimalId.Equals(animalId));
         }
     }
 }
