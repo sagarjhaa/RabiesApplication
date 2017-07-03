@@ -26,12 +26,5 @@ namespace RabiesApplication.Web.Repositories
             return base.All().Where(b => b.Active.Equals(Constant.Active)).Include("City").Include("State").Include("BiteStatus");
         }
 
-        //public Task<Bite> GetBiteById(string id)
-        //{
-        //    var bite = All().Where(b => b.Id == id);
-
-
-        //    return bite.ToListAsync();
-        //}
     }
 }
