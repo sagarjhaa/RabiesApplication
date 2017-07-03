@@ -20,5 +20,22 @@ namespace RabiesApplication.Web.Repositories
         {
             return Context.Animals.Include("Breed").Include("Species").SingleOrDefault(model => model.BiteId.Equals(biteId));
         }
+
+        public override Task DeleteAsync(string animalId)
+        {
+            //Check for petOwner if there is any for the animalId.
+            //Only animals with isVictim false might have the petOwner information.
+
+            var animal = base.GetById(animalId).Result;
+
+            //False means it the animal and not pet
+            if (!animal.IsVictim)
+            {
+                //find if there is any animal owner information for this animal. Delete it first if any
+                var owner = Context.PetOwners.FirstOrDefault(o => o.AnimalId.Equals(animal.Id));
+                if (owner != null) Context.PetOwners.Remove(owner);
+            }
+            return base.DeleteAsync(animalId);
+        }
     }
 }

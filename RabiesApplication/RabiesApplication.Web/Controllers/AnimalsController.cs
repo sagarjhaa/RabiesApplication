@@ -23,8 +23,6 @@ namespace RabiesApplication.Web.Controllers
         private readonly EmployeeRepository _employeeRepository = new EmployeeRepository();
         private readonly VetRepository _vetRepository = new VetRepository();
 
-        private readonly PetOwnerRepository _petOwnerRepository = new PetOwnerRepository();
-
         // GET: Animals/PetForm
         public ActionResult PetForm(string biteId,string petId)
         {
@@ -139,15 +137,6 @@ namespace RabiesApplication.Web.Controllers
             var animal = _animalRepository.GetById(animalId).Result;
             var biteId = animal.BiteId;
 
-
-            // This applies to only animal (isVictim False) to have an PetOwner
-            var petOwnerId = _petOwnerRepository.GetOwnerByAnimalId(animalId).Id;
-            if (petOwnerId != null)
-            {
-                await _petOwnerRepository.DeleteAsync(petOwnerId);
-                await _petOwnerRepository.SaveChangesAsync();
-            }
-            
             await _animalRepository.DeleteAsync(animalId);
             await _animalRepository.SaveChangesAsync();
 
