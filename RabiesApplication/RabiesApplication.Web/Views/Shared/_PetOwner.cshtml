@@ -77,7 +77,7 @@
 
         <td>
             @Html.ActionLink("Edit", "PetOwnerForm","PetOwners", new { animalId= Model.AnimalId,ownerId = Model.Id },null) |
-            @Html.ActionLink("Delete", "Delete", new { id= Model.Id })
+            @Html.ActionLink("Delete", "Delete","PetOwners", new { ownerId= Model.Id },null)
         </td>
     </tr>
 

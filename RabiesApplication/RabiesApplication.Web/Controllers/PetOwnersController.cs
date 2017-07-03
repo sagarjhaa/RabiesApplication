@@ -35,13 +35,15 @@ namespace RabiesApplication.Web.Controllers
                 Cities = _citiesRepository.All()
             };
 
+            if (ownerId == null) return View(petOwnerViewModel);
             var petOwnerDb = _petOwnerRepository.GetById(ownerId).Result;
 
             if (petOwnerDb != null)
             {
                 petOwnerViewModel.PetOwner = petOwnerDb;
             }
-                        
+
+
             return View(petOwnerViewModel);
         }
 
@@ -74,13 +76,13 @@ namespace RabiesApplication.Web.Controllers
         }
 
         // GET: PetOwners/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        public async Task<ActionResult> Delete(string ownerId)
         {
-            if (id == null)
+            if (ownerId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PetOwner petOwner = await _petOwnerRepository.GetById(id);
+            PetOwner petOwner = await _petOwnerRepository.GetById(ownerId);
             if (petOwner == null)
             {
                 return HttpNotFound();
@@ -88,24 +90,17 @@ namespace RabiesApplication.Web.Controllers
             return View(petOwner);
         }
 
-        // POST: PetOwners/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> DeleteConfirmed(string id)
-        //{
-        //    PetOwner petOwner = await db.PetOwners.FindAsync(id);
-        //    db.PetOwners.Remove(petOwner);
-        //    await db.SaveChangesAsync();
-        //    return RedirectToAction("Index");
-        //}
+        //POST: PetOwners/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(string ownerId)
+        {
+            PetOwner petOwner = await _petOwnerRepository.GetById(ownerId);
+            var biteId = petOwner.Animal.BiteId;
+            await _petOwnerRepository.DeleteAsync(petOwner.Id);
+            await _petOwnerRepository.SaveChangesAsync();
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
+            return RedirectToAction("Details","Bites",new {biteId = biteId});
+        }
     }
 }

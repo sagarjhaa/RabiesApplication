@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,11 @@ namespace RabiesApplication.Web.Repositories
 {
     public class PetOwnerRepository : AuditRepository<PetOwner>
     {
+        public override Task<PetOwner> GetById(string ownerId)
+        {
+            return Context.PetOwners.Include("Animal").FirstAsync(a => a.Id.Equals(ownerId));
+        }
+
         public PetOwner GetOwnerByAnimalId(string animalId)
         {
             return Context.PetOwners.FirstOrDefault(model => model.AnimalId.Equals(animalId));
