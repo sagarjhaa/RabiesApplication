@@ -70,8 +70,8 @@
             @Html.DisplayFor(modelItem => item.MedicalTreatmentProvider)
         </td>
         <td>
-            @Html.ActionLink("Edit", "HumanVictimForm","HumanVictims", new { id=item.Id,victimId = item.Id },null) |
-            @Html.ActionLink("Delete", "Delete","HumanVictims", new { id=item.Id },null)
+            @Html.ActionLink("Edit", "HumanVictimForm","HumanVictims", new { biteId=item.BiteId,victimId = item.Id },null) |
+            @Html.ActionLink("Delete", "Delete","HumanVictims", new { victimId=item.Id },null)
         </td>
     </tr>
 }

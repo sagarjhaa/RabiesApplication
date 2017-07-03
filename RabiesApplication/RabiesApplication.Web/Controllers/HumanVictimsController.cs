@@ -60,13 +60,13 @@ namespace RabiesApplication.Web.Controllers
         }
 
         // GET: HumanVictims/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        public async Task<ActionResult> Delete(string victimId)
         {
-            if (id == null)
+            if (victimId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HumanVictim humanVictim = await _humanVictimRepository.GetById(id);
+            HumanVictim humanVictim = await _humanVictimRepository.GetById(victimId);
             if (humanVictim == null)
             {
                 return HttpNotFound();
@@ -77,9 +77,9 @@ namespace RabiesApplication.Web.Controllers
         // POST: HumanVictims/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string id)
+        public async Task<ActionResult> DeleteConfirmed(string victimId)
         {
-            HumanVictim humanVictim = await _humanVictimRepository.GetById(id);
+            HumanVictim humanVictim = await _humanVictimRepository.GetById(victimId);
             var biteId = humanVictim.BiteId;
             await _humanVictimRepository.DeleteAsync(humanVictim.Id);
             await _humanVictimRepository.SaveChangesAsync();
