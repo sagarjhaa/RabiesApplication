@@ -138,11 +138,16 @@ namespace RabiesApplication.Web.Controllers
         {
             var animal = _animalRepository.GetById(animalId).Result;
             var biteId = animal.BiteId;
+
+
+            // This applies to only animal (isVictim False) to have an PetOwner
             var petOwnerId = _petOwnerRepository.GetOwnerByAnimalId(animalId).Id;
-
-            await _petOwnerRepository.DeleteAsync(petOwnerId);
-            await _petOwnerRepository.SaveChangesAsync();
-
+            if (petOwnerId != null)
+            {
+                await _petOwnerRepository.DeleteAsync(petOwnerId);
+                await _petOwnerRepository.SaveChangesAsync();
+            }
+            
             await _animalRepository.DeleteAsync(animalId);
             await _animalRepository.SaveChangesAsync();
 
