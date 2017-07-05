@@ -1,33 +1,18 @@
 ﻿@model RabiesApplication.Models.PetOwner
 
-<table class="table table-bordered table-condensed">
+<table class="table table-condensed table-bordered  table-striped">
     <tr>
-        
-        <th>
-            @Html.DisplayNameFor(model => model.City.CityName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State.StateName)
-        </th>
-        
-        <th>
-            @Html.DisplayNameFor(model => model.IsShelter)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.LastName)
         </th>
-       
         <th>
-            @Html.DisplayNameFor(model => model.Addressline1)
+            @Html.DisplayNameFor(model => model.City.CityName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Addressline2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Zipcode)
+            @Html.DisplayNameFor(model => model.State.StateName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Contactnumber1)
@@ -35,38 +20,25 @@
         <th>
             @Html.DisplayNameFor(model => model.Contactnumber2)
         </th>
-
+        <th>
+            @Html.DisplayNameFor(model => model.IsShelter)
+        </th>
         <th></th>
     </tr>
 
 @*@foreach (var model in Model) {*@
     <tr>
-       
-        <td>
-            @Html.DisplayFor(model => model.City.CityName)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.State.StateName)
-        </td>
-      
-        <td>
-            @Html.DisplayFor(model => model.IsShelter)
-        </td>
         <td>
             @Html.DisplayFor(model => model.FirstName)
         </td>
         <td>
             @Html.DisplayFor(model => model.LastName)
         </td>
-       
         <td>
-            @Html.DisplayFor(model => model.Addressline1)
+            @Html.DisplayFor(model => model.City.CityName)
         </td>
         <td>
-            @Html.DisplayFor(model => model.Addressline2)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.Zipcode)
+            @Html.DisplayFor(model => model.State.StateName)
         </td>
         <td>
             @Html.DisplayFor(model => model.Contactnumber1)
@@ -74,7 +46,10 @@
         <td>
             @Html.DisplayFor(model => model.Contactnumber2)
         </td>
-
+        <td>
+            @Html.DisplayFor(model => model.IsShelter)
+        </td>
+     
         <td>
             @Html.ActionLink("Edit", "PetOwnerForm","PetOwners", new { animalId= Model.AnimalId,ownerId = Model.Id },null) |
             @Html.ActionLink("Delete", "Delete","PetOwners", new { ownerId= Model.Id },null)
