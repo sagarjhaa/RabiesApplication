@@ -13,6 +13,7 @@ namespace RabiesApplication.Models
     {
 
         public string Id { get; set; }
+        [Timestamp]
         public byte[] RowVersion { get; set; }
 
         [Required]
