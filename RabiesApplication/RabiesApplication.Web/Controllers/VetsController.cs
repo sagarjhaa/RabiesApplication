@@ -15,6 +15,8 @@ namespace RabiesApplication.Web.Controllers
 {
     public class VetsController : Controller
     {
+        //Todo Work on VetsController to include repository and actions
+
         private DataContext db = new DataContext();
 
         private readonly VetRepository _vetRepository = new VetRepository();
