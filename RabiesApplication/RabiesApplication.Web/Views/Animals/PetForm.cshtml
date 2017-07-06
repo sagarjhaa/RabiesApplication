@@ -13,33 +13,9 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Animal</h4>
+        <h4>Pet Form</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Animal.VetId, "VetId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Animal.VetId, new SelectList(Model.Vets,"Id","Name"), "Select Vet", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Animal.VetId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Animal.SpeciesId, "SpeciesId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Animal.SpeciesId, new SelectList(Model.Specieses,"Id","Description"), "Select Species", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Animal.SpeciesId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Animal.BreedId, "BreedId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Animal.BreedId, new SelectList(Model.Breeds,"Id", "Description"), "Select Breed", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Animal.BreedId, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Animal.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -48,6 +24,33 @@
                 @Html.ValidationMessageFor(model => model.Animal.Name, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Animal.SpeciesId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Animal.SpeciesId, new SelectList(Model.Specieses,"Id","Description"), "Select Species", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Animal.SpeciesId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Animal.BreedId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Animal.BreedId, new SelectList(Model.Breeds,"Id", "Description"), "Select Breed", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Animal.BreedId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Animal.VetId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Animal.VetId, new SelectList(Model.Vets, "Id", "Name"), "Select Vet", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Animal.VetId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.Animal.Sex, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -154,9 +157,6 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

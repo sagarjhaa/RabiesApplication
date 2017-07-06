@@ -8,7 +8,7 @@
 <h2>Bite Details</h2>
 
 
-<div id="BiteInformation">
+<div id="BiteInformation" class="container">
     <h3>Bite</h3>
     <p class="pull-right">
         @Html.ActionLink("Edit", "BiteForm", new { id = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary" }) |
@@ -55,10 +55,10 @@
 
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
         <p class="pull-right">
             <h3>Human Victims</h3>
-            @Html.ActionLink("Add Human Victim", "HumanVictimForm", "HumanVictims", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right" })
+            @Html.ActionLink("Add Human Victim", "HumanVictimForm", "HumanVictims", new {biteId = Model.Bite.Id}, htmlAttributes: new {@class = "btn btn-primary pull-right"})
         </p>
         @if (Model.HumanVictims.Any())
         {
@@ -68,36 +68,33 @@
         {
             <h4> Is there any human victims?..Add here</h4>
         }
-
-
     </div>
-</div>
 
-<div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
         <p class="pull-right">
             <h3>Pet Victims</h3>
             @Html.ActionLink("Add Pet Information", "PetForm", "Animals", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right" })
         </p>
         @if (Model.Pets.Any())
         {
-            @Html.Partial("_PetsList", Model.Pets)
+        @Html.Partial("_PetsList", Model.Pets)
         }
         else
         {
-            <h4> Is there any pet victims?..Add here</h4>
+        <h4> Is there any pet victims?..Add here</h4>
         }
 
     </div>
 </div>
 
+
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
         <p class="pull-right">
             <h3>Animal Information</h3>
-            @if (Model.Animal.Any())
+            @if (Model.Animal != null)
             {
-                @Html.ActionLink("Add Animal Information", "AnimalForm", "Animals", new {biteId = Model.Bite.Id}, htmlAttributes: new {@class = "btn btn-primary pull-right disabled"})
+                @Html.ActionLink("Add Animal Information", "AnimalForm", "Animals", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right disabled" })
             }
             else
             {
@@ -105,33 +102,49 @@
             }
 
         </p>
-        @if (Model.Animal.Any())
+        @if (Model.Animal != null)
         {
-            @Html.Partial("_AnimalList", Model.Animal)
+            @Html.Partial("_AnimalDetails", Model.Animal)
         }
         else
         {
             <h4> Add animal information here..</h4>
         }
     </div>
-</div>
 
-<div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
         <p class="pull-right">
             <h3>Animal Owner Information</h3>
-            @Html.ActionLink("Add Animal Owner", "PetOwnerForm", "PetOwners", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right" })
+            @if (Model.PetOwner != null)
+            {
+            @Html.ActionLink("Add Animal Owner", "PetOwnerForm", "PetOwners", null, htmlAttributes: new { @class = "btn btn-primary pull-right disabled" })
+            }
+            else
+            {
+            if (Model.Animal != null)
+            {
+            @Html.ActionLink("Add Animal Owner", "PetOwnerForm", "PetOwners", new { animalId = Model.Animal.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right" })
+            }
+            }
         </p>
+        @if (Model.PetOwner != null)
+        {
+        @Html.Partial("_PetOwner", Model.PetOwner)
+        }
+        else
+        {
+        <h4> Add Pet Owner Information..</h4>
+        }
+
     </div>
 </div>
 
 
-
 <script>
-            $(document)
-                .ready(function () {
-                    toastr.info("@ViewBag.StatusMessage");
-                });
-        </script>
+    $(document)
+        .ready(function () {
+            toastr.info("@ViewBag.StatusMessage");
+        });
+</script>
 
 

@@ -74,7 +74,7 @@ namespace RabiesApplication.Web.Controllers
             {
                 await _animalRepository.InsertOrUpdateAsync(animal);
                 await _animalRepository.SaveChangesAsync();
-                return RedirectToAction("Details","Bites",new {id = animal.BiteId, Message = Constant.ManageMessageId.SavePetVictimDataSuccess });
+                return RedirectToAction("Details","Bites",new {biteId = animal.BiteId, Message = Constant.ManageMessageId.SavePetVictimDataSuccess });
             }
 
             var PetFormViewModel = new AnimalViewModel
@@ -99,7 +99,7 @@ namespace RabiesApplication.Web.Controllers
             {
                 await _animalRepository.InsertOrUpdateAsync(animal);
                 await _animalRepository.SaveChangesAsync();
-                return RedirectToAction("Details", "Bites", new { id = animal.BiteId, Message = Constant.ManageMessageId.SavePetVictimDataSuccess });
+                return RedirectToAction("Details", "Bites", new { biteId = animal.BiteId, Message = Constant.ManageMessageId.SavePetVictimDataSuccess });
             }
 
             var AnimalFormViewModel = new AnimalViewModel
@@ -115,13 +115,13 @@ namespace RabiesApplication.Web.Controllers
 
 
         // GET: Animals/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        public async Task<ActionResult> Delete(string animalId)
         {
-            if (id == null)
+            if (animalId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Animal animal = await _animalRepository.GetById(id);
+            Animal animal = await _animalRepository.GetById(animalId);
             if (animal == null)
             {
                 return HttpNotFound();
@@ -132,13 +132,15 @@ namespace RabiesApplication.Web.Controllers
         // POST: Animals/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string id)
+        public async Task<ActionResult> DeleteConfirmed(string animalId)
         {
-            var animal = _animalRepository.GetById(id).Result;
+            var animal = _animalRepository.GetById(animalId).Result;
             var biteId = animal.BiteId;
-            await _animalRepository.DeleteAsync(id);
+
+            await _animalRepository.DeleteAsync(animalId);
             await _animalRepository.SaveChangesAsync();
-            return RedirectToAction("Details","Bites",new { id = biteId, Message = Constant.ManageMessageId.DeletePetVictimSuccess});
+
+            return RedirectToAction("Details","Bites",new { biteId = biteId, Message = Constant.ManageMessageId.DeletePetVictimSuccess});
         }
 
       

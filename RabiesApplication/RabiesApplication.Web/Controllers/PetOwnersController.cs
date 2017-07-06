@@ -24,23 +24,26 @@ namespace RabiesApplication.Web.Controllers
 
       
         // GET: PetOwners/Create
-        public ActionResult PetOwnerForm(string id,string animalId,string biteId)
+        public ActionResult PetOwnerForm(string animalId,string ownerId)
         {
             var petOwnerViewModel = new PetOwnerViewModel()
             {
                 PetOwner = new PetOwner(),
-                Animals =  _animalRepository.GetAllAnimals(biteId),
+                Animal =  _animalRepository.GetById(animalId).Result,
                 States = _statesRepository.All(),
                 Counties = _countyRepository.All(),
                 Cities = _citiesRepository.All()
             };
 
+            if (ownerId == null) return View(petOwnerViewModel);
+            var petOwnerDb = _petOwnerRepository.GetById(ownerId).Result;
 
-            if (id != null)
+            if (petOwnerDb != null)
             {
-                petOwnerViewModel.PetOwner = _petOwnerRepository.GetById(id).Result;
+                petOwnerViewModel.PetOwner = petOwnerDb;
             }
-            
+
+
             return View(petOwnerViewModel);
         }
 
@@ -51,17 +54,20 @@ namespace RabiesApplication.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Save(PetOwner petOwner)
         {
+            ModelState.Remove("RecordCreated");
+
             if (ModelState.IsValid)
             {
                 await _petOwnerRepository.InsertOrUpdateAsync(petOwner);
                 await _petOwnerRepository.SaveChangesAsync();
                 var biteId = _animalRepository.GetById(petOwner.AnimalId).Result.BiteId;
-                return RedirectToAction("Details","Bites",new {id = biteId});
+                return RedirectToAction("Details","Bites",new { biteId = biteId});
             }
 
             var petOwnerViewModel = new PetOwnerViewModel()
             {
                 PetOwner = petOwner,
+                Animal = _animalRepository.GetById(petOwner.AnimalId).Result,
                 States = _statesRepository.All(),
                 Counties = _countyRepository.All(),
                 Cities = _citiesRepository.All()
@@ -70,13 +76,13 @@ namespace RabiesApplication.Web.Controllers
         }
 
         // GET: PetOwners/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        public async Task<ActionResult> Delete(string ownerId)
         {
-            if (id == null)
+            if (ownerId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PetOwner petOwner = await _petOwnerRepository.GetById(id);
+            PetOwner petOwner = await _petOwnerRepository.GetById(ownerId);
             if (petOwner == null)
             {
                 return HttpNotFound();
@@ -84,24 +90,17 @@ namespace RabiesApplication.Web.Controllers
             return View(petOwner);
         }
 
-        // POST: PetOwners/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> DeleteConfirmed(string id)
-        //{
-        //    PetOwner petOwner = await db.PetOwners.FindAsync(id);
-        //    db.PetOwners.Remove(petOwner);
-        //    await db.SaveChangesAsync();
-        //    return RedirectToAction("Index");
-        //}
+        //POST: PetOwners/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(string ownerId)
+        {
+            PetOwner petOwner = await _petOwnerRepository.GetById(ownerId);
+            var biteId = petOwner.Animal.BiteId;
+            await _petOwnerRepository.DeleteAsync(petOwner.Id);
+            await _petOwnerRepository.SaveChangesAsync();
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
+            return RedirectToAction("Details","Bites",new {biteId = biteId});
+        }
     }
 }

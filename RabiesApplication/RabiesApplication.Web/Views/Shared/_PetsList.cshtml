@@ -43,7 +43,7 @@
         
         <td>
             @Html.ActionLink("Edit", "PetForm","Animals", new {biteId = item.BiteId,petid = item.Id},null) |
-            @Html.ActionLink("Delete", "Delete","Animals", new {id = item.Id},null)
+            @Html.ActionLink("Delete", "Delete","Animals", new {animalId = item.Id},null)
         </td>
     </tr>
 }
