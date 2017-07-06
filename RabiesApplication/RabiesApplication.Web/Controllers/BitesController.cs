@@ -189,11 +189,4 @@ namespace RabiesApplication.Web.Controllers
 
         
     }
-
-    public class temp 
-    {
-        Parallel 
-
-
-    }
 }
