@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 using RabiesApplication.Models;
 
 namespace RabiesApplication.Models
 {
-    public class Bite : IActive,IModel,IAuditable
+    public class Bite : IActive,IModel,IAuditable, INotifyPropertyChanged
     {
         public string Id { get; set; }
         public byte[] RowVersion { get; set; }
@@ -18,7 +19,24 @@ namespace RabiesApplication.Models
 
         //What state the bite occured
         //It will be Ohio for us
-        public string StateId { get; set; }
+        private string stateId;
+
+        public string StateId
+        {
+            get
+            {
+                return stateId;
+            }
+            set
+            {
+                if (Equals(stateId,value))
+                {
+                 return;   
+                }
+                stateId = value;
+                OnPropertyChanged();
+            }
+        }
 
         public  State State { get; set; }
 
@@ -57,5 +75,16 @@ namespace RabiesApplication.Models
         public DateTimeOffset? RecordEdited { get; set; }
         public string EmployeeCreatedId { get; set; }
         public string EmployeeEditedId { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
 }
