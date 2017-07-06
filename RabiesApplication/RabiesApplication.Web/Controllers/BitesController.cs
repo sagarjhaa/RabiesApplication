@@ -32,6 +32,7 @@ namespace RabiesApplication.Web.Controllers
         private readonly VetRepository _vetRepository = new VetRepository();
 
         private readonly PetOwnerRepository _petOwnerRepository = new PetOwnerRepository();
+        private readonly ActionRepository _actionRepository = new ActionRepository();
 
         // GET: Bites
         public ActionResult Index()
@@ -43,9 +44,9 @@ namespace RabiesApplication.Web.Controllers
         public async Task<ActionResult> BiteForm(string id)
         {
            
-            var biteViewModel = new BiteViewModel
+            var biteViewModel = new BiteViewModel()
             {
-                Bite = new Bite(),
+                //Bite = new Bite(),
                 Cities = _citiesRepository.All(),
                 States = _statesRepository.All(),
                 Employees = _employeeRepository.All(),
@@ -56,14 +57,12 @@ namespace RabiesApplication.Web.Controllers
             {
                 biteViewModel.Bite = await _biteRepository.GetById(id);
 
-                
                 if (biteViewModel.Bite == null)
                 {
                     return HttpNotFound();
                 }
 
             }
-
             return View(biteViewModel);
         }
 
@@ -76,6 +75,9 @@ namespace RabiesApplication.Web.Controllers
             //Remove checking on EmployeecreatedId
             //ModelState.Remove("EmployeecreatedId");
 
+            var newBite = new Bite(bite);
+            newBite.PropertyChanged += _actionRepository.OnPropertyChanged;
+            newBite.StateId = bite.StateId;
 
             if (ModelState.IsValid)
             {

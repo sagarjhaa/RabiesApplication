@@ -7,7 +7,7 @@ using RabiesApplication.Models;
 
 namespace RabiesApplication.Models
 {
-    public class Bite : IActive,IModel,IAuditable, INotifyPropertyChanged
+    public class Bite : IActive,IModel,IAuditable//, INotifyPropertyChanged
     {
         public string Id { get; set; }
         public byte[] RowVersion { get; set; }
@@ -20,6 +20,17 @@ namespace RabiesApplication.Models
         //What state the bite occured
         //It will be Ohio for us
         private string stateId;
+
+        public Bite()
+        {
+            
+        }
+        public Bite(Bite bite)
+        {
+            this.BiteDate = bite.BiteDate;
+            this.BiteReportDate = bite.BiteReportDate;
+            this.BiteReportedBy = bite.BiteReportedBy;
+        }
 
         public string StateId
         {
@@ -76,14 +87,14 @@ namespace RabiesApplication.Models
         public string EmployeeCreatedId { get; set; }
         public string EmployeeEditedId { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event EventHandler PropertyChanged;
 
-        void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var handler = PropertyChanged;
-            if (handler != null)
+            //var handler = PropertyChanged;
+            if (PropertyChanged != null)
             {
-                handler(this, new PropertyChangedEventArgs(propertyName));
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RabiesApplication.Models;
+using RabiesApplication.Web.Repositories;
 
 namespace RabiesApplication.Web.ViewModels
 {
@@ -18,5 +19,15 @@ namespace RabiesApplication.Web.ViewModels
         public IEnumerable<Employee> Employees { get; set; }
 
         public IEnumerable<BiteStatus> BiteStatuses { get; set; }
+
+
+
+        //public ActionRepository ActionRepository = new ActionRepository();
+
+        //public BiteViewModel()
+        //{
+        //    Bite = new Bite();
+        //    Bite.PropertyChanged += ActionRepository.OnPropertyChanged;
+        //}
     }
 }
