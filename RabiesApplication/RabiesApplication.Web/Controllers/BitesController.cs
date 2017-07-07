@@ -84,7 +84,7 @@ namespace RabiesApplication.Web.Controllers
                 await _biteRepository.SaveChangesAsync();
 
                 var biteupdate = new BiteUpdatesHub();
-                await biteupdate.NotifyUpdates(bite);
+                await biteupdate.NotifyUpdates();
 
                 return RedirectToAction("Details",new {biteId = bite.Id,Message = Constant.ManageMessageId.SavedBiteDataSuccess});
             }

@@ -1,13 +1,27 @@
-﻿$(document)
-    .ready(function () {
-        var connection = $.connection.biteupdateshub;
+﻿"use strict";
 
-        connection.client.updateClients = function (bite) {
-            //$("#targetSpan").text(bites.length);
-
-            //toastr.info('New Bite added <a href="/Details?biteId=2300378d-f936-4484-8d5b-d03452df64a9"> </a>');
-            toastr["success"]("New  <a href='/bites/Details?biteId="+bite.Id+"'>" + "Bite added</a>");
-        }
-        $.connection.hub.start();
+$(document)
+    .ready(function() {
+        updateCount();
     });
 
+function updateCount() {
+    var connection = $.connection.biteupdateshub;
+
+    connection.client.updateClients = function (bites) {
+
+        toastr["success"]("New  <a href='/bites/Details?biteId=" + 1 + "'>" + "Bite added</a>");
+        $("#targetSpan").html(bites.length);
+
+        
+
+        for (var i = 0; i < bites.length; i++) {
+            var link = "<li><a href='/bites/Details?biteId=" + bites[i].Id + "'>" + bites[i].City.CityName +"</a></li>";
+            $("#linkDropDown").append(link);
+        }
+    }
+
+    $.connection.hub.start().done(function() {
+        connection.server.notifyUpdates();
+    });
+}

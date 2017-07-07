@@ -11,8 +11,7 @@ namespace RabiesApplication.Web.Hubs
     [HubName("biteupdateshub")]
     public class BiteUpdatesHub : Hub
     {
-        [HubMethodName("UpdateClients")]
-        public async Task NotifyUpdates(Bite bite)
+        public async Task NotifyUpdates()
         {
             //Some logic to push out the new bite update
             var context = GlobalHost.ConnectionManager.GetHubContext<BiteUpdatesHub>();
@@ -20,7 +19,8 @@ namespace RabiesApplication.Web.Hubs
 
             // the update client method will update the connected client about 
             // any recent changes in the server data
-            context.Clients.All.updateClients(bite);
+            context.Clients.All.updateClients(await biteRepository.All().ToListAsync());
         }
     }
+
 }

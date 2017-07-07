@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" />
 
 
-
+    <script src="~/Scripts/main.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -36,17 +36,15 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
 
                     <li class="dropdown" id="ddUpdates">
-                        <a class="dropdown-toggle" id="targetLink" data-toggle="dropdown" href="#">
-                            Updates
-                            <span id="targetSpan" class="badge">0</span>
-                        </a>
-                        <ul class="dropdown-menu">
+                        <a class="dropdown-toggle" id="targetLink" data-toggle="dropdown" href="#">Updates <span id="targetSpan" class="badge"></span></a>
+                        <ul class="dropdown-menu" id="linkDropDown">
                             @*<li><a href="#">Page 1-1</a></li>*@
                         </ul>
                     </li>
 
 
                 </ul>
+                <p id="final" class="badge"></p>
                 @Html.Partial("_LoginPartial")
 
             </div>
@@ -68,7 +66,7 @@
     @RenderSection("scripts", required: false)
 
 
-    <script src="~/Scripts/main.js"></script>
+
 
 
 </body>
