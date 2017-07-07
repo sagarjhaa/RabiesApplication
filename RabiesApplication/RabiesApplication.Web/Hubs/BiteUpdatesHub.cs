@@ -20,8 +20,7 @@ namespace RabiesApplication.Web.Hubs
 
             // the update client method will update the connected client about 
             // any recent changes in the server data
-
-            context.Clients.All
+            context.Clients.All.updateClients(bite);
         }
     }
 }

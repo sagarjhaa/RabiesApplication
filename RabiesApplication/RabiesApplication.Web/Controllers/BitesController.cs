@@ -83,7 +83,9 @@ namespace RabiesApplication.Web.Controllers
                 await _biteRepository.InsertOrUpdateAsync(bite);
                 await _biteRepository.SaveChangesAsync();
 
-         
+                var biteupdate = new BiteUpdatesHub();
+                await biteupdate.NotifyUpdates(bite);
+
                 return RedirectToAction("Details",new {biteId = bite.Id,Message = Constant.ManageMessageId.SavedBiteDataSuccess});
             }
 
@@ -133,10 +135,6 @@ namespace RabiesApplication.Web.Controllers
                 Animal = _animalRepository.GetAnimalByBiteId(biteId),
                 PetOwner = _petOwnerRepository.GetAnimalOwnerByBiteId(biteId)
             };
-
-            var biteupdate = new BiteUpdatesHub();
-            await biteupdate.NotifyUpdates(bitedetailsViewModel.Bite);
-
 
             return View(bitedetailsViewModel);
         }
