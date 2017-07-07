@@ -1,42 +1,13 @@
-﻿//$(document).ready(function () {
-//    ////Reference to the connection (without the generated proxy)
-//    //var connection = $.hubConnection();   // same as this var conn = $.connection.hub;
+﻿$(document)
+    .ready(function () {
+        var connection = $.connection.biteupdateshub;
 
-//    //var hub = connection.createHubProxy("BiteUpdatesHub");
+        connection.client.updateClients = function (bites) {
+            $("#targetSpan").text(bites.length);
 
+            toastr.info('Are you the 6 fingered man?');
 
-//    //hub.on("updateClients", function (bites) {
-//    //    var dropdown = $("#ddUpdates");
-//    //    $("#targetLink").text("Sagar");
-//    //    $("#targetSpan").text("1");
+        }
+        $.connection.hub.start();
+    });
 
-//    //    for (var i = 0; i < bites.length; i++) {
-//    //        console.log(bites[i]);
-//    //    }
-//    //});
-//    //connection.start();
-
-
-//    ////$("#targetLink").text("Sagar");
-//    //$("#targetSpan").text("1");
-
-//});
-
-
-$(document)
-        .ready(function () {
-            //    //Reference the auto-generated proxy of the hub.
-            var connection =  $.connection.BiteUpdatesHub;
-            connection.hub.on("updateClients",
-                function (bites) {
-                    var dropdown = $("#ddUpdates");
-                    $("#targetLink").text("Sagar");
-                    $("#targetSpan").text("2");
-
-                    for (var i = 0; i < bites.length; i++) {
-                        console.log(bites[i]);
-                    }
-                });
-
-            //connection.start();
-        });

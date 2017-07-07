@@ -415,10 +415,6 @@
       <Project>{E59B717B-4093-4050-94A8-F895FA34B093}</Project>
       <Name>RabiesApplication.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Template.Models\Template.Models.csproj">
-      <Project>{A460339E-C3BD-4B18-8B3A-092F4FF6F81C}</Project>
-      <Name>Template.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706261417191_InitialCreate.resx">

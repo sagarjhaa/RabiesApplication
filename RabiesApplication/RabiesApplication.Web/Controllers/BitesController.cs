@@ -103,8 +103,7 @@ namespace RabiesApplication.Web.Controllers
         // GET: Bites/Details/5
         public async Task<ActionResult> Details(string biteId, Constant.ManageMessageId? message)
         {
-            var biteupdate = new BiteUpdatesHub();
-            await biteupdate.NotifyUpdates();
+            
 
             ViewBag.StatusMessage =
                   message == Constant.ManageMessageId.SavedBiteDataSuccess ? "Bite data saved successfully."
@@ -134,6 +133,9 @@ namespace RabiesApplication.Web.Controllers
                 Animal = _animalRepository.GetAnimalByBiteId(biteId),
                 PetOwner = _petOwnerRepository.GetAnimalOwnerByBiteId(biteId)
             };
+
+            var biteupdate = new BiteUpdatesHub();
+            await biteupdate.NotifyUpdates(bitedetailsViewModel.Bite);
 
 
             return View(bitedetailsViewModel);
