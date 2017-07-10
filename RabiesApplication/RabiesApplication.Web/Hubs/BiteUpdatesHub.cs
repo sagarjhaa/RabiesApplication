@@ -21,6 +21,12 @@ namespace RabiesApplication.Web.Hubs
             // any recent changes in the server data
             context.Clients.All.updateClients(await biteRepository.All().ToListAsync());
         }
+
+        //Todo : Need a better function to notify things that are need to be shown on the screen.
+        // 1) Show today's action items and past items if anything left.
+
+        
+
     }
 
 }
