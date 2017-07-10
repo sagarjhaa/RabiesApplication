@@ -8,8 +8,12 @@
 <h2>Bite Details</h2>
 
 
+
 <div id="BiteInformation" class="container">
     <h3>Bite</h3>
+    
+
+    
     <p class="pull-right">
         @Html.ActionLink("Edit", "BiteForm", new { id = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary" }) |
         @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
@@ -140,11 +144,14 @@
 </div>
 
 
-<script>
+@*<script>
     $(document)
         .ready(function () {
             toastr.info("@ViewBag.StatusMessage");
         });
-</script>
+</script>*@
+
+
+
 
 

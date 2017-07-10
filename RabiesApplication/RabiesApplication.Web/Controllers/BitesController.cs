@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using RabiesApplication.Models;
 using RabiesApplication.Web;
+using RabiesApplication.Web.Hubs;
 using RabiesApplication.Web.Models;
 using RabiesApplication.Web.Repositories;
 using RabiesApplication.Web.ViewModels;
@@ -81,7 +82,11 @@ namespace RabiesApplication.Web.Controllers
             {
                 await _biteRepository.InsertOrUpdateAsync(bite);
                 await _biteRepository.SaveChangesAsync();
-                return RedirectToAction("Details",new { biteId = bite.Id,Message = Constant.ManageMessageId.SavedBiteDataSuccess});
+
+                var biteupdate = new BiteUpdatesHub();
+                await biteupdate.NotifyUpdates();
+
+                return RedirectToAction("Details",new {biteId = bite.Id,Message = Constant.ManageMessageId.SavedBiteDataSuccess});
             }
 
             var biteViewModel = new BiteViewModel
@@ -100,6 +105,8 @@ namespace RabiesApplication.Web.Controllers
         // GET: Bites/Details/5
         public async Task<ActionResult> Details(string biteId, Constant.ManageMessageId? message)
         {
+            
+
             ViewBag.StatusMessage =
                   message == Constant.ManageMessageId.SavedBiteDataSuccess ? "Bite data saved successfully."
                 : message == Constant.ManageMessageId.SaveHumanVictimDataSuccess ? "Victim data saved successfully."
@@ -128,7 +135,6 @@ namespace RabiesApplication.Web.Controllers
                 Animal = _animalRepository.GetAnimalByBiteId(biteId),
                 PetOwner = _petOwnerRepository.GetAnimalOwnerByBiteId(biteId)
             };
-
 
             return View(bitedetailsViewModel);
         }
