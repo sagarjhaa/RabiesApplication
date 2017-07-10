@@ -137,7 +137,7 @@ namespace RabiesApplication.Web.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public ActionResult Register()
         {
             return View();
@@ -146,7 +146,7 @@ namespace RabiesApplication.Web.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterMember model)
         {
@@ -159,10 +159,16 @@ namespace RabiesApplication.Web.Controllers
                     //Add the member to the Member's table too
                     model.Employee.Id = user.Id;
                     model.Employee.Active = Models.Constant.Active;
+                    model.Employee.EmployeeCreatedId = user.Id;
+                    model.Employee.RecordCreated = DateTimeOffset.Now;
 
-                    EmployeeRepository memberRepository = new EmployeeRepository();
-                    await memberRepository.InsertOrUpdateAsync(model.Employee);
-                    await memberRepository.SaveChangesAsync();
+                    DataContext Db = new DataContext();
+                    Db.Employees.Add(model.Employee);
+                    Db.SaveChanges();
+
+                    //EmployeeRepository memberRepository = new EmployeeRepository();
+                    //await memberRepository.InsertOrUpdateAsync(model.Employee);
+                    //await memberRepository.SaveChangesAsync();
 
 
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
