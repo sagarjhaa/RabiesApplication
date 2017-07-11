@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using RabiesApplication.Models;
 using RabiesApplication.Web;
+using RabiesApplication.Web.BusinessLogic;
 using RabiesApplication.Web.Hubs;
 using RabiesApplication.Web.Models;
 using RabiesApplication.Web.Repositories;
@@ -86,6 +87,8 @@ namespace RabiesApplication.Web.Controllers
                 var biteupdate = new BiteUpdatesHub();
                 await biteupdate.NotifyUpdates();
 
+                ComposeLetter.TenDayQuarantineLetter();
+
                 return RedirectToAction("Details",new {biteId = bite.Id,Message = Constant.ManageMessageId.SavedBiteDataSuccess});
             }
 
@@ -97,6 +100,8 @@ namespace RabiesApplication.Web.Controllers
                 Employees = _employeeRepository.All(),
                 BiteStatuses = _biteStatusRepository.All()
             };
+
+            
 
             return View("BiteForm", biteViewModel);
         }
