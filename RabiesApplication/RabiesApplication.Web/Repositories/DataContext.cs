@@ -7,7 +7,6 @@ namespace RabiesApplication.Web
 {
     public class DataContext : IdentityDbContext<ApplicationUser>
     {
-
         public DbSet<Employee> Employees { get; set; }
 
         public DbSet<Action> Actions { get; set; }

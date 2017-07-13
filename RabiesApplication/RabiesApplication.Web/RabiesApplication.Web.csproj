@@ -309,6 +309,7 @@
     <Content Include="Content\bootswatch\united\bootstrap.min.css" />
     <Content Include="Content\bootswatch\yeti\bootstrap.css" />
     <Content Include="Content\bootswatch\yeti\bootstrap.min.css" />
+    <Content Include="Content\images\Header_Ccbh.png" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />

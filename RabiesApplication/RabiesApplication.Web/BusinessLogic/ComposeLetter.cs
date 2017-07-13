@@ -1,29 +1,54 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Office.Interop.Word;
+using System.Web;
 
 namespace RabiesApplication.Web.BusinessLogic
 {
-    public static class ComposeLetter
+    public class ComposeLetter
     {
-        private static readonly Application WordApplication = new Application();
-        private static readonly Document Document = WordApplication.Documents.Add();
-        private static readonly string DocumentSavePath = "C:\\Users\\Sagar\\Desktop\\mydoc.docx";
+        private Application WordApplication = new Application();
+        private Document Document ;//= WordApplication.Documents.Add();
+        private static readonly string DocumentSavePath = "C:\\Users\\Sagar\\Desktop\\";
+        private static readonly string HeaderImage = HttpContext.Current.Server.MapPath("~/Content/images/Header_Ccbh.png");
 
-
-        //private
-
-        public static void TenDayQuarantineLetter()
+        public ComposeLetter()
         {
-            WordApplication.Selection.TypeText("This is document");
-            Document.SaveAs(DocumentSavePath);
-            WordApplication.Application.Quit();
+            Document = WordApplication.Documents.Add();
+        }
+
+        private void AddHeaderImage()
+        {
+            Section firstSection = Document.Sections.First;
+            firstSection.PageSetup.TopMargin = (float)100.00;
+            HeaderFooter header = firstSection.Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary];
+            header.Shapes.AddPicture(HeaderImage,Top:-30);
+            
+        }
+
+        private  void AddFooter()
+        {
+            
+        }
+
+        public void TenDayQuarantineLetter()
+        {
+            this.AddHeaderImage();
+
+            WordApplication.Visible = true;
+            WordApplication.Selection.TypeText("Date");
+
+            //Save Document
+            SaveFile();
+            
         }
 
 
-
+        public void SaveFile()
+        {
+            Guid filename = Guid.NewGuid();
+            Document.SaveAs(DocumentSavePath + filename.ToString() + ".docx");
+            WordApplication.Application.Quit();
+        }
+        
     }
 }

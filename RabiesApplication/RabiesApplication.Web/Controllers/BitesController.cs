@@ -87,7 +87,7 @@ namespace RabiesApplication.Web.Controllers
                 var biteupdate = new BiteUpdatesHub();
                 await biteupdate.NotifyUpdates();
 
-                ComposeLetter.TenDayQuarantineLetter();
+                //ComposeLetter.TenDayQuarantineLetter();
 
                 return RedirectToAction("Details",new {biteId = bite.Id,Message = Constant.ManageMessageId.SavedBiteDataSuccess});
             }
@@ -186,6 +186,12 @@ namespace RabiesApplication.Web.Controllers
         //    }
         //    return View(bite);
         //}
+
+        public void GenerateLetter()
+        {
+            ComposeLetter Letter = new ComposeLetter();
+            Letter.TenDayQuarantineLetter();
+        }
 
 
         
