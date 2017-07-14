@@ -196,8 +196,9 @@ namespace RabiesApplication.Web.Controllers
 
             var bite = _biteRepository.GetById(biteId).Result;
             
-            ComposeLetter letter = new ComposeLetter();
-            letter.TenDayQuarantineLetter(bite);
+            ComposeLetter letter = new ComposeLetter(bite);
+            letter.TenDayQuarantineLetterSame();
+            
 
             return RedirectToAction("Details", new { biteId = bite.Id});
         }

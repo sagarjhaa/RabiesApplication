@@ -11,13 +11,15 @@ namespace RabiesApplication.Web.BusinessLogic
     public class ComposeLetter
     {
         private Application WordApplication = new Application();
-        private Document Document ;//= WordApplication.Documents.Add();
+        private Document Document ;
         private static readonly string DocumentSavePath = "C:\\Users\\Sagar\\Desktop\\";
         private static readonly string HeaderImage = HttpContext.Current.Server.MapPath("~/Content/images/Header_Ccbh.png");
+        private Bite Bite;
 
-        public ComposeLetter()
+        public ComposeLetter(Bite bite)
         {
             Document = WordApplication.Documents.Add();
+            Bite = bite;
         }
 
         private void AddHeaderImage()
@@ -29,40 +31,61 @@ namespace RabiesApplication.Web.BusinessLogic
             
         }
 
-        private  void AddFooter()
+        private void Address()
         {
-            
-        }
-
-        public void TenDayQuarantineLetter(Bite bite)
-        {
-            this.AddHeaderImage();
-
-            WordApplication.Visible = true;
-
-
             #region Date
                 WordApplication.Selection.TypeText(DateTime.Now.ToShortDateString() + Environment.NewLine);
             #endregion
 
             #region Address
-                 string address = "Name" + Environment.NewLine
-                                 + "Address" + "\t\t\t" + " ANIMAL QUARANTINE ORDER " + Environment.NewLine
-                                 + "City,State,Zip" + Environment.NewLine;
+                string address = "Name" + Environment.NewLine
+                                + "Address" + "\t\t\t" + " ANIMAL QUARANTINE ORDER " + Environment.NewLine
+                                + "City,State,Zip" + Environment.NewLine;
 
-            WordApplication.Selection.Range.Paragraphs.SpaceAfter = (float)0.0;
-            WordApplication.Selection.TypeText(address);
-            WordApplication.Selection.Range.Paragraphs.SpaceBefore = (float) 10.00;
+                WordApplication.Selection.Range.Paragraphs.SpaceAfter = (float)0.0;
+                WordApplication.Selection.TypeText(address);
+                WordApplication.Selection.Range.Paragraphs.SpaceBefore = (float)10.00;
             #endregion
+        }
+
+        private  void AddFooterContact()
+        {
+            var footerTextbox = Document.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, PointToInches(1.0F), PointToInches(9.8F), 130, 70);
+            footerTextbox.Select();
+            footerTextbox.Line.Visible = MsoTriState.msoFalse;
+
+            WordApplication.Selection.Range.Paragraphs.SpaceBefore = 0.0F;
+            WordApplication.Selection.Range.Paragraphs.SpaceAfter = 0.0F;
+            WordApplication.Selection.TypeText("Stacey Short, RS, MPH" + Environment.NewLine);
+            WordApplication.Selection.TypeText("Program Manager" + Environment.NewLine);
+            WordApplication.Selection.TypeText("216-201-2001 ext. 1253" + Environment.NewLine);
+            WordApplication.Selection.TypeText("sshort@ccbh.net" + Environment.NewLine);
+        }
+
+        private void GenerateTenDayQuarantineLetter(bool ownerVictimSame)
+        {
+            AddHeaderImage();
+
+            Address();
 
             #region Greeting
-            WordApplication.Selection.TypeText("Dear Mr. or Ms.:" + Environment.NewLine);
+                WordApplication.Selection.TypeText("Dear Mr. or Ms.:" + Environment.NewLine);
             #endregion
 
             #region FirstParagraph
-                string firstparagraph = "Our office has received a report that your pet" +
+
+            string firstparagraph;
+            if (ownerVictimSame)
+            {
+                firstparagraph = "Our office has received a report that your pet" +
                                         " '[Pet Name]' bit you, a family member, or a member " +
                                         "of your household on [biteDate]." + Environment.NewLine;
+            }
+            else
+            {
+                firstparagraph ="Our office has received a report that your pet [pet name] bit someone on [biteDate]." +Environment.NewLine;
+            }
+                
 
                 WordApplication.Selection.TypeText(firstparagraph);
             #endregion
@@ -120,14 +143,24 @@ namespace RabiesApplication.Web.BusinessLogic
                 WordApplication.Selection.Range.ListFormat.ApplyBulletDefault();
                 WordApplication.Selection.Range.Paragraphs.SpaceBefore = (float)0.00;
 
-            WordApplication.Selection.TypeText("Our office will contact you to make sure that your pet has successfully completed the quarantine. An" +
+                WordApplication.Selection.TypeText("Our office will contact you to make sure that your pet has successfully completed the quarantine. An" +
                                                    " animal that successfully completes the quarantine is one that is still alive and showing no signs of illness" +
                                                    " or strange behavior." + Environment.NewLine);
 
+            if (ownerVictimSame)
+            {
                 WordApplication.Selection.TypeText("If your pet has a current rabies vaccination: Fill out the Pet Owner Section of the enclosed Rabies " +
                                                    "Vaccination & Quarantine Release form and send it to us by mail, " +
                                                    "fax at 216-676-1316, or email at sshort@ccbh.net. Please be sure to check the box for " +
                                                    "Yes, my animal successfully completed the quarantine." + Environment.NewLine);
+            }
+            else
+            {
+                WordApplication.Selection.TypeText("If your pet has a current rabies vaccination: Contact us at 216-201-2001 ext. 1253" +
+                                                   " or at sshort@ccbh.net to provide the name of the veterinary hospital at which it was given." + Environment.NewLine);
+            }
+
+                
 
                 WordApplication.Selection.TypeText("If your pet does not have a rabies vaccination: You are required to take your pet to a " +
                                                    "veterinarian on or shortly after day 10 to receive a rabies vaccination and to have the release " +
@@ -140,43 +173,38 @@ namespace RabiesApplication.Web.BusinessLogic
             #endregion
 
             #region ContactInfomration
-
-
-            WordApplication.Selection.TypeText("Thank you for your cooperation. Please contact us at 216-201-2001 ext. 1253 with questions.");
-
-                var footerTextbox = Document.Shapes.AddTextbox(MsoTextOrientation.msoTextOrientationHorizontal, PointToInches(1.0F), PointToInches(9.8F),130,70);
-                footerTextbox.Select();
-                footerTextbox.Line.Visible = MsoTriState.msoFalse;
-
-                WordApplication.Selection.Range.Paragraphs.SpaceBefore = 0.0F;
-                WordApplication.Selection.Range.Paragraphs.SpaceAfter = 0.0F;
-                WordApplication.Selection.TypeText("Stacey Short, RS, MPH" + Environment.NewLine);
-                WordApplication.Selection.TypeText("Program Manager" + Environment.NewLine);
-                WordApplication.Selection.TypeText("216-201-2001 ext. 1253" + Environment.NewLine);
-                WordApplication.Selection.TypeText("sshort@ccbh.net" + Environment.NewLine);
-
-
+                WordApplication.Selection.TypeText("Thank you for your cooperation. Please contact us at 216-201-2001 ext. 1253 with questions.");
+                AddFooterContact();
             #endregion
 
-
-
-            //Save Document
-            SaveFile();
-            
         }
 
-
-        public void SaveFile()
+        private void SaveFile()
         {
             Guid filename = Guid.NewGuid();
             Document.SaveAs(DocumentSavePath + filename.ToString() + ".docx");
             WordApplication.Application.Quit();
         }
 
-
         private static float PointToInches(float point)
         {
             return point*72.0F;
-        }        
+        }
+
+        public void TenDayQuarantineLetterSame()
+        {
+            GenerateTenDayQuarantineLetter(ownerVictimSame: true);
+
+            //Save Document
+            SaveFile();
+        }
+
+        public void TenDayQuarantineLetterDifferent()
+        {
+            GenerateTenDayQuarantineLetter(ownerVictimSame: false);
+
+            //Save Document
+            SaveFile();
+        }
     }
 }
