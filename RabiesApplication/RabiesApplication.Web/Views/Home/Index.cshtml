@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+<h1>Welcome to Rabies application.</h1>
+@*<h2>@ViewBag.Title</h2>
+    <h3>@ViewBag.Message</h3>*@
+
+<style>
+    .bigbutton {
+        border: 1px solid red;
+        border-radius: 2px;
+        background: #fff;
+        margin: 5px;
+        min-height: 50px;
+        min-width: 300px;
+    }
+
+    .fluidButton {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+</style>
+
+<div class="fluidButton">
+    <div>
+        <button class="bigbutton" onclick="location.href='@Url.Action("BiteForm", "Bites")'">Start new bite case</button>
+    </div>
+
+    <div>
+        <button class="bigbutton" onclick="location.href='@Url.Action("Index", "Bites")'">Work on existing bite case</button>
+    </div>
+</div>
+
+<div class="fluidButton">
+    <div>
+        <button type="button" class="bigbutton" >Add a new vet</button>
+    </div>
+
+    <div>
+        <button class="bigbutton">Edit Vet Information</button>
+    </div>
+</div>
+
+
+<hr />
+
+<address>
+    One Microsoft Way<br />
+    Redmond, WA 98052-6399<br />
+    <abbr title="Phone">P:</abbr>
+    425.555.0100
+</address>
+
+<address>
+    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+</address>

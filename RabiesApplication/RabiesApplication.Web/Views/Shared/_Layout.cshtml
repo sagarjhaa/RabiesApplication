@@ -20,7 +20,7 @@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
+        <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -44,13 +44,13 @@
                     }
 
                 </ul>
-                <p id="final" class="badge"></p>
+                
                 @Html.Partial("_LoginPartial")
 
             </div>
         </div>
     </div>
-    <div class="container-fluid body-content">
+    <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>

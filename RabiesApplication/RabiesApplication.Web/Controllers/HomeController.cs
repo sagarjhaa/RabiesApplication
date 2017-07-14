@@ -17,7 +17,7 @@ namespace RabiesApplication.Web.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Index()
         {
             ViewBag.Message = "Your contact page.";
 
