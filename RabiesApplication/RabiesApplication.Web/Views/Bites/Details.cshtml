@@ -144,7 +144,7 @@
 </div>
 
 
-@using (Html.BeginForm("GenerateLetter", "Bites"))
+@using (Html.BeginForm("GenerateLetter", "Bites",new {biteId = Model.Bite.Id}))
 {
     <button class="btn btn-primary" type="submit">Generate Letter</button>
 }

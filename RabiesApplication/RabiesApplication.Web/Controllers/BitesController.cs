@@ -187,10 +187,19 @@ namespace RabiesApplication.Web.Controllers
         //    return View(bite);
         //}
 
-        public void GenerateLetter()
+        public ActionResult GenerateLetter(string biteId)
         {
-            ComposeLetter Letter = new ComposeLetter();
-            Letter.TenDayQuarantineLetter();
+            if (biteId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var bite = _biteRepository.GetById(biteId).Result;
+            
+            ComposeLetter letter = new ComposeLetter();
+            letter.TenDayQuarantineLetter(bite);
+
+            return RedirectToAction("Details", new { biteId = bite.Id});
         }
 
 

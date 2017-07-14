@@ -42,6 +42,7 @@ namespace RabiesApplication.Web
                 .HasOptional(t => t.Employee)
                 .WithRequired();
 
+           
             base.OnModelCreating(modelBuilder);
         }
     }
