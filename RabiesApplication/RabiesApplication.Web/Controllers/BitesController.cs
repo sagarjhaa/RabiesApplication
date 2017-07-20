@@ -192,18 +192,10 @@ namespace RabiesApplication.Web.Controllers
 
             var bite = _biteRepository.GetById(biteId).Result;
             
-            ComposeLetter letter = new ComposeLetter(bite);
-            letter.TenDayQuarantineLetterSame();
-
-            RabiesApplication.Models.Action action = new Action()
-            {
-                BiteId = biteId,
-                ActionType = Actions.Letter,
-                Comments = "Sending letter"
-            };
+            new ComposeLetter(bite).TenDayQuarantineLetterDifferent();
 
             ActionRepository actionRepository = new ActionRepository();
-            actionRepository.InsertOrUpdateAsync(action);
+            actionRepository.InsertOrUpdateAsync(GenerateAction.SendLetter(biteId,1));
             actionRepository.SaveChangesAsync();
             
 
