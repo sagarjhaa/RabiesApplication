@@ -5,11 +5,11 @@ using RabiesApplication.Web.Repositories;
 
 namespace RabiesApplication.Web.BusinessLogic
 {
-    public static class GenerateAction
+    public static class ActionsHelper
     {
         private static readonly ActionRepository _actionRepository = new ActionRepository();
 
-        public static Action SendLetterAction(string biteId,int typeofLetter)
+        public static Action GenerateSendLetterAction(string biteId,int typeofLetter)
         {
             Action _action = new Action
             {
@@ -47,7 +47,7 @@ namespace RabiesApplication.Web.BusinessLogic
             return _action;
         }
 
-        public static void CreateAction(Action action)
+        public static void SaveActions(Action action)
         {
             _actionRepository.InsertOrUpdateAsync(action);
             _actionRepository.SaveChangesAsync();
