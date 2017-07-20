@@ -12,9 +12,9 @@
 
 <div id="BiteInformation" class="container">
     <h3>Bite</h3>
-    
 
-    
+
+
     <p class="pull-right">
         @Html.ActionLink("Edit", "BiteForm", new { id = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary" }) |
         @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
@@ -63,7 +63,7 @@
     <div class="col-md-6">
         <p class="pull-right">
             <h3>Human Victims</h3>
-            @Html.ActionLink("Add Human Victim", "HumanVictimForm", "HumanVictims", new {biteId = Model.Bite.Id}, htmlAttributes: new {@class = "btn btn-primary pull-right"})
+            @Html.ActionLink("Add Human Victim", "HumanVictimForm", "HumanVictims", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right" })
         </p>
         @if (Model.HumanVictims.Any())
         {
@@ -82,11 +82,11 @@
         </p>
         @if (Model.Pets.Any())
         {
-        @Html.Partial("_PetsList", Model.Pets)
+            @Html.Partial("_PetsList", Model.Pets)
         }
         else
         {
-        <h4> Is there any pet victims?..Add here</h4>
+            <h4> Is there any pet victims?..Add here</h4>
         }
 
     </div>
@@ -122,45 +122,55 @@
             <h3>Animal Owner Information</h3>
             @if (Model.PetOwner != null)
             {
-            @Html.ActionLink("Add Animal Owner", "PetOwnerForm", "PetOwners", null, htmlAttributes: new { @class = "btn btn-primary pull-right disabled" })
+                @Html.ActionLink("Add Animal Owner", "PetOwnerForm", "PetOwners", null, htmlAttributes: new { @class = "btn btn-primary pull-right disabled" })
             }
             else
             {
-            if (Model.Animal != null)
-            {
-            @Html.ActionLink("Add Animal Owner", "PetOwnerForm", "PetOwners", new { animalId = Model.Animal.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right" })
-            }
+                if (Model.Animal != null)
+                {
+                    @Html.ActionLink("Add Animal Owner", "PetOwnerForm", "PetOwners", new { animalId = Model.Animal.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right" })
+                }
             }
         </p>
         @if (Model.PetOwner != null)
         {
-        @Html.Partial("_PetOwner", Model.PetOwner)
+            @Html.Partial("_PetOwner", Model.PetOwner)
         }
         else
         {
-        <h4> Add Pet Owner Information..</h4>
+            <h4> Add Pet Owner Information..</h4>
         }
 
     </div>
 </div>
 
+<hr />
 
-@using (Html.BeginForm("GenerateLetter", "Bites",new {biteId = Model.Bite.Id}))
+@using (Html.BeginForm("GenerateLetter", "Bites", new { biteId = Model.Bite.Id }))
 {
-    @Html.DropDownList("Letter Type",EnumHelper.GetSelectList(typeof(Letters)),"Select One")
-    <button class="btn btn-primary" type="submit">Generate Letter</button>
+    <div class="form-inline">
+        @Html.DropDownList("Letter Type", EnumHelper.GetSelectList(typeof(Letters)), "Select One", htmlAttributes: new { @class = "form-control" })
+        <button class="btn btn-primary" type="submit">Generate Letter</button>
+    </div>
 }
 
+<div class="row">
+    <div class="col-md-6">
+        <p class="pull-left">
+        <h3>Actions</h3>
+            @Html.Partial("_ActionsList", Model.Actions)
+    </div>
+</div>
 
 
 
 
 @*<script>
-    $(document)
-        .ready(function () {
-            toastr.info("@ViewBag.StatusMessage");
-        });
-</script>*@
+        $(document)
+            .ready(function () {
+                toastr.info("@ViewBag.StatusMessage");
+            });
+    </script>*@
 
 
 
