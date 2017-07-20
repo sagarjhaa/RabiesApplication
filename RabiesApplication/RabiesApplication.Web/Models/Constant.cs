@@ -47,5 +47,14 @@ namespace RabiesApplication.Web.Models
         WildUnknownAnimal,
         SixMonthQ
     }
-    
+
+    public enum Actions
+    {
+        Letter = 1,
+        Phone,
+        Visit,
+        Email,
+        Fax
+    }
+
 }
