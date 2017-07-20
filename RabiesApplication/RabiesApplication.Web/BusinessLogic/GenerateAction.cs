@@ -1,13 +1,15 @@
 ﻿using System;
 using Action = RabiesApplication.Models.Action;
 using RabiesApplication.Web.Models;
+using RabiesApplication.Web.Repositories;
 
 namespace RabiesApplication.Web.BusinessLogic
 {
     public static class GenerateAction
     {
-        
-        public static Action SendLetter(string biteId,int typeofLetter)
+        private static readonly ActionRepository _actionRepository = new ActionRepository();
+
+        public static Action SendLetterAction(string biteId,int typeofLetter)
         {
             Action _action = new Action
             {
@@ -43,6 +45,12 @@ namespace RabiesApplication.Web.BusinessLogic
             }
 
             return _action;
+        }
+
+        public static void CreateAction(Action action)
+        {
+            _actionRepository.InsertOrUpdateAsync(action);
+            _actionRepository.SaveChangesAsync();
         }
     }
 }

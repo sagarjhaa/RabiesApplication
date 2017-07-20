@@ -199,17 +199,13 @@ namespace RabiesApplication.Web.Controllers
 
             int result;
             int.TryParse(selectedLetter, out result);
-            CreateAction(GenerateAction.SendLetter(biteId, result));
+            GenerateAction.CreateAction(GenerateAction.SendLetterAction(biteId, result));
             return RedirectToAction("Details", new { biteId = bite.Id});
 
         }
 
 
-        private void CreateAction(Action action)
-        {
-            _actionRepository.InsertOrUpdateAsync(action);
-            _actionRepository.SaveChangesAsync();
-        }
+       
 
         
     }
