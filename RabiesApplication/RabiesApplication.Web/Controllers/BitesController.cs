@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using RabiesApplication.Models;
-using RabiesApplication.Web;
 using RabiesApplication.Web.BusinessLogic;
 using RabiesApplication.Web.Hubs;
 using RabiesApplication.Web.Models;
 using RabiesApplication.Web.Repositories;
 using RabiesApplication.Web.ViewModels;
+using Action = RabiesApplication.Models.Action;
 
 namespace RabiesApplication.Web.Controllers
 {
@@ -198,6 +194,17 @@ namespace RabiesApplication.Web.Controllers
             
             ComposeLetter letter = new ComposeLetter(bite);
             letter.TenDayQuarantineLetterSame();
+
+            RabiesApplication.Models.Action action = new Action()
+            {
+                BiteId = biteId,
+                ActionType = Actions.Letter,
+                Comments = "Sending letter"
+            };
+
+            ActionRepository actionRepository = new ActionRepository();
+            actionRepository.InsertOrUpdateAsync(action);
+            actionRepository.SaveChangesAsync();
             
 
             return RedirectToAction("Details", new { biteId = bite.Id});

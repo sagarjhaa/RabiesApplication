@@ -48,13 +48,13 @@ namespace RabiesApplication.Web.Models
         SixMonthQ
     }
 
-    public enum Actions
+    public static class Actions
     {
-        Letter = 1,
-        Phone,
-        Visit,
-        Email,
-        Fax
+        public static string Letter = "Letter";
+        public static string Phone = "Phone";
+        public static string Visit = "Visit";
+        public static string Email = "Email";
+        public static string Fax = "Fax";
     }
 
 }

@@ -7,7 +7,7 @@ using Action = RabiesApplication.Models.Action;
 
 namespace RabiesApplication.Web.Repositories
 {
-    public  class ActionRepository : ActiveRepository<Action>
+    public class ActionRepository : ActiveRepository<Action>
     {
     }
 }
