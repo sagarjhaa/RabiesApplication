@@ -1,4 +1,5 @@
-﻿@model RabiesApplication.Web.ViewModels.BiteDetailsViewModel
+﻿@using RabiesApplication.Web.Models
+@model RabiesApplication.Web.ViewModels.BiteDetailsViewModel
 
 @{
     ViewBag.Title = "Bite Details";
@@ -146,6 +147,7 @@
 
 @using (Html.BeginForm("GenerateLetter", "Bites",new {biteId = Model.Bite.Id}))
 {
+    @Html.DropDownList("Letter Type",EnumHelper.GetSelectList(typeof(Letters)),"Select One")
     <button class="btn btn-primary" type="submit">Generate Letter</button>
 }
 

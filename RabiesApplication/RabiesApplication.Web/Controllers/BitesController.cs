@@ -178,7 +178,7 @@ namespace RabiesApplication.Web.Controllers
         //    return View(bite);
         //}
 
-        public ActionResult GenerateLetter(string biteId)
+        public ActionResult GenerateLetter(string biteId,FormCollection form)
         {
             if (biteId == null)
             {
@@ -192,8 +192,13 @@ namespace RabiesApplication.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
+            var selectedLetter = form["Letter Type"];
+
             new ComposeLetter(bite).TenDayQuarantineLetterDifferent();
-            CreateAction(GenerateAction.SendLetter(biteId, 1));
+
+            int result;
+            int.TryParse(selectedLetter, out result);
+            CreateAction(GenerateAction.SendLetter(biteId, result));
             return RedirectToAction("Details", new { biteId = bite.Id});
 
         }
