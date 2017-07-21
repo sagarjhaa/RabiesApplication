@@ -18,6 +18,7 @@ namespace RabiesApplication.Web.Models
 
 
         #region HELPER
+
         public enum ManageMessageId
         {
             SavedBiteDataSuccess,
@@ -27,6 +28,7 @@ namespace RabiesApplication.Web.Models
             SavePetVictimDataSuccess,
             DeletePetVictimSuccess
         }
+
         #endregion
     }
 
@@ -36,6 +38,23 @@ namespace RabiesApplication.Web.Models
         public const string Open = "2";
     }
 
+    public enum Letters
+    {
+        TenDayQSame = 1,
+        TenDayQDifferent,
+        TenDayQShelter,
+        FourFiveDayQ,
+        WildUnknownAnimal,
+        SixMonthQ
+    }
 
-    
+    public static class Actions
+    {
+        public static string Letter = "Letter";
+        public static string Phone = "Phone";
+        public static string Visit = "Visit";
+        public static string Email = "Email";
+        public static string Fax = "Fax";
+    }
+
 }

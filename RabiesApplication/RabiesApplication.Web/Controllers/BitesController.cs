@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using RabiesApplication.Models;
-using RabiesApplication.Web;
+using RabiesApplication.Web.BusinessLogic;
 using RabiesApplication.Web.Hubs;
 using RabiesApplication.Web.Models;
 using RabiesApplication.Web.Repositories;
 using RabiesApplication.Web.ViewModels;
+using Action = RabiesApplication.Models.Action;
 
 namespace RabiesApplication.Web.Controllers
 {
@@ -24,15 +21,10 @@ namespace RabiesApplication.Web.Controllers
         private readonly CitiesRepository _citiesRepository = new CitiesRepository();
         private readonly EmployeeRepository _employeeRepository = new EmployeeRepository();
         private readonly BiteStatusRepository _biteStatusRepository = new BiteStatusRepository();
-
         private readonly HumanVictimRepository _humanVictimRepository = new HumanVictimRepository();
-
         private readonly AnimalRepository _animalRepository = new AnimalRepository();
-        private readonly BreedRepository _breedRepository = new BreedRepository();
-        private readonly SpeciesRepository _speciesRepository = new SpeciesRepository();
-        private readonly VetRepository _vetRepository = new VetRepository();
-
         private readonly PetOwnerRepository _petOwnerRepository = new PetOwnerRepository();
+        private readonly ActionRepository _actionRepository = new ActionRepository();
 
         // GET: Bites
         public ActionResult Index()
@@ -86,6 +78,8 @@ namespace RabiesApplication.Web.Controllers
                 var biteupdate = new BiteUpdatesHub();
                 await biteupdate.NotifyUpdates();
 
+                //ComposeLetter.TenDayQuarantineLetter();
+
                 return RedirectToAction("Details",new {biteId = bite.Id,Message = Constant.ManageMessageId.SavedBiteDataSuccess});
             }
 
@@ -97,6 +91,8 @@ namespace RabiesApplication.Web.Controllers
                 Employees = _employeeRepository.All(),
                 BiteStatuses = _biteStatusRepository.All()
             };
+
+            
 
             return View("BiteForm", biteViewModel);
         }
@@ -133,7 +129,8 @@ namespace RabiesApplication.Web.Controllers
                 HumanVictims = _humanVictimRepository.GetAllByBiteId(biteId),
                 Pets = _animalRepository.GetAllPetVictims(biteId),
                 Animal = _animalRepository.GetAnimalByBiteId(biteId),
-                PetOwner = _petOwnerRepository.GetAnimalOwnerByBiteId(biteId)
+                PetOwner = _petOwnerRepository.GetAnimalOwnerByBiteId(biteId),
+                Actions = _actionRepository.GetActionsByBiteId(biteId)
             };
 
             return View(bitedetailsViewModel);
@@ -182,6 +179,33 @@ namespace RabiesApplication.Web.Controllers
         //    return View(bite);
         //}
 
+        public ActionResult GenerateLetter(string biteId,FormCollection form)
+        {
+            if (biteId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var bite = _biteRepository.GetById(biteId).Result;
+
+            if (bite == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var selectedLetter = form["Letter Type"];
+
+            new ComposeLetter(bite).TenDayQuarantineLetterDifferent();
+
+            int result;
+            int.TryParse(selectedLetter, out result);
+            ActionsHelper.SaveActions(ActionsHelper.GenerateSendLetterAction(biteId, result));
+            return RedirectToAction("Details", new { biteId = bite.Id});
+
+        }
+
+
+       
 
         
     }

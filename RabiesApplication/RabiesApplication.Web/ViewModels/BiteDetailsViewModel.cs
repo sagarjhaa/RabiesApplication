@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using RabiesApplication.Models;
+using Action = RabiesApplication.Models.Action;
 
 namespace RabiesApplication.Web.ViewModels
 {
@@ -15,23 +13,16 @@ namespace RabiesApplication.Web.ViewModels
         #region HumanVictim
 
         public IEnumerable<HumanVictim> HumanVictims { get; set; }
-        //public IEnumerable<State> States { get; set; }
-        //public IEnumerable<County> Counties { get; set; }
-        //public IEnumerable<City> Cities { get; set; }
-
-
         #endregion
 
         #region Pet
         public IEnumerable<Animal> Pets { get; set; }
         public Animal Animal { get; set; }
-        //public IEnumerable<Breed> Breeds { get; set; }
-        //public IEnumerable<Species> Specieses { get; set; }
-        //public IEnumerable<Vet> Vets { get; set; }
 
         #endregion
 
-
         public PetOwner PetOwner { get; set; }
+
+        public IEnumerable<Action> Actions { get; set; }
     }
 }
