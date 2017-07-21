@@ -9,11 +9,7 @@ namespace RabiesApplication.Web.Controllers
     [AllowAnonymous]
     public class HomeController : Controller
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+      
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -21,7 +17,7 @@ namespace RabiesApplication.Web.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Index()
         {
             ViewBag.Message = "Your contact page.";
 
