@@ -182,6 +182,7 @@ namespace RabiesApplication.Web.BusinessLogic
         private void SaveFile()
         {
             Guid filename = Guid.NewGuid();
+            //Todo : Need to save the binary data to a table for reproduction of all communications.
             Document.SaveAs(DocumentSavePath + filename.ToString() + ".docx");
             WordApplication.Application.Quit();
         }
