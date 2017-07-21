@@ -146,13 +146,29 @@
 
 <hr />
 
-@using (Html.BeginForm("GenerateLetter", "Bites", new { biteId = Model.Bite.Id }))
-{
-    <div class="form-inline">
-        @Html.DropDownList("Letter Type", EnumHelper.GetSelectList(typeof(Letters)), "Select One", htmlAttributes: new { @class = "form-control" })
-        <button class="btn btn-primary" type="submit">Generate Letter</button>
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("GenerateLetter", "Bites", new { biteId = Model.Bite.Id }))
+        {
+            <h4>Initial Letters</h4>
+            <div class="form-inline">
+                @Html.DropDownList("Letter Type", EnumHelper.GetSelectList(typeof(Letters)), "Select One", htmlAttributes: new { @class = "form-control" })
+                <button class="btn btn-primary" type="submit">Generate Letter</button>
+            </div>
+        }
     </div>
-}
+    <div class="col-md-6">
+        @using (Html.BeginForm("GenerateLetter", "Bites", new { biteId = Model.Bite.Id }))
+        {
+            <h4>Followup Letters</h4>
+            <div class="form-inline">
+                @Html.DropDownList("Letter Type", EnumHelper.GetSelectList(typeof(Letters)), "Select One", htmlAttributes: new { @class = "form-control" })
+                <button class="btn btn-primary" type="submit">Generate Letter</button>
+            </div>
+        }
+    </div>
+</div>
+
 
 <div class="row">
     <div class="col-md-6">
