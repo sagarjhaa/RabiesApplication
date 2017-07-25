@@ -350,9 +350,87 @@ namespace RabiesApplication.Web.BusinessLogic
 
         }
 
-        public void TenDayQuarantineShelter() { }
+        public void TenDayQuarantineShelter()
+        {
+            AddHeaderImage();
+            PrintAddress();
 
-        public void FourFiveDayQuarantine() { }
+            WordApplication.Selection.TypeText("Dear Shelter Staff:");
+
+            string firstParagraph =
+                    "Our office has received a report that [Name] bit or scratched someone on [Date]" + Environment.NewLine;
+
+            string secondParagraph =
+                "Ohio law* requires us to follow up on this report because dogs, cats, and other animals can carry rabies and pass it on to people and animals through a bite or " +
+                "scratch. Rabies is a very serious disease. There is no treatment once symptoms begin and the disease can kill you." + Environment.NewLine;
+
+            WordApplication.Selection.TypeText(firstParagraph);
+            WordApplication.Selection.TypeText(secondParagraph);
+
+            WordApplication.Selection.TypeText("");
+            WordApplication.Selection.TypeText("Ohio law* says that:" + Environment.NewLine);
+            WordApplication.Selection.TypeText("You must quarantine the animal for 10 days, starting the day of the incident, and" + Environment.NewLine);
+            WordApplication.Selection.TypeText("You must show proof that the animal has a current rabies vaccination from a licensed veterinarian." + Environment.NewLine);
+
+
+            WordApplication.Selection.TypeText("To quarantine the animal, you must do there things:" + Environment.NewLine);
+            WordApplication.Selection.TypeText("Keep the animal isolated at your shelter or at an approved kennel." + Environment.NewLine);
+            WordApplication.Selection.TypeText("Watch the animal to be sure it stays healthy. If the animal starts to show signs of illness or strange " +
+                                               "behavior, please call your veterinarian and our office immediately." + Environment.NewLine);
+            WordApplication.Selection.TypeText("If the animal is euthanized or dies, then it must be tested for rabies. Contact your veterinarian " +
+                                               "and our office to determine the procedures for testing" + Environment.NewLine);
+
+
+            WordApplication.Selection.TypeText("At the end of the 10 days:" + Environment.NewLine);
+            WordApplication.Selection.TypeText("Our office will contact you to make sure that your pet has successfully completed the quarantine. An" +
+                                               " animal that successfully completes the quarantine is one that is still alive and showing no signs of illness or strange behaviour." + Environment.NewLine);
+            WordApplication.Selection.TypeText("If the animal has a current rabies vaccination: Complete the Pet Owner Section of the enclosed Rabies Vaccination & Quarantine Release" +
+                                               " form and send it to us by mail, fax at 216-676-1316, or email at sshort@ccbh.net. Please be sure to check the box for Yes, my animal successfully" +
+                                               " completed the quarantine." + Environment.NewLine);
+            WordApplication.Selection.TypeText("If the animal does not have a current rabies vaccination. You are required to have the animal examined by a veterinarian on or shortly " +
+                                               "after day 10 to receive a rabies vaccination and to have the release form completed. The animal must stay in quarantine until our " +
+                                               "office receives the completed release form from the veterinarian" + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("Thank you for your cooperation and please contact me if you have any questions or concerns." + Environment.NewLine);
+            
+            AddFooterContact();
+
+        }
+
+        public void FourFiveDayQuarantine()
+        {
+            AddHeaderImage();
+            PrintAddress();
+
+            WordApplication.Selection.TypeText("Dear Mr. or MS.:"+Environment.NewLine);
+
+            WordApplication.Selection.TypeText("Our office has received a report that your pet [name] was bitten, scratched, or otherwise exposed to a [raccoon] on [date]."+Environment.NewLine);
+
+            WordApplication.Selection.TypeText("Ohio law* requires us to follow up on this report because [raccoons] can carry rabies and pass it on to pets through a bite, scratch, or other exposure. Pets can then pass" +
+                                               " it to people. Rabies is a very serious disease that will almost kill people if they don't receive immediate medical help after being exposed." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("Because the [raccon] cannot be tested for rabies, Ohio law* requires you to quarantine your pet for 45 days, starting the day of the incident." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("To properly quarantine your pet, you must do these things:" + Environment.NewLine);
+            WordApplication.Selection.TypeText("" + Environment.NewLine);
+            WordApplication.Selection.TypeText("Contact your veterinarian to arrange for a rabies vaccination to be given to your pet immediately." + Environment.NewLine);
+            WordApplication.Selection.TypeText("Keep your pet confined at home or at an approval kennel." + Environment.NewLine);
+            WordApplication.Selection.TypeText("Keep your pet away from people and other animals." + Environment.NewLine);
+            WordApplication.Selection.TypeText("Watch your pet to be sure it stays healthy." + Environment.NewLine);
+            WordApplication.Selection.TypeText("If your pet starts to show signs of illness or strange behaviour, immediately call your vet and our office." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("After the 45 day quarantine:" + Environment.NewLine);
+            WordApplication.Selection.TypeText("If your pet successfully completes the quarantine, please fill out the Rabies Vaccination & Quarantine Release form." +
+                                               " An animal that successfully completes the quarantine is one that is still alive and showing no signs of illness or strange behavior." + Environment.NewLine);
+            WordApplication.Selection.TypeText("Check the box for Yes, my animal successfully completed the quarantine period." + Environment.NewLine);
+            WordApplication.Selection.TypeText("Complete the rabies vaccination information." + Environment.NewLine);
+            WordApplication.Selection.TypeText("Sign and date the form." + Environment.NewLine);
+            WordApplication.Selection.TypeText("Send the form to our office by mail, fax or email." + Environment.NewLine);
+            WordApplication.Selection.TypeText("Thank you for your coorperation. Please contact me with any questions or concerns that you may have." + Environment.NewLine);
+            
+            AddFooterContact();
+
+        }
 
 
         private void SaveFile()
