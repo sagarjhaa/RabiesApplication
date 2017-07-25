@@ -31,7 +31,7 @@ namespace RabiesApplication.Web.BusinessLogic
             
         }
 
-        private void Address()
+        private void PrintAddress()
         {
             #region Date
                 WordApplication.Selection.TypeText(DateTime.Now.ToShortDateString() + Environment.NewLine);
@@ -62,14 +62,11 @@ namespace RabiesApplication.Web.BusinessLogic
             WordApplication.Selection.TypeText("sshort@ccbh.net" + Environment.NewLine);
         }
 
-
-       
-
         public void TenDayQuarantineLetterSame()
         {
             AddHeaderImage();
 
-            Address();
+            PrintAddress();
 
             #region Greeting
             WordApplication.Selection.TypeText("Dear Mr. or Ms.:" + Environment.NewLine);
@@ -175,7 +172,7 @@ namespace RabiesApplication.Web.BusinessLogic
         {
             AddHeaderImage();
 
-            Address();
+            PrintAddress();
 
             #region Greeting
             WordApplication.Selection.TypeText("Dear Mr. or Ms.:" + Environment.NewLine);
@@ -273,7 +270,43 @@ namespace RabiesApplication.Web.BusinessLogic
             SaveFile();
         }
 
-        public void WildUnknowAnimal() { }
+        public void WildUnknowAnimal()
+        {
+            AddHeaderImage();
+            PrintAddress();
+
+            #region Greeting
+            WordApplication.Selection.TypeText("Dear Mr. or Ms.:" + Environment.NewLine);
+            #endregion
+
+            string firstParagraph =
+                "As part of our Rabies Prevention Program, The Cuyahoga County Board of Health investigates all reported" +
+                "animal bites and potential rabies exposures. We were notified you were bitten by a [animal] on [date]." +
+                " Every effort should be made to locate the animal so that it can be properly quarantined or tested for rabies." + Environment.NewLine;
+
+            string secondParagraph =
+                "Please contact us upon receiving this letter to provide any additional information you may have regarding the whereabouts of the " +
+                "animal. If the animal is a stray, it may be possible for your local animal control office to capture it and submit it to our office" +
+                " for rabies testing. If the animal belongs to someone, then our office can contact the owner to verify the health of the animal" +
+                " and its rabies vaccination record. If the animal belong to you, then you will simply be required to quarantine the animal for 10 days and then" +
+                " provide proof of a rabies vaccination." + Environment.NewLine;
+
+            string thirdParagraph =
+                "Rabies is aninfectious disease that is fatal once symptoms begin. The risk for rabies can be controlled by minimizing animal bites" +
+                " and exposires and by keeping pets vaccinatied againt the virus. The board of Health recommends that you seek the necessary medical treatment to help prevent" +
+                " potential infection. You should also consult with your physician to discuss the risks associated with your potential rabies exposure and whether post-" +
+                "exposure prophylaxis should be administered." + Environment.NewLine;
+
+            string fourthParagraph = 
+                "Thank you for your cooperation in this matter." + Environment.NewLine;
+
+            WordApplication.Selection.TypeText(firstParagraph);
+            WordApplication.Selection.TypeText(secondParagraph);
+            WordApplication.Selection.TypeText(thirdParagraph);
+            WordApplication.Selection.TypeText(fourthParagraph);
+
+            AddFooterContact();
+        }
 
         public void SixMonthQuarantine() { }
 
