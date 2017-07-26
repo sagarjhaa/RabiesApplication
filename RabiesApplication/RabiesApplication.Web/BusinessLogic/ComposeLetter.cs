@@ -62,6 +62,7 @@ namespace RabiesApplication.Web.BusinessLogic
             WordApplication.Selection.TypeText("sshort@ccbh.net" + Environment.NewLine);
         }
 
+        #region InitialLetters
         public void TenDayQuarantineLetterSame()
         {
             AddHeaderImage();
@@ -431,6 +432,169 @@ namespace RabiesApplication.Web.BusinessLogic
             AddFooterContact();
 
         }
+#endregion
+
+        #region  FollowUpLetters
+
+        public void NonCompliance_OwnerVictimDifferent_No_Quarantine_No_Vaccination()
+        {
+            AddHeaderImage();
+            PrintAddress();
+            WordApplication.Selection.TypeText("Dear Mr. or Ms.:"+Environment.NewLine);
+
+            WordApplication.Selection.TypeText("Our office has not received verification that your pet [“Name“] " +
+                                               "successfully completed the 10 day quarantine, nor have we received " +
+                                               "verification of a " +
+                                               "current rabies vaccination, following " +
+                                               "the biting incident that occurred on [00/00/0000.]  " +
+                                               "We have made several attempts to obtain this information from you, " +
+                                               "and have also explained that, by law, " +
+                                               "the pet must remain in quarantine until it has been " +
+                                               "officially released by the Board of Health." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("If your pet has a current rabies vaccination, please contact " +
+                                               "our office immediately to make arrangements for us to see it." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("If your pet does not have a current rabies vaccination, then you are required take it to a " +
+                                               "veterinarian to have one given and to have the Rabies Vaccination & Quarantine Release " +
+                                               "Form completed and submitted to our office. These items must be completed by [00/00/0000.]" + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("Please contact me with any questions at 216-201-2001 ext. 1253 or at sshort@ccbh.net.");
+            WordApplication.Selection.TypeText("Failure to comply with the requirements set forth in this letter may result in legal action." + Environment.NewLine);
+            WordApplication.Selection.TypeText("Sincerely,"+Environment.NewLine);
+            AddFooterContact();
+        }
+
+        public void NonCompliance_OwnerVictimDifferent_No_Quarantine()
+        {
+            AddHeaderImage();
+
+            PrintAddress();
+
+            WordApplication.Selection.TypeText("Dear Mr. or Ms.:" + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("Our office has not received verification that your pet [“Name“] successfully completed the 10 day quarantine, " +
+                                               "following the biting incident that occurred on [00/00/0000].  We have made several attempts to obtain this " +
+                                               "information from you, and have also explained that, by law, the pet must remain " +
+                                               "in quarantine until it has been officially released by the Board of Health." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("If your pet has a current rabies vaccination, please contact our office immediately to make arrangements for us to see it." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("If your pet does not have a current rabies vaccination, then you are required take it to a veterinarian to have one given " +
+                                               "and to have the Rabies Vaccination & Quarantine Release Form completed and submitted to our office. " +
+                                               "These items must be completed by [00/00/0000]." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("Please contact me with any questions at 216-201-2001 ext. 1253 or at sshort@ccbh.net.");
+            WordApplication.Selection.TypeText("Failure to comply with the requirements set forth in this letter may result in legal action." + Environment.NewLine);
+            WordApplication.Selection.TypeText("Sincerely," + Environment.NewLine);
+            AddFooterContact();
+
+        }
+
+        public void NonCompliance_OwnerVictimDifferent_No_Vaccine()
+        {
+            AddHeaderImage();
+
+            PrintAddress();
+
+            WordApplication.Selection.TypeText("Dear Mr. or Ms.:" + Environment.NewLine);
+
+            
+            WordApplication.Selection.TypeText("Our office has not received verification that your pet [“Name”] received a rabies vaccination, following the biting incident " +
+                                               "that occurred on [00/00/0000].  We have made several attempts to obtain this information from you, and have also explained that, by law, " +
+                                               "the pet must remain in quarantine until a rabies vaccination is administered." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("If your pet has a current rabies vaccination, please contact me with the name of the veterinary hospital that gave it." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("If your pet does not have a current rabies vaccination, then you are required take it to a veterinarian to have one given and to have " +
+                                               "the Rabies Vaccination & Quarantine Release Form completed " +
+                                               "and submitted to our office. These items must be completed by [00/00/0000]" + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("Please contact me at 216-201-2001 ext. 1253 or at sshort@ccbh.net with any questions you might have.");
+            WordApplication.Selection.TypeText("Failure to comply with the requirements set forth in this letter may result in legal action." + Environment.NewLine);
+            WordApplication.Selection.TypeText("Sincerely," + Environment.NewLine);
+            AddFooterContact();
+        }
+
+        public void NonComplaince_OwnerVictimSame_No_Quarantine_No_Vaccine()
+        {
+            AddHeaderImage();
+
+            PrintAddress();
+
+            WordApplication.Selection.TypeText("Dear Mr. or Ms.:" + Environment.NewLine);
+
+
+            WordApplication.Selection.TypeText("Our office has not received verification that your pet [“Name”] successfully completed the required 10 day quarantine, " +
+                                               "nor have we received verification of a current rabies vaccination, following the biting incident that occurred on [00/00/0000].  " +
+                                               "We have made several attempts to obtain this information from you, and have also explained that, " +
+                                               "by law, the pet must remain in quarantine until a rabies vaccination is administered." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("If your pet has a current rabies vaccination, then please complete the Pet Owner Section of the enclosed Rabies " +
+                                               "Vaccination & Quarantine Release Form and submit it to our office." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("If your pet does not have a current rabies vaccination, then you are required to take it to a veterinarian to have one " +
+                                               "administered and to have the Rabies Vaccination and Quarantine Release Form completed." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("The completed Rabies Vaccination and Quarantine Release Form must be received by our office by [00/00/0000]. Please contact me at 216-201-2001 ext. 1253 or at sshort@ccbh.net with any questions you might have.");
+
+            WordApplication.Selection.TypeText("Failure to comply with the requirements set forth in this letter may result in legal action." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("Sincerely," + Environment.NewLine);
+
+            AddFooterContact();
+        }
+
+        public void NonComplaince_OwnerVictimSame_No_Quarantine()
+        {
+            AddHeaderImage();
+
+            PrintAddress();
+
+            WordApplication.Selection.TypeText("Dear Mr. or Ms.:" + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("Our office has not received verification that your pet [“Name”] has successfully completed the 10 day quarantine, " +
+                                               "following the biting incident that occurred on [00/00/0000].  " +
+                                               "We have made several attempts to contact you and to obtain this information from you." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("Please complete and submit the Pet Owner section of the enclosed Rabies Vaccination & Quarantine Release Form to our office by fax, mail, " +
+                                               "or email at sshort@ccbh.net.  The completed release form must be received by our office by [00/00/0000]. Please contact me with any questions or concerns.  " +
+                                               "Failure to comply with the requirements set forth in this letter may result in legal action." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("Sincerely," + Environment.NewLine);
+
+            AddFooterContact();
+        }
+
+        public void NonCompliance_OwnerVictimSame_No_Vaccine()
+        {
+            AddHeaderImage();
+
+            PrintAddress();
+
+            WordApplication.Selection.TypeText("Dear Mr. or Ms.:" + Environment.NewLine);
+            WordApplication.Selection.TypeText("Our office has not received verification that your pet [“Name”] has a current rabies vaccination, following the biting " +
+                                               "incident that occurred on [00/00/0000.]  We have made several attempts to obtain this information from you," +
+                                               " and have also explained that, by law, the pet must remain in quarantine until a rabies vaccination is administered." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("If your pet has a current rabies vaccination, then please complete the Pet Owner Section of the enclosed Rabies " +
+                                               "Vaccination & Quarantine Release Form and submit it to our office." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("If your pet does not have a current rabies vaccination, then you are required to take it to a veterinarian " +
+                                               "to have one administered and to have the Rabies Vaccination and Quarantine Release Form completed." + Environment.NewLine);
+
+
+            WordApplication.Selection.TypeText("The completed Rabies Vaccination and Quarantine Release Form must be received by our office by [00/00/0000.] " +
+                                               "Please contact me at 216-201-2001 ext. 1253 or at sshort@ccbh.net with any questions you might have. " +
+                                               "Failure to comply with the requirements set forth in this letter may result in legal action." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("Sincerely," + Environment.NewLine);
+            AddFooterContact();
+        }
+        //NonCompliance
+
+        #endregion
+
 
 
         private void SaveFile()
