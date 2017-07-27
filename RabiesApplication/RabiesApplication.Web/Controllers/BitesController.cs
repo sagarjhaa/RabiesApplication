@@ -83,8 +83,8 @@ namespace RabiesApplication.Web.Controllers
                 }
                 await _biteRepository.SaveChangesAsync();
 
-                var biteupdate = new BiteUpdatesHub();
-                await biteupdate.NotifyUpdates();
+                //var biteupdate = new BiteUpdatesHub();
+                //await biteupdate.NotifyUpdates();
 
                 //ComposeLetter.TenDayQuarantineLetter();
 
