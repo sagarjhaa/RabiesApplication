@@ -15,11 +15,15 @@ namespace RabiesApplication.Web.BusinessLogic
         private static readonly string DocumentSavePath = "C:\\Users\\Sagar\\Desktop\\";
         private static readonly string HeaderImage = HttpContext.Current.Server.MapPath("~/Content/images/Header_Ccbh.png");
         private Bite Bite;
+        private Animal Animal;
+        private PetOwner PetOwner;
 
         public ComposeLetter(Bite bite)
         {
             Document = WordApplication.Documents.Add();
             Bite = bite;
+            Animal = bite.Animals.First(a => a.IsVictim.Equals(false));
+            PetOwner = Animal.PetOwner;
         }
 
         private void AddHeaderImage()
@@ -183,7 +187,7 @@ namespace RabiesApplication.Web.BusinessLogic
 
             string firstparagraph;
             
-                firstparagraph = "Our office has received a report that your pet [pet name] bit someone on [biteDate]." + Environment.NewLine;
+                firstparagraph = "Our office has received a report that your pet "+ Animal.Name +" bit someone on "+  Bite.BiteDate.Value.Date.ToString("D") +"." +  Environment.NewLine;
             
 
 

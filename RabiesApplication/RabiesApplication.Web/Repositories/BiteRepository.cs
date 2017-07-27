@@ -17,14 +17,13 @@ namespace RabiesApplication.Web.Repositories
             return base.Insert(model);
         }
 
-        //public override Task InsertOrUpdateAsync(Bite model)
+        //public Task BiteDetailsWithAnimal(string biteId)
         //{
-        //    if (model.Id == null)
-        //    {
-        //        model.BiteStatusId = BiteStatusConstant.New;
-        //    }
+        //    var bite =  base.Context.Bites.Where(b => b.Id.Equals(biteId));
 
-        //    return base.InsertOrUpdateAsync(model);
+        //    var biteWithAnimal = bite.Where(b => b.Animals.Where(a => !a.IsVictim)).ToListAsync();
+
+        //    return biteWithAnimal;
         //}
 
         public override IQueryable<Bite> All()
