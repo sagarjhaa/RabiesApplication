@@ -66,7 +66,6 @@ namespace RabiesApplication.Web.Controllers
                 {
                     await _petOwnerRepository.Update(petOwner);
                 }
-                //await _petOwnerRepository.InsertOrUpdateAsync(petOwner);
                 await _petOwnerRepository.SaveChangesAsync();
                 var biteId =_animalRepository.GetById(petOwner.Id).Result.BiteId;
                 return RedirectToAction("Details","Bites",new { biteId = biteId});
@@ -75,7 +74,7 @@ namespace RabiesApplication.Web.Controllers
             var petOwnerViewModel = new PetOwnerViewModel()
             {
                 PetOwner = petOwner,
-                //Animal = _animalRepository.GetById(petOwner.AnimalId).Result,
+                Animal = _animalRepository.GetById(petOwner.Id).Result,
                 States = _statesRepository.All(),
                 Counties = _countyRepository.All(),
                 Cities = _citiesRepository.All()
