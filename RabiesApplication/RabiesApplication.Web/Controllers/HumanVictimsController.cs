@@ -43,7 +43,16 @@ namespace RabiesApplication.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _humanVictimRepository.InsertOrUpdateAsync(humanVictim);
+                if (humanVictim.Id == null)
+                {
+                    await _humanVictimRepository.Insert(humanVictim);
+                }
+                else
+                {
+                    await _humanVictimRepository.Update(humanVictim);
+                }
+
+                //await _humanVictimRepository.InsertOrUpdateAsync(humanVictim);
                 await _humanVictimRepository.SaveChangesAsync();
                 return RedirectToAction("Details", "Bites", new { biteId = humanVictim.BiteId,Message = Constant.ManageMessageId.SaveHumanVictimDataSuccess});
             }
