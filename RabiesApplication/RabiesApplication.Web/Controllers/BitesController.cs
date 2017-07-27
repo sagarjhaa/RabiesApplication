@@ -66,13 +66,8 @@ namespace RabiesApplication.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Save(Bite bite)
         {
-            //Remove checking on EmployeecreatedId
-            //ModelState.Remove("EmployeecreatedId");
-
-
             if (ModelState.IsValid)
             {
-                //await _biteRepository.InsertOrUpdateAsync(bite);
                 if (bite.Id == null)
                 {
                     await _biteRepository.Insert(bite);
@@ -85,8 +80,6 @@ namespace RabiesApplication.Web.Controllers
 
                 //var biteupdate = new BiteUpdatesHub();
                 //await biteupdate.NotifyUpdates();
-
-                //ComposeLetter.TenDayQuarantineLetter();
 
                 return RedirectToAction("Details",new {biteId = bite.Id,Message = Constant.ManageMessageId.SavedBiteDataSuccess});
             }
