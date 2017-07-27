@@ -11,15 +11,21 @@ namespace RabiesApplication.Web.Repositories
 {
     public class BiteRepository : ActiveRepository<Bite>
     {
-        public override Task InsertOrUpdateAsync(Bite model)
+        public override Task Insert(Bite model)
         {
-            if (model.Id == null)
-            {
-                model.BiteStatusId = BiteStatusConstant.New;
-            }
-
-            return base.InsertOrUpdateAsync(model);
+            model.BiteStatusId = BiteStatusConstant.New;
+            return base.Insert(model);
         }
+
+        //public override Task InsertOrUpdateAsync(Bite model)
+        //{
+        //    if (model.Id == null)
+        //    {
+        //        model.BiteStatusId = BiteStatusConstant.New;
+        //    }
+
+        //    return base.InsertOrUpdateAsync(model);
+        //}
 
         public override IQueryable<Bite> All()
         {

@@ -72,7 +72,15 @@ namespace RabiesApplication.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                await _biteRepository.InsertOrUpdateAsync(bite);
+                //await _biteRepository.InsertOrUpdateAsync(bite);
+                if (bite.Id == null)
+                {
+                    await _biteRepository.Insert(bite);
+                }
+                else
+                {
+                    await _biteRepository.Update(bite);
+                }
                 await _biteRepository.SaveChangesAsync();
 
                 var biteupdate = new BiteUpdatesHub();
@@ -158,7 +166,7 @@ namespace RabiesApplication.Web.Controllers
         {
             Bite bite = _biteRepository.GetById(id).Result;
             bite.Active = Constant.Deactive;
-            _biteRepository.InsertOrUpdateAsync(bite);
+            _biteRepository.Update(bite);
             _biteRepository.SaveChangesAsync();
             return RedirectToAction("Index");
         }
