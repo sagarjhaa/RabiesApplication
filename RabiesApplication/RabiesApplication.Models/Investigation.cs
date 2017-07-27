@@ -20,9 +20,6 @@ namespace RabiesApplication.Models
         public DateTime LetterSentDate { get; set; }
 
         public int FollowUpDays { get; set; }
-        public DateTime? InvestigationCompletionDate { get; set; }
-
-        public DateTime? ReportClosedDate { get; set; }
 
         public DateTimeOffset RecordCreated { get; set; }
         public DateTimeOffset? RecordEdited { get; set; }
