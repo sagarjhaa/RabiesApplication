@@ -11,9 +11,9 @@ namespace RabiesApplication.Web.Repositories
 {
     public class PetOwnerRepository : AuditRepository<PetOwner>
     {
-        public override Task<PetOwner> GetById(string ownerId)
+        public override Task<PetOwner> GetById(string animalId)
         {
-            return Context.PetOwners.Include("Animal").FirstAsync(a => a.Id.Equals(ownerId));
+            return Context.PetOwners.Include("Animal").FirstAsync(a => a.Id.Equals(animalId));
         }
 
         public PetOwner GetOwnerByAnimalId(string animalId)

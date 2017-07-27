@@ -24,7 +24,7 @@ namespace RabiesApplication.Web.Controllers
 
       
         // GET: PetOwners/Create
-        public ActionResult PetOwnerForm(string animalId,string ownerId)
+        public ActionResult PetOwnerForm(string animalId)
         {
             var petOwnerViewModel = new PetOwnerViewModel()
             {
@@ -35,8 +35,8 @@ namespace RabiesApplication.Web.Controllers
                 Cities = _citiesRepository.All()
             };
 
-            if (ownerId == null) return View(petOwnerViewModel);
-            var petOwnerDb = _petOwnerRepository.GetById(ownerId).Result;
+            //if (ownerId == null) return View(petOwnerViewModel);
+            var petOwnerDb = _petOwnerRepository.GetById(animalId).Result;
 
             if (petOwnerDb != null)
             {
@@ -60,7 +60,7 @@ namespace RabiesApplication.Web.Controllers
             {
                 await _petOwnerRepository.InsertOrUpdateAsync(petOwner);
                 await _petOwnerRepository.SaveChangesAsync();
-                var biteId = 123;//_animalRepository.GetById(petOwner.AnimalId).Result.BiteId;
+                var biteId =_animalRepository.GetById(petOwner.Id).Result.BiteId;
                 return RedirectToAction("Details","Bites",new { biteId = biteId});
             }
 
@@ -76,13 +76,13 @@ namespace RabiesApplication.Web.Controllers
         }
 
         // GET: PetOwners/Delete/5
-        public async Task<ActionResult> Delete(string ownerId)
+        public async Task<ActionResult> Delete(string animalId)
         {
-            if (ownerId == null)
+            if (animalId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PetOwner petOwner = await _petOwnerRepository.GetById(ownerId);
+            PetOwner petOwner = await _petOwnerRepository.GetById(animalId);
             if (petOwner == null)
             {
                 return HttpNotFound();
@@ -93,14 +93,14 @@ namespace RabiesApplication.Web.Controllers
         //POST: PetOwners/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string ownerId)
+        public async Task<ActionResult> DeleteConfirmed(string animalId)
         {
-            PetOwner petOwner = await _petOwnerRepository.GetById(ownerId);
-            //var biteId = petOwner.Animal.BiteId;
+            PetOwner petOwner = await _petOwnerRepository.GetById(animalId);
+            var biteId = petOwner.Animal.BiteId;
             await _petOwnerRepository.DeleteAsync(petOwner.Id);
             await _petOwnerRepository.SaveChangesAsync();
 
-            return RedirectToAction("Details","Bites",new {biteId = 123});
+            return RedirectToAction("Details","Bites",new {biteId = biteId });
         }
     }
 }
