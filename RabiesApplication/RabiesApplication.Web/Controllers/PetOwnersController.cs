@@ -35,15 +35,15 @@ namespace RabiesApplication.Web.Controllers
                 Cities = _citiesRepository.All()
             };
 
-            //if (ownerId == null) return View(petOwnerViewModel);
-            var petOwnerDb = _petOwnerRepository.GetById(animalId).Result;
-
-            if (petOwnerDb != null)
+            if (petOwnerViewModel.Animal.PetOwner != null)
             {
-                petOwnerViewModel.PetOwner = petOwnerDb;
+                var petOwnerDb = _petOwnerRepository.GetById(animalId).Result;
+
+                if (petOwnerDb != null)
+                {
+                    petOwnerViewModel.PetOwner = petOwnerDb;
+                }
             }
-
-
             return View(petOwnerViewModel);
         }
 
