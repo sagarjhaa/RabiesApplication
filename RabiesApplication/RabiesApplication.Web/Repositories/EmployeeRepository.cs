@@ -15,10 +15,21 @@ namespace RabiesApplication.Web.Repositories
             return base.All().Where(e => e.Active == Constant.Active);
         }
 
-        public override Task InsertOrUpdateAsync(Employee model)
+        public override Task Insert(Employee model)
         {
             model.OrganizationId = Constant.OrganizationCcbh;
-            return base.InsertOrUpdateAsync(model);
+            return base.Insert(model);
         }
+
+        public override Task Update(Employee model)
+        {
+            return base.Update(model);
+        }
+
+        //public override Task InsertOrUpdateAsync(Employee model)
+        //{
+        //    model.OrganizationId = Constant.OrganizationCcbh;
+        //    return base.InsertOrUpdateAsync(model);
+        //}
     }
 }
