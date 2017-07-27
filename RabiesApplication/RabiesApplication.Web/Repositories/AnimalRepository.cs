@@ -37,7 +37,7 @@ namespace RabiesApplication.Web.Repositories
             if (!animal.IsVictim)
             {
                 //find if there is any animal owner information for this animal. Delete it first if any
-                var owner = Context.PetOwners.FirstOrDefault(o => o.AnimalId.Equals(animal.Id));
+                var owner =new PetOwner();//Context.PetOwners.FirstOrDefault(o => o.AnimalId.Equals(animal.Id));
                 if (owner != null) Context.PetOwners.Remove(owner);
             }
             return base.DeleteAsync(animalId);

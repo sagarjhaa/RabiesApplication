@@ -60,14 +60,14 @@ namespace RabiesApplication.Web.Controllers
             {
                 await _petOwnerRepository.InsertOrUpdateAsync(petOwner);
                 await _petOwnerRepository.SaveChangesAsync();
-                var biteId = _animalRepository.GetById(petOwner.AnimalId).Result.BiteId;
+                var biteId = 123;//_animalRepository.GetById(petOwner.AnimalId).Result.BiteId;
                 return RedirectToAction("Details","Bites",new { biteId = biteId});
             }
 
             var petOwnerViewModel = new PetOwnerViewModel()
             {
                 PetOwner = petOwner,
-                Animal = _animalRepository.GetById(petOwner.AnimalId).Result,
+                //Animal = _animalRepository.GetById(petOwner.AnimalId).Result,
                 States = _statesRepository.All(),
                 Counties = _countyRepository.All(),
                 Cities = _citiesRepository.All()
