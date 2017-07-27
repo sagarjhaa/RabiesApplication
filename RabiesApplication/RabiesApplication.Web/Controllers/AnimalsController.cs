@@ -81,7 +81,6 @@ namespace RabiesApplication.Web.Controllers
                     await _animalRepository.Update(animal);
                 }
 
-                //await _animalRepository.InsertOrUpdateAsync(animal);
                 await _animalRepository.SaveChangesAsync();
                 return RedirectToAction("Details","Bites",new {biteId = animal.BiteId, Message = Constant.ManageMessageId.SavePetVictimDataSuccess });
             }
@@ -114,7 +113,6 @@ namespace RabiesApplication.Web.Controllers
                 {
                     await _animalRepository.Update(animal);
                 }
-                //await _animalRepository.InsertOrUpdateAsync(animal);
                 await _animalRepository.SaveChangesAsync();
                 return RedirectToAction("Details", "Bites", new { biteId = animal.BiteId, Message = Constant.ManageMessageId.SavePetVictimDataSuccess });
             }
