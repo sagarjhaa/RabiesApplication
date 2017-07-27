@@ -49,10 +49,6 @@ namespace RabiesApplication.Models
         
         public bool Active { get; set; }
 
-        //public virtual ICollection<Animal> Animals { get; set; }
-        //public virtual ICollection<HumanVictim> HumanVictims { get; set; }
-        //public virtual ICollection<Action> Actions { get; set; }
-
         public DateTime? InvestigationCompletionDate { get; set; }
 
         public DateTime? ReportClosedDate { get; set; }
@@ -61,5 +57,9 @@ namespace RabiesApplication.Models
         public DateTimeOffset? RecordEdited { get; set; }
         public string EmployeeCreatedId { get; set; }
         public string EmployeeEditedId { get; set; }
+
+        public virtual ICollection<Animal> Animals { get; set; }
+        public virtual ICollection<HumanVictim> HumanVictims { get; set; }
+        public virtual ICollection<Action> Actions { get; set; }
     }
 }
