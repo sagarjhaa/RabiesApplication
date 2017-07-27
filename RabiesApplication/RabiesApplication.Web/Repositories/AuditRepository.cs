@@ -15,7 +15,7 @@ namespace RabiesApplication.Web.Repositories
         public override Task Insert(TEntity model)
         {
             var user = new UserRepository().GetUserID(System.Web.HttpContext.Current.User);
-            if (model.Id == null)
+            if (model.Id == null || (DateTimeOffset.Compare(default(DateTimeOffset), model.RecordCreated).Equals(0)))
             {
                 model.RecordCreated = DateTimeOffset.Now;
                 model.EmployeeCreatedId = user;
