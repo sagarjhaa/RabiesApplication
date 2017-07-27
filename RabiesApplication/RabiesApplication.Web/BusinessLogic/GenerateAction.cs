@@ -49,7 +49,15 @@ namespace RabiesApplication.Web.BusinessLogic
 
         public static void SaveActions(Action action)
         {
-            _actionRepository.InsertOrUpdateAsync(action);
+            if (action.Id == null)
+            {
+                _actionRepository.Insert(action);
+            }
+            else
+            {
+                _actionRepository.Update(action);
+            }
+            
             _actionRepository.SaveChangesAsync();
         }
     }
