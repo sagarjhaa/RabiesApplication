@@ -58,7 +58,15 @@ namespace RabiesApplication.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                await _petOwnerRepository.InsertOrUpdateAsync(petOwner);
+                if (DateTimeOffset.Compare(default(DateTimeOffset), petOwner.RecordCreated).Equals(0))
+                {
+                    await _petOwnerRepository.Insert(petOwner);
+                }
+                else
+                {
+                    await _petOwnerRepository.Update(petOwner);
+                }
+                //await _petOwnerRepository.InsertOrUpdateAsync(petOwner);
                 await _petOwnerRepository.SaveChangesAsync();
                 var biteId =_animalRepository.GetById(petOwner.Id).Result.BiteId;
                 return RedirectToAction("Details","Bites",new { biteId = biteId});
