@@ -12,14 +12,14 @@ namespace RabiesApplication.Models
 {
     public class PetOwner: IModel,IPerson,IAuditable
     {
-        [ForeignKey("Animal")]
+        //[ForeignKey("Animal")]
         public string Id { get; set; }
         public byte[] RowVersion { get; set; }
 
         //public string AnimalId { get; set; }
 
         //[ForeignKey("AnimalId")]
-        public virtual Animal Animal { get; set; }
+        //public virtual Animal Animal { get; set; }
 
         [DisplayName("Shelter?")]
         public bool IsShelter { get; set; }

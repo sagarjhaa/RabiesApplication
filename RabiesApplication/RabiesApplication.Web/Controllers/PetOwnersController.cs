@@ -96,11 +96,11 @@ namespace RabiesApplication.Web.Controllers
         public async Task<ActionResult> DeleteConfirmed(string ownerId)
         {
             PetOwner petOwner = await _petOwnerRepository.GetById(ownerId);
-            var biteId = petOwner.Animal.BiteId;
+            //var biteId = petOwner.Animal.BiteId;
             await _petOwnerRepository.DeleteAsync(petOwner.Id);
             await _petOwnerRepository.SaveChangesAsync();
 
-            return RedirectToAction("Details","Bites",new {biteId = biteId});
+            return RedirectToAction("Details","Bites",new {biteId = 123});
         }
     }
 }
