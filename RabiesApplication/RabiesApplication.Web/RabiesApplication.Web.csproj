@@ -425,6 +425,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="LettersSent\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
