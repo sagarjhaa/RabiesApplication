@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using Microsoft.Office.Interop.Word;
 using System.Web;
 using System.Web.DynamicData;
@@ -37,14 +38,45 @@ namespace RabiesApplication.Web.BusinessLogic
 
         private void PrintAddress()
         {
+            
+        }
+
+        private void PrintAddress(string firstname,string lastname,string addressline1,string addressline2,string city,string state, int? zip)
+        {
             #region Date
                 WordApplication.Selection.TypeText(DateTime.Now.ToShortDateString() + Environment.NewLine);
             #endregion
 
             #region Address
-                string address = "Name" + Environment.NewLine
-                                + "Address" + "\t\t\t" + " ANIMAL QUARANTINE ORDER " + Environment.NewLine
-                                + "City,State,Zip" + Environment.NewLine;
+
+            StringBuilder stringBuilder = new StringBuilder();
+            if (firstname!=null)
+            {
+                stringBuilder.Append("Name : ");
+                stringBuilder.Append(firstname);
+                stringBuilder.Append(lastname);
+                stringBuilder.Append(Environment.NewLine);
+            }
+            if (addressline1!=null)
+            {
+                stringBuilder.Append("Address : ");
+                stringBuilder.Append(addressline1);
+                stringBuilder.Append(addressline2);
+                stringBuilder.Append("\t\t\t");
+                stringBuilder.Append("Animal Quarantine Order");
+                stringBuilder.Append(Environment.NewLine);
+                stringBuilder.Append(city);
+                stringBuilder.Append(state);
+                stringBuilder.Append(zip);
+                stringBuilder.Append(Environment.NewLine);
+
+            }
+
+
+            string address = stringBuilder.ToString();
+                //string address = "Name" + Environment.NewLine
+                //                + "Address" + "\t\t\t" + " ANIMAL QUARANTINE ORDER " + Environment.NewLine
+                //                + "City,State,Zip" + Environment.NewLine;
 
                 WordApplication.Selection.Range.Paragraphs.SpaceAfter = (float)0.0;
                 WordApplication.Selection.TypeText(address);
@@ -177,7 +209,15 @@ namespace RabiesApplication.Web.BusinessLogic
         {
             AddHeaderImage();
 
-            PrintAddress();
+            PrintAddress(
+                firstname:PetOwner.FirstName
+                ,lastname:PetOwner.LastName
+                ,addressline1:PetOwner.Addressline1
+                ,addressline2:PetOwner.Addressline2
+                ,city:PetOwner.City.CityName
+                ,state:PetOwner.State.StateName
+                ,zip:PetOwner.Zipcode
+                );
 
             #region Greeting
             WordApplication.Selection.TypeText("Dear Mr. or Ms.:" + Environment.NewLine);
