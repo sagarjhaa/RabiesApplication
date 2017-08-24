@@ -21,7 +21,8 @@ namespace RabiesApplication.Web.Repositories
 
         public abstract Task<TEntity> GetById(string id);
 
-        public abstract Task InsertOrUpdateAsync(TEntity model);
+        public abstract Task Insert(TEntity model);
+        public abstract Task Update(TEntity model);
 
         public virtual async Task DeleteAsync(string id)
         {

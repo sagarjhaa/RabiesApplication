@@ -13,15 +13,15 @@ namespace RabiesApplication.Models
         [Display(Name = " ")]
         public string StreetAddress2 { get; set; }
         public string Suite { get; set; }
-        [Microsoft.Build.Framework.Required]
+        [Required]
         public string City { get; set; }
-        [Microsoft.Build.Framework.Required]
+        [Required]
         [Display(Name = "State Province")]
         public string StateProvince { get; set; }
 
         [Display(Name = "Postal Code")]
         public string PostalCode { get; set; }
-        [Microsoft.Build.Framework.Required]
+        [Required]
         public string Status { get; set; }
 
         [Timestamp]

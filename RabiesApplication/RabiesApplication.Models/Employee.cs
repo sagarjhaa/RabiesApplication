@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RabiesApplication.Models
 {
-    public class Employee : IModel, IOrganizationModel, IEmployeeBase, IAuditable
+    public class Employee : IModel, IOrganizationModel, IEmployeeBase, IAuditable, IActive
     {
         public string Id { get; set; }
         [Required]
@@ -18,7 +18,6 @@ namespace RabiesApplication.Models
         [Display(Name = "Organization")]
         public Organization Organization { get; set; }
 
-        [Required]
         public string OrganizationId { get; set; }
 
         [Timestamp]
@@ -66,12 +65,12 @@ namespace RabiesApplication.Models
 
         public string Zip4 { get; set; }
 
-        public byte Active { get; set; }
+        public bool Active { get; set; }
 
 
-        public DateTimeOffset DateCreated { get; set; }
-        public DateTimeOffset? DateEdited { get; set; }
-        public string MemberCreatedId { get; set; }
-        public string MemberEditedId { get; set; }
+        public DateTimeOffset RecordCreated { get; set; }
+        public DateTimeOffset? RecordEdited { get; set; }
+        public string EmployeeCreatedId { get; set; }
+        public string EmployeeEditedId { get; set; }
     }
 }

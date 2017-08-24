@@ -4,12 +4,12 @@ namespace RabiesApplication.Models
 {
     public interface IAuditable
     {
-        DateTimeOffset DateCreated { get; set; }
+        DateTimeOffset RecordCreated { get; set; }
 
-        DateTimeOffset? DateEdited { get; set; }
+        DateTimeOffset? RecordEdited { get; set; }
 
-        string MemberCreatedId { get; set; }
+        string EmployeeCreatedId { get; set; }
 
-        string MemberEditedId { get; set; }
+        string EmployeeEditedId { get; set; }
     }
 }

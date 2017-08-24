@@ -47,6 +47,7 @@
     <Compile Include="Bite.cs" />
     <Compile Include="BiteStatus.cs" />
     <Compile Include="Breed.cs" />
+    <Compile Include="CustomValidation\CustomValidation.cs" />
     <Compile Include="City.cs" />
     <Compile Include="County.cs" />
     <Compile Include="HumanVictim.cs" />
@@ -54,11 +55,13 @@
     <Compile Include="IActive.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="IEmployeeBase.cs" />
+    <Compile Include="Investigation.cs" />
     <Compile Include="IOrganizationBase.cs" />
     <Compile Include="IOrganizationModel.cs" />
     <Compile Include="IPerson.cs" />
     <Compile Include="Organization.cs" />
     <Compile Include="IModel.cs" />
+    <Compile Include="PetOwner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Species.cs" />
     <Compile Include="Specimen.cs" />

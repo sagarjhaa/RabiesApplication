@@ -1,11 +1,14 @@
-﻿using RabiesApplication.Models;
+﻿using System;
+using System.ComponentModel;
+using RabiesApplication.Models;
 
-namespace RabiesApp.Models
+namespace RabiesApplication.Models
 {
-    public class County:IActive
+    public class County:IModel,IActive,IAuditable
     {
-        public int Id { get; set; }
-
+        public string Id { get; set; }
+        public byte[] RowVersion { get; set; }
+        [DisplayName("County")]
         public string Name { get; set; }
 
         public int Fips { get; set; }
@@ -15,5 +18,9 @@ namespace RabiesApp.Models
         public int StateId { get; set; }
 
         public State State { get; set; }
+        public DateTimeOffset RecordCreated { get; set; }
+        public DateTimeOffset? RecordEdited { get; set; }
+        public string EmployeeCreatedId { get; set; }
+        public string EmployeeEditedId { get; set; }
     }
 }

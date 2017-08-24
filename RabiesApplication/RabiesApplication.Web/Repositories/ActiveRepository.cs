@@ -10,21 +10,29 @@ namespace RabiesApplication.Web.Repositories
 {
 
     public abstract class ActiveRepository<TEntity> : AuditRepository<TEntity>
-        where TEntity : class, IModel, IAuditable,IActive
+        where TEntity : class, IModel,IActive,IAuditable
     {
-
-        public override Task InsertOrUpdateAsync(TEntity model)
+        public override Task Insert(TEntity model)
         {
             if (model.Id == null)
             {
                 model.Active = Constant.Active;
             }
-            //else
-            //{
-            //    model.DateEdited = DateTimeOffset.Now;
-            //    model.MemberEditedId = user;
-            //}
-            return base.InsertOrUpdateAsync(model);
+            return base.Insert(model);
         }
+
+        public override Task Update(TEntity model)
+        {
+            return base.Update(model);
+        }
+
+        //public override Task InsertOrUpdateAsync(TEntity model)
+        //{
+        //    if (model.Id == null)
+        //    {
+        //        model.Active = Constant.Active;
+        //    }
+        //    return base.InsertOrUpdateAsync(model);
+        //}
     }
 }

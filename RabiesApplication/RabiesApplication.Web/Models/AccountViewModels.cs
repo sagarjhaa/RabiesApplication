@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using RabiesApplication.Models;
 
 namespace RabiesApplication.Web.Models
 {
@@ -60,6 +61,13 @@ namespace RabiesApplication.Web.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+    }
+
+    public class RegisterMember
+    {
+        public Employee Employee { get; set; }
+
+        public RegisterViewModel RegisterViewModel { get; set; }
     }
 
     public class RegisterViewModel

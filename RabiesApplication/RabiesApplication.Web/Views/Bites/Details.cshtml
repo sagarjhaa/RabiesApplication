@@ -1,0 +1,194 @@
+﻿@using RabiesApplication.Web.Models
+@model RabiesApplication.Web.ViewModels.BiteDetailsViewModel
+
+@{
+    ViewBag.Title = "Bite Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Bite Details</h2>
+
+
+
+<div id="BiteInformation" class="container">
+    <h3>Bite</h3>
+
+
+
+    <p class="pull-right">
+        @Html.ActionLink("Edit", "BiteForm", new { id = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary" }) |
+        @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
+    </p>
+    <hr />
+    <div class="row">
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.Bite.BiteStatus.Description)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.Bite.BiteStatus.Description)</div>
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.Bite.City.CityName)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.Bite.City.CityName)</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.Bite.State.StateName)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.Bite.State.StateName)</div>
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.Bite.RowVersion)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.Bite.RowVersion)</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.Bite.BiteDate)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.Bite.BiteDate)</div>
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.Bite.BiteReportDate)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.Bite.BiteReportDate)</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.Bite.BiteReportedBy)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.Bite.BiteReportedBy)</div>
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.Bite.EmployeeAssignedId)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.Bite.EmployeeAssignedId)</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">@Html.DisplayNameFor(model => model.Bite.Comments)</div>
+        <div class="col-md-3">@Html.DisplayFor(model => model.Bite.Comments)</div>
+        <div class="col-md-3"></div>
+        <div class="col-md-3"></div>
+    </div>
+
+
+</div>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <p class="pull-right">
+            <h3>Human Victims</h3>
+            @Html.ActionLink("Add Human Victim", "HumanVictimForm", "HumanVictims", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right" })
+        </p>
+        @if (Model.HumanVictims.Any())
+        {
+            @Html.Partial("_HumanVictimList", Model.HumanVictims)
+        }
+        else
+        {
+            <h4> Is there any human victims?..Add here</h4>
+        }
+    </div>
+
+    <div class="col-md-6">
+        <p class="pull-right">
+            <h3>Pet Victims</h3>
+            @Html.ActionLink("Add Pet Information", "PetForm", "Animals", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right" })
+        </p>
+        @if (Model.Pets.Any())
+        {
+            @Html.Partial("_PetsList", Model.Pets)
+        }
+        else
+        {
+            <h4> Is there any pet victims?..Add here</h4>
+        }
+
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <p class="pull-right">
+            <h3>Animal Information</h3>
+            @if (Model.Animal != null)
+            {
+                @Html.ActionLink("Add Animal Information", "AnimalForm", "Animals", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right disabled" })
+            }
+            else
+            {
+                @Html.ActionLink("Add Animal Information", "AnimalForm", "Animals", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right" })
+            }
+
+        </p>
+        @if (Model.Animal != null)
+        {
+            @Html.Partial("_AnimalDetails", Model.Animal)
+        }
+        else
+        {
+            <h4> Add animal information here..</h4>
+        }
+    </div>
+
+    <div class="col-md-6">
+        <p class="pull-right">
+            <h3>Animal Owner Information</h3>
+            @if (Model.PetOwner != null)
+            {
+                @Html.ActionLink("Add Animal Owner", "PetOwnerForm", "PetOwners", null, htmlAttributes: new { @class = "btn btn-primary pull-right disabled" })
+            }
+            else
+            {
+                if (Model.Animal != null)
+                {
+                    @Html.ActionLink("Add Animal Owner", "PetOwnerForm", "PetOwners", new { animalId = Model.Animal.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right" })
+                }
+            }
+        </p>
+        @if (Model.PetOwner != null)
+        {
+            @Html.Partial("_PetOwner", Model.PetOwner)
+        }
+        else
+        {
+            <h4> Add Pet Owner Information..</h4>
+        }
+
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("GenerateLetter", "Bites", new { biteId = Model.Bite.Id }))
+        {
+            <h4>Initial Letters</h4>
+            <div class="form-inline">
+                @Html.DropDownList("Letter Type", EnumHelper.GetSelectList(typeof(Letters)), "Select One", htmlAttributes: new { @class = "form-control" })
+                <button class="btn btn-primary" type="submit">Generate Letter</button>
+            </div>
+        }
+    </div>
+    <div class="col-md-6">
+        @using (Html.BeginForm("GenerateLetter", "Bites", new { biteId = Model.Bite.Id }))
+        {
+            <h4>Followup Letters</h4>
+            <div class="form-inline">
+                @Html.DropDownList("Letter Type", EnumHelper.GetSelectList(typeof(Letters)), "Select One", htmlAttributes: new { @class = "form-control" })
+                <button class="btn btn-primary" type="submit">Generate Letter</button>
+            </div>
+        }
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <p class="pull-left">
+        <h3>Actions</h3>
+            @Html.Partial("_ActionsList", Model.Actions)
+    </div>
+</div>
+
+
+
+
+@*<script>
+        $(document)
+            .ready(function () {
+                toastr.info("@ViewBag.StatusMessage");
+            });
+    </script>*@
+
+
+
+
+

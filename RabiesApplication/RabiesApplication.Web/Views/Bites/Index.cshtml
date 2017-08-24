@@ -1,0 +1,61 @@
+﻿@model IEnumerable<RabiesApplication.Models.Bite>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "BiteForm")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BiteStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City.CityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BiteDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BiteReportDate)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BiteStatus.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City.CityName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BiteDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BiteReportDate)
+        </td>
+      
+        <td>
+            @Html.ActionLink("Edit", "BiteForm", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new {biteId = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

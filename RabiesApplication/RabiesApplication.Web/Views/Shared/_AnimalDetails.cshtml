@@ -1,0 +1,51 @@
+﻿@model RabiesApplication.Models.Animal
+
+
+<table class="table table-bordered table-striped">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Breed.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Species.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsVacinated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsQuarantine)
+        </th>
+        <th></th>
+    </tr>
+
+@*@foreach (var item in Model) {*@
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.Name)
+        </td>                
+        <td>
+            @Html.DisplayFor(model => model.Breed.Description)
+        </td>                
+        <td>
+            @Html.DisplayFor(model => model.Species.Description)
+        </td>                
+        <td>
+            @Html.DisplayFor(model => model.IsVacinated)
+        </td>                
+        <td>
+            @Html.DisplayFor(model => model.IsQuarantine)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "AnimalForm","Animals", new {biteId = Model.BiteId,animalId = Model.Id},null) |
+            @Html.ActionLink("Delete", "Delete","Animals", new {animalId = Model.Id},null)
+        </td>
+    </tr>
+@*}*@
+
+</table>

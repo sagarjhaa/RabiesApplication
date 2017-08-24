@@ -1,0 +1,192 @@
+﻿@model RabiesApplication.Models.Animal
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Animal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Bite.CityId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bite.CityId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Breed.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Breed.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Species.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Species.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vet.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vet.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RowVersion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RowVersion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsVictim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsVictim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsVacinated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsVacinated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VaccineDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VaccineDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VaccineExpirationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VaccineExpirationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TagNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TagNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsVacinatedPost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsVacinatedPost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsVacinatedPrior)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsVacinatedPrior)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsQuarantine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsQuarantine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsQuarantineCompleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsQuarantineCompleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuarantineVerification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuarantineVerification)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecordCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecordCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecordEdited)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecordEdited)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeCreatedId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeCreatedId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeEditedId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeEditedId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+        </div>
+    }
+</div>

@@ -1,0 +1,79 @@
+﻿@model IEnumerable<RabiesApplication.Models.HumanVictim>
+
+
+<table class="table table-condensed table-bordered table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City.CityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State.StateName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contactnumber1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contactnumber2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BiteType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BiteTypeNonBite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostExposureProphylaxis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MedicalTreatmentProvider)
+        </th>
+     
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City.CityName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.State.StateName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contactnumber1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contactnumber2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BiteType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BiteTypeNonBite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostExposureProphylaxis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MedicalTreatmentProvider)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "HumanVictimForm","HumanVictims", new { biteId=item.BiteId,victimId = item.Id },null) |
+            @Html.ActionLink("Delete", "Delete","HumanVictims", new { victimId=item.Id },null)
+        </td>
+    </tr>
+}
+
+</table>
