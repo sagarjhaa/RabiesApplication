@@ -196,11 +196,14 @@ namespace RabiesApplication.Web.Controllers
 
             var selectedLetter = form["Letter Type"];
 
-            new ComposeLetter(bite).TenDayQuarantineLetterDifferent();
+            //new ComposeLetter(bite).TenDayQuarantineLetterDifferent();
 
-            int result;
-            int.TryParse(selectedLetter, out result);
-            ActionsHelper.SaveActions(ActionsHelper.GenerateSendLetterAction(biteId, result));
+            //int result;
+            //int.TryParse(selectedLetter, out result);
+            //ActionsHelper.SaveActions(ActionsHelper.GenerateSendLetterAction(biteId, result));
+
+            new TenDayQuarantineLetterSame(bite).CreateLetter();
+
             return RedirectToAction("Details", new { biteId = bite.Id});
 
         }
