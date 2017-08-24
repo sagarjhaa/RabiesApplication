@@ -6,12 +6,12 @@
 
 <style>
     .bigbutton {
-        border: 1px solid red;
-        border-radius: 2px;
-        background: #fff;
+        border: 1px solid blue;
+        border-radius: 50%;
+        /*background: #fff;*/
         margin: 5px;
-        min-height: 50px;
-        min-width: 300px;
+        min-height: 180px;
+        min-width: 180px;
     }
 
     .fluidButton {
@@ -23,21 +23,21 @@
 
 <div class="fluidButton">
     <div>
-        <button class="bigbutton" onclick="location.href='@Url.Action("BiteForm", "Bites")'">Start new bite case</button>
+        <button class="bigbutton" onclick="location.href='@Url.Action("BiteForm", "Bites")'">New Bite</button>
     </div>
 
     <div>
-        <button class="bigbutton" onclick="location.href='@Url.Action("Index", "Bites")'">Work on existing bite case</button>
+        <button class="bigbutton" onclick="location.href='@Url.Action("Index", "Bites")'">Existing Bite</button>
     </div>
 </div>
 
 <div class="fluidButton">
     <div>
-        <button type="button" class="bigbutton" >Add a new vet</button>
+        <button type="button" class="bigbutton" >Add a Vet</button>
     </div>
 
     <div>
-        <button class="bigbutton">Edit Vet Information</button>
+        <button class="bigbutton">Edit Vet</button>
     </div>
 </div>
 
