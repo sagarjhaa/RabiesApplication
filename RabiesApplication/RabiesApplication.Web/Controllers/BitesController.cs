@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -213,7 +214,12 @@ namespace RabiesApplication.Web.Controllers
         }
 
 
-       
+        public FileStreamResult GetDocument(string documentId)
+        {
+            string path = HttpContext.Server.MapPath("~") + "LettersSent\\" + documentId + ".docx";
+            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+            return File(fs, "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+        }
 
         
     }

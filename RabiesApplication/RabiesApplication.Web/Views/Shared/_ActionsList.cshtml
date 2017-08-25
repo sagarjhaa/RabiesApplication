@@ -29,7 +29,7 @@
         <td>
             @if (item.DocumentId != null)
             {
-                <a href= @item.DocumentId>Document</a>
+                @Html.ActionLink("Document","GetDocument",new {documentId = item.DocumentId},htmlAttributes:new {@class="btn btn-link"})
             }
         </td>
         <td>
