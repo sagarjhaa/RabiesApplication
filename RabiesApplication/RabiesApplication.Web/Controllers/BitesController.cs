@@ -216,9 +216,9 @@ namespace RabiesApplication.Web.Controllers
 
         public FileStreamResult GetDocument(string documentId)
         {
-            string path = HttpContext.Server.MapPath("~") + "LettersSent\\" + documentId + ".docx";
+            string path = HttpContext.Server.MapPath("~") + "LettersSent\\" + documentId;
             FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
-            return File(fs, "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+            return File(fs, "application/vnd.openxmlformats-officedocument.wordprocessingml.document",documentId);
         }
 
         

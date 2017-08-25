@@ -115,9 +115,10 @@ namespace RabiesApplication.Web.BusinessLogic
 
         protected string SaveFile()
         {
-            Guid filename = Guid.NewGuid();
+            StringBuilder filename = new StringBuilder();
+            filename.Append(Bite.City.CityName + "_").Append(Bite.BiteDate.Value.ToString("yy-MM-dd")).Append(DateTime.Now.ToString("hh-mm")).Append(".docx");
             //Todo : Need to save the binary data to a table for reproduction of all communications.
-            Document.SaveAs(DocumentSavePath + filename.ToString() + ".docx");
+            Document.SaveAs(DocumentSavePath + filename);
             WordApplication.Application.Quit();
             return filename.ToString();
         }
