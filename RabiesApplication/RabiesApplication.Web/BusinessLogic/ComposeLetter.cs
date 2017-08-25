@@ -8,6 +8,7 @@ using System.Web.DynamicData;
 using Microsoft.Office.Core;
 using Microsoft.Owin.Security;
 using RabiesApplication.Models;
+using RabiesApplication.Web.Models;
 
 namespace RabiesApplication.Web.BusinessLogic
 {
@@ -19,6 +20,7 @@ namespace RabiesApplication.Web.BusinessLogic
         private static readonly string DocumentSavePath = "C:\\Users\\Sagar\\Desktop\\";
         private static readonly string HeaderImage = HttpContext.Current.Server.MapPath("~/Content/images/Header_Ccbh.png");
         protected Bite Bite;
+        protected Animal Pet;
         protected Animal Animal;
         protected PetOwner PetOwner;
 
@@ -31,6 +33,7 @@ namespace RabiesApplication.Web.BusinessLogic
         {
             Document = WordApplication.Documents.Add();
             Bite = bite;
+            Pet = bite.Animals.First(a => a.IsVictim.Equals(true));
             Animal = bite.Animals.First(a => a.IsVictim.Equals(false));
             PetOwner = Animal.PetOwner;
         }
@@ -146,7 +149,7 @@ namespace RabiesApplication.Web.BusinessLogic
 
             
 
-            var date = Bite.BiteDate.Value.ToString("MM-dd-yyyy");
+            var date = Bite.BiteDate.Value.ToString(Constant.DateFormat);
             string firstparagraph= "Our office has received a report that your pet" +
                                     " '"+ Animal.Name +"' bit you, a family member, or a member " +
                                     "of your household on "+ date + "." + Environment.NewLine;
@@ -260,7 +263,7 @@ namespace RabiesApplication.Web.BusinessLogic
 
             string firstparagraph;
 
-            firstparagraph = "Our office has received a report that your pet " + Animal.Name + " bit someone on " + Bite.BiteDate.Value.Date.ToString("D") + "." + Environment.NewLine;
+            firstparagraph = "Our office has received a report that your pet " + Animal.Name + " bit someone on " + Bite.BiteDate.Value.Date.ToString(Constant.DateFormat) + "." + Environment.NewLine;
 
 
 
@@ -364,7 +367,7 @@ namespace RabiesApplication.Web.BusinessLogic
 
             string firstParagraph =
                 "As part of our Rabies Prevention Program, The Cuyahoga County Board of Health investigates all reported" +
-                "animal bites and potential rabies exposures. We were notified you were bitten by a [animal] on [date]." +
+                "animal bites and potential rabies exposures. We were notified you were bitten by a "+ Animal.Species.Description +" on "+ Bite.BiteDate.Value.ToString(Constant.DateFormat) +"." +
                 " Every effort should be made to locate the animal so that it can be properly quarantined or tested for rabies." + Environment.NewLine;
 
             string secondParagraph =
@@ -405,7 +408,7 @@ namespace RabiesApplication.Web.BusinessLogic
             WordApplication.Selection.TypeText("Dear Mr. or Ms.:");
 
             string firstParagraph =
-                "Our office has received a report that your pet [Name] was bitten,scratched, or otherwise exposed to [an opossum] on [Date]." + Environment.NewLine;
+                "Our office has received a report that your pet "+ +" was bitten,scratched, or otherwise exposed to [an opossum] on [Date]." + Environment.NewLine;
 
             string secondParagarph =
                 "Ohio law* requires us to follow up on this report because [opossums] can carry rabies and pass it on dogs, who can then pass it to people" +

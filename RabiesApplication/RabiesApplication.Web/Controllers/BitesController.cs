@@ -187,24 +187,28 @@ namespace RabiesApplication.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var bite = _biteRepository.GetById(biteId).Result;
-
-            if (bite == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+           
 
             var selectedLetter = form["Letter Type"];
 
-            //new ComposeLetter(bite).TenDayQuarantineLetterDifferent();
 
-            //int result;
-            //int.TryParse(selectedLetter, out result);
-            //ActionsHelper.SaveActions(ActionsHelper.GenerateSendLetterAction(biteId, result));
+            try
+            {
+                int result;
+                int.TryParse(selectedLetter, out result);
+                ActionsHelper.SaveActions(ActionsHelper.GenerateSendLetterAction(biteId, result));
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
 
-            new TenDayQuarantineLetterSame(bite).CreateLetter();
 
-            return RedirectToAction("Details", new { biteId = bite.Id});
+            
+
+
+            return RedirectToAction("Details", new { biteId = biteId});
 
         }
 

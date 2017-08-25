@@ -12,6 +12,7 @@ namespace RabiesApplication.Web.Models
         public const bool Deactive = false;
 
         public const string OrganizationCcbh = "1";
+        public const string DateFormat = "MM-dd-yyy";
 
         //Todo All models with DateTimeOffset needs to show date in MM/DD/YYYY Format
         //public const string DateFormat = "{0:MM/dd/yyyy}";
@@ -48,13 +49,5 @@ namespace RabiesApplication.Web.Models
         SixMonthQ
     }
 
-    public static class Actions
-    {
-        public static string Letter = "Letter";
-        public static string Phone = "Phone";
-        public static string Visit = "Visit";
-        public static string Email = "Email";
-        public static string Fax = "Fax";
-    }
 
 }
