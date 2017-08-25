@@ -25,7 +25,6 @@ namespace RabiesApplication.Web.BusinessLogic
         {
             var bite = _biteRepository.GetById(biteId).Result;
 
-
             Action _action = new Action
             {
                 BiteId = biteId,
@@ -35,32 +34,32 @@ namespace RabiesApplication.Web.BusinessLogic
             switch (typeofLetter)
             {
                 case (int)Letters.TenDayQSame:
-                    new TenDayQuarantineLetterSame(bite).CreateLetter();
+                    _action.DocumentId =  new TenDayQuarantineLetterSame(bite).CreateLetter();
                     _action.Comments = "Letter sent Ten Day Quarantine Owner Victim same";
                     break;
 
                 case (int)Letters.TenDayQDifferent:
-                    new TenDayQuarantineLetterDifferent(bite).CreateLetter();
+                    _action.DocumentId = new TenDayQuarantineLetterDifferent(bite).CreateLetter();
                     _action.Comments = "Letter sent Ten Day Quarantine Owner Victim different.";
                     break;
 
                 case (int)Letters.TenDayQShelter:
-                    new TenDayQuarantineShelter(bite).CreateLetter();
+                    _action.DocumentId = new TenDayQuarantineShelter(bite).CreateLetter();
                     _action.Comments = "Letter sent Ten Day Quarantine to shelter.";
                     break;
 
                 case (int)Letters.FourFiveDayQ:
-                    new FourFiveDayQuarantine(bite).CreateLetter();
+                    _action.DocumentId = new FourFiveDayQuarantine(bite).CreateLetter();
                     _action.Comments = "Letter sent 45 Day Quarantine.";
                     break;
 
                 case (int)Letters.SixMonthQ:
-                    new SixMonthQuarantine(bite).CreateLetter();
+                    _action.DocumentId = new SixMonthQuarantine(bite).CreateLetter();
                     _action.Comments = "Letter sent six months quarantine.";
                     break;
 
                 case (int)Letters.WildUnknownAnimal:
-                    new WildUnknowAnimal(bite).CreateLetter();
+                    _action.DocumentId = new WildUnknowAnimal(bite).CreateLetter();
                     _action.Comments = "Letter sent Wild Unknown animal.";
                     break;
             }
