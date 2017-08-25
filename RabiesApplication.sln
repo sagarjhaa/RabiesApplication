@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabiesApplication.Web", "Ra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabiesApplication.Models", "RabiesApplication\RabiesApplication.Models\RabiesApplication.Models.csproj", "{E59B717B-4093-4050-94A8-F895FA34B093}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Letters", "Letters", "{BF777BCC-2F5C-4EE4-8105-DB33F70DD656}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

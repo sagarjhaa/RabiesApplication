@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Microsoft.Office.Interop.Word;
@@ -17,10 +18,11 @@ namespace RabiesApplication.Web.BusinessLogic
     {
         protected Application WordApplication = new Application();
         protected Document Document;
-        private static readonly string DocumentSavePath = "C:\\Users\\Sagar\\Desktop\\";
+        private static readonly string DocumentSavePath = HttpContext.Current.Server.MapPath("~")+ "LetterSent\\";//"C:\\Users\\Sagar\\Desktop\\";
+        //private static readonly string DocumentSavePath =Path.GetPathRoot(AppDomain.CurrentDomain.BaseDirectory) + "\\LetterSent\\" ;//"C:\\Users\\Sagar\\Desktop\\";
         private static readonly string HeaderImage = HttpContext.Current.Server.MapPath("~/Content/images/Header_Ccbh.png");
         protected Bite Bite;
-        protected Animal Pet;
+        
         protected Animal Animal;
         protected PetOwner PetOwner;
 
@@ -33,7 +35,6 @@ namespace RabiesApplication.Web.BusinessLogic
         {
             Document = WordApplication.Documents.Add();
             Bite = bite;
-            Pet = bite.Animals.First(a => a.IsVictim.Equals(true));
             Animal = bite.Animals.First(a => a.IsVictim.Equals(false));
             PetOwner = Animal.PetOwner;
         }
@@ -117,7 +118,7 @@ namespace RabiesApplication.Web.BusinessLogic
         {
             Guid filename = Guid.NewGuid();
             //Todo : Need to save the binary data to a table for reproduction of all communications.
-            Document.SaveAs(DocumentSavePath + filename.ToString() + ".docx");
+            Document.SaveAs(DocumentSavePath + "doc1" + ".docx");
             WordApplication.Application.Quit();
         }
 
@@ -406,9 +407,9 @@ namespace RabiesApplication.Web.BusinessLogic
             PrintAddress(PetOwner);
 
             WordApplication.Selection.TypeText("Dear Mr. or Ms.:");
-
+            //Todo Check this space
             string firstParagraph =
-                "Our office has received a report that your pet "+ +" was bitten,scratched, or otherwise exposed to [an opossum] on [Date]." + Environment.NewLine;
+                "Our office has received a report that your pet "+"Sagar" +" was bitten,scratched, or otherwise exposed to [an opossum] on [Date]." + Environment.NewLine;
 
             string secondParagarph =
                 "Ohio law* requires us to follow up on this report because [opossums] can carry rabies and pass it on dogs, who can then pass it to people" +
