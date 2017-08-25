@@ -66,21 +66,21 @@ namespace RabiesApplication.Web.BusinessLogic
             StringBuilder stringBuilder = new StringBuilder();
             if (varAddress.FirstName != null)
             {
-                stringBuilder.Append("Name : ");
-                stringBuilder.Append(varAddress.FirstName);
+                //stringBuilder.Append("Name : ");
+                stringBuilder.Append(varAddress.FirstName + " ");
                 stringBuilder.Append(varAddress.LastName);
                 stringBuilder.Append(Environment.NewLine);
             }
             if (varAddress.Addressline1 != null)
             {
-                stringBuilder.Append("Address : ");
-                stringBuilder.Append(varAddress.Addressline1);
+                //stringBuilder.Append("Address : ");
+                stringBuilder.Append(varAddress.Addressline1 + " ");
                 stringBuilder.Append(varAddress.Addressline2);
                 stringBuilder.Append("\t\t\t");
                 stringBuilder.Append("Animal Quarantine Order");
                 stringBuilder.Append(Environment.NewLine);
-                stringBuilder.Append(varAddress.City.CityName);
-                stringBuilder.Append(varAddress.State.StateName);
+                stringBuilder.Append(varAddress.City.CityName + " ");
+                stringBuilder.Append(varAddress.State.StateName + " ");
                 stringBuilder.Append(varAddress.Zipcode);
                 stringBuilder.Append(Environment.NewLine);
 
@@ -139,25 +139,16 @@ namespace RabiesApplication.Web.BusinessLogic
 
             #region FirstParagraph
 
-            var strDate = DateTime.Now.ToString();
-            try
-            {
-
-                var nre = DateTime.ParseExact(strDate, "d", null);
-            }
-            catch (FormatException e)
-            {
-                
-                
-            }
             
 
+            var s = Bite.BiteDate.Value.ToString("MM-dd-yyyy");
+            //Bite.BiteDate.Value.DateTime.ToString("M-dd-yyyy");
             string firstparagraph= "Our office has received a report that your pet" +
-                                    " '[Pet Name]' bit you, a family member, or a member " +
-                                    "of your household on "+ "[BIteDate]"+"." + Environment.NewLine;
+                                    " '"+ Animal.Name +"' bit you, a family member, or a member " +
+                                    "of your household on "+ s +"." + Environment.NewLine;
 
 
-
+            
             WordApplication.Selection.TypeText(firstparagraph);
             #endregion
 
