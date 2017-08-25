@@ -18,8 +18,7 @@ namespace RabiesApplication.Web.BusinessLogic
     {
         protected Application WordApplication = new Application();
         protected Document Document;
-        private static readonly string DocumentSavePath = HttpContext.Current.Server.MapPath("~")+ "LetterSent\\";//"C:\\Users\\Sagar\\Desktop\\";
-        //private static readonly string DocumentSavePath =Path.GetPathRoot(AppDomain.CurrentDomain.BaseDirectory) + "\\LetterSent\\" ;//"C:\\Users\\Sagar\\Desktop\\";
+        private static readonly string DocumentSavePath = HttpContext.Current.Server.MapPath("~")+ "LettersSent\\";
         private static readonly string HeaderImage = HttpContext.Current.Server.MapPath("~/Content/images/Header_Ccbh.png");
         protected Bite Bite;
         
@@ -114,12 +113,13 @@ namespace RabiesApplication.Web.BusinessLogic
             WordApplication.Selection.TypeText("sshort@ccbh.net" + Environment.NewLine);
         }
 
-        protected void SaveFile()
+        protected string SaveFile()
         {
             Guid filename = Guid.NewGuid();
             //Todo : Need to save the binary data to a table for reproduction of all communications.
-            Document.SaveAs(DocumentSavePath + "doc1" + ".docx");
+            Document.SaveAs(DocumentSavePath + filename.ToString() + ".docx");
             WordApplication.Application.Quit();
+            return filename.ToString();
         }
 
 
