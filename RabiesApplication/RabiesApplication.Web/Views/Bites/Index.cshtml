@@ -8,13 +8,13 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "BiteForm")
+    @Html.ActionLink("Create New", "BiteForm",null,htmlAttributes:new {@class="btn btn-primary"})
 </p>
 <table class="table">
     <tr>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Id)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.BiteStatus)
         </th>
@@ -28,15 +28,17 @@
             @Html.DisplayNameFor(model => model.BiteReportDate)
         </th>
 
-        <th></th>
+        <th>
+            Actions
+        </th>
     </tr>
 
 @foreach (var item in Model)
 {
     <tr>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Id)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.BiteStatus.Description)
         </td>
@@ -51,9 +53,9 @@
         </td>
       
         <td>
-            @Html.ActionLink("Edit", "BiteForm", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new {biteId = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            @Html.ActionLink("Edit", "BiteForm", new { id = item.Id },htmlAttributes:new {@class= "btn btn-success" }) |
+            @Html.ActionLink("Details", "Details", new {biteId = item.Id }, htmlAttributes: new { @class = "btn btn-success" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
