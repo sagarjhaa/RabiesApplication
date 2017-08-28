@@ -31,18 +31,20 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-
+                    
                     @if (User.Identity.IsAuthenticated)
-                {
-                <li class="dropdown" id="ddUpdates">
-                    <a class="dropdown-toggle" id="targetLink" data-toggle="dropdown" href="#">Updates <span id="targetSpan" class="badge"></span></a>
-                    <ul class="dropdown-menu" id="linkDropDown"></ul>
-                </li>
-                }
-
+                    {
+                        <li>@Html.ActionLink("Home", "MainIndex", "Home")</li>
+                        <li>@Html.ActionLink("Bites", "Index", "Bites")</li>
+                        <li class="dropdown" id="ddUpdates">
+                            <a class="dropdown-toggle" id="targetLink" data-toggle="dropdown" href="#">Updates <span id="targetSpan" class="badge"></span></a>
+                            <ul class="dropdown-menu" id="linkDropDown"></ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    }
                 </ul>
 
                 @Html.Partial("_LoginPartial")
