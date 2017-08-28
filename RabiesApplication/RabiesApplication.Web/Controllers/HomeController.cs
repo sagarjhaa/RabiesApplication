@@ -10,10 +10,8 @@ namespace RabiesApplication.Web.Controllers
     public class HomeController : Controller
     {
       
-        public ActionResult About()
+        public ActionResult MainIndex()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
