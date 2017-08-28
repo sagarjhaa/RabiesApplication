@@ -27,6 +27,10 @@ textarea {
 
 /*Defing the custom user styles*/
 
+.user-full-width {
+    width: 100%;
+}
+
 .user-footer {
     color: #FFF;
     min-height: 20px;
