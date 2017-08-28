@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace RabiesApplication.Web.Controllers
 {
-    [AllowAnonymous]
+ 
     public class HomeController : Controller
     {
       
@@ -14,7 +14,7 @@ namespace RabiesApplication.Web.Controllers
         {
             return View();
         }
-
+        [AllowAnonymous]
         public ActionResult Index()
         {
             ViewBag.Message = "Your contact page.";

@@ -1,7 +1,38 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+
+<style>
+
+     .bigbutton {
+         flex-basis: 250px;
+         height: 100px;
+         font-size: 30px;
+         margin: 10px; 
+     }
+
+    .fluidButtons {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+</style>
+
+<div class="fluidButtons">
+    
+        <button class="bigbutton btn btn-primary" onclick="location.href='@Url.Action("BiteForm", "Bites")'">New Bite</button>
+    
+        <button class="bigbutton btn btn-primary" onclick="location.href = '@Url.Action("Index", "Bites")'">Bites List</button>
+
+        <button class="bigbutton btn btn-success">Search Bite</button>
+
+</div>
+<hr />
+<div class="fluidButtons" >
+        <button class="bigbutton btn btn-warning">Add a Vet</button>
+        <button class="bigbutton btn btn-warning">Edit Vet</button>        
+</div>
+
+
