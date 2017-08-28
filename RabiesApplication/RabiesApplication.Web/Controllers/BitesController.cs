@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -187,26 +188,38 @@ namespace RabiesApplication.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var bite = _biteRepository.GetById(biteId).Result;
-
-            if (bite == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+           
 
             var selectedLetter = form["Letter Type"];
 
-            new ComposeLetter(bite).TenDayQuarantineLetterDifferent();
 
-            int result;
-            int.TryParse(selectedLetter, out result);
-            ActionsHelper.SaveActions(ActionsHelper.GenerateSendLetterAction(biteId, result));
-            return RedirectToAction("Details", new { biteId = bite.Id});
+            try
+            {
+                int result;
+                int.TryParse(selectedLetter, out result);
+                ActionsHelper.SaveActions(ActionsHelper.GenerateSendLetterAction(biteId, result));
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+
+
+            
+
+
+            return RedirectToAction("Details", new { biteId = biteId});
 
         }
 
 
-       
+        public FileStreamResult GetDocument(string documentId)
+        {
+            string path = HttpContext.Server.MapPath("~") + "LettersSent\\" + documentId;
+            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+            return File(fs, "application/vnd.openxmlformats-officedocument.wordprocessingml.document",documentId);
+        }
 
         
     }

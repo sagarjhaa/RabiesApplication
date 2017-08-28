@@ -16,6 +16,7 @@ namespace RabiesApplication.Models
         [Required]
         public string Comments { get; set; }
 
+        public string DocumentId { get; set; }
         public bool Active { get; set; }
 
         public DateTimeOffset RecordCreated { get; set; }

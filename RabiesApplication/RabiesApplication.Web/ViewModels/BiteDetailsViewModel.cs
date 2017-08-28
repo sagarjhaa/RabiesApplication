@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using RabiesApplication.Models;
+using RabiesApplication.Web.Repositories;
 using Action = RabiesApplication.Models.Action;
 
 namespace RabiesApplication.Web.ViewModels
@@ -23,6 +24,7 @@ namespace RabiesApplication.Web.ViewModels
 
         public PetOwner PetOwner { get; set; }
 
-        public IEnumerable<Action> Actions { get; set; }
+        public IEnumerable<ActionDTO> Actions { get; set; }
+        //public IEnumerable<Action> Actions { get; set; }
     }
 }

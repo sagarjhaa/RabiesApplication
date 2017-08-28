@@ -1,4 +1,5 @@
-﻿@model IEnumerable<RabiesApplication.Models.Action>
+﻿@model IEnumerable<RabiesApplication.Web.Repositories.ActionDTO>
+@*@model IEnumerable<RabiesApplication.Models.Action>*@
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -11,6 +12,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Comments)
         </th>
+        <th>
+            Document
+        </th>
         <th></th>
     </tr>
 
@@ -22,7 +26,12 @@
         <td>
             @Html.DisplayFor(modelItem => item.Comments)
         </td>
-
+        <td>
+            @if (item.DocumentId != null)
+            {
+                @Html.ActionLink("Document","GetDocument",new {documentId = item.DocumentId},htmlAttributes:new {@class="btn btn-link"})
+            }
+        </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
