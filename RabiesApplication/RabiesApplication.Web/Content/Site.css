@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #f7f4f4!important;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -21,4 +22,31 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+
+/*Defing the custom user styles*/
+
+.user-footer {
+    color: #FFF;
+    min-height: 20px;
+    background: #51a33f;
+    position: absolute;
+    width: 100%;
+    padding: 1rem;
+}
+
+.user-navbar-inverse {
+        background-color: #000000;
+        border-color: #dddddd;
+}
+
+.user-navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+}
+
+.user-navbar-inverse .navbar-nav > li > a:hover,
+.user-navbar-inverse .navbar-nav > li > a:focus {
+  color: #FFF;
+  background-color: transparent;
 }
