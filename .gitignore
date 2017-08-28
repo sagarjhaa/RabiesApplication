@@ -244,3 +244,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /RabiesApplication/RabiesApplication.Web/LettersSent
+/RabiesApplication/RabiesApplication.Web/Content/images/pets_login.jpg
