@@ -5,155 +5,201 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Pet Form</h2>
-
 
 @using (Html.BeginForm("SavePet","Animals")) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Pet Form</h4>
+        <h2>Pet Form</h2>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Animal.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Animal.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Animal.Name, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Animal.Name, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Animal.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Animal.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Animal.SpeciesId, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.Animal.SpeciesId, new SelectList(Model.Specieses, "Id", "Description"), "Select Species", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Animal.SpeciesId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Animal.BreedId, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.Animal.BreedId, new SelectList(Model.Breeds, "Id", "Description"), "Select Breed", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Animal.BreedId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Animal.VetId, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.Animal.VetId, new SelectList(Model.Vets, "Id", "FirstName"), "Select Vet", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Animal.VetId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Animal.Sex, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Animal.Sex)
+                            @Html.ValidationMessageFor(model => model.Animal.Sex, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Animal.IsVacinated, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Animal.IsVacinated)
+                            @Html.ValidationMessageFor(model => model.Animal.IsVacinated, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Animal.VaccineDate, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Animal.VaccineDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Animal.VaccineDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Animal.VaccineExpirationDate, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Animal.VaccineExpirationDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Animal.VaccineExpirationDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Animal.TagNumber, htmlAttributes: new {@class = "control-label col-md-3"})
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Animal.TagNumber, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.ValidationMessageFor(model => model.Animal.TagNumber, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Animal.IsVacinatedPost, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Animal.IsVacinatedPost)
+                            @Html.ValidationMessageFor(model => model.Animal.IsVacinatedPost, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Animal.IsVacinatedPrior, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Animal.IsVacinatedPrior)
+                            @Html.ValidationMessageFor(model => model.Animal.IsVacinatedPrior, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Animal.IsQuarantine, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Animal.IsQuarantine)
+                            @Html.ValidationMessageFor(model => model.Animal.IsQuarantine, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Animal.IsQuarantineCompleted, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Animal.IsQuarantineCompleted)
+                            @Html.ValidationMessageFor(model => model.Animal.IsQuarantineCompleted, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Animal.QuarantineVerification, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Animal.QuarantineVerification, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Animal.QuarantineVerification, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-10">
+                        @Html.HiddenFor(model => model.Animal.Id)
+                        @Html.HiddenFor(model => model.Animal.BiteId)
+                        @Html.HiddenFor(model => model.Animal.IsVictim, new { Value = "true" })
+                        <input type="submit" value="Save" class="btn btn-success user-full-width" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Animal.SpeciesId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Animal.SpeciesId, new SelectList(Model.Specieses,"Id","Description"), "Select Species", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Animal.SpeciesId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Animal.BreedId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Animal.BreedId, new SelectList(Model.Breeds,"Id", "Description"), "Select Breed", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Animal.BreedId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Animal.VetId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Animal.VetId, new SelectList(Model.Vets, "Id", "FirstName"), "Select Vet", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Animal.VetId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Animal.Sex, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Animal.Sex)
-                    @Html.ValidationMessageFor(model => model.Animal.Sex, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Animal.IsVacinated, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Animal.IsVacinated)
-                    @Html.ValidationMessageFor(model => model.Animal.IsVacinated, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Animal.VaccineDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Animal.VaccineDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Animal.VaccineDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Animal.VaccineExpirationDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Animal.VaccineExpirationDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Animal.VaccineExpirationDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Animal.TagNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Animal.TagNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Animal.TagNumber, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Animal.IsVacinatedPost, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Animal.IsVacinatedPost)
-                    @Html.ValidationMessageFor(model => model.Animal.IsVacinatedPost, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Animal.IsVacinatedPrior, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Animal.IsVacinatedPrior)
-                    @Html.ValidationMessageFor(model => model.Animal.IsVacinatedPrior, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Animal.IsQuarantine, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Animal.IsQuarantine)
-                    @Html.ValidationMessageFor(model => model.Animal.IsQuarantine, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Animal.IsQuarantineCompleted, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Animal.IsQuarantineCompleted)
-                    @Html.ValidationMessageFor(model => model.Animal.IsQuarantineCompleted, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Animal.QuarantineVerification, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Animal.QuarantineVerification, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Animal.QuarantineVerification, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-      
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                @Html.HiddenFor(model => model.Animal.Id)
-                @Html.HiddenFor(model => model.Animal.BiteId)
-                @Html.HiddenFor(model => model.Animal.IsVictim, new { Value = "true" })
-                <input type="submit" value="Save" class="btn btn-default"/>
-            </div>
-        </div>
     </div>
 }
 

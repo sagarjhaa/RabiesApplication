@@ -8,10 +8,10 @@
 
 
 
-@using (Html.BeginForm("Save","HumanVictims")) 
+@using (Html.BeginForm("Save", "HumanVictims"))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Human Victim</h4>
         <hr />
@@ -41,62 +41,62 @@
                 </div>
             </div>
         </div>
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            @Html.LabelFor(model => model.HumanVictim.Addressline1, htmlAttributes: new { @class = "control-label col-md-6" })
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.HumanVictim.Addressline1, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.HumanVictim.Addressline1, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            @Html.LabelFor(model => model.HumanVictim.Addressline2, htmlAttributes: new { @class = "control-label col-md-6" })
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.HumanVictim.Addressline2, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.HumanVictim.Addressline2, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-        </div>
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            @Html.LabelFor(model => model.HumanVictim.CityId, htmlAttributes: new { @class = "control-label col-md-6" })
-            <div class="col-md-6">
-                @Html.DropDownListFor(model => model.HumanVictim.CityId, new SelectList(Model.Cities, "Id", "CityName"), "Select City", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.HumanVictim.CityId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            @Html.LabelFor(model => model.HumanVictim.CountyId, htmlAttributes: new { @class = "control-label col-md-6" })
-            <div class="col-md-6">
-                @Html.DropDownListFor(model => model.HumanVictim.CountyId, new SelectList(Model.Counties, "Id", "CountyName"), "Select County", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.HumanVictim.CountyId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-        </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.HumanVictim.StateId, htmlAttributes: new {@class = "control-label col-md-6"})
+                    @Html.LabelFor(model => model.HumanVictim.Addressline1, htmlAttributes: new { @class = "control-label col-md-6" })
                     <div class="col-md-6">
-                        @Html.DropDownListFor(model => model.HumanVictim.StateId, new SelectList(Model.States, "Id", "StateName"), "Select State", htmlAttributes: new {@class = "form-control"})
-                        @Html.ValidationMessageFor(model => model.HumanVictim.StateId, "", new {@class = "text-danger"})
+                        @Html.EditorFor(model => model.HumanVictim.Addressline1, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.HumanVictim.Addressline1, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.HumanVictim.Zipcode, htmlAttributes: new {@class = "control-label col-md-6"})
+                    @Html.LabelFor(model => model.HumanVictim.Addressline2, htmlAttributes: new { @class = "control-label col-md-6" })
                     <div class="col-md-6">
-                        @Html.EditorFor(model => model.HumanVictim.Zipcode, new {htmlAttributes = new {@class = "form-control"}})
-                        @Html.ValidationMessageFor(model => model.HumanVictim.Zipcode, "", new {@class = "text-danger"})
+                        @Html.EditorFor(model => model.HumanVictim.Addressline2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.HumanVictim.Addressline2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.HumanVictim.CityId, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @Html.DropDownListFor(model => model.HumanVictim.CityId, new SelectList(Model.Cities, "Id", "CityName"), "Select City", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.HumanVictim.CityId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.HumanVictim.CountyId, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @Html.DropDownListFor(model => model.HumanVictim.CountyId, new SelectList(Model.Counties, "Id", "CountyName"), "Select County", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.HumanVictim.CountyId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.HumanVictim.StateId, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @Html.DropDownListFor(model => model.HumanVictim.StateId, new SelectList(Model.States, "Id", "StateName"), "Select State", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.HumanVictim.StateId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.HumanVictim.Zipcode, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.HumanVictim.Zipcode, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.HumanVictim.Zipcode, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -143,7 +143,7 @@
             </div>
         </div>
         <div class="row">
-            <div  class="col-md-offset-1 col-md-12">
+            <div class="col-md-offset-1 col-md-12">
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.HumanVictim.BiteType, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -181,13 +181,13 @@
             <div class="col-md-offset-3 col-md-6">
                 <div class="form-group">
                     <div class="col-md-10">
-                        <input type="submit" value="Save" class="btn btn-success user-full-width"/>
+                        <input type="submit" value="Save" class="btn btn-success user-full-width" />
                     </div>
                 </div>
-            </div>            
+            </div>
         </div>
 
-       
+
     </div>
 }
 
