@@ -6,10 +6,10 @@ using RabiesApplication.Models;
 
 namespace RabiesApplication.Models
 {
-    public class State :IModel, IActive, IAuditable
+    public class State : IActive, IAuditable
     {
         [Key]
-        public string Id { get; set; }
+        public int Id { get; set; }
         public byte[] RowVersion { get; set; }
 
         [Required]

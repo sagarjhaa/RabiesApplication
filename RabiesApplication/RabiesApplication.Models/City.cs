@@ -15,7 +15,7 @@ namespace RabiesApplication.Models
         [DisplayName("City")]
         public string CityName { get; set; }
        
-        public string StateId { get; set; }
+        public int StateId { get; set; }
         public State State { get; set; }
 
         public bool Active { get; set; }
