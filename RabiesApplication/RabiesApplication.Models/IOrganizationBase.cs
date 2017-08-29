@@ -2,7 +2,7 @@
 {
     public interface IOrganizationBase
     {
-        string Id { get; set; }
+        int Id { get; set; }
         string Name { get; set; }
         string StreetAddress1 { get; set; }
         string StreetAddress2 { get; set; }

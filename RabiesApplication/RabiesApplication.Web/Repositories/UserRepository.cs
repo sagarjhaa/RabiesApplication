@@ -27,7 +27,7 @@ namespace RabiesApplication.Web.Repositories
         public ApplicationUser GetAppUserForPrincipal(IPrincipal user)
         {
             var userId = GetUserID(user);
-            return All().Where(u => u.Id == userId).Include("Employee.Organization").Single();
+            return All().Where(u => u.Id == user).Include("Employee.Organization").Single();
         }
     }
 }

@@ -10,15 +10,14 @@ namespace RabiesApplication.Models
     public class Animal : IModel,IAuditable
     {
 
-        public string Id { get; set; }
-        public byte[] RowVersion { get; set; }
+        public int Id { get; set; }
 
-        public string BiteId { get; set; }
+        public int BiteId { get; set; }
 
         public Bite Bite { get; set; }
 
         [DisplayName("Vet")]
-        public string VetId { get; set; }
+        public int VetId { get; set; }
 
         public Vet Vet { get; set; }
 
@@ -26,13 +25,13 @@ namespace RabiesApplication.Models
 
         [Required]
         [DisplayName("Sepecies")]
-        public string SpeciesId { get; set; }
+        public int SpeciesId { get; set; }
 
         public Species Species { get; set; }
 
         [Required]
         [DisplayName("Breed")]
-        public string BreedId { get; set; }
+        public int BreedId { get; set; }
 
         public Breed Breed { get; set; }
 
@@ -71,8 +70,8 @@ namespace RabiesApplication.Models
 
         public DateTimeOffset RecordCreated { get; set; }
         public DateTimeOffset? RecordEdited { get; set; }
-        public string EmployeeCreatedId { get; set; }
-        public string EmployeeEditedId { get; set; }
+        public int EmployeeCreatedId { get; set; }
+        public int EmployeeEditedId { get; set; }
 
         public virtual PetOwner PetOwner { get; set; }
 
@@ -81,7 +80,7 @@ namespace RabiesApplication.Models
             
         }
 
-        public Animal(string biteId)
+        public Animal(int biteId)
         {
             BiteId = biteId;
         }

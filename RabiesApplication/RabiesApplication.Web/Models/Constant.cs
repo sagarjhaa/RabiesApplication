@@ -35,8 +35,8 @@ namespace RabiesApplication.Web.Models
 
     public static class BiteStatusConstant
     {
-        public const string New = "1";
-        public const string Open = "2";
+        public const int New = 1;
+        public const int Open = 2;
     }
 
     public enum Letters

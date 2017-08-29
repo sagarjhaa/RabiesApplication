@@ -12,8 +12,7 @@ namespace RabiesApplication.Models
     public class Vet : IActive,IModel,IPerson,IAuditable
     {
 
-        public string Id { get; set; }
-        public byte[] RowVersion { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string FirstName { get; set; }
@@ -24,12 +23,12 @@ namespace RabiesApplication.Models
         public int? Age { get; set; }
         public string Addressline1 { get; set; }
         public string Addressline2 { get; set; }
-        public string CityId { get; set; }
+        public int CityId { get; set; }
 
         public City City { get; set; }
         
-        public string CountyId { get; set; }
-        public string StateId { get; set; }
+        public int CountyId { get; set; }
+        public int StateId { get; set; }
 
         public State State { get; set; }
         [Required]
@@ -43,8 +42,8 @@ namespace RabiesApplication.Models
         public bool Active { get; set; }
         public DateTimeOffset RecordCreated { get; set; }
         public DateTimeOffset? RecordEdited { get; set; }
-        public string EmployeeCreatedId { get; set; }
-        public string EmployeeEditedId { get; set; }
+        public int EmployeeCreatedId { get; set; }
+        public int EmployeeEditedId { get; set; }
 
     }
 }

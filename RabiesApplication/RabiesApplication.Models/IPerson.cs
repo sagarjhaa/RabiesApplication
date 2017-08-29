@@ -22,11 +22,11 @@ namespace RabiesApplication.Models
         string Addressline1 { get; set; }
         string Addressline2 { get; set; }
 
-        string CityId { get; set; }
+        int CityId { get; set; }
 
-        string CountyId { get; set; }
+        int CountyId { get; set; }
 
-        string StateId { get; set; }
+        int StateId { get; set; }
 
         int? Zipcode { get; set; }
 

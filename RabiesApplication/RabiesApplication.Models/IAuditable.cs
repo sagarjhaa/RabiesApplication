@@ -8,8 +8,8 @@ namespace RabiesApplication.Models
 
         DateTimeOffset? RecordEdited { get; set; }
 
-        string EmployeeCreatedId { get; set; }
+        int EmployeeCreatedId { get; set; }
 
-        string EmployeeEditedId { get; set; }
+        int EmployeeEditedId { get; set; }
     }
 }

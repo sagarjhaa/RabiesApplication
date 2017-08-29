@@ -8,19 +8,19 @@ namespace RabiesApplication.Models
 {
     public class Bite : IActive,IModel,IAuditable
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public byte[] RowVersion { get; set; }
 
         //Which city the bite occured
         [DisplayName("City")]
-        public string CityId { get; set; }
+        public int CityId { get; set; }
 
         public  City City { get; set; }
 
         //What state the bite occured
         //It will be Ohio for us
         [DisplayName("State")]
-        public string StateId { get; set; }
+        public int StateId { get; set; }
 
         public  State State { get; set; }
 
@@ -42,7 +42,7 @@ namespace RabiesApplication.Models
         [DisplayName("Bite Reported By")]
         public string BiteReportedBy { get; set; }
         [DisplayName("Bite Status")]
-        public string BiteStatusId { get; set; }
+        public int BiteStatusId { get; set; }
 
         public  BiteStatus BiteStatus { get; set; }
 
@@ -60,8 +60,8 @@ namespace RabiesApplication.Models
 
         public DateTimeOffset RecordCreated { get; set; }
         public DateTimeOffset? RecordEdited { get; set; }
-        public string EmployeeCreatedId { get; set; }
-        public string EmployeeEditedId { get; set; }
+        public int EmployeeCreatedId { get; set; }
+        public int EmployeeEditedId { get; set; }
 
         public virtual ICollection<Animal> Animals { get; set; }
         public virtual ICollection<HumanVictim> HumanVictims { get; set; }

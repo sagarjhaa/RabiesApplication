@@ -19,12 +19,12 @@ namespace RabiesApplication.Web.Repositories
 
         public virtual IQueryable<TEntity> All() => Context.Set<TEntity>().AsQueryable();
 
-        public abstract Task<TEntity> GetById(string id);
+        public abstract Task<TEntity> GetById(int id);
 
         public abstract Task Insert(TEntity model);
         public abstract Task Update(TEntity model);
 
-        public virtual async Task DeleteAsync(string id)
+        public virtual async Task DeleteAsync(int id)
         {
             var model = await GetById(id);
             if (model != null)

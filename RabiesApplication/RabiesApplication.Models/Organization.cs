@@ -4,7 +4,7 @@ namespace RabiesApplication.Models
 {
     public class Organization : IModel, IOrganizationBase
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Display(Name = "Address")]
@@ -23,9 +23,6 @@ namespace RabiesApplication.Models
         public string PostalCode { get; set; }
         [Required]
         public string Status { get; set; }
-
-        [Timestamp]
-        public byte[] RowVersion { get; set; }
 
         public ICollection<Employee> Members { get; set; }
     }

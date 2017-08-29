@@ -11,14 +11,14 @@ namespace RabiesApplication.Web.Repositories
 {
     public class ModelRepository<TEntity> : BaseRepository<TEntity>, IDisposable where TEntity : class, IModel
     {
-        public override Task<TEntity> GetById(string id) => All().SingleOrDefaultAsync(m => m.Id.Equals(id));
+        public override Task<TEntity> GetById(int id) => All().SingleOrDefaultAsync(m => m.Id.Equals(id));
 
         public override Task Insert(TEntity model)
         {
-            if (model.Id == null)
-            {
-                model.Id = Guid.NewGuid().ToString();
-            }
+            //if (model.Id == 0)
+            //{
+            //    model.Id = Guid.NewGuid().ToString();
+            //}
             Context.Set<TEntity>().Add(model);
             return Task.FromResult(0);
 

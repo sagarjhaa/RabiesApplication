@@ -6,8 +6,7 @@ namespace RabiesApplication.Models
 {
     public class Action : IModel,IActive,IAuditable
     {
-        public string Id { get; set; }
-        public byte[] RowVersion { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string ActionType { get; set; }
@@ -21,8 +20,8 @@ namespace RabiesApplication.Models
 
         public DateTimeOffset RecordCreated { get; set; }
         public DateTimeOffset? RecordEdited { get; set; }
-        public string EmployeeCreatedId { get; set; }
-        public string EmployeeEditedId { get; set; }
+        public int EmployeeCreatedId { get; set; }
+        public int EmployeeEditedId { get; set; }
         
     }
 }

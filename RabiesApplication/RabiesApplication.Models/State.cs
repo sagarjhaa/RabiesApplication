@@ -9,9 +9,8 @@ namespace RabiesApplication.Models
     public class State :IModel, IActive, IAuditable
     {
         [Key]
-        public string Id { get; set; }
-        public byte[] RowVersion { get; set; }
-
+        public int Id { get; set; }
+        
         [Required]
         [DisplayName("State")]
         public string StateName { get; set; }
@@ -24,7 +23,7 @@ namespace RabiesApplication.Models
         public bool Active { get; set; }
         public DateTimeOffset RecordCreated { get; set; }
         public DateTimeOffset? RecordEdited { get; set; }
-        public string EmployeeCreatedId { get; set; }
-        public string EmployeeEditedId { get; set; }
+        public int EmployeeCreatedId { get; set; }
+        public int EmployeeEditedId { get; set; }
     }
 }

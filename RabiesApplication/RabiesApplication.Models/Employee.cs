@@ -6,7 +6,7 @@ namespace RabiesApplication.Models
 {
     public class Employee : IModel, IOrganizationModel, IEmployeeBase, IAuditable, IActive
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
@@ -54,10 +54,10 @@ namespace RabiesApplication.Models
         public string Address2 { get; set; }
 
 
-        public string CityName { get; set; }
+        public int CityName { get; set; }
 
         [DisplayName("State")]
-        public string StateAbbreviation { get; set; }
+        public int StateAbbreviation { get; set; }
 
         [DisplayName("Zip Code")]
         public string Zip5 { get; set; }
@@ -70,7 +70,7 @@ namespace RabiesApplication.Models
 
         public DateTimeOffset RecordCreated { get; set; }
         public DateTimeOffset? RecordEdited { get; set; }
-        public string EmployeeCreatedId { get; set; }
-        public string EmployeeEditedId { get; set; }
+        public int EmployeeCreatedId { get; set; }
+        public int EmployeeEditedId { get; set; }
     }
 }

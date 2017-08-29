@@ -2,7 +2,7 @@
 {
     public interface IModel
     {
-        string Id { get; set; }
-        byte[] RowVersion { get; set; }
+        int Id { get; set; }
+        //byte[] RowVersion { get; set; }
     }
 }

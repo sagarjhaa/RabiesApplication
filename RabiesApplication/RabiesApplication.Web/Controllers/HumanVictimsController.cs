@@ -16,7 +16,7 @@ namespace RabiesApplication.Web.Controllers
         private readonly CitiesRepository _citiesRepository = new CitiesRepository();
        
         // GET: HumanVictims/Create
-        public ActionResult HumanVictimForm(string biteId,string victimId)
+        public ActionResult HumanVictimForm(int biteId, int victimId)
         {
             var humanVicitmViewModel = new HumanVictimViewModel
             {
@@ -68,7 +68,7 @@ namespace RabiesApplication.Web.Controllers
         }
 
         // GET: HumanVictims/Delete/5
-        public async Task<ActionResult> Delete(string victimId)
+        public async Task<ActionResult> Delete(int victimId)
         {
             if (victimId == null)
             {
@@ -85,7 +85,7 @@ namespace RabiesApplication.Web.Controllers
         // POST: HumanVictims/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string victimId)
+        public async Task<ActionResult> DeleteConfirmed(int victimId)
         {
             HumanVictim humanVictim = await _humanVictimRepository.GetById(victimId);
             var biteId = humanVictim.BiteId;

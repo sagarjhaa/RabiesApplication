@@ -11,7 +11,7 @@ namespace RabiesApplication.Web.Repositories
 {
     public class AnimalRepository : AuditRepository<Animal>
     {
-        public override Task<Animal> GetById(string animalId)
+        public override Task<Animal> GetById(int animalId)
         {
             return Context.Animals.Include("Breed").Include("Species").FirstOrDefaultAsync(a => a.Id.Equals(animalId));
         }
@@ -21,12 +21,12 @@ namespace RabiesApplication.Web.Repositories
             return All().Where(p => p.IsVictim.Equals(Constant.Active)).Where(p => p.BiteId.Equals(biteId)).Include("Breed").Include("Species");
         }
 
-        public Animal GetAnimalByBiteId(string biteId)
+        public Animal GetAnimalByBiteId(int biteId)
         {
             return Context.Animals.Include("Breed").Include("Species").Where(p => p.IsVictim.Equals(Constant.Deactive)).SingleOrDefault(model => model.BiteId.Equals(biteId));
         }
 
-        public override Task DeleteAsync(string animalId)
+        public override Task DeleteAsync(int animalId)
         {
             //Check for petOwner if there is any for the animalId.
             //Only animals with isVictim false might have the petOwner information.

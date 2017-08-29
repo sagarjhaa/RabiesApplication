@@ -9,8 +9,7 @@ namespace RabiesApplication.Models
     public class HumanVictim : IPerson, IModel,IAuditable
     {
 
-        public string Id { get; set; }
-        public byte[] RowVersion { get; set; }
+        public int Id { get; set; }
         public string BiteId { get; set; }
         public Bite Bite { get; set; }
 
@@ -28,13 +27,13 @@ namespace RabiesApplication.Models
         [DisplayName("Addressline 2")]
         public string Addressline2 { get; set; }
         [DisplayName("City")]
-        public string CityId { get; set; }
+        public int CityId { get; set; }
         public City City { get; set; }
         [DisplayName("County")]
-        public string CountyId { get; set; }
+        public int CountyId { get; set; }
         public County County { get; set; }
         [DisplayName("State")]
-        public string StateId { get; set; }
+        public int StateId { get; set; }
         public State State { get; set; }
         [Required]
         public int? Zipcode { get; set; }
@@ -53,8 +52,8 @@ namespace RabiesApplication.Models
 
         public DateTimeOffset RecordCreated { get; set; }
         public DateTimeOffset? RecordEdited { get; set; }
-        public string EmployeeCreatedId { get; set; }
-        public string EmployeeEditedId { get; set; }
+        public int EmployeeCreatedId { get; set; }
+        public int EmployeeEditedId { get; set; }
         
 
         public HumanVictim()
