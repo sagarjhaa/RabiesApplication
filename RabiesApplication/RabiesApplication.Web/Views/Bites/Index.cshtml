@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RabiesApplication.Models.Bite>
+﻿@model IEnumerable<RabiesApplication.Web.Models.BitesViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -16,18 +16,23 @@
             @Html.DisplayNameFor(model => model.Id)
         </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.BiteStatus)
+            @Html.DisplayNameFor(model => model.Status)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.City.CityName)
+            @Html.DisplayNameFor(model => model.PetOwner)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnimalName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.BiteDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BiteReportDate)
+            @Html.DisplayNameFor(model => model.City)
         </th>
-
+        <th>
+            @Html.DisplayNameFor(model => model.VictimName)
+        </th>
         <th>
             Actions
         </th>
@@ -40,16 +45,22 @@
             @Html.DisplayFor(modelItem => item.Id)
         </td>*@
         <td>
-            @Html.DisplayFor(modelItem => item.BiteStatus.Description)
+            @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.City.CityName)
+            @Html.DisplayFor(modelItem => item.PetOwner)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnimalName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.BiteDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BiteReportDate)
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VictimName)
         </td>
       
         <td>

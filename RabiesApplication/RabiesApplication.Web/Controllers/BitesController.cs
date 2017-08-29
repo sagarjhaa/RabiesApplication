@@ -30,8 +30,8 @@ namespace RabiesApplication.Web.Controllers
         // GET: Bites
         public ActionResult Index()
         {
-            var bites = _biteRepository.All();
-            return View(bites.ToList());
+            var bites = _biteRepository.GetBiteIndexView();
+            return View(bites);
         }
 
         public async Task<ActionResult> BiteForm(string id)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -29,6 +30,36 @@ namespace RabiesApplication.Web.Repositories
         public override IQueryable<Bite> All()
         {
             return base.All().Where(b => b.Active.Equals(Constant.Active)).Include("City").Include("State").Include("BiteStatus");
+        }
+
+        public IEnumerable<BitesViewModel> GetBiteIndexView()
+        {
+            var bites =  (from bite in Context.Bites
+                                join city in Context.Cities on bite.CityId equals city.Id into cities
+                                from c in cities.DefaultIfEmpty()
+                                join status in Context.BiteStatuses on bite.BiteStatusId equals status.Id into statuses
+                                from s in statuses.DefaultIfEmpty()
+                                join victim in Context.HumanVictims on bite.Id equals victim.BiteId into victims
+                                from v in victims.DefaultIfEmpty()
+                                join animal in Context.Animals on bite.Id equals animal.BiteId into animals
+                                from a in animals.DefaultIfEmpty()
+                                join owner in Context.PetOwners on a.Id equals owner.Id into owners
+                                from o in owners.DefaultIfEmpty()
+                                where bite.Active.Equals(Constant.Active)
+                                            select new BitesViewModel
+                                            {
+                                                Id = bite.Id,
+                                                PetOwner = o.FirstName + " " + o.LastName,
+                                                AnimalName = a.Name,
+                                                BiteDate = bite.BiteDate,
+                                                City = c.CityName,
+                                                //Status = statuses.,
+                                                VictimName = v.FirstName + " " + v.LastName
+                                            });
+
+
+            return bites.ToList();
+
         }
 
     }
