@@ -14,6 +14,9 @@ namespace RabiesApplication.Models
         [Required]
         [DisplayName("City")]
         public string CityName { get; set; }
+
+        public string CountyId { get; set; }
+        public County County { get; set; }
        
         public string StateId { get; set; }
         public State State { get; set; }
