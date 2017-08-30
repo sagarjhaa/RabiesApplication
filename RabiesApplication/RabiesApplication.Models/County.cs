@@ -15,7 +15,7 @@ namespace RabiesApplication.Models
         public bool Active { get; set; }
 
 
-        public int StateId { get; set; }
+        public string StateId { get; set; }
 
         public State State { get; set; }
         public DateTimeOffset RecordCreated { get; set; }
