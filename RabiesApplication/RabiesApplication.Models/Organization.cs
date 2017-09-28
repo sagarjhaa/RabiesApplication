@@ -27,7 +27,7 @@ namespace RabiesApplication.Models
         public string Status { get; set; }
 
         [Timestamp]
-        public byte[] RowVersion { get; set; }
+        
 
         public ICollection<Employee> Members { get; set; }
     }

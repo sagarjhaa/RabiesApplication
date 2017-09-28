@@ -9,7 +9,7 @@ namespace RabiesApplication.Models
     {
         [Key]
         public string Id { get; set; }
-        public byte[] RowVersion { get; set; }
+        
 
         [Required]
         public string Description { get; set; }

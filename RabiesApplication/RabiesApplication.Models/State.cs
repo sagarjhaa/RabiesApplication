@@ -11,7 +11,7 @@ namespace RabiesApplication.Models
     {
         [Key]
         public string Id { get; set; }
-        public byte[] RowVersion { get; set; }
+        
 
         [Required]
         [DisplayName("State")]

@@ -10,7 +10,7 @@ namespace RabiesApplication.Models
     public class Breed : IActive, IModel,IAuditable
     {
         public string Id { get; set; }
-        public byte[] RowVersion { get; set; }
+        
         [Required]
         [DisplayName("Breed")]
         public string Description { get; set; }

@@ -6,7 +6,7 @@ namespace RabiesApplication.Models.Interfaces
     public class Investigation : IModel, IAuditable
     {
         public string Id { get; set; }
-        public byte[] RowVersion { get; set; }
+        
         public string BiteId { get; set; }
         public Bite Bite { get; set; }
 

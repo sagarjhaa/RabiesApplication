@@ -10,7 +10,7 @@ namespace RabiesApplication.Models
     public class Bite : IActive,IModel,IAuditable
     {
         public string Id { get; set; }
-        public byte[] RowVersion { get; set; }
+        
 
         //Which city the bite occured
         [DisplayName("City")]

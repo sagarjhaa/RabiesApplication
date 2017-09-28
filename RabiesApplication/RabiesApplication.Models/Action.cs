@@ -8,7 +8,7 @@ namespace RabiesApplication.Models
     public class Action : IModel,IActive,IAuditable
     {
         public string Id { get; set; }
-        public byte[] RowVersion { get; set; }
+        
 
         [Required]
         public string ActionType { get; set; }

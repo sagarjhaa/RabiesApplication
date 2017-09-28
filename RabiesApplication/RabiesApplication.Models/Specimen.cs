@@ -11,7 +11,7 @@ namespace RabiesApplication.Models
     public class Specimen:IModel,IAuditable
     {
         public string Id { get; set; }
-        public byte[] RowVersion { get; set; }
+        
 
         public int AnimalId { get; set; }
         public Animal Animal { get; set; }

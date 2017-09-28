@@ -8,7 +8,7 @@ namespace RabiesApplication.Models
     public class County:IModel,IActive,IAuditable
     {
         public string Id { get; set; }
-        public byte[] RowVersion { get; set; }
+        
         [DisplayName("County")]
         public string Name { get; set; }
 

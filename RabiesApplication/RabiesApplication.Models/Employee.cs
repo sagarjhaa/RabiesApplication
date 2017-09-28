@@ -22,7 +22,7 @@ namespace RabiesApplication.Models
         public string OrganizationId { get; set; }
 
         [Timestamp]
-        public byte[] RowVersion { get; set; }
+        
 
         public override string ToString()
         {
