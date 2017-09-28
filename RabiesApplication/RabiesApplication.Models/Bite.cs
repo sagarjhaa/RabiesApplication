@@ -38,10 +38,10 @@ namespace RabiesApplication.Models
         [DisplayName("Bite Report Date")]
         public DateTimeOffset? BiteReportDate { get; set; }
 
-        [Required]
         //Where did we get this information from
         [DisplayName("Bite Reported By")]
         public string BiteReportedBy { get; set; }
+
         [DisplayName("Bite Status")]
         public string BiteStatusId { get; set; }
 
@@ -54,8 +54,10 @@ namespace RabiesApplication.Models
         public string EmployeeAssignedId { get; set; }
         
         public bool Active { get; set; }
+
         [DisplayName("Investigation Complete Date")]
         public DateTime? InvestigationCompletionDate { get; set; }
+
         [DisplayName("Report Closed Date")]
         public DateTime? ReportClosedDate { get; set; }
 
@@ -64,8 +66,8 @@ namespace RabiesApplication.Models
         public string EmployeeCreatedId { get; set; }
         public string EmployeeEditedId { get; set; }
 
-        public virtual ICollection<Animal> Animals { get; set; }
-        public virtual ICollection<HumanVictim> HumanVictims { get; set; }
-        public virtual ICollection<Action> Actions { get; set; }
+        //public virtual ICollection<Animal> Animals { get; set; }
+        //public virtual ICollection<HumanVictim> HumanVictims { get; set; }
+        //public virtual ICollection<Action> Actions { get; set; }
     }
 }

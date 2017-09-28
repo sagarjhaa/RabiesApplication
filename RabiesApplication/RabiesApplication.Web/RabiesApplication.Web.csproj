@@ -194,6 +194,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\BiteUpdatesHub.cs" />
+    <Compile Include="Migrations\201709281929117_InitialMigration.cs" />
+    <Compile Include="Migrations\201709281929117_InitialMigration.Designer.cs">
+      <DependentUpon>201709281929117_InitialMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BitesViewModel.cs" />
@@ -410,6 +414,11 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201709281929117_InitialMigration.resx">
+      <DependentUpon>201709281929117_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

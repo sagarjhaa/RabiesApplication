@@ -21,9 +21,6 @@ namespace RabiesApplication.Models
 
         public string OrganizationId { get; set; }
 
-        [Timestamp]
-        
-
         public override string ToString()
         {
             return string.Format("{1}, {0}", FirstName, LastName);
