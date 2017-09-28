@@ -24,7 +24,7 @@ namespace RabiesApplication.Web.ViewModels
 
         public PetOwner PetOwner { get; set; }
 
-        public IEnumerable<ActionDTO> Actions { get; set; }
+        //public IEnumerable<ActionDTO> Actions { get; set; }
         //public IEnumerable<Action> Actions { get; set; }
     }
 }

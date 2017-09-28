@@ -16,8 +16,8 @@ namespace RabiesApplication.Web.Controllers
 {
     public class PetOwnersController : Controller
     {
-        private readonly PetOwnerRepository _petOwnerRepository = new PetOwnerRepository();
-        private readonly AnimalRepository _animalRepository = new AnimalRepository();
+        //private readonly PetOwnerRepository _petOwnerRepository = new PetOwnerRepository();
+        //private readonly AnimalRepository _animalRepository = new AnimalRepository();
         private readonly StatesRepository _statesRepository = new StatesRepository();
         private readonly CountiesRepository _countyRepository = new CountiesRepository();
         private readonly CitiesRepository _citiesRepository = new CitiesRepository();
