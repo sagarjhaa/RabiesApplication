@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RabiesApplication.Models;
+using RabiesApplication.Models.Interfaces;
 using RabiesApplication.Web.Models;
 
 namespace RabiesApplication.Web.Repositories

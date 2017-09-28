@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RabiesApplication.Models
+namespace RabiesApplication.Models.Interfaces
 {
     public interface IAuditable
     {

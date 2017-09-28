@@ -1,4 +1,4 @@
-﻿namespace RabiesApplication.Models
+﻿namespace RabiesApplication.Models.Interfaces
 {
     public interface IActive
     {

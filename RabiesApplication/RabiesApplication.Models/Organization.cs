@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using RabiesApplication.Models.Interfaces;
+
 namespace RabiesApplication.Models
 {
     public class Organization : IModel, IOrganizationBase

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using RabiesApplication.Models;
+using RabiesApplication.Models.Interfaces;
 
 namespace RabiesApplication.Models
 {

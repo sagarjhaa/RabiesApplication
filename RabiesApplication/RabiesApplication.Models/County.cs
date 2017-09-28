@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using RabiesApplication.Models;
+using RabiesApplication.Models.Interfaces;
 
 namespace RabiesApplication.Models
 {

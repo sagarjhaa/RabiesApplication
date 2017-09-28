@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using RabiesApplication.Models;
+using RabiesApplication.Models.Interfaces;
 using RabiesApplication.Web.Models;
 
 namespace RabiesApplication.Web
