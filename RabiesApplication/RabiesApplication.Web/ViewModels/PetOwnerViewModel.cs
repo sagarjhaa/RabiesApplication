@@ -9,7 +9,7 @@ namespace RabiesApplication.Web.ViewModels
 {
     public class PetOwnerViewModel
     {
-        public PetOwner PetOwner { get; set; }
+        public AnimalOwner AnimalOwner { get; set; }
 
         public Animal Animal { get; set; }
 

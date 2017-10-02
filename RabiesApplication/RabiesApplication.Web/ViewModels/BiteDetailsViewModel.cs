@@ -22,7 +22,7 @@ namespace RabiesApplication.Web.ViewModels
 
         #endregion
 
-        public PetOwner PetOwner { get; set; }
+        public AnimalOwner AnimalOwner { get; set; }
 
         //public IEnumerable<ActionDTO> Actions { get; set; }
         //public IEnumerable<Action> Actions { get; set; }

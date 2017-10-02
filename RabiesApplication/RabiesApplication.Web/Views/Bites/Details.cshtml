@@ -120,21 +120,21 @@
     <div class="col-md-6">
         <p class="pull-right">
             <h3>Animal Owner Information</h3>
-            @if (Model.PetOwner != null)
+            @if (Model.AnimalOwner != null)
             {
-                @Html.ActionLink("Add Animal Owner", "PetOwnerForm", "PetOwners", null, htmlAttributes: new { @class = "btn btn-primary pull-right disabled" })
+                @Html.ActionLink("Add Animal Owner", "AnimalOwnerForm", "AnimalOwners", null, htmlAttributes: new { @class = "btn btn-primary pull-right disabled" })
             }
             else
             {
                 if (Model.Animal != null)
                 {
-                    @Html.ActionLink("Add Animal Owner", "PetOwnerForm", "PetOwners", new { animalId = Model.Animal.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right" })
+                    @Html.ActionLink("Add Animal Owner", "AnimalOwnerForm", "AnimalOwners", new { animalId = Model.Animal.Id }, htmlAttributes: new { @class = "btn btn-primary pull-right" })
                 }
             }
         </p>
-        @if (Model.PetOwner != null)
+        @if (Model.AnimalOwner != null)
         {
-            @Html.Partial("_PetOwner", Model.PetOwner)
+            @Html.Partial("_PetOwner", Model.AnimalOwner)
         }
         else
         {
