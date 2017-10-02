@@ -21,7 +21,8 @@ namespace RabiesApplication.Web
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/DataTables/dataTables.bootstrap4.js"));
 
             //bundles.Add(new StyleBundle("~/Content/css").Include(
             //          "~/Content/bootstrap.css",
@@ -31,7 +32,8 @@ namespace RabiesApplication.Web
                       //"~/Content/bootstrap.css",
                       "~/Content/site.css",
                       //"~/Content/bootstrap-theme.css",
-                      "~/Content/bootswatch/readable/bootstrap.css"
+                      "~/Content/bootswatch/readable/bootstrap.css",
+                      "~/Content/DataTables/css/dataTables.bootstrap4.css"
                       ));
         }
     }
