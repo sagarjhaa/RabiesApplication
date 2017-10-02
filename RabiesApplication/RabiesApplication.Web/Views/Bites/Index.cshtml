@@ -34,9 +34,10 @@
             @*@Html.DisplayNameFor(model => model.City)*@
             City
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.VictimName)
-        </th>*@
+        <th>
+            @*@Html.DisplayNameFor(model => model.VictimName)*@
+            Victim Name
+        </th>
         <th>
             Actions
         </th>
@@ -68,7 +69,17 @@
                 @Html.DisplayFor(modelItem => item.City.CityName)
             </td>
             <td>
-                @*@Html.DisplayFor(modelItem => item.VictimName)*@
+                <table>
+
+
+                    @foreach (var HumanVictim in item.HumanVictims)
+                {
+                        <tr>
+                            <td>@HumanVictim.FirstName</td>
+                    </tr>
+                    @*@Html.DisplayFor(modelItem => item.HumanVictims.First().FirstName)*@
+                    }
+                </table>
             </td>
 
             <td>

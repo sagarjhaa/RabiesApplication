@@ -29,7 +29,7 @@ namespace RabiesApplication.Web.Repositories
 
         public override IQueryable<Bite> All()
         {
-            return base.All().Where(b => b.Active.Equals(Constant.Active)).Include("City").Include("State").Include("BiteStatus");
+            return base.All().Where(b => b.Active.Equals(Constant.Active)).Include("City").Include("State").Include("BiteStatus").Include("HumanVictims");
         }
 
         //public IEnumerable<BitesViewModel> GetBiteIndexView()
