@@ -198,6 +198,10 @@
     <Compile Include="Migrations\201709281929117_InitialMigration.Designer.cs">
       <DependentUpon>201709281929117_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710020531371_Create-Pet-PetOwner.cs" />
+    <Compile Include="Migrations\201710020531371_Create-Pet-PetOwner.Designer.cs">
+      <DependentUpon>201710020531371_Create-Pet-PetOwner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BitesViewModel.cs" />
@@ -419,6 +423,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201709281929117_InitialMigration.resx">
       <DependentUpon>201709281929117_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710020531371_Create-Pet-PetOwner.resx">
+      <DependentUpon>201710020531371_Create-Pet-PetOwner.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
