@@ -1,4 +1,5 @@
-﻿@*@model IEnumerable<RabiesApplication.Web.Models.BitesViewModel>*@
+﻿@model PagedList.IPagedList<RabiesApplication.Models.Bite>
+@using PagedList.Mvc
 
 @{
     ViewBag.Title = "Index";
@@ -10,87 +11,88 @@
 <p>
     @Html.ActionLink("Create New", "BiteForm",null,htmlAttributes:new {@class="btn btn-primary"})
 </p>
-@*<table class="table">
-    <tr>*@
+<table class="table">
+    <tr>
         @*<th>
             @Html.DisplayNameFor(model => model.Id)
         </th>*@
-        @*<th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
         <th>
+            @*@Html.DisplayNameFor(model => model.Status)*@
+            Status
+        </th>
+        @*<th>
             @Html.DisplayNameFor(model => model.PetOwner)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.AnimalName)
+        </th>*@
+        <th>
+            @*@Html.DisplayNameFor(model => model.BiteDate)*@
+            BiteDate
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BiteDate)
+            @*@Html.DisplayNameFor(model => model.City)*@
+            City
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.VictimName)
-        </th>
+        </th>*@
         <th>
             Actions
-        </th>*@
-    @*</tr>*@
-    @*<td>
+        </th>
+    </tr>
+       
+
+    @foreach (var item in Model)
+    {
+        <tr>
+        
+            @*<td>
             @Html.DisplayFor(modelItem => item.Id)
         </td>*@
 
-    @*@foreach (var item in Model)
-{
-    <tr>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
+            @*
         <td>
             @Html.DisplayFor(modelItem => item.PetOwner)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.AnimalName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BiteDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VictimName)
-        </td>
-      
-        <td>
-            @Html.ActionLink("Edit", "BiteForm", new { id = item.Id },htmlAttributes:new {@class= "btn btn-success" }) |
-            @Html.ActionLink("Details", "Details", new {biteId = item.Id }, htmlAttributes: new { @class = "btn btn-success" }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-danger" })
-        </td>
-    </tr>
-}*@
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.BiteStatus.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BiteDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City.CityName)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.VictimName)*@
+            </td>
 
-@*</table>*@
+            <td>
+                @Html.ActionLink("Edit", "BiteForm", new {id = item.Id}, htmlAttributes: new {@class = "btn btn-success"}) |
+                @Html.ActionLink("Details", "Details", new {biteId = item.Id}, htmlAttributes: new {@class = "btn btn-success"}) |
+                @Html.ActionLink("Delete", "Delete", new {id = item.Id}, htmlAttributes: new {@class = "btn btn-danger"})
+            </td>
+        </tr>
+    }
 
-<table id="bites">
-    <thead>
-        <tr></tr>
-        <tr></tr>
-        <tr></tr>
-        <tr></tr>
-        <tr></tr>
-        <tr></tr>
-        <tr></tr>
-        <tr></tr>
-        <tr></tr>
-        <tr></tr>
-    </thead>
 </table>
 
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-<script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+@Html.PagedListPager(Model, pageNo => Url.Action("Index",new { pageNo }))@*, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))*@ 
+
+
+ 
+
+
+
+
+@*<script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function () {
         debugger;
@@ -108,4 +110,4 @@
         ]
         });
     });
-</script>
+</script>*@

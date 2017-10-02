@@ -11,6 +11,7 @@ using RabiesApplication.Web.Models;
 using RabiesApplication.Web.Repositories;
 using RabiesApplication.Web.ViewModels;
 using Action = RabiesApplication.Models.Action;
+using PagedList;
 
 namespace RabiesApplication.Web.Controllers
 {
@@ -28,12 +29,14 @@ namespace RabiesApplication.Web.Controllers
         //private readonly ActionRepository _actionRepository = new ActionRepository();
 
         // GET: Bites
-        public ActionResult Index()
+        public ActionResult Index(int? pageNo)
         {
-            //var bites = _biteRepository.GetBiteIndexView();
-            //return View(bites);
+            var bites = _biteRepository.All().ToList();
 
-            return View();
+            int sizeOfPage = 10;
+            int noOfPage = (pageNo ?? 1);
+
+            return View(bites.ToPagedList(noOfPage,sizeOfPage));
         }
 
         public async Task<ActionResult> BiteForm(string id)
@@ -63,12 +66,6 @@ namespace RabiesApplication.Web.Controllers
             return View(biteViewModel);
         }
 
-
-        public ActionResult GetBites()
-        {
-            var bites = _biteRepository.All().ToList();
-            return Json(data: bites, behavior: JsonRequestBehavior.AllowGet);
-        }
 
         //// POST: Bites/Save
         //[HttpPost]
