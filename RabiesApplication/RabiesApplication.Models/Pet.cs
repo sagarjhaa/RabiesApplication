@@ -1,18 +1,16 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using RabiesApplication.Models;
 using RabiesApplication.Models.CustomValidation;
 using RabiesApplication.Models.Interfaces;
 
 namespace RabiesApplication.Models
 {
-    public class Animal : IModel,IAuditable
+    public class Pet : IModel, IAuditable
     {
 
         public string Id { get; set; }
-        
+
 
         public string BiteId { get; set; }
 
@@ -35,7 +33,7 @@ namespace RabiesApplication.Models
 
         public Breed Breed { get; set; }
 
-        public string  Name { get; set; }
+        public string Name { get; set; }
 
         //Todo check if needs to add SprayNeuter
         public bool Sex { get; set; }
@@ -73,14 +71,14 @@ namespace RabiesApplication.Models
         public string EmployeeCreatedId { get; set; }
         public string EmployeeEditedId { get; set; }
 
-        public virtual AnimalOwner AnimalOwner { get; set; }
+        public virtual PetOwner PetOwner { get; set; }
 
-        public Animal()
+        public Pet()
         {
-            
+
         }
 
-        public Animal(string biteId)
+        public Pet(string biteId)
         {
             BiteId = biteId;
         }
