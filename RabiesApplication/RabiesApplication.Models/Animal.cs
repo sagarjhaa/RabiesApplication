@@ -10,10 +10,8 @@ namespace RabiesApplication.Models
 {
     public class Animal : IModel,IAuditable
     {
-
         public string Id { get; set; }
         
-
         public string BiteId { get; set; }
 
         public Bite Bite { get; set; }

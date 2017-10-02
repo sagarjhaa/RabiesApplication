@@ -17,21 +17,21 @@ namespace RabiesApplication.Web
         public DbSet<Pet> Pets { get; set; }
         public DbSet<HumanVictim> HumanVictims { get; set; }
 
+
+        
+
+        public DbSet<Animal> Animals { get; set; }
+        public DbSet<AnimalOwner> AnimalOwner { get; set; }
+
         //public DbSet<Action> Actions { get; set; }
         //public DbSet<Investigation> Investigations { get; set; }
-        //public DbSet<BiteStatus> BiteStatuses { get; set; }
-
-        //public DbSet<Vet> Vets { get; set; }
-        //public DbSet<Species> Species { get; set; }
-        //public DbSet<Breed> Breeds { get; set; }
-
-        //public DbSet<Animal> Animals { get; set; }
-
-
-
-
         //public DbSet<Specimen> Specimens { get; set; }
 
+        public DbSet<Species> Species { get; set; }
+        public DbSet<Breed> Breeds { get; set; }
+        public DbSet<Vet> Vets { get; set; }
+        public DbSet<BiteStatus> BiteStatuses { get; set; }
+        
 
         public DataContext() : base("DefaultConnection", throwIfV1Schema: false) { }
 

@@ -13,12 +13,10 @@ namespace RabiesApplication.Models
 {
     public class AnimalOwner: IModel,IPerson,IAuditable
     {
-        [ForeignKey("Animal")]
-        public string Id { get; set; }
-        
+        //[ForeignKey("Animal")]
+        public string Id { get; set; }        
 
         //public string AnimalId { get; set; }
-
         //[ForeignKey("AnimalId")]
         public virtual Animal Animal { get; set; }
 
