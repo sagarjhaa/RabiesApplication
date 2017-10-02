@@ -213,6 +213,10 @@
     <Compile Include="Migrations\201710021708442_AddHumanVictimTable.Designer.cs">
       <DependentUpon>201710021708442_AddHumanVictimTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710021827152_PetOwnerLinkToOnlyPet.cs" />
+    <Compile Include="Migrations\201710021827152_PetOwnerLinkToOnlyPet.Designer.cs">
+      <DependentUpon>201710021827152_PetOwnerLinkToOnlyPet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BitesViewModel.cs" />
@@ -678,6 +682,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710021708442_AddHumanVictimTable.resx">
       <DependentUpon>201710021708442_AddHumanVictimTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710021827152_PetOwnerLinkToOnlyPet.resx">
+      <DependentUpon>201710021827152_PetOwnerLinkToOnlyPet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

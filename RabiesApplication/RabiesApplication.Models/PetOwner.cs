@@ -7,11 +7,8 @@ namespace RabiesApplication.Models
 {
     public class PetOwner : IPerson, IModel, IAuditable
     {
-
         public string Id { get; set; }
-
-        public string BiteId { get; set; }
-        public Bite Bite { get; set; }
+        public virtual Pet Pet { get; set; }
 
         [DisplayName("First Name")]
         [Required]
@@ -55,17 +52,6 @@ namespace RabiesApplication.Models
         public string EmployeeCreatedId { get; set; }
         public string EmployeeEditedId { get; set; }
 
-        public virtual Pet Pet { get; set; }
-
-        public PetOwner()
-        {
-
-        }
-
-        public PetOwner(string biteId)
-        {
-            BiteId = biteId;
-        }
 
     }
 }
