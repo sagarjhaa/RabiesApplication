@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RabiesApplication.Web.Models.BitesViewModel>
+﻿@*@model IEnumerable<RabiesApplication.Web.Models.BitesViewModel>*@
 
 @{
     ViewBag.Title = "Index";
@@ -10,12 +10,12 @@
 <p>
     @Html.ActionLink("Create New", "BiteForm",null,htmlAttributes:new {@class="btn btn-primary"})
 </p>
-<table class="table">
-    <tr>
+@*<table class="table">
+    <tr>*@
         @*<th>
             @Html.DisplayNameFor(model => model.Id)
         </th>*@
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
         <th>
@@ -35,15 +35,16 @@
         </th>
         <th>
             Actions
-        </th>
-    </tr>
-
-@foreach (var item in Model)
-{
-    <tr>
-        @*<td>
+        </th>*@
+    @*</tr>*@
+    @*<td>
             @Html.DisplayFor(modelItem => item.Id)
         </td>*@
+
+    @*@foreach (var item in Model)
+{
+    <tr>
+
         <td>
             @Html.DisplayFor(modelItem => item.Status)
         </td>
@@ -69,6 +70,42 @@
             @Html.ActionLink("Delete", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-danger" })
         </td>
     </tr>
-}
+}*@
 
+@*</table>*@
+
+<table id="bites">
+    <thead>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+    </thead>
 </table>
+
+
+<script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        debugger;
+        $('#bites').DataTable({
+            "serverSide": true,
+            "processing": true,
+            "ajax": {
+                "url": "/Bites/GetBites",
+                "type": "Get",
+                "dataType": "json",
+                "dataSrc":''
+            },
+    "columns":[
+        {"data":"Id"}
+        ]
+        });
+    });
+</script>
