@@ -27,7 +27,7 @@ namespace RabiesApplication.Models
 
         public Species Species { get; set; }
 
-        [Required]
+        //[Required]
         [DisplayName("Breed")]
         public string BreedId { get; set; }
 

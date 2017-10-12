@@ -221,6 +221,10 @@
     <Compile Include="Migrations\201710022106346_AddAnimalTables.Designer.cs">
       <DependentUpon>201710022106346_AddAnimalTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710121441575_RemoveRequiredBreed.cs" />
+    <Compile Include="Migrations\201710121441575_RemoveRequiredBreed.Designer.cs">
+      <DependentUpon>201710121441575_RemoveRequiredBreed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BitesViewModel.cs" />
@@ -692,6 +696,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710022106346_AddAnimalTables.resx">
       <DependentUpon>201710022106346_AddAnimalTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710121441575_RemoveRequiredBreed.resx">
+      <DependentUpon>201710121441575_RemoveRequiredBreed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
