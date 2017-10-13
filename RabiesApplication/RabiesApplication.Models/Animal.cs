@@ -71,6 +71,9 @@ namespace RabiesApplication.Models
         public string EmployeeCreatedId { get; set; }
         public string EmployeeEditedId { get; set; }
 
+
+        
+
         public Animal()
         {
             

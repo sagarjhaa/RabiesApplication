@@ -225,6 +225,10 @@
     <Compile Include="Migrations\201710121441575_RemoveRequiredBreed.Designer.cs">
       <DependentUpon>201710121441575_RemoveRequiredBreed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710121745343_RemoveAnimalLinkFromAnimalOwner.cs" />
+    <Compile Include="Migrations\201710121745343_RemoveAnimalLinkFromAnimalOwner.Designer.cs">
+      <DependentUpon>201710121745343_RemoveAnimalLinkFromAnimalOwner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BitesViewModel.cs" />
@@ -699,6 +703,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710121441575_RemoveRequiredBreed.resx">
       <DependentUpon>201710121441575_RemoveRequiredBreed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710121745343_RemoveAnimalLinkFromAnimalOwner.resx">
+      <DependentUpon>201710121745343_RemoveAnimalLinkFromAnimalOwner.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

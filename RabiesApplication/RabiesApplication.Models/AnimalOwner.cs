@@ -18,7 +18,7 @@ namespace RabiesApplication.Models
 
         //public string AnimalId { get; set; }
         //[ForeignKey("AnimalId")]
-        public virtual Animal Animal { get; set; }
+        //public virtual Animal Animal { get; set; }
 
         [DisplayName("Shelter?")]
         public bool IsShelter { get; set; }
