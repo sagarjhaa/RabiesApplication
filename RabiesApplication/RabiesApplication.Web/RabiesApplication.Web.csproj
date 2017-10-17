@@ -229,6 +229,10 @@
     <Compile Include="Migrations\201710121745343_RemoveAnimalLinkFromAnimalOwner.Designer.cs">
       <DependentUpon>201710121745343_RemoveAnimalLinkFromAnimalOwner.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710171135388_ConfigureZeroToOneBiteToAnimalOwnerLink.cs" />
+    <Compile Include="Migrations\201710171135388_ConfigureZeroToOneBiteToAnimalOwnerLink.Designer.cs">
+      <DependentUpon>201710171135388_ConfigureZeroToOneBiteToAnimalOwnerLink.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BitesViewModel.cs" />
@@ -706,6 +710,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710121745343_RemoveAnimalLinkFromAnimalOwner.resx">
       <DependentUpon>201710121745343_RemoveAnimalLinkFromAnimalOwner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710171135388_ConfigureZeroToOneBiteToAnimalOwnerLink.resx">
+      <DependentUpon>201710171135388_ConfigureZeroToOneBiteToAnimalOwnerLink.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

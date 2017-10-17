@@ -64,5 +64,7 @@ namespace RabiesApplication.Models
         public DateTimeOffset? RecordEdited { get; set; }
         public string EmployeeCreatedId { get; set; }
         public string EmployeeEditedId { get; set; }
+
+        public virtual Bite Bite { get; set; }
     }
 }
