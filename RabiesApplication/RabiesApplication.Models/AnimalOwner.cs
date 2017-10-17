@@ -13,7 +13,7 @@ namespace RabiesApplication.Models
 {
     public class AnimalOwner: IModel,IPerson,IAuditable
     {
-        //[ForeignKey("Animal")]
+        [ForeignKey("Bite")]
         public string Id { get; set; }        
 
         //public string AnimalId { get; set; }

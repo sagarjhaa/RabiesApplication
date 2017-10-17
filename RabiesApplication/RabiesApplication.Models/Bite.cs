@@ -68,6 +68,9 @@ namespace RabiesApplication.Models
 
         public virtual ICollection<Pet> Pets { get; set; }
         public virtual ICollection<HumanVictim> HumanVictims { get; set; }
+
+        //One to Zero or One RelationShip to AnimalOwner
+        public virtual AnimalOwner AnimalOwner { get; set; }
         //public virtual ICollection<Action> Actions { get; set; }
     }
 }
