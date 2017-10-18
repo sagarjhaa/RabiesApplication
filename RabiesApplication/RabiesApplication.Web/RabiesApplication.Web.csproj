@@ -233,6 +233,22 @@
     <Compile Include="Migrations\201710171135388_ConfigureZeroToOneBiteToAnimalOwnerLink.Designer.cs">
       <DependentUpon>201710171135388_ConfigureZeroToOneBiteToAnimalOwnerLink.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710181148086_RemoveBiteIdFromAnimal.cs" />
+    <Compile Include="Migrations\201710181148086_RemoveBiteIdFromAnimal.Designer.cs">
+      <DependentUpon>201710181148086_RemoveBiteIdFromAnimal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710181153241_CreateManyToManyBetweenBiteAndAnimal.cs" />
+    <Compile Include="Migrations\201710181153241_CreateManyToManyBetweenBiteAndAnimal.Designer.cs">
+      <DependentUpon>201710181153241_CreateManyToManyBetweenBiteAndAnimal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710181211251_CreateForeignKeyinAnimalForAnimalOwner.cs" />
+    <Compile Include="Migrations\201710181211251_CreateForeignKeyinAnimalForAnimalOwner.Designer.cs">
+      <DependentUpon>201710181211251_CreateForeignKeyinAnimalForAnimalOwner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710181214037_Remove1To1BiteAnimalOwner.cs" />
+    <Compile Include="Migrations\201710181214037_Remove1To1BiteAnimalOwner.Designer.cs">
+      <DependentUpon>201710181214037_Remove1To1BiteAnimalOwner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BitesViewModel.cs" />
@@ -713,6 +729,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710171135388_ConfigureZeroToOneBiteToAnimalOwnerLink.resx">
       <DependentUpon>201710171135388_ConfigureZeroToOneBiteToAnimalOwnerLink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710181148086_RemoveBiteIdFromAnimal.resx">
+      <DependentUpon>201710181148086_RemoveBiteIdFromAnimal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710181153241_CreateManyToManyBetweenBiteAndAnimal.resx">
+      <DependentUpon>201710181153241_CreateManyToManyBetweenBiteAndAnimal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710181211251_CreateForeignKeyinAnimalForAnimalOwner.resx">
+      <DependentUpon>201710181211251_CreateForeignKeyinAnimalForAnimalOwner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710181214037_Remove1To1BiteAnimalOwner.resx">
+      <DependentUpon>201710181214037_Remove1To1BiteAnimalOwner.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

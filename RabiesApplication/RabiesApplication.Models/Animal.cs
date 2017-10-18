@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,11 +12,14 @@ namespace RabiesApplication.Models
     public class Animal : IModel,IAuditable
     {
         public string Id { get; set; }
+
+        [ForeignKey("AnimalOwner")]
+        public string AnimalOwnerId { get; set; }
+
+        public AnimalOwner AnimalOwner { get; set; }
+
+        public virtual ICollection<Bite> Bites { get; set; }
         
-        public string BiteId { get; set; }
-
-        public Bite Bite { get; set; }
-
         [DisplayName("Vet")]
         public string VetId { get; set; }
 
@@ -81,7 +85,7 @@ namespace RabiesApplication.Models
 
         public Animal(string biteId)
         {
-            BiteId = biteId;
+            
         }
     }
 }
