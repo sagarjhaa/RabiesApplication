@@ -12,6 +12,7 @@ namespace RabiesApplication.Web.Repositories
 {
     public class BiteRepository : ActiveRepository<Bite>
     {
+      
         public override Task Insert(Bite model)
         {
             model.BiteStatusId = BiteStatusConstant.New;

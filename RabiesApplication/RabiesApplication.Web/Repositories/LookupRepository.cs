@@ -24,6 +24,7 @@ namespace RabiesApplication.Web.Repositories
         {
             return base.All().Where(s => s.Active == Constant.Active);
         }
+
     }
 
     public class CitiesRepository : ActiveRepository<City>
@@ -33,7 +34,14 @@ namespace RabiesApplication.Web.Repositories
         {
             return base.All().Where(c => c.Active == Constant.Active);
         }
+        public IQueryable<City> GetCitiesByState(string stateId)
+        {
+            return base.All().Where(c => c.Active == Constant.Active).Where(c => c.StateId.Equals(stateId)).OrderBy(c => c.CityName);
+        }
     }
+
+
+
 
     public class BiteStatusRepository : ActiveRepository<BiteStatus>
     {

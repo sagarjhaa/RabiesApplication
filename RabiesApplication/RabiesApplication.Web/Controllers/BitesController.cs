@@ -54,6 +54,8 @@ namespace RabiesApplication.Web.Controllers
             if (id != null)
             {
                 biteViewModel.Bite = await _biteRepository.GetById(id);
+                biteViewModel.States = _statesRepository.All();
+                biteViewModel.Cities = _citiesRepository.GetCitiesByState(biteViewModel.Bite.StateId);
 
                 
                 if (biteViewModel.Bite == null)
