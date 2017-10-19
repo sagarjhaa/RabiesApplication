@@ -34,9 +34,21 @@ namespace RabiesApplication.Web.Repositories
         {
             return base.All().Where(c => c.Active == Constant.Active);
         }
-        public IQueryable<City> GetCitiesByState(string stateId)
+        public IOrderedEnumerable<City> GetCitiesByState(string stateId)
         {
-            return base.All().Where(c => c.Active == Constant.Active).Where(c => c.StateId.Equals(stateId)).OrderBy(c => c.CityName);
+            var cities = (from c in Context.Cities
+                where c.Active == Constant.Active
+                where c.StateId.Equals(stateId)
+                select c
+                //{
+                //    Id = c.Id,
+                //    CityName = c.CityName
+                //}
+                );
+
+            return cities.ToList().OrderBy(c => c.CityName);
+
+            //return base.All().Where(c => c.Active == Constant.Active).Where(c => c.StateId.Equals(stateId)).OrderBy(c => c.CityName);
         }
     }
 

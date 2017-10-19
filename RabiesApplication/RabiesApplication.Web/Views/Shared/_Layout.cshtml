@@ -9,7 +9,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
 
-
+    
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     @*Todo Check to clear the direct CDN links to toastr and use the installed version*@
@@ -52,7 +52,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid body-content" style="min-height: 100vh; margin-top:20px">
+    <div class="container body-content" style="min-height: 100vh; margin-top:20px">
         @RenderBody()
         @*<hr/>*@
     </div>
@@ -65,7 +65,7 @@
 <script src="~/signalr/hubs"></script>
 
 
-@Scripts.Render("~/bundles/bootstrap")
+@*@Scripts.Render("~/bundles/bootstrap")*@
 @RenderSection("scripts", required: false)
 
 

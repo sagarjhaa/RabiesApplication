@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -54,7 +55,7 @@ namespace RabiesApplication.Web.Controllers
             if (id != null)
             {
                 biteViewModel.Bite = await _biteRepository.GetById(id);
-                biteViewModel.States = _statesRepository.All();
+                biteViewModel.States = _statesRepository.All().OrderBy(s => s.StateName);
                 biteViewModel.Cities = _citiesRepository.GetCitiesByState(biteViewModel.Bite.StateId);
 
                 
@@ -69,48 +70,56 @@ namespace RabiesApplication.Web.Controllers
         }
 
 
-        //// POST: Bites/Save
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Save(Bite bite)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        if (bite.Id == null)
-        //        {
-        //            await _biteRepository.Insert(bite);
-        //        }
-        //        else
-        //        {
-        //            await _biteRepository.Update(bite);
-        //        }
-        //        await _biteRepository.SaveChangesAsync();
 
-        //        //var biteupdate = new BiteUpdatesHub();
-        //        //await biteupdate.NotifyUpdates();
+        public JsonResult  GetCitiesByStateId(string stateId)
+        {
+            var cities = _citiesRepository.GetCitiesByState(stateId);
+            return  Json(cities,JsonRequestBehavior.AllowGet);
+        }
 
-        //        return RedirectToAction("Details",new {biteId = bite.Id,Message = Constant.ManageMessageId.SavedBiteDataSuccess});
-        //    }
 
-        //    var biteViewModel = new BiteViewModel
-        //    {
-        //        Bite = bite,
-        //        Cities = _citiesRepository.All(),
-        //        States = _statesRepository.All(),
-        //        Employees = _employeeRepository.All(),
-        //        BiteStatuses = _biteStatusRepository.All()
-        //    };
+        // POST: Bites/Save
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Save(Bite bite)
+        {
+            if (ModelState.IsValid)
+            {
+                if (bite.Id == null)
+                {
+                    await _biteRepository.Insert(bite);
+                }
+                else
+                {
+                    await _biteRepository.Update(bite);
+                }
+                await _biteRepository.SaveChangesAsync();
 
-            
+                //var biteupdate = new BiteUpdatesHub();
+                //await biteupdate.NotifyUpdates();
 
-        //    return View("BiteForm", biteViewModel);
-        //}
+                return RedirectToAction("Details", new { biteId = bite.Id, Message = Constant.ManageMessageId.SavedBiteDataSuccess });
+            }
+
+            var biteViewModel = new BiteViewModel
+            {
+                Bite = bite,
+                Cities = _citiesRepository.All(),
+                States = _statesRepository.All(),
+                Employees = _employeeRepository.All(),
+                BiteStatuses = _biteStatusRepository.All()
+            };
+
+
+
+            return View("BiteForm", biteViewModel);
+        }
 
 
         //// GET: Bites/Details/5
         //public async Task<ActionResult> Details(string biteId, Constant.ManageMessageId? message)
         //{
-            
+
 
         //    ViewBag.StatusMessage =
         //          message == Constant.ManageMessageId.SavedBiteDataSuccess ? "Bite data saved successfully."
@@ -195,7 +204,7 @@ namespace RabiesApplication.Web.Controllers
         //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         //    }
 
-           
+
 
         //    var selectedLetter = form["Letter Type"];
 
@@ -208,12 +217,12 @@ namespace RabiesApplication.Web.Controllers
         //    }
         //    catch (Exception)
         //    {
-                
+
         //        throw;
         //    }
 
 
-            
+
 
 
         //    return RedirectToAction("Details", new { biteId = biteId});
@@ -228,6 +237,6 @@ namespace RabiesApplication.Web.Controllers
         //    return File(fs, "application/vnd.openxmlformats-officedocument.wordprocessingml.document",documentId);
         //}
 
-        
+
     }
 }
