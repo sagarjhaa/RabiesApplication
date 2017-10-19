@@ -31,7 +31,7 @@ namespace RabiesApplication.Web.Controllers
         // GET: Bites
         public ActionResult Index(int? pageNo)
         {
-            var bites = _biteRepository.All().ToList();
+            var bites = _biteRepository.GetBiteIndexView(); //All().ToList();
 
             int sizeOfPage = 10;
             int noOfPage = (pageNo ?? 1);
