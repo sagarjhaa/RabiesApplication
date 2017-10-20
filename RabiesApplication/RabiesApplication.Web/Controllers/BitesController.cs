@@ -26,6 +26,7 @@ namespace RabiesApplication.Web.Controllers
         private readonly BiteStatusRepository _biteStatusRepository = new BiteStatusRepository();
         private readonly HumanVictimRepository _humanVictimRepository = new HumanVictimRepository();
         private readonly AnimalRepository _animalRepository = new AnimalRepository();
+        private readonly VetRepository _vetRepository = new VetRepository();
         //private readonly PetOwnerRepository _petOwnerRepository = new PetOwnerRepository();
         //private readonly ActionRepository _actionRepository = new ActionRepository();
 
@@ -85,6 +86,7 @@ namespace RabiesApplication.Web.Controllers
             var bite = _biteRepository.GetBiteJustViewModel(biteId);
             var animal = _animalRepository.GetAnimalByBiteId(bite.Id, animalId);
             var humanVicitm = _humanVictimRepository.GetHumanVictimViewModelByBiteId(bite.Id);
+            var vet = _vetRepository.GetVetDetails(animalId);
 
             var ctx = new DataContext();
             var animalOwner = (from o in ctx.AnimalOwner
@@ -106,7 +108,8 @@ namespace RabiesApplication.Web.Controllers
                 Bite = bite,
                 Animal = animal,
                 HumanVictims = humanVicitm,
-                AnimalOwner = animalOwner
+                AnimalOwner = animalOwner,
+                Vet = vet
             };
 
 

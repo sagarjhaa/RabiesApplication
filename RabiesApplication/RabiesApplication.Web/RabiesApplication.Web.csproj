@@ -649,6 +649,7 @@
     <Content Include="Views\Vets\Delete.cshtml" />
     <Content Include="Views\Vets\Index.cshtml" />
     <Content Include="Views\Shared\_ActionsList.cshtml" />
+    <Content Include="Views\Shared\_VetView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

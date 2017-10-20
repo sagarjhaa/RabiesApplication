@@ -81,6 +81,8 @@
 </div>
 
 
+
+
 <div class="row">
     <div class="col-md-6">
         <p class="pull-right">
@@ -157,14 +159,20 @@
     </div>
 </div>
 
-
 <div class="row">
     <div class="col-md-6">
-        <p class="pull-left">
-        <h3>Actions</h3>
-            @*@Html.Partial("_ActionsList", Model.Actions)*@
+        <h3>Vet</h3>
+        @if (Model.Vet != null)
+            {
+            @Html.Partial("_VetView", Model.Vet)
+        }
+
+        @*@Html.Partial("_ActionsList", Model.Actions)*@
     </div>
 </div>
+
+
+
 
 
 

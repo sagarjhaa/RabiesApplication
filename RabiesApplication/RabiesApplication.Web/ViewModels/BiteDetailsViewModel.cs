@@ -14,6 +14,8 @@ namespace RabiesApplication.Web.ViewModels
         public IEnumerable<HumanVictimViewModel> HumanVictims { get; set; }
         public AnimalViewModel Animal { get; set; }
         public AnimalOwnerViewModel AnimalOwner { get; set; }
+
+        public VetViewModel Vet { get; set; }
     }
 
 
@@ -55,6 +57,19 @@ namespace RabiesApplication.Web.ViewModels
         public string City { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }
+    }
+
+    public class VetViewModel
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string Zip { get; set; }
+        public string Phone1 { get; set; }
+        public string Phone2 { get; set; }
+
+
     }
 
 
