@@ -29,10 +29,11 @@ namespace RabiesApplication.Web
             //          "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      //"~/Content/bootstrap.css",
-                      "~/Content/site.css",
+                      
+                      //"~/Content/site.css",
+                      "~/Content/bootstrap.css",
                       //"~/Content/bootstrap-theme.css",
-                      "~/Content/bootswatch/readable/bootstrap.css",
+                      //"~/Content/bootswatch/readable/bootstrap.css",
                       "~/Content/DataTables/css/dataTables.bootstrap4.css"
                       ));
         }
