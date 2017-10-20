@@ -78,12 +78,12 @@ namespace RabiesApplication.Web.Controllers
         }
 
 
-        public ViewResult Details(string biteId)
+        public ViewResult Details(string biteId,string animalId)
         {
 
 
             var bite = _biteRepository.GetBiteJustViewModel(biteId);
-            var animal = _animalRepository.GetAnimalByBiteId(bite.Id);
+            var animal = _animalRepository.GetAnimalByBiteId(bite.Id, animalId);
             var humanVicitm = _humanVictimRepository.GetHumanVictimViewModelByBiteId(bite.Id);
 
             var ctx = new DataContext();

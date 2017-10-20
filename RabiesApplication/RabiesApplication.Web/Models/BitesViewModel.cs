@@ -11,6 +11,7 @@ namespace RabiesApplication.Web.Models
     {
         public string Id { get; set; }
         public string PetOwner { get; set; }
+        public string AnimalId { get; set; }
         public string AnimalName { get; set; }
         [DisplayFormat(DataFormatString = Constant.DateFormat)]
         public DateTimeOffset? BiteDate { get; set; }

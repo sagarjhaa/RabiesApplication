@@ -22,10 +22,10 @@ namespace RabiesApplication.Web.Repositories
         //    return All().Where(p => p.IsVictim.Equals(Constant.Active)).Where(p => p.BiteId.Equals(biteId)).Include("Breed").Include("Species");
         //}
 
-        public AnimalViewModel GetAnimalByBiteId(string biteId)
+        public AnimalViewModel GetAnimalByBiteId(string biteId,string animalId)
         {
             //return Context.Animals.Include("Breed").Include("Species").SingleOrDefault(model => model.Bites.All(bite => bite.Id.Equals(biteId)));
-            var a =  Context.Animals.Include("Breed").Include("Species").FirstOrDefault(animal => animal.Bites.All(bite => bite.Id.Equals(biteId)));
+            var a =  Context.Animals.Include("Breed").Include("Species").Where(animal => animal.Bites.All(bite => bite.Id.Equals(biteId))).FirstOrDefault(aa => aa.Id.Equals(animalId));
 
 
             if (a != null)

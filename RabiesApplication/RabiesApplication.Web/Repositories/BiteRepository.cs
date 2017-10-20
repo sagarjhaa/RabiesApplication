@@ -72,6 +72,7 @@ namespace RabiesApplication.Web.Repositories
                          {
                              Id = bite.Id,
                              PetOwner = o.FirstName + " " + o.LastName,
+                             AnimalId = bite.Animals.FirstOrDefault().Id,
                              AnimalName = bite.Animals.FirstOrDefault().Name,
                              BiteDate = bite.BiteDate,
                              City = c.CityName,
