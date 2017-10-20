@@ -47,7 +47,6 @@ namespace RabiesApplication.Web.Controllers
             {
                 var newBiteViewModel = new BiteViewModel()
                 {
-                    Bite = new Bite() { BiteStatusId = ""},
                     States = _statesRepository.All(),
                     Cities = _citiesRepository.GetCitiesByState(null),
                     Employees = _employeeRepository.All(),
