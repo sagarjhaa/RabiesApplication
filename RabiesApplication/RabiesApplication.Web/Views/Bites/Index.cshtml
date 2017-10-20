@@ -11,7 +11,7 @@
 <p>
     @Html.ActionLink("Create New", "BiteForm",null,htmlAttributes:new {@class="btn btn-primary"})
 </p>
-<table class="table table-sm table-condensed table-hover table-responsive">
+<table class="table table-sm table-condensed table-hover">
     <thead>
         <tr>
             <th>
@@ -79,29 +79,3 @@
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
 @Html.PagedListPager(Model, pageNo => Url.Action("Index",new { pageNo }))@*, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))*@ 
-
-
- 
-
-
-
-
-@*<script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
-<script>
-    $(document).ready(function () {
-        debugger;
-        $('#bites').DataTable({
-            "serverSide": true,
-            "processing": true,
-            "ajax": {
-                "url": "/Bites/GetBites",
-                "type": "Get",
-                "dataType": "json",
-                "dataSrc":''
-            },
-    "columns":[
-        {"data":"Id"}
-        ]
-        });
-    });
-</script>*@

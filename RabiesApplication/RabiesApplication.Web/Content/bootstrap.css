@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Bootstrap v4.0.0-alpha (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -770,7 +770,7 @@ pre code {
 
 @media (min-width: 75em) {
   .container {
-    max-width: 72.25rem;
+    max-width: 85.25rem;
   }
 }
 

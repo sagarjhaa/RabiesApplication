@@ -66,7 +66,7 @@
             <div class="form-group row">
                 @Html.LabelFor(model => model.Bite.CityId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.Bite.CityId, new SelectList(Model.Cities, "Id", "CityName"), "Select City", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.Bite.CityId, new SelectList(Model.Cities, "Id", "CityName"), htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Bite.CityId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -94,7 +94,7 @@
                     @Html.HiddenFor(model => model.Bite.Active)
                     @Html.HiddenFor(model => model.Bite.EmployeeCreatedId)
                     @Html.HiddenFor(model => model.Bite.RecordCreated)
-                    <input type="submit" value="Save" class="btn btn-success user-full-width" />
+                    <input type="submit" value="Save" class="btn btn-success btn-block" />
                 </div>
             </div>
 

@@ -43,6 +43,19 @@ namespace RabiesApplication.Web.Controllers
 
         public async Task<ActionResult> BiteForm(string id)
         {
+            if (id == null)
+            {
+                var newBiteViewModel = new BiteViewModel()
+                {
+                    Bite = new Bite() { BiteStatusId = ""},
+                    States = _statesRepository.All(),
+                    Cities = _citiesRepository.GetCitiesByState(null),
+                    Employees = _employeeRepository.All(),
+                    BiteStatuses = _biteStatusRepository.All()
+                };
+
+                return View(newBiteViewModel);
+            }
            
             var biteViewModel = new BiteViewModel
             {

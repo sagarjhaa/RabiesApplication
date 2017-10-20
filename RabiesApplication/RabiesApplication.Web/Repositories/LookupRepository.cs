@@ -14,7 +14,7 @@ namespace RabiesApplication.Web.Repositories
     {
         public override IQueryable<State> All()
         {
-            return base.All().Where(s => s.Active == Constant.Active);
+            return base.All().Where(s => s.Active == Constant.Active).OrderBy(s => s.StateName);
         }
     }
 
@@ -22,7 +22,7 @@ namespace RabiesApplication.Web.Repositories
     {
         public override IQueryable<County> All()
         {
-            return base.All().Where(s => s.Active == Constant.Active);
+            return base.All().Where(s => s.Active == Constant.Active).OrderBy(c => c.Name);
         }
 
     }
@@ -36,19 +36,27 @@ namespace RabiesApplication.Web.Repositories
         }
         public IOrderedEnumerable<City> GetCitiesByState(string stateId)
         {
+            if (stateId == null)
+            {
+                var city = new List<City>()
+                {
+                    new City(){
+                    Id = "",
+                    CityName = "Select City"
+                }};
+
+                return city.OrderBy(c => c.Id);
+            }
+
+
             var cities = (from c in Context.Cities
                 where c.Active == Constant.Active
                 where c.StateId.Equals(stateId)
                 select c
-                //{
-                //    Id = c.Id,
-                //    CityName = c.CityName
-                //}
                 );
 
             return cities.ToList().OrderBy(c => c.CityName);
 
-            //return base.All().Where(c => c.Active == Constant.Active).Where(c => c.StateId.Equals(stateId)).OrderBy(c => c.CityName);
         }
     }
 
