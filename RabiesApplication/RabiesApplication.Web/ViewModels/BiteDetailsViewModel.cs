@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 using RabiesApplication.Models;
+using RabiesApplication.Web.Models;
 using RabiesApplication.Web.Repositories;
 using Action = RabiesApplication.Models.Action;
 
@@ -24,7 +26,9 @@ namespace RabiesApplication.Web.ViewModels
         public string Id { get; set; }
         public string City { get; set; }
         public string Status { get; set; }
+        [DisplayFormat(DataFormatString = Constant.DateFormat)]
         public DateTimeOffset BiteDate { get; set; }
+        [DisplayFormat(DataFormatString = Constant.DateFormat)]
         public DateTimeOffset ReportDate { get; set; }
         public string Comments { get; set; }
     }
