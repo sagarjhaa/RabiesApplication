@@ -1,4 +1,4 @@
-﻿@model RabiesApplication.Models.Animal
+﻿@model RabiesApplication.Web.ViewModels.AnimalViewModel
 
 
 <table class="table table-bordered table-striped">
@@ -9,17 +9,12 @@
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.Breed.Description)
+            @Html.DisplayNameFor(model => model.Breed)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Species.Description)
+            @Html.DisplayNameFor(model => model.Species)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsVacinated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsQuarantine)
-        </th>
+      
         <th></th>
     </tr>
 
@@ -29,21 +24,16 @@
             @Html.DisplayFor(model => model.Name)
         </td>                
         <td>
-            @Html.DisplayFor(model => model.Breed.Description)
+            @Html.DisplayFor(model => model.Breed)
         </td>                
         <td>
-            @Html.DisplayFor(model => model.Species.Description)
+            @Html.DisplayFor(model => model.Species)
         </td>                
-        <td>
-            @Html.DisplayFor(model => model.IsVacinated)
-        </td>                
-        <td>
-            @Html.DisplayFor(model => model.IsQuarantine)
-        </td>
+       
         
         <td>
-            @Html.ActionLink("Edit", "AnimalForm","Animals", new {biteId = Model.BiteId,animalId = Model.Id},null) |
-            @Html.ActionLink("Delete", "Delete","Animals", new {animalId = Model.Id},null)
+            @*@Html.ActionLink("Edit", "AnimalForm","Animals", new {biteId = Model.BiteId,animalId = Model.Id},null) |*@
+            @*@Html.ActionLink("Delete", "Delete","Animals", new {animalId = Model.Id},null)*@
         </td>
     </tr>
 @*}*@

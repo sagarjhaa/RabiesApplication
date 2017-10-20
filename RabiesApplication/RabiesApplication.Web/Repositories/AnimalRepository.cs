@@ -28,15 +28,20 @@ namespace RabiesApplication.Web.Repositories
             var a =  Context.Animals.Include("Breed").Include("Species").FirstOrDefault(animal => animal.Bites.All(bite => bite.Id.Equals(biteId)));
 
 
-            return new AnimalViewModel()
+            if (a != null)
+                return new AnimalViewModel()
+                {
+                    Id = a.Id,
+                    Name = a.Name,
+                    Breed =  a.Breed == null? string.Empty:a.Breed.Description,
+                    Species = a.Species.Description,
+                    OwnerId = a.AnimalOwnerId
+
+                };
+            else
             {
-                Id = a.Id,
-                Name = a.Name,
-                Breed = a.Breed.Description,
-                Sprecies = a.Species.Description,
-                OwnerId = a.AnimalOwnerId
-                
-            };
+                return new AnimalViewModel();
+            }
         }
 
         //public override Task DeleteAsync(string animalId)

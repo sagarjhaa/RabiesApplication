@@ -78,11 +78,11 @@ namespace RabiesApplication.Web.Controllers
         }
 
 
-        public JsonResult GetBiteDetails(string id)
+        public ViewResult Details(string biteId)
         {
 
 
-            var bite = _biteRepository.GetBiteJustViewModel(id);
+            var bite = _biteRepository.GetBiteJustViewModel(biteId);
             var animal = _animalRepository.GetAnimalByBiteId(bite.Id);
             var humanVicitm = _humanVictimRepository.GetHumanVictimViewModelByBiteId(bite.Id);
 
@@ -110,7 +110,8 @@ namespace RabiesApplication.Web.Controllers
             };
 
 
-            return Json(bitedetailsViewModel, JsonRequestBehavior.AllowGet);
+            return View(bitedetailsViewModel);
+            //return Json(bitedetailsViewModel, JsonRequestBehavior.AllowGet);
         }
 
 

@@ -1,4 +1,4 @@
-﻿@model RabiesApplication.Models.AnimalOwner
+﻿@model RabiesApplication.Web.ViewModels.AnimalOwnerViewModel
 
 <table class="table table-condensed table-bordered  table-striped">
     <tr>
@@ -9,20 +9,15 @@
             @Html.DisplayNameFor(model => model.LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.City.CityName)
+            @Html.DisplayNameFor(model => model.City)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.State.StateName)
+            @Html.DisplayNameFor(model => model.State)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Contactnumber1)
+            @Html.DisplayNameFor(model => model.Zip)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Contactnumber2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsShelter)
-        </th>
+      
         <th></th>
     </tr>
 
@@ -35,24 +30,19 @@
             @Html.DisplayFor(model => model.LastName)
         </td>
         <td>
-            @Html.DisplayFor(model => model.City.CityName)
+            @Html.DisplayFor(model => model.City)
         </td>
         <td>
-            @Html.DisplayFor(model => model.State.StateName)
+            @Html.DisplayFor(model => model.State)
         </td>
         <td>
-            @Html.DisplayFor(model => model.Contactnumber1)
+            @Html.DisplayFor(model => model.Zip)
         </td>
-        <td>
-            @Html.DisplayFor(model => model.Contactnumber2)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.IsShelter)
-        </td>
+        
      
         <td>
-            @Html.ActionLink("Edit", "AnimalOwnerForm","AnimalOwners", new { animalId= Model.Id},null) |
-            @Html.ActionLink("Delete", "Delete","AnimalOwners", new { ownerId= Model.Id },null)
+            @*@Html.ActionLink("Edit", "AnimalOwnerForm","AnimalOwners", new { animalId= Model.Id},null) |*@
+            @*@Html.ActionLink("Delete", "Delete","AnimalOwners", new { ownerId= Model.Id },null)*@
         </td>
     </tr>
 
