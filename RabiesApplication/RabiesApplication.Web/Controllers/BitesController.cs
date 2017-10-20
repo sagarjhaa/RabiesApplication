@@ -25,7 +25,7 @@ namespace RabiesApplication.Web.Controllers
         private readonly EmployeeRepository _employeeRepository = new EmployeeRepository();
         private readonly BiteStatusRepository _biteStatusRepository = new BiteStatusRepository();
         private readonly HumanVictimRepository _humanVictimRepository = new HumanVictimRepository();
-        //private readonly AnimalRepository _animalRepository = new AnimalRepository();
+        private readonly AnimalRepository _animalRepository = new AnimalRepository();
         //private readonly PetOwnerRepository _petOwnerRepository = new PetOwnerRepository();
         //private readonly ActionRepository _actionRepository = new ActionRepository();
 
@@ -78,6 +78,43 @@ namespace RabiesApplication.Web.Controllers
         }
 
 
+        public JsonResult GetBiteDetails(string id)
+        {
+
+
+            var bite = _biteRepository.GetBiteJustViewModel(id);
+            var animal = _animalRepository.GetAnimalByBiteId(bite.Id);
+            var humanVicitm = _humanVictimRepository.GetHumanVictimViewModelByBiteId(bite.Id);
+
+            var ctx = new DataContext();
+            var animalOwner = (from o in ctx.AnimalOwner
+                where o.Id.Equals(animal.OwnerId)
+                join s in ctx.States on o.StateId equals s.Id
+                join c in ctx.Cities on o.CityId equals c.Id
+                select new AnimalOwnerViewModel()
+                {
+                    FirstName = o.FirstName,
+                    LastName = o.LastName,
+                    Id = o.Id,
+                    Zip = o.Zipcode.ToString(),
+                    State = s.StateName,
+                    City = c.CityName
+                }).FirstOrDefault();
+
+            var bitedetailsViewModel = new BiteDetailsViewModel
+            {
+                Bite = bite,
+                Animal = animal,
+                HumanVictims = humanVicitm,
+                AnimalOwner = animalOwner
+            };
+
+
+            return Json(bitedetailsViewModel, JsonRequestBehavior.AllowGet);
+        }
+
+
+
         // POST: Bites/Save
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -98,7 +135,8 @@ namespace RabiesApplication.Web.Controllers
                 //var biteupdate = new BiteUpdatesHub();
                 //await biteupdate.NotifyUpdates();
 
-                return RedirectToAction("Details", new { biteId = bite.Id, Message = Constant.ManageMessageId.SavedBiteDataSuccess });
+                return RedirectToAction("Index");
+                //return RedirectToAction("Details", new { biteId = bite.Id, Message = Constant.ManageMessageId.SavedBiteDataSuccess });
             }
 
             var biteViewModel = new BiteViewModel

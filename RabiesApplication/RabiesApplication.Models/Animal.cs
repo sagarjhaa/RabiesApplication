@@ -18,7 +18,7 @@ namespace RabiesApplication.Models
 
         public AnimalOwner AnimalOwner { get; set; }
 
-        public virtual ICollection<Bite> Bites { get; set; }
+        public ICollection<Bite> Bites { get; set; }
         
         [DisplayName("Vet")]
         public string VetId { get; set; }

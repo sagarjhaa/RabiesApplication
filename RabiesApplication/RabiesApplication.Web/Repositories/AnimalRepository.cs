@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RabiesApplication.Models;
 using RabiesApplication.Web.Models;
+using RabiesApplication.Web.ViewModels;
 
 namespace RabiesApplication.Web.Repositories
 {
@@ -16,31 +17,43 @@ namespace RabiesApplication.Web.Repositories
             return Context.Animals.Include("Breed").Include("Species").FirstOrDefaultAsync(a => a.Id.Equals(animalId));
         }
 
-        public IQueryable<Animal> GetAllPetVictims(string biteId)
+        //public IQueryable<Animal> GetAllPetVictims(string biteId)
+        //{
+        //    return All().Where(p => p.IsVictim.Equals(Constant.Active)).Where(p => p.BiteId.Equals(biteId)).Include("Breed").Include("Species");
+        //}
+
+        public AnimalViewModel GetAnimalByBiteId(string biteId)
         {
-            return All().Where(p => p.IsVictim.Equals(Constant.Active)).Where(p => p.BiteId.Equals(biteId)).Include("Breed").Include("Species");
-        }
+            //return Context.Animals.Include("Breed").Include("Species").SingleOrDefault(model => model.Bites.All(bite => bite.Id.Equals(biteId)));
+            var a =  Context.Animals.Include("Breed").Include("Species").FirstOrDefault(animal => animal.Bites.All(bite => bite.Id.Equals(biteId)));
 
-        public Animal GetAnimalByBiteId(string biteId)
-        {
-            return Context.Animals.Include("Breed").Include("Species").Where(p => p.IsVictim.Equals(Constant.Deactive)).SingleOrDefault(model => model.BiteId.Equals(biteId));
-        }
 
-        public override Task DeleteAsync(string animalId)
-        {
-            //Check for petOwner if there is any for the animalId.
-            //Only animals with isVictim false might have the petOwner information.
-
-            var animal = base.GetById(animalId).Result;
-
-            //False means it the animal and not pet
-            if (!animal.IsVictim)
+            return new AnimalViewModel()
             {
-                //find if there is any animal owner information for this animal. Delete it first if any
-                var owner =new PetOwner();//Context.PetOwners.FirstOrDefault(o => o.AnimalId.Equals(animal.Id));
-                if (owner != null) Context.PetOwners.Remove(owner);
-            }
-            return base.DeleteAsync(animalId);
+                Id = a.Id,
+                Name = a.Name,
+                Breed = a.Breed.Description,
+                Sprecies = a.Species.Description,
+                OwnerId = a.AnimalOwnerId
+                
+            };
         }
+
+        //public override Task DeleteAsync(string animalId)
+        //{
+        //    //Check for petOwner if there is any for the animalId.
+        //    //Only animals with isVictim false might have the petOwner information.
+
+        //    var animal = base.GetById(animalId).Result;
+
+        //    //False means it the animal and not pet
+        //    if (!animal.IsVictim)
+        //    {
+        //        //find if there is any animal owner information for this animal. Delete it first if any
+        //        var owner =new PetOwner();//Context.PetOwners.FirstOrDefault(o => o.AnimalId.Equals(animal.Id));
+        //        if (owner != null) Context.PetOwners.Remove(owner);
+        //    }
+        //    return base.DeleteAsync(animalId);
+        //}
     }
 }

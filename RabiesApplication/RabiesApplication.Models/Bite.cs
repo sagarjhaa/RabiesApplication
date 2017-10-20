@@ -67,11 +67,11 @@ namespace RabiesApplication.Models
         public string EmployeeEditedId { get; set; }
 
         public virtual ICollection<Pet> Pets { get; set; }
-        public virtual ICollection<HumanVictim> HumanVictims { get; set; }
+        public  ICollection<HumanVictim> HumanVictims { get; set; }
 
 
         //Many to Many relationship between Bite and Animal
-        public virtual ICollection<Animal> Animals { get; set; }
+        public ICollection<Animal> Animals { get; set; }
 
         //public virtual ICollection<Action> Actions { get; set; }
     }

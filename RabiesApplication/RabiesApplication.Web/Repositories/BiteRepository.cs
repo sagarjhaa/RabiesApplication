@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RabiesApplication.Models;
 using RabiesApplication.Web.Models;
+using RabiesApplication.Web.ViewModels;
 
 namespace RabiesApplication.Web.Repositories
 {
@@ -30,7 +31,28 @@ namespace RabiesApplication.Web.Repositories
 
         public override IQueryable<Bite> All()
         {
-            return base.All().Where(b => b.Active.Equals(Constant.Active)).Include("City").Include("State").Include("BiteStatus").Include("HumanVictims").OrderByDescending(b => b.BiteDate);
+            return base.All().Where(b => b.Active.Equals(Constant.Active)).Include("City").Include("State").Include("BiteStatus").OrderByDescending(b => b.BiteDate);
+        }
+
+        public BiteJustViewModel GetBiteJustViewModel(string biteId)
+        {
+            var b =
+                Context.Bites
+                    .Include("City")
+                    .Include("State")
+                    .Include("BiteStatus")
+                    .FirstOrDefault(bite => bite.Id.Equals(biteId));
+
+
+            return new BiteJustViewModel()
+            {
+                Id = b.Id,
+                City = b.City.CityName,
+                Status = b.BiteStatus.Description,
+                BiteDate = b.BiteDate.Value,
+                ReportDate = b.BiteReportDate.Value,
+                Comments = b.Comments
+            };
         }
 
         public IEnumerable<BitesViewModel> GetBiteIndexView()
