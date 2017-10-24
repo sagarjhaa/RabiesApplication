@@ -28,6 +28,7 @@ namespace RabiesApplication.Models
         public string Addressline1 { get; set; }
         [DisplayName("Addressline 2")]
         public string Addressline2 { get; set; }
+        public string Email { get; set; }
         [DisplayName("City")]
         public string CityId { get; set; }
         public City City { get; set; }
