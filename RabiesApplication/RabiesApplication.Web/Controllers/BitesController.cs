@@ -49,7 +49,7 @@ namespace RabiesApplication.Web.Controllers
                 {
                     States = _statesRepository.All(),
                     Cities = _citiesRepository.GetCitiesByState(null),
-                    Employees = _employeeRepository.All(),
+                    Employees = _employeeRepository.GetEmployeeDict(),
                     BiteStatuses = _biteStatusRepository.All()
                 };
 
@@ -59,24 +59,20 @@ namespace RabiesApplication.Web.Controllers
             var biteViewModel = new BiteViewModel
             {
                 Bite = new Bite(),
-                Cities = _citiesRepository.All(),
-                States = _statesRepository.All(),
-                Employees = _employeeRepository.All(),
+                //Cities = _citiesRepository.All(),
+                //States = _statesRepository.All(),
+                Employees = _employeeRepository.GetEmployeeDict(),
                 BiteStatuses = _biteStatusRepository.All()
             };
 
-            if (id != null)
-            {
-                biteViewModel.Bite = await _biteRepository.GetById(id);
-                biteViewModel.States = _statesRepository.All().OrderBy(s => s.StateName);
-                biteViewModel.Cities = _citiesRepository.GetCitiesByState(biteViewModel.Bite.StateId);
+            biteViewModel.Bite = await _biteRepository.GetById(id);
+            biteViewModel.States = _statesRepository.All().OrderBy(s => s.StateName);
+            biteViewModel.Cities = _citiesRepository.GetCitiesByState(biteViewModel.Bite.StateId);
 
                 
-                if (biteViewModel.Bite == null)
-                {
-                    return HttpNotFound();
-                }
-
+            if (biteViewModel.Bite == null)
+            {
+                return HttpNotFound();
             }
 
             return View(biteViewModel);
@@ -160,7 +156,7 @@ namespace RabiesApplication.Web.Controllers
                 Bite = bite,
                 Cities = _citiesRepository.All(),
                 States = _statesRepository.All(),
-                Employees = _employeeRepository.All(),
+                Employees = _employeeRepository.GetEmployeeDict(),
                 BiteStatuses = _biteStatusRepository.All()
             };
 

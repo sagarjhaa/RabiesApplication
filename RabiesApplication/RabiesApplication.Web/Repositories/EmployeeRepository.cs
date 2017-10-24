@@ -15,6 +15,15 @@ namespace RabiesApplication.Web.Repositories
             return base.All().Where(e => e.Active == Constant.Active);
         }
 
+        public Dictionary<string, string> GetEmployeeDict()
+        {
+            var employees = Context.Employees.Where(e => e.Active.Equals(Constant.Active)).OrderBy(e => e.LastName)
+                .Select(e1 => new {id = e1.Id, name = e1.LastName + " " + e1.FirstName})
+                .ToDictionary(e2 => e2.id, e2 => e2.name);
+
+            return employees;
+        }
+
         public override Task Insert(Employee model)
         {
             model.OrganizationId = Constant.OrganizationCcbh;

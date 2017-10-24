@@ -72,7 +72,7 @@
             <div class="form-group row">
                 @Html.LabelFor(model => model.Bite.EmployeeAssignedId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.Bite.EmployeeAssignedId, new SelectList(Model.Employees, "Id", "FirstName"), htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.Bite.EmployeeAssignedId, new SelectList(Model.Employees, "Key", "Value"), htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Bite.EmployeeAssignedId, "", new { @class = "text-danger" })
                 </div>
             </div>

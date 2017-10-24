@@ -15,7 +15,7 @@ namespace RabiesApplication.Web.ViewModels
 
         public IEnumerable<City> Cities { get; set; }
 
-        public IEnumerable<Employee> Employees { get; set; }
+        public Dictionary<string,string> Employees { get; set; }
 
         public IEnumerable<BiteStatus> BiteStatuses { get; set; }
     }
