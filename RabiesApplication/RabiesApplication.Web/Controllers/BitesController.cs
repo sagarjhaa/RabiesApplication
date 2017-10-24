@@ -22,6 +22,7 @@ namespace RabiesApplication.Web.Controllers
         private readonly BiteRepository _biteRepository = new BiteRepository();
         private readonly StatesRepository _statesRepository = new StatesRepository();
         private readonly CitiesRepository _citiesRepository = new CitiesRepository();
+        private readonly CountiesRepository _countiesRepository = new CountiesRepository();
         private readonly EmployeeRepository _employeeRepository = new EmployeeRepository();
         private readonly BiteStatusRepository _biteStatusRepository = new BiteStatusRepository();
         private readonly HumanVictimRepository _humanVictimRepository = new HumanVictimRepository();
@@ -84,6 +85,12 @@ namespace RabiesApplication.Web.Controllers
         {
             var cities = _citiesRepository.GetCitiesByState(stateId);
             return  Json(cities,JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCountiesByStateId(string stateId)
+        {
+            var counties = _countiesRepository.GetCountiesByStateId(stateId);
+            return Json(counties,JsonRequestBehavior.AllowGet);
         }
 
 

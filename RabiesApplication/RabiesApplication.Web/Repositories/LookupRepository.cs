@@ -25,7 +25,7 @@ namespace RabiesApplication.Web.Repositories
             return base.All().Where(s => s.Active == Constant.Active).OrderBy(c => c.Name);
         }
 
-        public IOrderedEnumerable<County> GetCountiesByStateId(string stateId)
+        public List<County> GetCountiesByStateId(string stateId)
         {
             if (stateId == null)
             {
@@ -36,17 +36,19 @@ namespace RabiesApplication.Web.Repositories
                     Name = "Select County"
                 }};
 
-                return county.OrderBy(c => c.Id);
+                return county.ToList();
             }
 
 
-            var counties = (from c in Context.Counties
+            var countiesQuery = (from c in Context.Counties
                           where c.Active == Constant.Active
                           where c.StateId.Equals(stateId)
                           select c
                 );
 
-            return counties.ToList().OrderBy(c => c.Name);
+            var counties = countiesQuery.OrderBy(c => c.Name).ToList();
+            counties.Insert(0, new County(){Id = "",Name = "Select County"});
+            return counties;
 
         }
 
@@ -59,7 +61,7 @@ namespace RabiesApplication.Web.Repositories
         {
             return base.All().Where(c => c.Active == Constant.Active);
         }
-        public IOrderedEnumerable<City> GetCitiesByState(string stateId)
+        public List<City> GetCitiesByState(string stateId)
         {
             if (stateId == null)
             {
@@ -70,17 +72,19 @@ namespace RabiesApplication.Web.Repositories
                     CityName = "Select City"
                 }};
 
-                return city.OrderBy(c => c.Id);
+                return city.ToList();
             }
 
 
-            var cities = (from c in Context.Cities
+            var citiesQuery = (from c in Context.Cities
                 where c.Active == Constant.Active
                 where c.StateId.Equals(stateId)
                 select c
                 );
 
-            return cities.ToList().OrderBy(c => c.CityName);
+            var cities = citiesQuery.OrderBy(c => c.CityName).ToList();
+            cities.Insert(0, new City(){Id = "",CityName = "Select City"});
+            return cities;
 
         }
     }

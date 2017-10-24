@@ -194,3 +194,68 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
+<script>
+
+    $(document)
+        .ready(function() {
+
+            $("[id~='StateId']").change(function () {
+                var state = this;
+                var statevalue = this.options[this.selectedIndex].value;
+
+                GetCounties(statevalue);
+                GetCities(statevalue);
+
+            });
+
+        });
+
+    function GetCounties(statevalue) {
+        $.ajax({
+            url: '/Bites/GetCountiesByStateId',
+            data: { 'stateId': statevalue },
+            success: function (result) {
+                SetCounties(result);
+            }
+        });
+    }
+
+
+    function SetCounties(result) {
+        var countySelect = $("[id~='CountyId']");
+        countySelect.find('option').remove().end();
+
+        for (i = 0; i < result.length; i++) {
+
+            var string = '<option value="' + result[i].Id + '">' + result[i].Name + '</option>';
+            countySelect.append(string);
+        }
+    }
+
+    function GetCities(statevalue) {
+        $.ajax({
+            url: '/Bites/GetCitiesByStateId',
+            data: { 'stateId': statevalue },
+            success: function (result) {
+                SetCities(result);
+            }
+        });
+    }
+
+    function SetCities(result) {
+        var citySelect = $("[id~='CityId']");
+        citySelect.find('option').remove().end();
+
+        //citySelect.append('<option value="">Select City</option>');
+
+        for (i = 0; i < result.length; i++) {
+
+            var string = '<option value="' + result[i].Id + '">' + result[i].CityName + '</option>';
+            citySelect.append(string);
+        }
+    }
+
+
+</script>
