@@ -10,7 +10,7 @@ namespace RabiesApplication.Web
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/jquery-3.2.1.slim.js",
+                        //"~/Scripts/jquery-3.2.1.slim.js",
                         "~/Scripts/popper.min.js",
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/respond.js",
@@ -29,6 +29,7 @@ namespace RabiesApplication.Web
                       
                       //"~/Content/site.css",
                       "~/Content/bootstrap.css",
+                      "~/Content/PagedList.css",
                       //"~/Content/bootstrap-theme.css",
                       //"~/Content/bootswatch/readable/bootstrap.css",
                       "~/Content/DataTables/css/dataTables.bootstrap4.css"

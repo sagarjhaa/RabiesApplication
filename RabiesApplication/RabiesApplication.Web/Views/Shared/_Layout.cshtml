@@ -6,9 +6,9 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
 
     @Styles.Render("~/Content/css")   
-    @Scripts.Render("~/bundles/modernizr")
+    
     @Scripts.Render("~/bundles/jquery")
-
+    @Scripts.Render("~/bundles/modernizr")
    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     @*Todo Check to clear the direct CDN links to toastr and use the installed version*@
@@ -123,7 +123,7 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <script src="~/Scripts/main.js"></script>
+    @*<script src="~/Scripts/main.js"></script>*@
 }
 
 

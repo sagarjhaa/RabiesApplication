@@ -80,29 +80,27 @@
             <div class="form-group row">
                 @Html.LabelFor(model => model.Bite.Comments, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @*<textarea class="form-control" rows="3"></textarea>*@
                     @Html.TextAreaFor(model => model.Bite.Comments,  htmlAttributes : new { @class = "form-control", rows = 5 })
                     @Html.ValidationMessageFor(model => model.Bite.Comments, "", new {@class = "text-danger"})
                 </div>
             </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-3">
+            <div class="row form-group">
+                <div class="offset-2 col-4">
                     @Html.HiddenFor(model => model.Bite.Id)
                     @Html.HiddenFor(model => model.Bite.Active)
                     @Html.HiddenFor(model => model.Bite.EmployeeCreatedId)
                     @Html.HiddenFor(model => model.Bite.RecordCreated)
-                    <input type="submit" value="Save" class="btn btn-success btn-block" />
+                    <input type="submit" value="Save" class="btn btn-success btn-block"/>
                 </div>
-            </div>
-
-        
+                <div class="col-2">
+                    @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-outline-primary" })
+                </div>
+            </div>        
 
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index",null,htmlAttributes:new {@class = "btn btn-link"})
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -130,7 +128,6 @@
             url: '/Bites/GetCitiesByStateId',
             data: { 'stateId': statevalue },
             success: function (result) {
-                debugger;
                 SetCities(result);
             }
         });
@@ -139,8 +136,6 @@
     function SetCities(result) {
         var citySelect = $("#Bite_CityId");
         citySelect.find('option').remove().end();
-
-        citySelect.append('<option value="">Select City</option>');
 
         for (i = 0; i < result.length; i++) {
 
