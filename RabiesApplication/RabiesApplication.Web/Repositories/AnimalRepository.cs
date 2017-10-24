@@ -32,6 +32,7 @@ namespace RabiesApplication.Web.Repositories
                 return new AnimalViewModel()
                 {
                     Id = a.Id,
+                    BiteId = biteId,
                     Name = a.Name,
                     Breed =  a.Breed == null? string.Empty:a.Breed.Description,
                     Species = a.Species.Description,

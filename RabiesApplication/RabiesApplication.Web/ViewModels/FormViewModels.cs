@@ -55,4 +55,33 @@ namespace RabiesApplication.Web.ViewModels
 
     }
 
+    public class AnimalFormViewModel
+    {
+        public string Id { get; set; }
+        public string BiteId { get; set; }
+        public string AnimalOwnerId { get; set; }
+        public string Name { get; set; }
+        public string SpeciesId { get; set; }
+        public string BreedId { get; set; }
+        public string VetId { get; set; }
+        public bool Sex { get; set; }
+        public bool IsVacinated { get; set; }
+        public DateTime? VaccineDate { get; set; }        
+        public DateTime? VaccineExpirationDate { get; set; }
+        public int? TagNumber { get; set; }
+        public bool IsVacinatedPost { get; set; }
+        public bool IsVacinatedPrior { get; set; }
+        public bool IsQuarantine { get; set; }
+        public bool IsQuarantineCompleted { get; set; }
+        public string QuarantineVerification { get; set; }
+        public DateTimeOffset RecordCreated { get; set; }
+        public DateTimeOffset? RecordEdited { get; set; }
+        public string EmployeeCreatedId { get; set; }
+        public string EmployeeEditedId { get; set; }
+        public IEnumerable<Species> Species { get; set; }
+        public IEnumerable<Breed> Breed { get; set; }
+        public IEnumerable<Vet> Vet { get; set; }
+
+    }
+
 }

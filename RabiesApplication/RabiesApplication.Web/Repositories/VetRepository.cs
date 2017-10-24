@@ -13,7 +13,7 @@ namespace RabiesApplication.Web.Repositories
     {
         public override IQueryable<Vet> All()
         {
-            return base.All().Where(v => v.Active.Equals(Constant.Active));
+            return base.All().Where(v => v.Active.Equals(Constant.Active)).OrderBy(v => v.FirstName);
         }
 
         public VetViewModel GetVetDetails(string animalId)
