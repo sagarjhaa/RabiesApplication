@@ -16,61 +16,47 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         @Html.ActionLink("Rabies Application", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    @Html.ActionLink("Home", "MainIndex", "Home", htmlAttributes: new {@class = "nav-link"})
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Bites", "Index", "Bites", htmlAttributes: new {@class = "nav-link"})
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Home", "Index", "Home", htmlAttributes: new {@class = "nav-link"})
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-            </ul>
 
-            @Html.Partial("_LoginPartial")
-        </div>
-
-        @*<div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Rabies Application", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("Home", "MainIndex", "Home",htmlAttributes:new {@class="nav-link"})</li>
-                        <li>@Html.ActionLink("Bites", "Index", "Bites", htmlAttributes: new { @class = "nav-link" })</li>
-                        <li class="dropdown" id="ddUpdates">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item active">
+                        @Html.ActionLink("Home", "MainIndex", "Home", null, htmlAttributes: new {@class = "nav-link"})
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Bites", "Index", "Bites", null, htmlAttributes: new {@class = "nav-link"})
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
                             <a class="dropdown-toggle" id="targetLink" data-toggle="dropdown" href="#">Updates <span id="targetSpan" class="badge"></span></a>
-                            <ul class="dropdown-menu" id="linkDropDown"></ul>
-                        </li>
-                    }
-                    else
-                    {
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    }
-                </ul>
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Home", "Index", "Home", null, htmlAttributes: new {@class = "nav-link"})
+                    </li>
+                }
 
-                @Html.Partial("_LoginPartial")
 
-            </div>
-        </div>*@
+            </ul>
+            @Html.Partial("_LoginPartial")
+            
+        </div>
     </nav>
 @*<div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">

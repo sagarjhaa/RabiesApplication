@@ -26,10 +26,11 @@ namespace RabiesApplication.Web
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      
-                      //"~/Content/site.css",
+
+
                       "~/Content/bootstrap.css",
                       "~/Content/PagedList.css",
+                      "~/Content/Site.css",
                       //"~/Content/bootstrap-theme.css",
                       //"~/Content/bootswatch/readable/bootstrap.css",
                       "~/Content/DataTables/css/dataTables.bootstrap4.css"

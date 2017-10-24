@@ -6,13 +6,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="row">
+    <div class="col form-inline">
+        <h4>Bites List</h4>
+        @Html.ActionLink("Create New", "BiteForm", null, htmlAttributes: new {@class = "btn btn-outline-primary"})
+    </div>
+</div>
+<br />
 
-<p>
-    @Html.ActionLink("Create New", "BiteForm",null,htmlAttributes:new {@class="btn btn-primary"})
-</p>
 <table class="table table-sm table-condensed table-hover">
-    <thead>
+    <thead class="thead-dark">
         <tr>
             <th>
                 Pet Owner
@@ -54,7 +57,7 @@
                     @Html.DisplayFor(modelItem => item.City)
                 </td>
                 <td>
-                    @Html.ActionLink(item.VictimName, "HumanVictimForm", "HumanVictims",new {biteId = item.Id,victimId = item.VictimId},null)
+                    @Html.ActionLink(item.VictimName, "HumanVictimForm", "HumanVictims", new { biteId = item.Id, victimId = item.VictimId }, null)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Status)
@@ -64,10 +67,10 @@
 
 
                 <td>
-                    
-                    @Html.ActionLink("Edit", "BiteForm", new {id = item.Id}, htmlAttributes: new {@class = "btn btn-sm btn-outline-primary" }) |
-                    @Html.ActionLink("Details", "Details", new {biteId = item.Id, animalId = item.AnimalId}, htmlAttributes: new {@class = "btn btn-sm btn-outline-warning" }) |
-                    @Html.ActionLink("Delete", "Delete", new {id = item.Id}, htmlAttributes: new {@class = "btn btn-sm btn-outline-danger" })
+
+                    @Html.ActionLink("Edit", "BiteForm", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-sm btn-outline-primary" }) |
+                    @Html.ActionLink("Details", "Details", new { biteId = item.Id, animalId = item.AnimalId }, htmlAttributes: new { @class = "btn btn-sm btn-outline-warning" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-sm btn-outline-danger" })
                 </td>
             </tr>
         }
@@ -78,4 +81,4 @@
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-@Html.PagedListPager(Model, pageNo => Url.Action("Index",new { pageNo}))@*, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))*@ 
+@Html.PagedListPager(Model, pageNo => Url.Action("Index", new { pageNo }))@*, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))*@

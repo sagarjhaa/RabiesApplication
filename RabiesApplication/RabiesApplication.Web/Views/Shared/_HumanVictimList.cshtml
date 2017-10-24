@@ -18,8 +18,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Zip)
         </th>
-        <th>
-        <th></th>
+        <th>Action</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -40,8 +39,8 @@
             @Html.DisplayFor(modelItem => item.Zip)
         </td>
         <td>
-            @Html.ActionLink("Edit", "HumanVictimForm","HumanVictims", new { biteId=item.BiteId,victimId = item.Id },null) |
-            @*@Html.ActionLink("Delete", "Delete","HumanVictims", new { victimId=item.Id },null)*@
+            @Html.ActionLink("Edit", "HumanVictimForm","HumanVictims", new { biteId=item.BiteId,victimId = item.Id },htmlAttributes:new {@class="btn btn-outline-primary btn-sm"}) |
+            @Html.ActionLink("Delete", "Delete","HumanVictims", new { victimId=item.Id }, htmlAttributes: new { @class = "btn btn-outline-danger btn-sm" })
         </td>
     </tr>
 }
