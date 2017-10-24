@@ -7,7 +7,7 @@ using RabiesApplication.Models;
 
 namespace RabiesApplication.Web.ViewModels
 {
-    public class BiteViewModel
+    public class BiteFormViewModel
     {
         public Bite Bite { get; set; }
 

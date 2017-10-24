@@ -45,7 +45,7 @@ namespace RabiesApplication.Web.Controllers
         {
             if (id == null)
             {
-                var newBiteViewModel = new BiteViewModel()
+                var newBiteViewModel = new BiteFormViewModel()
                 {
                     States = _statesRepository.All(),
                     Cities = _citiesRepository.GetCitiesByState(null),
@@ -56,7 +56,7 @@ namespace RabiesApplication.Web.Controllers
                 return View(newBiteViewModel);
             }
            
-            var biteViewModel = new BiteViewModel
+            var biteViewModel = new BiteFormViewModel
             {
                 Bite = new Bite(),
                 //Cities = _citiesRepository.All(),
@@ -151,7 +151,7 @@ namespace RabiesApplication.Web.Controllers
                 //return RedirectToAction("Details", new { biteId = bite.Id, Message = Constant.ManageMessageId.SavedBiteDataSuccess });
             }
 
-            var biteViewModel = new BiteViewModel
+            var biteViewModel = new BiteFormViewModel
             {
                 Bite = bite,
                 Cities = _citiesRepository.All(),
