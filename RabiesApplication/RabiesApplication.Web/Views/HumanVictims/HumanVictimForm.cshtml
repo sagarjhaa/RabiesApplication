@@ -21,7 +21,7 @@
 
 
 
-        <div class="row form-group">
+        <div class="row ">
             <div class="col">
 
                 @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col" })
@@ -41,7 +41,7 @@
             </div>
         </div>
 
-            <div class="row form-group">
+            <div class="row ">
                 <div class="col">
 
                     @Html.LabelFor(model => model.Addressline1, htmlAttributes: new { @class = "control-label col" })
@@ -62,7 +62,7 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row ">
                 <div class="col">
 
                     @Html.LabelFor(model => model.StateId, htmlAttributes: new { @class = "control-label col" })
@@ -84,7 +84,7 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row ">
                 <div class="col">
 
                     @Html.LabelFor(model => model.CityId, htmlAttributes: new { @class = "control-label col" })
@@ -106,7 +106,7 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row ">
                 <div class="col">
 
                     @Html.LabelFor(model => model.Contactnumber1, htmlAttributes: new { @class = "control-label col" })
@@ -127,26 +127,27 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row ">
                 <div class="col">
 
-                    @Html.LabelFor(model => model.Dateofbirth, htmlAttributes: new { @class = "control-label col" })
+                    @Html.LabelFor(model => model.Dateofbirth, htmlAttributes: new {@class = "control-label col"})
                     <div class="col">
-                        @Html.EditorFor(model => model.Dateofbirth, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Dateofbirth, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.Dateofbirth, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.ValidationMessageFor(model => model.Dateofbirth, "", new {@class = "text-danger"})
                     </div>
                 </div>
                 <div class="col">
 
-                    @Html.LabelFor(model => model.MedicalTreatmentProvider, htmlAttributes: new { @class = "control-label col" })
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col" })
                     <div class="col">
-                        @Html.EditorFor(model => model.MedicalTreatmentProvider, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.MedicalTreatmentProvider, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                     </div>
                 </div>
+                
             </div>
 
-            <div class="row form-group">
+            <div class="row ">
                 <div class="col">
                     @Html.LabelFor(model => model.BiteType, htmlAttributes: new { @class = "control-label col" })
                     <div class="col">
@@ -169,27 +170,33 @@
             </div>
 
 
-            <div class="row form-group">
-                <div class="col">
-                    @Html.LabelFor(model => model.PostExposureProphylaxis, htmlAttributes: new { @class = "control-label col" })
-                    <div class="col">
-                        <div class="checkbox">
-                            @Html.EditorFor(model => model.PostExposureProphylaxis)
-                            @Html.ValidationMessageFor(model => model.PostExposureProphylaxis, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+    <div class="row ">
+
+        <div class="col">
+            @Html.LabelFor(model => model.PostExposureProphylaxis, htmlAttributes: new {@class = "control-label col"})
+            <div class="col">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.PostExposureProphylaxis)
+                    @Html.ValidationMessageFor(model => model.PostExposureProphylaxis, "", new {@class = "text-danger"})
                 </div>
             </div>
+        </div>
+        <div class="col">
 
-            <div class="row form-group">
-                <div class="col-md-offset-3 col-md-3">
+            @Html.LabelFor(model => model.MedicalTreatmentProvider, htmlAttributes: new { @class = "control-label col" })
+            <div class="col">
+                @Html.EditorFor(model => model.MedicalTreatmentProvider, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MedicalTreatmentProvider, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+            <div class="row">
+                <div class="col-md-3">
                     <input type="submit" value="Save" class="btn btn-success btn-block" />
                 </div>
                 <div class="col-md-3">
-                    @Html.ActionLink("Bites List", "Index", "Bites",null, htmlAttributes: new {@class = "badge badge-primary"})
-                </div>
-                <div class="col-md-3">
-                    @Html.ActionLink("Bites List", "Details", "Bites",new {biteId = Model.BiteId},htmlAttributes: new { @class = "badge badge-red" })
+                    @Html.ActionLink("Bites List", "Index", "Bites",null, htmlAttributes: new {@class = "btn btn-outline-primary btn-block" })
                 </div>
             </div>
 

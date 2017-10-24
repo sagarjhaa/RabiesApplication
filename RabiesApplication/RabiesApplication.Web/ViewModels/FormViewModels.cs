@@ -29,6 +29,7 @@ namespace RabiesApplication.Web.ViewModels
         public string LastName { get; set; }
         public string Addressline1 { get; set; }
         public string Addressline2 { get; set; }
+        public string Email { get; set; }
         public int? Zipcode { get; set; }
         public string Contactnumber1 { get; set; }
         public string Contactnumber2 { get; set; }
