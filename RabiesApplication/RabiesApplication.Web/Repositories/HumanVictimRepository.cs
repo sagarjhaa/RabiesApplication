@@ -22,6 +22,7 @@ namespace RabiesApplication.Web.Repositories
                     City = c.CityName,
                     FirstName = h.FirstName,
                     Id = h.Id,
+                    BiteId = h.BiteId,
                     LastName = h.LastName,
                     State = s.StateName,
                     Zip = h.Zipcode.ToString()

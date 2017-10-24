@@ -36,6 +36,7 @@ namespace RabiesApplication.Web.ViewModels
     public class HumanVictimViewModel
     {
         public string Id { get; set; }
+        public string BiteId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string City { get; set; }
@@ -43,17 +44,6 @@ namespace RabiesApplication.Web.ViewModels
         public string Zip { get; set; }
 
     }
-
-    public class HumanVictimFormViewModel
-    {
-        public string Id { get; set; }
-        public string BiteId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Address1 { get; set; }
-        public string Address2 { get;set; }
-    }
-
 
     public class AnimalViewModel
     {

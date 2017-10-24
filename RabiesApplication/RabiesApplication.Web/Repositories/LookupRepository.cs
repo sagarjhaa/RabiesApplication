@@ -25,6 +25,31 @@ namespace RabiesApplication.Web.Repositories
             return base.All().Where(s => s.Active == Constant.Active).OrderBy(c => c.Name);
         }
 
+        public IOrderedEnumerable<County> GetCountiesByStateId(string stateId)
+        {
+            if (stateId == null)
+            {
+                var county = new List<County>()
+                {
+                    new County(){
+                    Id = "",
+                    Name = "Select County"
+                }};
+
+                return county.OrderBy(c => c.Id);
+            }
+
+
+            var counties = (from c in Context.Counties
+                          where c.Active == Constant.Active
+                          where c.StateId.Equals(stateId)
+                          select c
+                );
+
+            return counties.ToList().OrderBy(c => c.Name);
+
+        }
+
     }
 
     public class CitiesRepository : ActiveRepository<City>
@@ -59,9 +84,6 @@ namespace RabiesApplication.Web.Repositories
 
         }
     }
-
-
-
 
     public class BiteStatusRepository : ActiveRepository<BiteStatus>
     {
