@@ -77,6 +77,7 @@ namespace RabiesApplication.Web.Repositories
                              BiteDate = bite.BiteDate,
                              City = c.CityName,
                              Status = s.Description,
+                             VictimId = v.Id,
                              VictimName = v.FirstName + " " + v.LastName,
                              RecordCreated = bite.RecordCreated
                          });

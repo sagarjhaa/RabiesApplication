@@ -54,7 +54,7 @@
                     @Html.DisplayFor(modelItem => item.City)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.VictimName)
+                    @Html.ActionLink(item.VictimName, "HumanVictimForm", "HumanVictims",new {biteId = item.Id,victimId = item.VictimId},null)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Status)

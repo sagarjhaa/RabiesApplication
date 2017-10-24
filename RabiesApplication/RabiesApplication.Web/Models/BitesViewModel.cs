@@ -16,6 +16,8 @@ namespace RabiesApplication.Web.Models
         [DisplayFormat(DataFormatString = Constant.DateFormat)]
         public DateTimeOffset? BiteDate { get; set; }
         public string City { get; set; }
+
+        public string VictimId { get; set; }
         public string VictimName { get; set; }
         public string Status { get; set; }
         [DisplayFormat(DataFormatString = Constant.DateFormat)]
