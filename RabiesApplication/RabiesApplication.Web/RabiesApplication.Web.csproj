@@ -269,8 +269,8 @@
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\VetRepository.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\BiteDetailsViewModel.cs" />
-    <Compile Include="ViewModels\BiteViewModel.cs" />
+    <Compile Include="ViewModels\DisplayViewModels.cs" />
+    <Compile Include="ViewModels\FormViewModels.cs" />
     <Compile Include="ViewModels\PetOwnerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
