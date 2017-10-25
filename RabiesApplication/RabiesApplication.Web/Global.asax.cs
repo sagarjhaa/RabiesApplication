@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Newtonsoft.Json;
+using RabiesApplication.Web.App_Start;
 using WebGrease.Configuration;
 
 namespace RabiesApplication.Web
@@ -18,6 +19,7 @@ namespace RabiesApplication.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AutoMapper.Mapper.Initialize(c => c.AddProfile<MappingProfile>());
         }
     }
 }
