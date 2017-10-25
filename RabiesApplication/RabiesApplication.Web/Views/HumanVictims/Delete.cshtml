@@ -1,200 +1,200 @@
-﻿@model RabiesApplication.Models.HumanVictim
+﻿@model RabiesApplication.Web.ViewModels.HumanVictimFormViewModel
 
 @{
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<h3 class="text-danger">Are you sure you want to delete this victim information?</h3>
 
-<h3>Are you sure you want to delete this?</h3>
+<div class="row ">
+    <div class="col">
+
+        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col" })
+        <div class="col">
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", disabled="disabled" } })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col">
+
+        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col" })
+        <div class="col">
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", disabled="disabled" } })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col">
+
+        @Html.LabelFor(model => model.Addressline1, htmlAttributes: new { @class = "control-label col" })
+        <div class="col">
+            @Html.EditorFor(model => model.Addressline1, new { htmlAttributes = new { @class = "form-control", disabled="disabled" } })
+            @Html.ValidationMessageFor(model => model.Addressline1, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+    <div class="col">
+
+        @Html.LabelFor(model => model.Addressline2, htmlAttributes: new { @class = "control-label col" })
+        <div class="col">
+            @Html.EditorFor(model => model.Addressline2, new { htmlAttributes = new { @class = "form-control", disabled="disabled" } })
+            @Html.ValidationMessageFor(model => model.Addressline2, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col">
+
+        @Html.LabelFor(model => model.StateId, htmlAttributes: new { @class = "control-label col" })
+        <div class="col">
+            @Html.DropDownListFor(model => model.StateId, new SelectList(Model.States, "Id", "StateName"), htmlAttributes: new { @class = "form-control",disabled="disabled" })
+            @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+
+    <div class="col">
+
+        @Html.LabelFor(model => model.CountyId, htmlAttributes: new { @class = "control-label col" })
+        <div class="col">
+            @Html.DropDownListFor(model => model.CountyId, new SelectList(Model.Counties, "Id", "Name"), htmlAttributes: new { @class = "form-control", disabled = "disabled" })
+            @Html.ValidationMessageFor(model => model.CountyId, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col">
+
+        @Html.LabelFor(model => model.CityId, htmlAttributes: new { @class = "control-label col" })
+        <div class="col">
+            @Html.DropDownListFor(model => model.CityId, new SelectList(Model.Cities, "Id", "CityName"), htmlAttributes: new { @class = "form-control", disabled = "disabled" })
+            @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+
+    <div class="col">
+
+        @Html.LabelFor(model => model.Zipcode, htmlAttributes: new { @class = "control-label col" })
+        <div class="col">
+            @Html.EditorFor(model => model.Zipcode, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            @Html.ValidationMessageFor(model => model.Zipcode, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+</div>
+
+
+<div class="row ">
+    <div class="col">
+
+        @Html.LabelFor(model => model.Contactnumber1, htmlAttributes: new { @class = "control-label col" })
+        <div class="col">
+            @Html.EditorFor(model => model.Contactnumber1, new { htmlAttributes = new { @class = "form-control", disabled="disabled" } })
+            @Html.ValidationMessageFor(model => model.Contactnumber1, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+    <div class="col">
+
+        @Html.LabelFor(model => model.Contactnumber2, htmlAttributes: new { @class = "control-label col" })
+        <div class="col">
+            @Html.EditorFor(model => model.Contactnumber2, new { htmlAttributes = new { @class = "form-control", disabled="disabled" } })
+            @Html.ValidationMessageFor(model => model.Contactnumber2, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col">
+
+        @Html.LabelFor(model => model.Dateofbirth, htmlAttributes: new { @class = "control-label col" })
+        <div class="col">
+            @Html.EditorFor(model => model.Dateofbirth, new { htmlAttributes = new { @class = "form-control", disabled="disabled" } })
+            @Html.ValidationMessageFor(model => model.Dateofbirth, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col">
+
+        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col" })
+        <div class="col">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", disabled="disabled" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+</div>
+
+<div class="row ">
+    <div class="col">
+        @Html.LabelFor(model => model.BiteType, htmlAttributes: new { @class = "control-label col" })
+        <div class="col">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.BiteType)
+                @Html.ValidationMessageFor(model => model.BiteType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+    <div class="col">
+        @Html.LabelFor(model => model.BiteTypeNonBite, htmlAttributes: new { @class = "control-label col" })
+        <div class="col">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.BiteTypeNonBite)
+                @Html.ValidationMessageFor(model => model.BiteTypeNonBite, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row ">
+
+    <div class="col">
+        @Html.LabelFor(model => model.PostExposureProphylaxis, htmlAttributes: new {@class = "control-label col"})
+        <div class="col">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.PostExposureProphylaxis)
+                @Html.ValidationMessageFor(model => model.PostExposureProphylaxis, "", new {@class = "text-danger"})
+            </div>
+        </div>
+    </div>
+    <div class="col">
+
+        @Html.LabelFor(model => model.MedicalTreatmentProvider, htmlAttributes: new {@class = "control-label col"})
+        <div class="col">
+            @Html.EditorFor(model => model.MedicalTreatmentProvider, new {htmlAttributes = new {@class = "form-control", disabled="disabled"}})
+            @Html.ValidationMessageFor(model => model.MedicalTreatmentProvider, "", new {@class = "text-danger"})
+        </div>
+    </div>
+</div>
+
+
 <div>
-    <h4>HumanVictim</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Bite.CityId)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Bite.CityId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.City.CityName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.City.CityName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.County.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.County.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.State.StateName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.State.StateName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RowVersion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RowVersion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Dateofbirth)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Dateofbirth)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Addressline1)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Addressline1)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Addressline2)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Addressline2)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Zipcode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Zipcode)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Contactnumber1)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Contactnumber1)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Contactnumber2)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Contactnumber2)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BiteType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BiteType)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BiteTypeNonBite)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BiteTypeNonBite)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PostExposureProphylaxis)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PostExposureProphylaxis)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MedicalTreatmentProvider)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MedicalTreatmentProvider)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RecordCreated)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RecordCreated)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RecordEdited)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RecordEdited)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EmployeeCreatedId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmployeeCreatedId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EmployeeEditedId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmployeeEditedId)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+        <div class="form-actions no-color ">
+            <div class="row ">
+                <div class="col-2 form-group">
+                    <input type="submit" value="Delete" class="btn btn-block btn-danger"/>
+                </div>
+                <div class="col-2 form-group">
+                    @Html.ActionLink("Details","Details","Bites",new {biteId=Model.BiteId}, htmlAttributes: new { @class = "btn btn-outline-primary btn-block" })
+                </div>
+            </div>
         </div>
     }
 </div>
+

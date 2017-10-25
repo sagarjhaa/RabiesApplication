@@ -30,7 +30,7 @@ namespace RabiesApplication.Web.Controllers
                 var newhumanVictimFormViewModel = new HumanVictimFormViewModel
                 {
                     BiteId = biteId,
-                    States = _statesRepository.All(),
+                    States = _statesRepository.GetStates(),
                     Counties = _countyRepository.GetCountiesByStateId(null),
                     Cities = _citiesRepository.GetCitiesByState(null)
                 };
@@ -45,7 +45,7 @@ namespace RabiesApplication.Web.Controllers
 
 
                 var humanVictimFormViewModel = Mapper.Map<HumanVictim, HumanVictimFormViewModel>(humanVictim);
-                humanVictimFormViewModel.States = _statesRepository.All();
+                humanVictimFormViewModel.States = _statesRepository.GetStates();
                 humanVictimFormViewModel.Counties =_countyRepository.GetCountiesByStateId(humanVictimFormViewModel.StateId);
                 humanVictimFormViewModel.Cities = _citiesRepository.GetCitiesByState(humanVictimFormViewModel.StateId);
 
@@ -97,11 +97,20 @@ namespace RabiesApplication.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             HumanVictim humanVictim = await _humanVictimRepository.GetById(victimId);
+           
+
             if (humanVictim == null)
             {
                 return HttpNotFound();
             }
-            return View(humanVictim);
+
+            var humanVictimFormViewModel = Mapper.Map<HumanVictim, HumanVictimFormViewModel>(humanVictim);
+            humanVictimFormViewModel.States = _statesRepository.All();
+            humanVictimFormViewModel.Counties = _countyRepository.GetCountiesByStateId(humanVictimFormViewModel.StateId);
+            humanVictimFormViewModel.Cities = _citiesRepository.GetCitiesByState(humanVictimFormViewModel.StateId);
+
+
+            return View(humanVictimFormViewModel);
         }
 
         // POST: HumanVictims/Delete/5

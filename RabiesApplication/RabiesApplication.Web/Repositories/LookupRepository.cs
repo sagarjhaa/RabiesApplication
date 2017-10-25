@@ -16,6 +16,19 @@ namespace RabiesApplication.Web.Repositories
         {
             return base.All().Where(s => s.Active == Constant.Active).OrderBy(s => s.StateName);
         }
+
+        public List<State> GetStates()
+        {
+            var statesQuery = (from c in Context.States
+                                 where c.Active == Constant.Active
+                                 select c
+                );
+
+            var counties = statesQuery.OrderBy(c => c.StateName).ToList();
+            counties.Insert(0, new State() { Id = "", StateName = "Select State" });
+            return counties;
+
+        }
     }
 
     public class CountiesRepository : ActiveRepository<County>
