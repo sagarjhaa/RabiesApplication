@@ -1,8 +1,12 @@
 ﻿body {
     /*padding-top: 50px;
     padding-bottom: 20px;*/
-    background-color: #fcfbfb!important;
+    background-color: #f9f9f9!important;
 }
+/*nav {
+    background-color: #0f0f0f !important;   
+}*/
+
 
 /* Set padding to keep content from hitting the edges 
 /*.body-content {
@@ -31,15 +35,15 @@ textarea {
     width: 100%;
 }*/
 
-/*.user-footer {
+.user-footer {
     color: #FFF;
     min-height: 20px;
-    background: #51a33f;
+    /*background: #51a33f;*/
     position: absolute;
     width: 100%;
     padding: 1rem;
 }
-
+/*
 .user-navbar-inverse {
         background-color: #000000;
         border-color: #dddddd;
