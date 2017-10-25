@@ -16,6 +16,8 @@ namespace RabiesApplication.Web.App_Start
             CreateMap<Bite, BiteFormViewModel>();
             CreateMap<BiteFormViewModel, Bite>();
 
+            CreateMap<HumanVictim, HumanVictimFormViewModel>();
+            CreateMap<HumanVictimFormViewModel, HumanVictim>();
 
             //CreateMap<AnimalFormViewModel,Animal>();
             //CreateMap<Animal,AnimalFormViewModel>();

@@ -13,13 +13,7 @@ namespace RabiesApplication.Web.Repositories
 {
     public class BiteRepository : ActiveRepository<Bite>
     {
-      
-        public override Task Insert(Bite model)
-        {
-            model.BiteStatusId = BiteStatusConstant.New;
-            return base.Insert(model);
-        }
-
+     
         //public Task BiteDetailsWithAnimal(string biteId)
         //{
         //    var bite =  base.Context.Bites.Where(b => b.Id.Equals(biteId));

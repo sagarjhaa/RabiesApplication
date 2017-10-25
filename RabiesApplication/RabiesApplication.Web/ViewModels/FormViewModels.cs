@@ -59,6 +59,7 @@ namespace RabiesApplication.Web.ViewModels
     {
         public string Id { get; set; }
         public string BiteId { get; set; }
+        [Required]
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Addressline1 { get; set; }

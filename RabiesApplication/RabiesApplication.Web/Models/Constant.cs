@@ -14,10 +14,6 @@ namespace RabiesApplication.Web.Models
         public const string OrganizationCcbh = "1";
         public const string DateFormat = "{0:MM-dd-yyy}";
 
-        //Todo All models with DateTimeOffset needs to show date in MM/DD/YYYY Format
-        //public const string DateFormat = "{0:MM/dd/yyyy}";
-
-
         #region HELPER
 
         public enum ManageMessageId

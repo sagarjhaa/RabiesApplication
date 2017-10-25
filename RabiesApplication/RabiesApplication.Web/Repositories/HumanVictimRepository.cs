@@ -15,20 +15,22 @@ namespace RabiesApplication.Web.Repositories
             
             var h1 = (from h in Context.HumanVictims
                 where h.BiteId.Equals(biteId)
-                join s in Context.States on h.StateId equals s.Id
-                join c in Context.Cities on h.CityId equals c.Id
+                join s in Context.States on h.StateId equals s.Id into humanStates
+                from humanState in humanStates.DefaultIfEmpty()
+                join c in Context.Cities on h.CityId equals c.Id  into humanCities  
+                from humanCity in humanCities.DefaultIfEmpty()
                 select new HumanVictimViewModel()
                 {
-                    City = c.CityName,
+                    City = humanCity.CityName,
                     FirstName = h.FirstName,
                     Id = h.Id,
                     BiteId = h.BiteId,
                     LastName = h.LastName,
-                    State = s.StateName,
+                    State = humanState.StateName,
                     Zip = h.Zipcode.ToString()
-                }).ToList();
+                });
 
-            return h1;
+            return h1.ToList();
         }
 
     }

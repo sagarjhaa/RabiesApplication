@@ -165,6 +165,10 @@ namespace RabiesApplication.Web.Controllers
         }
 
 
+        //Todo: Need to work on bite delete(Disable) function
+
+
+
         //// GET: Bites/Details/5
         //public async Task<ActionResult> Details(string biteId, Constant.ManageMessageId? message)
         //{

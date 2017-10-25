@@ -26,9 +26,9 @@ namespace RabiesApplication.Web.ViewModels
         public string Id { get; set; }
         public string City { get; set; }
         public string Status { get; set; }
-        [DisplayFormat(DataFormatString = Constant.DateFormat)]
+        [DisplayFormat(DataFormatString = Constant.DateFormat,ApplyFormatInEditMode = true)]
         public DateTimeOffset BiteDate { get; set; }
-        [DisplayFormat(DataFormatString = Constant.DateFormat)]
+        [DisplayFormat(DataFormatString = Constant.DateFormat,ApplyFormatInEditMode = true)]
         public DateTimeOffset ReportDate { get; set; }
         public string Comments { get; set; }
     }
