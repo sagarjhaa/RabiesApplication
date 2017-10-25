@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using RabiesApplication.Models;
 using RabiesApplication.Web;
+using RabiesApplication.Web.Repositories;
+using RabiesApplication.Web.ViewModels;
 
 namespace RabiesApplication.Web.Controllers
 {
@@ -16,34 +19,43 @@ namespace RabiesApplication.Web.Controllers
     {
         private DataContext db = new DataContext();
 
-        // GET: AnimalOwners
-        public async Task<ActionResult> Index()
-        {
-            var animalOwner = db.AnimalOwner.Include(a => a.City).Include(a => a.State);
-            return View(await animalOwner.ToListAsync());
-        }
+        private readonly AnimalOwnerRepository _animalOwnerRepository = new AnimalOwnerRepository();
+        private readonly StatesRepository _statesRepository = new StatesRepository();
+        private readonly CountiesRepository _countyRepository = new CountiesRepository();
+        private readonly CitiesRepository _citiesRepository = new CitiesRepository();
 
-        // GET: AnimalOwners/Details/5
-        public async Task<ActionResult> Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AnimalOwner animalOwner = await db.AnimalOwner.FindAsync(id);
-            if (animalOwner == null)
-            {
-                return HttpNotFound();
-            }
-            return View(animalOwner);
-        }
 
         // GET: AnimalOwners/Create
-        public ActionResult Create()
+        public ActionResult AnimalOwnerForm(string id)
         {
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "CityName");
-            ViewBag.StateId = new SelectList(db.States, "Id", "StateName");
-            return View();
+
+            if (id == null)
+            {
+                var newanimalOwnerFormViewModel = new AnimalOwnerFormViewModel()
+                {
+                    States = _statesRepository.GetStates(),
+                    Counties = _countyRepository.GetCountiesByStateId(null),
+                    Cities = _citiesRepository.GetCitiesByState(null)
+                };
+
+                return View(newanimalOwnerFormViewModel);
+            }
+
+
+            var animalOwnerFormViewModelDb = _animalOwnerRepository.GetById(id).Result;
+
+            if (animalOwnerFormViewModelDb == null)
+            {
+                return null;
+            }
+
+
+            var animalOwnerFormViewModel = Mapper.Map<AnimalOwner, AnimalOwnerFormViewModel>(animalOwnerFormViewModelDb);
+            animalOwnerFormViewModel.States = _statesRepository.GetStates();
+            animalOwnerFormViewModel.Counties = _countyRepository.GetCountiesByStateId(null);
+            animalOwnerFormViewModel.Cities = _citiesRepository.GetCitiesByState(null);
+
+            return View(animalOwnerFormViewModel);
         }
 
         // POST: AnimalOwners/Create
@@ -51,7 +63,7 @@ namespace RabiesApplication.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,IsShelter,FirstName,LastName,Dateofbirth,Age,Addressline1,Addressline2,CityId,CountyId,StateId,Zipcode,Contactnumber1,Contactnumber2,RecordCreated,RecordEdited,EmployeeCreatedId,EmployeeEditedId")] AnimalOwner animalOwner)
+        public async Task<ActionResult> Save(AnimalOwner animalOwner)
         {
             if (ModelState.IsValid)
             {
@@ -65,40 +77,6 @@ namespace RabiesApplication.Web.Controllers
             return View(animalOwner);
         }
 
-        // GET: AnimalOwners/Edit/5
-        public async Task<ActionResult> Edit(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AnimalOwner animalOwner = await db.AnimalOwner.FindAsync(id);
-            if (animalOwner == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "CityName", animalOwner.CityId);
-            ViewBag.StateId = new SelectList(db.States, "Id", "StateName", animalOwner.StateId);
-            return View(animalOwner);
-        }
-
-        // POST: AnimalOwners/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,IsShelter,FirstName,LastName,Dateofbirth,Age,Addressline1,Addressline2,CityId,CountyId,StateId,Zipcode,Contactnumber1,Contactnumber2,RecordCreated,RecordEdited,EmployeeCreatedId,EmployeeEditedId")] AnimalOwner animalOwner)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(animalOwner).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "CityName", animalOwner.CityId);
-            ViewBag.StateId = new SelectList(db.States, "Id", "StateName", animalOwner.StateId);
-            return View(animalOwner);
-        }
 
         // GET: AnimalOwners/Delete/5
         public async Task<ActionResult> Delete(string id)

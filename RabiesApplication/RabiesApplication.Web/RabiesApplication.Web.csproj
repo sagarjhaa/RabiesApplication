@@ -673,11 +673,8 @@
     <Content Include="Views\Vets\Index.cshtml" />
     <Content Include="Views\Shared\_ActionsList.cshtml" />
     <Content Include="Views\Shared\_VetView.cshtml" />
-    <Content Include="Views\AnimalOwners\Create.cshtml" />
+    <Content Include="Views\AnimalOwners\AnimalOwnerForm.cshtml" />
     <Content Include="Views\AnimalOwners\Delete.cshtml" />
-    <Content Include="Views\AnimalOwners\Details.cshtml" />
-    <Content Include="Views\AnimalOwners\Edit.cshtml" />
-    <Content Include="Views\AnimalOwners\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
