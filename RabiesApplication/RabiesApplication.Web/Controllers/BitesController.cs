@@ -28,6 +28,7 @@ namespace RabiesApplication.Web.Controllers
         private readonly BiteStatusRepository _biteStatusRepository = new BiteStatusRepository();
         private readonly HumanVictimRepository _humanVictimRepository = new HumanVictimRepository();
         private readonly AnimalRepository _animalRepository = new AnimalRepository();
+        private readonly AnimalOwnerRepository _animalOwnerRepository = new AnimalOwnerRepository();
         private readonly VetRepository _vetRepository = new VetRepository();
         //private readonly PetOwnerRepository _petOwnerRepository = new PetOwnerRepository();
         //private readonly ActionRepository _actionRepository = new ActionRepository();
@@ -95,24 +96,15 @@ namespace RabiesApplication.Web.Controllers
 
 
             var bite = _biteRepository.GetBiteJustViewModel(biteId);
-            var animal = _animalRepository.GetAnimalByBiteId(bite.Id, animalId);
             var humanVicitm = _humanVictimRepository.GetHumanVictimViewModelByBiteId(bite.Id);
             var vet = _vetRepository.GetVetDetails(animalId);
-
-            var ctx = new DataContext();
-            var animalOwner = (from o in ctx.AnimalOwner
-                where o.Id.Equals(animal.OwnerId)
-                join s in ctx.States on o.StateId equals s.Id
-                join c in ctx.Cities on o.CityId equals c.Id
-                select new AnimalOwnerViewModel()
-                {
-                    FirstName = o.FirstName,
-                    LastName = o.LastName,
-                    Id = o.Id,
-                    Zip = o.Zipcode.ToString(),
-                    State = s.StateName,
-                    City = c.CityName
-                }).FirstOrDefault();
+            var animal = _animalRepository.GetAnimalByBiteId(bite.Id, animalId);
+            AnimalOwnerViewModel animalOwner = null;
+            if (animal != null)
+            {
+                animalOwner = _animalOwnerRepository.GetOwnerByAnimalId(animal.OwnerId);
+            }
+            
 
             var bitedetailsViewModel = new BiteDetailsViewModel
             {

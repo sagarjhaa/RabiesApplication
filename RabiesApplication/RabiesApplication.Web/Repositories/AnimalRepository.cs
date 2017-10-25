@@ -14,36 +14,41 @@ namespace RabiesApplication.Web.Repositories
     {
         public override Task<Animal> GetById(string animalId)
         {
-            return Context.Animals.Include("Breed").Include("Species").FirstOrDefaultAsync(a => a.Id.Equals(animalId));
+            return Context.Animals.FirstOrDefaultAsync(a => a.Id.Equals(animalId));
+            //return Context.Animals.Include("Breed").Include("Species").FirstOrDefaultAsync(a => a.Id.Equals(animalId));
         }
+
+        public AnimalViewModel GetAnimalByBiteId(string biteId,string animalId)
+        {
+            if (biteId == null)
+            {
+                return null;
+            }
+            if (animalId == null)
+            {
+                return null;
+            }
+
+            var a =  Context.Animals.Include("Breed").Include("Species").Where(animal => animal.Bites.All(bite => bite.Id.Equals(biteId))).FirstOrDefault(aa => aa.Id.Equals(animalId));
+            if (a == null)
+                return null;
+            
+            return new AnimalViewModel()
+            {
+                Id = a.Id,
+                BiteId = biteId,
+                Name = a.Name,
+                Breed = a.Breed == null ? string.Empty : a.Breed.Description,
+                Species = a.Species.Description,
+                OwnerId = a.AnimalOwnerId
+            };
+        }
+
 
         //public IQueryable<Animal> GetAllPetVictims(string biteId)
         //{
         //    return All().Where(p => p.IsVictim.Equals(Constant.Active)).Where(p => p.BiteId.Equals(biteId)).Include("Breed").Include("Species");
         //}
-
-        public AnimalViewModel GetAnimalByBiteId(string biteId,string animalId)
-        {
-            //return Context.Animals.Include("Breed").Include("Species").SingleOrDefault(model => model.Bites.All(bite => bite.Id.Equals(biteId)));
-            var a =  Context.Animals.Include("Breed").Include("Species").Where(animal => animal.Bites.All(bite => bite.Id.Equals(biteId))).FirstOrDefault(aa => aa.Id.Equals(animalId));
-
-
-            if (a != null)
-                return new AnimalViewModel()
-                {
-                    Id = a.Id,
-                    BiteId = biteId,
-                    Name = a.Name,
-                    Breed =  a.Breed == null? string.Empty:a.Breed.Description,
-                    Species = a.Species.Description,
-                    OwnerId = a.AnimalOwnerId
-
-                };
-            else
-            {
-                return new AnimalViewModel();
-            }
-        }
 
         //public override Task DeleteAsync(string animalId)
         //{

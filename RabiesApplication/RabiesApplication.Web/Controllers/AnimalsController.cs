@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using RabiesApplication.Models;
 using RabiesApplication.Web;
 using RabiesApplication.Web.Models;
@@ -18,6 +19,7 @@ namespace RabiesApplication.Web.Controllers
     public class AnimalsController : Controller
     {
         private readonly AnimalRepository _animalRepository = new AnimalRepository();
+        private readonly AnimalOwnerRepository _animalOwnerRepository = new AnimalOwnerRepository();
         private readonly BreedRepository _breedRepository = new BreedRepository();
         private readonly SpeciesRepository _speciesRepository = new SpeciesRepository();
         private readonly EmployeeRepository _employeeRepository = new EmployeeRepository();
@@ -36,82 +38,66 @@ namespace RabiesApplication.Web.Controllers
                 var animalFormViewModel = new AnimalFormViewModel()
                 {
                     BiteId = biteId,
-
+                    AnimalOwner = _animalOwnerRepository.GetAnimalOwners(),
                     Breed = _breedRepository.All(),
                     Species = _speciesRepository.All(),
                     Vet = _vetRepository.All()
                 };
+
+                return View(animalFormViewModel);
             }
 
-            var animalFormViewModel = new AnimalFormViewModel()
+            
+            var animalDb = _animalRepository.GetById(animalId).Result;
+
+            if (animalDb != null)
             {
-                BiteId = biteId,
-                Breed = _breedRepository.All(),
-                Species = _speciesRepository.All(),
-                Vet = _vetRepository.All()
-            };
 
+                var animalFormViewModel = Mapper.Map<Animal, AnimalFormViewModel>(animalDb);
+                animalFormViewModel.AnimalOwner = _animalOwnerRepository.GetAnimalOwners();
+                animalFormViewModel.Breed = _breedRepository.All();
+                animalFormViewModel.Species = _speciesRepository.All();
+                animalFormViewModel.Vet = _vetRepository.All();
 
-            if (animalId != null)
-            {
-                var animalDb = _animalRepository.GetById(animalId).Result;
-
-                animalFormViewModel.Id = animalDb.Id;
-                animalFormViewModel.AnimalOwnerId = animalDb.AnimalOwnerId;
-                animalFormViewModel.Name = animalDb.Name;
-                animalFormViewModel.SpeciesId = animalDb.SpeciesId;
-                animalFormViewModel.BreedId = animalDb.BreedId;
-                animalFormViewModel.VetId = animalDb.VetId;
-                animalFormViewModel.Sex = animalDb.Sex;
-                animalFormViewModel.IsVacinated = animalDb.IsVacinated;
-                animalFormViewModel.VaccineDate = animalDb.VaccineDate;
-                animalFormViewModel.VaccineExpirationDate = animalDb.VaccineExpirationDate;
-                animalFormViewModel.TagNumber = animalDb.TagNumber;
-                animalFormViewModel.IsVacinatedPost = animalDb.IsVacinatedPost;
-                animalFormViewModel.IsVacinatedPrior = animalDb.IsVacinatedPrior;
-                animalFormViewModel.IsQuarantine = animalDb.IsQuarantine;
-                animalFormViewModel.IsQuarantineCompleted = animalDb.IsQuarantineCompleted;
-                animalFormViewModel.QuarantineVerification = animalDb.QuarantineVerification;
-                animalFormViewModel.RecordCreated = animalDb.RecordCreated;
-                animalFormViewModel.RecordEdited = animalDb.RecordEdited;
-                animalFormViewModel.EmployeeCreatedId = animalDb.EmployeeCreatedId;
-                animalFormViewModel.EmployeeEditedId = animalDb.EmployeeEditedId;
+                return View(animalFormViewModel);
             }
+            return HttpNotFound("Animal is not found");
 
-
-            return View(animalFormViewModel);
+            
         }
 
 
-        //// POST: Animals/SaveAnimal
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> SaveAnimal(Animal animal)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        if (animal.Id.Equals(null))
-        //        {
-        //            await _animalRepository.Insert(animal);
-        //        }
-        //        else
-        //        {
-        //            await _animalRepository.Update(animal);
-        //        }
-        //        await _animalRepository.SaveChangesAsync();
-        //        return RedirectToAction("Details", "Bites", new { biteId = animal.BiteId, Message = Constant.ManageMessageId.SavePetVictimDataSuccess });
-        //    }
+        // POST: Animals/SaveAnimal
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SaveAnimal(AnimalFormViewModel animalFormViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var animal = Mapper.Map<AnimalFormViewModel, Animal>(animalFormViewModel);
 
-        //    var AnimalFormViewModel = new AnimalViewModel
-        //    {
-        //        Animal = animal,
-        //        Breeds = _breedRepository.All(),
-        //        Specieses = _speciesRepository.All(),
-        //        Employees = _employeeRepository.All(),
-        //        Vets = _vetRepository.All()
-        //    };
-        //    return View("AnimalForm", AnimalFormViewModel);
-        //}
+                if (animal.Id.Equals(null))
+                {
+                    await _animalRepository.Insert(animal);
+                }
+                else
+                {
+                    await _animalRepository.Update(animal);
+                }
+                await _animalRepository.SaveChangesAsync();
+                return RedirectToAction("Details", "Bites", new { biteId = animal, Message = Constant.ManageMessageId.SavePetVictimDataSuccess });
+            }
+
+            var AnimalFormViewModel = new AnimalViewModel
+            {
+                Animal = animal,
+                Breeds = _breedRepository.All(),
+                Specieses = _speciesRepository.All(),
+                Employees = _employeeRepository.All(),
+                Vets = _vetRepository.All()
+            };
+            return View("AnimalForm", AnimalFormViewModel);
+        }
 
 
         //// GET: Animals/Delete/5
@@ -232,7 +218,7 @@ namespace RabiesApplication.Web.Controllers
 
 
 
-       
-      
+
+
     }
 }

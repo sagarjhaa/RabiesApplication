@@ -125,7 +125,7 @@ namespace RabiesApplication.Web.ViewModels
         public IEnumerable<Breed> Breed { get; set; }
         public IEnumerable<Vet> Vet { get; set; }
 
-        public IEnumerable<AnimalOwner> AnimalOwners { get; set; }
+        public Dictionary<string,string> AnimalOwner { get; set; }
 
     }
 
