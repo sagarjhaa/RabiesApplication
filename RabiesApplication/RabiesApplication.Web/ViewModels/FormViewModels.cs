@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RabiesApplication.Models;
+using RabiesApplication.Models.CustomValidation;
 
 namespace RabiesApplication.Web.ViewModels
 {
@@ -65,6 +66,7 @@ namespace RabiesApplication.Web.ViewModels
         public string Addressline1 { get; set; }
         public string Addressline2 { get; set; }
         public string Email { get; set; }
+        [Required]
         public int? Zipcode { get; set; }
         public string Contactnumber1 { get; set; }
         public string Contactnumber2 { get; set; }
@@ -95,13 +97,19 @@ namespace RabiesApplication.Web.ViewModels
         public string Id { get; set; }
         public string BiteId { get; set; }
         public string AnimalOwnerId { get; set; }
+
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string SpeciesId { get; set; }
+
         public string BreedId { get; set; }
         public string VetId { get; set; }
         public bool Sex { get; set; }
         public bool IsVacinated { get; set; }
-        public DateTime? VaccineDate { get; set; }        
+        [IfVacinatedCheckDates]
+        public DateTime? VaccineDate { get; set; }
+        [IfVacinatedCheckDates]
         public DateTime? VaccineExpirationDate { get; set; }
         public int? TagNumber { get; set; }
         public bool IsVacinatedPost { get; set; }
@@ -116,6 +124,8 @@ namespace RabiesApplication.Web.ViewModels
         public IEnumerable<Species> Species { get; set; }
         public IEnumerable<Breed> Breed { get; set; }
         public IEnumerable<Vet> Vet { get; set; }
+
+        public IEnumerable<AnimalOwner> AnimalOwners { get; set; }
 
     }
 

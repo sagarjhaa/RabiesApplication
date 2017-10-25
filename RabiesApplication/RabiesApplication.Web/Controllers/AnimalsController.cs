@@ -26,6 +26,23 @@ namespace RabiesApplication.Web.Controllers
         // GET: Animal/AnimalForm
         public ActionResult AnimalForm(string biteId, string animalId)
         {
+            if (biteId == null)
+            {
+                return HttpNotFound("Plese provide proper data");
+            }
+
+            if (animalId == null)
+            {
+                var animalFormViewModel = new AnimalFormViewModel()
+                {
+                    BiteId = biteId,
+
+                    Breed = _breedRepository.All(),
+                    Species = _speciesRepository.All(),
+                    Vet = _vetRepository.All()
+                };
+            }
+
             var animalFormViewModel = new AnimalFormViewModel()
             {
                 BiteId = biteId,
@@ -33,6 +50,7 @@ namespace RabiesApplication.Web.Controllers
                 Species = _speciesRepository.All(),
                 Vet = _vetRepository.All()
             };
+
 
             if (animalId != null)
             {
