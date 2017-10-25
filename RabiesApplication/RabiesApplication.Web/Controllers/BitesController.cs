@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using AutoMapper;
 using RabiesApplication.Models;
 //using RabiesApplication.Web.BusinessLogic;
 using RabiesApplication.Web.Hubs;
@@ -57,29 +58,24 @@ namespace RabiesApplication.Web.Controllers
                 return View(newBiteViewModel);
             }
            
-            var biteViewModel = new BiteFormViewModel
-            {
-                Bite = new Bite(),
-                //Cities = _citiesRepository.All(),
-                //States = _statesRepository.All(),
-                Employees = _employeeRepository.GetEmployeeDict(),
-                BiteStatuses = _biteStatusRepository.All()
-            };
+            var biteDb = await _biteRepository.GetById(id);
 
-            biteViewModel.Bite = await _biteRepository.GetById(id);
-            biteViewModel.States = _statesRepository.All().OrderBy(s => s.StateName);
-            biteViewModel.Cities = _citiesRepository.GetCitiesByState(biteViewModel.Bite.StateId);
-
-                
-            if (biteViewModel.Bite == null)
+            if (biteDb == null)
             {
                 return HttpNotFound();
             }
+            
+            
+            var biteViewModel = Mapper.Map<Bite,BiteFormViewModel>(biteDb);
+            biteViewModel.Employees = _employeeRepository.GetEmployeeDict();
+            biteViewModel.BiteStatuses = _biteStatusRepository.All();
+            biteViewModel.States = _statesRepository.All().OrderBy(s => s.StateName);
+            biteViewModel.Cities = _citiesRepository.GetCitiesByState(biteDb.StateId);
+
+           
 
             return View(biteViewModel);
         }
-
-
 
         public JsonResult  GetCitiesByStateId(string stateId)
         {
@@ -132,15 +128,15 @@ namespace RabiesApplication.Web.Controllers
             //return Json(bitedetailsViewModel, JsonRequestBehavior.AllowGet);
         }
 
-
-
         // POST: Bites/Save
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Save(Bite bite)
+        public async Task<ActionResult> Save(BiteFormViewModel biteViewModel)
         {
             if (ModelState.IsValid)
             {
+                var bite = Mapper.Map<BiteFormViewModel, Bite>(biteViewModel);
+
                 if (bite.Id == null)
                 {
                     await _biteRepository.Insert(bite);
@@ -158,16 +154,12 @@ namespace RabiesApplication.Web.Controllers
                 //return RedirectToAction("Details", new { biteId = bite.Id, Message = Constant.ManageMessageId.SavedBiteDataSuccess });
             }
 
-            var biteViewModel = new BiteFormViewModel
-            {
-                Bite = bite,
-                Cities = _citiesRepository.All(),
-                States = _statesRepository.All(),
-                Employees = _employeeRepository.GetEmployeeDict(),
-                BiteStatuses = _biteStatusRepository.All()
-            };
 
 
+            biteViewModel.Cities = _citiesRepository.All();
+            biteViewModel.States = _statesRepository.All();
+            biteViewModel.Employees = _employeeRepository.GetEmployeeDict();
+            biteViewModel.BiteStatuses = _biteStatusRepository.All();
 
             return View("BiteForm", biteViewModel);
         }

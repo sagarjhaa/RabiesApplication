@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,15 +11,47 @@ namespace RabiesApplication.Web.ViewModels
 {
     public class BiteFormViewModel
     {
-        public Bite Bite { get; set; }
-
-        public IEnumerable<State> States { get; set; }
+        public string Id { get; set; }
+        //Which city the bite occured
+        [DisplayName("City")]
+        public string CityId { get; set; }
+        
+        //What state the bite occured
+        //It will be Ohio for us
+        [DisplayName("State")]
+        public string StateId { get; set; }
+        [Required]
+        //When bite happened
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        //[DisplayName("Bite Date")]
+        public DateTimeOffset? BiteDate { get; set; }
+        [Required]
+        //When it was reported to us
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayName("Bite Report Date")]
+        public DateTimeOffset? BiteReportDate { get; set; }
+        //Where did we get this information from
+        [DisplayName("Bite Reported By")]
+        public string BiteReportedBy { get; set; }
+        [DisplayName("Bite Status")]
+        public string BiteStatusId { get; set; }
+        public string Comments { get; set; }
+        [DisplayName("Employee Assigned")]
+        public string EmployeeAssignedId { get; set; }
+        public bool Active { get; set; }
+        [DisplayName("Investigation Complete Date")]
+        public DateTime? InvestigationCompletionDate { get; set; }
+        [DisplayName("Report Closed Date")]
+        public DateTime? ReportClosedDate { get; set; }
+        public DateTimeOffset RecordCreated { get; set; }
+        public DateTimeOffset? RecordEdited { get; set; }
+        public string EmployeeCreatedId { get; set; }
+        public string EmployeeEditedId { get; set; }
 
         public IEnumerable<City> Cities { get; set; }
-
-        public Dictionary<string,string> Employees { get; set; }
-
+        public IEnumerable<State> States { get; set; }
         public IEnumerable<BiteStatus> BiteStatuses { get; set; }
+        public Dictionary<string,string> Employees { get; set; }
     }
 
 

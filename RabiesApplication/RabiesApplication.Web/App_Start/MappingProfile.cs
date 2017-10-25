@@ -13,8 +13,12 @@ namespace RabiesApplication.Web.App_Start
     {
         public MappingProfile()
         {
-            CreateMap<AnimalFormViewModel,Animal>();
-            CreateMap<Animal,AnimalFormViewModel>();
+            CreateMap<Bite, BiteFormViewModel>();
+            CreateMap<BiteFormViewModel, Bite>();
+
+
+            //CreateMap<AnimalFormViewModel,Animal>();
+            //CreateMap<Animal,AnimalFormViewModel>();
         }
     }
 }

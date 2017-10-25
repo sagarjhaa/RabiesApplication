@@ -19,78 +19,78 @@
 
 
             <div class="form-group row">
-                @Html.LabelFor(model => model.Bite.BiteDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.BiteDate, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Bite.BiteDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Bite.BiteDate, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.BiteDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BiteDate, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group row">
-                @Html.LabelFor(model => model.Bite.BiteReportDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.BiteReportDate, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Bite.BiteReportDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Bite.BiteReportDate, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.BiteReportDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BiteReportDate, "", new { @class = "text-danger" })
                 </div>
             </div>
 
 
             <div class="form-group row">
-                @Html.LabelFor(model => model.Bite.BiteReportedBy, htmlAttributes: new {@class = "control-label col-md-2"})
+                @Html.LabelFor(model => model.BiteReportedBy, htmlAttributes: new {@class = "control-label col-md-2"})
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Bite.BiteReportedBy, new {htmlAttributes = new {@class = "form-control"}})
-                    @Html.ValidationMessageFor(model => model.Bite.BiteReportedBy, "", new {@class = "text-danger"})
+                    @Html.EditorFor(model => model.BiteReportedBy, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.BiteReportedBy, "", new {@class = "text-danger"})
                 </div>
             </div>
 
             
                 <div class="form-group row">
-                    @Html.LabelFor(model => model.Bite.BiteStatusId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.BiteStatusId, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.Bite.BiteStatusId, new SelectList(Model.BiteStatuses, "Id", "Description"), htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Bite.BiteStatusId, "", new { @class = "text-danger" })
+                        @Html.DropDownListFor(model => model.BiteStatusId, new SelectList(Model.BiteStatuses, "Id", "Description"), htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.BiteStatusId, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
 
             <div class="form-group row">
-                @Html.LabelFor(model => model.Bite.StateId, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.StateId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.Bite.StateId, new SelectList(Model.States, "Id", "StateName"), "Select State", htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Bite.StateId, "", new { @class = "text-danger" })
+                    @Html.DropDownListFor(model => model.StateId, new SelectList(Model.States, "Id", "StateName"), "Select State", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group row">
-                @Html.LabelFor(model => model.Bite.CityId, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.CityId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.Bite.CityId, new SelectList(Model.Cities, "Id", "CityName"), htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Bite.CityId, "", new { @class = "text-danger" })
+                    @Html.DropDownListFor(model => model.CityId, new SelectList(Model.Cities, "Id", "CityName"), htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group row">
-                @Html.LabelFor(model => model.Bite.EmployeeAssignedId, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.EmployeeAssignedId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.Bite.EmployeeAssignedId, new SelectList(Model.Employees, "Key", "Value"), htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Bite.EmployeeAssignedId, "", new { @class = "text-danger" })
+                    @Html.DropDownListFor(model => model.EmployeeAssignedId, new SelectList(Model.Employees, "Key", "Value"), htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.EmployeeAssignedId, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group row">
-                @Html.LabelFor(model => model.Bite.Comments, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Comments, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Bite.Comments,  htmlAttributes : new { @class = "form-control", rows = 5 })
-                    @Html.ValidationMessageFor(model => model.Bite.Comments, "", new {@class = "text-danger"})
+                    @Html.TextAreaFor(model => model.Comments,  htmlAttributes : new { @class = "form-control", rows = 5 })
+                    @Html.ValidationMessageFor(model => model.Comments, "", new {@class = "text-danger"})
                 </div>
             </div>
 
             <div class="row form-group">
                 <div class="offset-2 col-4">
-                    @Html.HiddenFor(model => model.Bite.Id)
-                    @Html.HiddenFor(model => model.Bite.Active)
-                    @Html.HiddenFor(model => model.Bite.EmployeeCreatedId)
-                    @Html.HiddenFor(model => model.Bite.RecordCreated)
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.Active)
+                    @Html.HiddenFor(model => model.EmployeeCreatedId)
+                    @Html.HiddenFor(model => model.RecordCreated)
                     <input type="submit" value="Save" class="btn btn-success btn-block"/>
                 </div>
                 <div class="col-2">
@@ -112,7 +112,7 @@
     $(document)
         .ready(function() {
 
-            $("#Bite_StateId").change(function() {
+            $("#StateId").change(function() {
                 var state = this;
                 var statevalue = this.options[this.selectedIndex].value;
 
@@ -134,7 +134,7 @@
     }
 
     function SetCities(result) {
-        var citySelect = $("#Bite_CityId");
+        var citySelect = $("#CityId");
         citySelect.find('option').remove().end();
 
         for (i = 0; i < result.length; i++) {
