@@ -14,7 +14,9 @@ namespace RabiesApplication.Web.Repositories
     {
         public override Task<Animal> GetById(string animalId)
         {
-            return Context.Animals.FirstOrDefaultAsync(a => a.Id.Equals(animalId));
+
+            return Context.Animals.Include("Bites").FirstOrDefaultAsync(a => a.Id.Equals(animalId));
+            //return Context.Animals.FirstOrDefaultAsync(a => a.Id.Equals(animalId));
             //return Context.Animals.Include("Breed").Include("Species").FirstOrDefaultAsync(a => a.Id.Equals(animalId));
         }
 

@@ -10,7 +10,7 @@ namespace RabiesApplication.Web.Repositories
 {
     public abstract class BaseRepository<TEntity> : IDisposable where TEntity : class
     {
-        protected DataContext Context { get; set; }
+        public DataContext Context { get; set; }
 
         public BaseRepository()
         {

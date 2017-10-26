@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using RabiesApplication.Models.CustomValidation;
 using RabiesApplication.Models.Interfaces;
 
 namespace RabiesApplication.Models
@@ -41,11 +40,9 @@ namespace RabiesApplication.Models
         [DisplayName("Vaccinated?")]
         public bool IsVacinated { get; set; }
 
-        [IfVacinatedCheckDates]
         [DisplayName("Vaccine Date")]
         public DateTime? VaccineDate { get; set; }
 
-        [IfVacinatedCheckDates]
         [DisplayName("Vacc. Expiration Date")]
         public DateTime? VaccineExpirationDate { get; set; }
 

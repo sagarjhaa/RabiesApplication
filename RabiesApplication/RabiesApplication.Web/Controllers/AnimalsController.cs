@@ -18,6 +18,7 @@ namespace RabiesApplication.Web.Controllers
 {
     public class AnimalsController : Controller
     {
+        private readonly BiteRepository _biteRepository = new BiteRepository();
         private readonly AnimalRepository _animalRepository = new AnimalRepository();
         private readonly AnimalOwnerRepository _animalOwnerRepository = new AnimalOwnerRepository();
         private readonly BreedRepository _breedRepository = new BreedRepository();
@@ -67,37 +68,65 @@ namespace RabiesApplication.Web.Controllers
         }
 
 
-        //// POST: Animals/SaveAnimal
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> SaveAnimal(AnimalFormViewModel animalFormViewModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var animal = Mapper.Map<AnimalFormViewModel, Animal>(animalFormViewModel);
+        // POST: Animals/SaveAnimal
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SaveAnimal(AnimalFormViewModel animalFormViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var animal = Mapper.Map<AnimalFormViewModel, Animal>(animalFormViewModel);
 
-        //        if (animal.Id.Equals(null))
-        //        {
-        //            await _animalRepository.Insert(animal);
-        //        }
-        //        else
-        //        {
-        //            await _animalRepository.Update(animal);
-        //        }
-        //        await _animalRepository.SaveChangesAsync();
-        //        return RedirectToAction("Details", "Bites", new { biteId = animal, Message = Constant.ManageMessageId.SavePetVictimDataSuccess });
-        //    }
+                //Get the animals with the bites
+                //loop through each bite and check if this animal is realted to the current biteId
+                //if then
 
-        //    var AnimalFormViewModel = new AnimalViewModel
-        //    {
-        //        Animal = animal,
-        //        Breeds = _breedRepository.All(),
-        //        Specieses = _speciesRepository.All(),
-        //        Employees = _employeeRepository.All(),
-        //        Vets = _vetRepository.All()
-        //    };
-        //    return View("AnimalForm", AnimalFormViewModel);
-        //}
+                var animalDb = _animalRepository.GetById(animal.Id).Result;
+                
+                var currentBite = _animalRepository.Context.Bites.Find(animalFormViewModel.BiteId);//_biteRepository.GetById(animalFormViewModel.BiteId).Result;
+                if (animalDb == null)
+                {
+                    // This is new animal
+                    // link it with the current bite
+                    animal.Bites.Add(currentBite);
+                }
+                else
+                {
+                    // This is not a new animal 
+                    // It will be linked to many other bites
+                    // We need to check if this bite is already in the bites
+                    //animal.Bites = animalDb.Bites;
+
+                    if (!animalDb.Bites.Contains(currentBite))
+                    {
+                        animal.Bites.Add(currentBite);
+                    }
+                    else
+                    {
+                        animal.Bites = null;
+                    }
+                }
+
+                if (animal.Id == null)
+                {
+                    await _animalRepository.Insert(animal);
+                }
+                else
+                {
+                    await _animalRepository.Update(animal);
+                }
+                await _animalRepository.SaveChangesAsync();
+                return RedirectToAction("Details", "Bites", new { biteId = animal, Message = Constant.ManageMessageId.SavePetVictimDataSuccess });
+            }
+
+            animalFormViewModel.AnimalOwner = _animalOwnerRepository.GetAnimalOwners();
+            animalFormViewModel.Breed = _breedRepository.All();
+            animalFormViewModel.Species = _speciesRepository.All();
+            animalFormViewModel.Vet = _vetRepository.All();
+
+
+            return View("AnimalForm", animalFormViewModel);
+        }
 
 
         //// GET: Animals/Delete/5

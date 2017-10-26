@@ -4,13 +4,16 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using RabiesApplication.Models;
-using RabiesApplication.Models.CustomValidation;
 using RabiesApplication.Models.Interfaces;
 
 namespace RabiesApplication.Models
 {
     public class Animal : IModel,IAuditable
     {
+        public Animal()
+        {
+            Bites = new List<Bite>();
+        }
         public string Id { get; set; }
 
         [ForeignKey("AnimalOwner")]
@@ -45,11 +48,9 @@ namespace RabiesApplication.Models
         [DisplayName("Vaccinated?")]
         public bool IsVacinated { get; set; }
 
-        [IfVacinatedCheckDates]
         [DisplayName("Vaccine Date")]
         public DateTime? VaccineDate { get; set; }
 
-        [IfVacinatedCheckDates]
         [DisplayName("Vacc. Expiration Date")]
         public DateTime? VaccineExpirationDate { get; set; }
 
