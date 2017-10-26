@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using PagedList;
 using RabiesApplication.Models;
 using RabiesApplication.Web;
 using RabiesApplication.Web.Repositories;
+using RabiesApplication.Web.ViewModels;
 
 namespace RabiesApplication.Web.Controllers
 {
@@ -19,6 +21,10 @@ namespace RabiesApplication.Web.Controllers
         //Todo Work on VetsController to include repository and actions
 
         private readonly VetRepository _vetRepository = new VetRepository();
+        private readonly StatesRepository _statesRepository = new StatesRepository();
+        private readonly CountiesRepository _countyRepository = new CountiesRepository();
+        private readonly CitiesRepository _citiesRepository = new CitiesRepository();
+
 
         // GET: Vets
         public ActionResult Index(int? pageNo)
@@ -32,21 +38,35 @@ namespace RabiesApplication.Web.Controllers
         }
 
 
-        // GET: Vets/Create
-        //public ActionResult VetForm(string vetId)
-        //{
+        ////GET: Vets/Create
+        public ActionResult VetForm(string vetId)
+        {
+            if (vetId == null)
+            {
+                var newVetFormViewModel = new VetFormViewModel()
+                {
+                    States = _statesRepository.GetStates(),
+                    Counties = _countyRepository.GetCountiesByStateId(null),
+                    Cities = _citiesRepository.GetCitiesByState(null)
+                };
+
+                return View(newVetFormViewModel);
+            }
 
 
+            var vet = _vetRepository.GetById(vetId).Result;
+            if (vet == null)
+            {
+                return HttpNotFound("Vet details not available");
+            }
 
-        //    if (vetId != null)
-        //    {
-                
-        //    }
-
-        //    ViewBag.CityId = new SelectList(db.Cities, "Id", "CityName");
-        //    ViewBag.StateId = new SelectList(db.States, "Id", "StateName");
-        //    return View();
-        //}
+            var vetFormViewModel = Mapper.Map<Vet, VetFormViewModel>(vet);
+            vetFormViewModel.States = _statesRepository.GetStates();
+            vetFormViewModel.Counties = _countyRepository.GetCountiesByStateId(vetFormViewModel.StateId);
+            vetFormViewModel.Cities = _citiesRepository.GetCitiesByState(vetFormViewModel.StateId);
+            
+            return View(vetFormViewModel);
+        }
 
         //// POST: Vets/Create
         //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -67,7 +87,7 @@ namespace RabiesApplication.Web.Controllers
         //    return View(vet);
         //}
 
-       
+
         //// GET: Vets/Delete/5
         //public async Task<ActionResult> Delete(string id)
         //{
