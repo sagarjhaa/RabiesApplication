@@ -78,5 +78,12 @@ namespace RabiesApplication.Web.ViewModels
 
     }
 
+    public class AnimalListViewModel
+    {
+        public string BiteId { get; set; }
+        public string AnimalId { get; set; }
+        public List<string> Animals { get; set; }
+    }
+
 
 }

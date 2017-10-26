@@ -14,10 +14,7 @@ namespace RabiesApplication.Web.Repositories
     {
         public override Task<Animal> GetById(string animalId)
         {
-
             return Context.Animals.Include("Bites").FirstOrDefaultAsync(a => a.Id.Equals(animalId));
-            //return Context.Animals.FirstOrDefaultAsync(a => a.Id.Equals(animalId));
-            //return Context.Animals.Include("Breed").Include("Species").FirstOrDefaultAsync(a => a.Id.Equals(animalId));
         }
 
         public AnimalViewModel GetAnimalByBiteId(string biteId,string animalId)
@@ -48,7 +45,7 @@ namespace RabiesApplication.Web.Repositories
                 return null;
             }
 
-            var a =  Context.Animals.Include("Breed").Include("Species").Where(animal => animal.Bites.All(bite => bite.Id.Equals(biteId))).FirstOrDefault(aa => aa.Id.Equals(animalId));
+            var a =  Context.Animals.Include("Breed").Include("Species").FirstOrDefault(aa => aa.Id.Equals(animalId));
             if (a == null)
                 return null;
             
@@ -61,6 +58,11 @@ namespace RabiesApplication.Web.Repositories
                 Species = a.Species.Description,
                 OwnerId = a.AnimalOwnerId
             };
+        }
+
+        public List<string> GetAnimalIds()
+        {
+            return Context.Animals.Select(a => a.Id).ToList();
         }
 
 

@@ -123,6 +123,33 @@ namespace RabiesApplication.Web.Controllers
             return View("AnimalForm", animalFormViewModel);
         }
 
+        [HttpGet]
+        public ActionResult SelectAnimal(string biteId)
+        {
+            ViewBag.BiteId = biteId;
+
+         var animalListViewModel = new AnimalListViewModel()
+            {
+                BiteId = biteId,
+                Animals = _animalRepository.GetAnimalIds()
+            };
+
+            return View(animalListViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult link(AnimalListViewModel vm)
+        {
+            var animalId = vm.AnimalId;
+            var biteId = vm.BiteId;
+
+            var animal = _animalRepository.GetById(animalId).Result;
+            var addToBite = _animalRepository.Context.Bites.Find(biteId);
+            animal.Bites.Add(addToBite);
+             _animalRepository.Update(animal);
+             _animalRepository.SaveChangesAsync();
+            return RedirectToAction("Details", "Bites", new { biteId = biteId,animalId = animalId, Message = Constant.ManageMessageId.SavePetVictimDataSuccess });
+        }
 
         public ActionResult Delink(string animalId, string biteId)
         {

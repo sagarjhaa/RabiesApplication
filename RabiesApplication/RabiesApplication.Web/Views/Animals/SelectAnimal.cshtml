@@ -1,0 +1,21 @@
+﻿@model RabiesApplication.Web.ViewModels.AnimalListViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>title</h2>
+
+
+
+@using (Html.BeginForm("link", "Animals"))
+{
+
+    @Html.HiddenFor(m => m.BiteId)
+
+    @Html.DropDownListFor(model => model.AnimalId, new SelectList(Model.Animals), htmlAttributes: new { @class = "form-control" })
+
+    <input type="submit" value="Save" class="btn btn-success btn-block" />
+
+}

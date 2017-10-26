@@ -88,6 +88,7 @@
         }
         else
         {
+            @Html.ActionLink("Select Animal", "SelectAnimal", "Animals", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-sm btn-outline-primary " })
             @Html.ActionLink("Add Animal Information", "AnimalForm", "Animals", new {biteId = Model.Bite.Id}, htmlAttributes: new {@class = "btn btn-sm btn-outline-primary "})
         }
     </div>
