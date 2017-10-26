@@ -86,17 +86,10 @@ namespace RabiesApplication.Web.Controllers
                 var currentBite = _animalRepository.Context.Bites.Find(animalFormViewModel.BiteId);//_biteRepository.GetById(animalFormViewModel.BiteId).Result;
                 if (animalDb == null)
                 {
-                    // This is new animal
-                    // link it with the current bite
                     animal.Bites.Add(currentBite);
                 }
                 else
                 {
-                    // This is not a new animal 
-                    // It will be linked to many other bites
-                    // We need to check if this bite is already in the bites
-                    //animal.Bites = animalDb.Bites;
-
                     if (!animalDb.Bites.Contains(currentBite))
                     {
                         animal.Bites.Add(currentBite);
@@ -113,10 +106,12 @@ namespace RabiesApplication.Web.Controllers
                 }
                 else
                 {
+                    //Detach the last animalDb in order to add the current data.
+                    _animalRepository.Context.Entry(animalDb).State = EntityState.Detached;
                     await _animalRepository.Update(animal);
                 }
                 await _animalRepository.SaveChangesAsync();
-                return RedirectToAction("Details", "Bites", new { biteId = animal, Message = Constant.ManageMessageId.SavePetVictimDataSuccess });
+                return RedirectToAction("Details", "Bites", new { biteId = animalFormViewModel.BiteId, animalId=animalFormViewModel.Id, Message = Constant.ManageMessageId.SavePetVictimDataSuccess });
             }
 
             animalFormViewModel.AnimalOwner = _animalOwnerRepository.GetAnimalOwners();
