@@ -29,7 +29,7 @@ namespace RabiesApplication.Web.Repositories
             if (animalId == null)
             {
                 var bite = Context.Bites.Include("Animals").First(b => b.Id.Equals(biteId));
-                if (bite != null)
+                if (bite != null && bite.Animals.Count > 0)
                 {
                     var animalWithNoId = bite.Animals.First();
                     return new AnimalViewModel()

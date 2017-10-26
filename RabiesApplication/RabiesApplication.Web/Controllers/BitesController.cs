@@ -98,11 +98,13 @@ namespace RabiesApplication.Web.Controllers
             var bite = _biteRepository.GetBiteJustViewModel(biteId);
             var humanVicitm = _humanVictimRepository.GetHumanVictimViewModelByBiteId(bite.Id);
             var animal = _animalRepository.GetAnimalByBiteId(bite.Id, animalId);
-            var vet = _vetRepository.GetVetDetails(animal.Id);
+
+            VetViewModel vet = null;
             AnimalOwnerViewModel animalOwner = null;
             if (animal != null)
             {
                 animalOwner = _animalOwnerRepository.GetOwnerByAnimalId(animal.OwnerId);
+                vet = _vetRepository.GetVetDetails(animal.Id);
             }
             
 

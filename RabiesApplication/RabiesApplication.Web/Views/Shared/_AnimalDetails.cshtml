@@ -33,7 +33,7 @@
         
         <td>
             @Html.ActionLink("Edit", "AnimalForm","Animals", new {biteId = Model.BiteId,animalId = Model.Id},htmlAttributes:new {@class="btn btn-sm btn-outline-primary"}) |
-            @Html.ActionLink("Delete", "Delete","Animals", new {animalId = Model.Id}, htmlAttributes: new { @class = "btn btn-sm btn-outline-danger" })
+            @Html.ActionLink("Delete", "Delink", "Animals", new {animalId = Model.Id,biteId = Model.BiteId}, htmlAttributes: new { @class = "btn btn-sm btn-outline-danger" })
         </td>
     </tr>
 @*}*@

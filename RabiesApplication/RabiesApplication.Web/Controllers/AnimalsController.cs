@@ -124,6 +124,16 @@ namespace RabiesApplication.Web.Controllers
         }
 
 
+        public ActionResult Delink(string animalId, string biteId)
+        {
+            var animal = _animalRepository.GetById(animalId).Result;
+            var removeBite = animal.Bites.First(b => b.Id.Equals(biteId));
+            animal.Bites.Remove(removeBite);
+            _animalRepository.Update(animal);
+            _animalRepository.SaveChangesAsync();
+            return RedirectToAction("Details", "Bites", new { biteId = biteId, Message = Constant.ManageMessageId.SavePetVictimDataSuccess });
+        }
+
         //// GET: Animals/Delete/5
         //public async Task<ActionResult> Delete(string animalId)
         //{
