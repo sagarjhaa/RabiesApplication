@@ -7,13 +7,12 @@
 <style>
 
        body {
-        background: linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 0, 0, 0.45)), url('../../Content/images/pets_homepage.jpg'), no-repeat;
-        /*background-image: url('../../Content/images/pets_homepage.jpg');
-        background-repeat: no-repeat;*/
-        background-size: 100vw 100%;
+           background: linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 0, 0, 0.45)), url('../../Content/images/pets_homepage.jpg'), no-repeat;
+           -ms-background-size: 100vw 100%;
+           background-size: 100vw 100%;
        }
 
-     .bigbutton {
+       .bigbutton {
          flex-basis: 250px;
          height: 100px;
          font-size: 30px;
@@ -28,16 +27,15 @@
 </style>
 
 <div class="fluidButtons">
-    
-        <button class="bigbutton btn btn-primary" onclick="location.href='@Url.Action("BiteForm", "Bites")'">New Bite</button>
-    
-        <button class="bigbutton btn btn-primary" onclick="location.href = '@Url.Action("Index", "Bites")'">Bites List</button>
 
-        <button class="bigbutton btn btn-success">Search Bite</button>
+    <button class="bigbutton btn btn-primary" onclick="location.href = '@Url.Action("Index", "Bites")'">Bites List</button>
+    <button class="bigbutton btn btn-primary" onclick="location.href='@Url.Action("BiteForm", "Bites")'">New Bite</button>
+    <button class="bigbutton btn btn-primary">Search Bite</button>
 
 </div>
-<hr />
+<br />
 <div class="fluidButtons" >
+        <button class="bigbutton btn btn-warning" onclick="location.href='@Url.Action("Index","Vets")'">Veterinarian List</button>
         <button class="bigbutton btn btn-warning">Add a Vet</button>
         <button class="bigbutton btn btn-warning">Edit Vet</button>        
 </div>
