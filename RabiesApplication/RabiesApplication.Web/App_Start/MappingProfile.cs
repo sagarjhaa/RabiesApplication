@@ -19,7 +19,7 @@ namespace RabiesApplication.Web.App_Start
             CreateMap<HumanVictim, HumanVictimFormViewModel>();
             CreateMap<HumanVictimFormViewModel, HumanVictim>();
 
-            CreateMap<Animal, AnimalFormViewModel>();
+            CreateMap<Animal, AnimalFormViewModel>().ForMember(s => s.Species, s => s.Ignore()).ForMember(b => b.Breed,b => b.Ignore());
             CreateMap<AnimalFormViewModel, Animal>();
 
             CreateMap<AnimalOwner, AnimalOwnerFormViewModel>();

@@ -17,19 +17,25 @@ namespace RabiesApplication.Web.Repositories
 
         public AnimalOwnerViewModel GetOwnerByAnimalId(string animalOwnerId)
         {
-            return (from o in Context.AnimalOwner
+
+            var owner = (from o in Context.AnimalOwner
                     where o.Id.Equals(animalOwnerId)
-                    join s in Context.States on o.StateId equals s.Id
-                    join c in Context.Cities on o.CityId equals c.Id
+                    join s in Context.States on o.StateId equals s.Id into states
+                    from state in states.DefaultIfEmpty()
+                    join c in Context.Cities on o.CityId equals c.Id into cities
+                    from city in cities.DefaultIfEmpty()
                     select new AnimalOwnerViewModel()
                     {
                         FirstName = o.FirstName,
                         LastName = o.LastName,
                         Id = o.Id,
                         Zip = o.Zipcode.ToString(),
-                        State = s.StateName,
-                        City = c.CityName
-                    }).FirstOrDefault();
+                        State = state.StateName,
+                        City = city.CityName
+                    });
+
+
+            return owner.FirstOrDefault();
         }
     }
 }

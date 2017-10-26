@@ -32,13 +32,13 @@ namespace RabiesApplication.Models
         [DisplayName("Sepecies")]
         public string SpeciesId { get; set; }
 
-        public Species Species { get; set; }
+        public virtual Species Species { get; set; }
 
         //[Required]
         [DisplayName("Breed")]
         public string BreedId { get; set; }
 
-        public Breed Breed { get; set; }
+        public virtual Breed Breed { get; set; }
 
         public string  Name { get; set; }
 

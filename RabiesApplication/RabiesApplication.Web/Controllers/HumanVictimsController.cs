@@ -20,6 +20,7 @@ namespace RabiesApplication.Web.Controllers
         // GET: HumanVictims/Create
         public ActionResult HumanVictimForm(string biteId,string victimId)
         {
+
             if (biteId == null)
             {
                 return new HttpNotFoundResult("Please provide correct information");
@@ -76,7 +77,7 @@ namespace RabiesApplication.Web.Controllers
                 }
 
                 await _humanVictimRepository.SaveChangesAsync();
-                return RedirectToAction("Details", "Bites", new { biteId = humanVictim.BiteId, Message = Constant.ManageMessageId.SaveHumanVictimDataSuccess });
+                return RedirectToAction("Details", "Bites", new { biteId = humanVictim.BiteId,animalId=ViewBag.AnimalId, Message = Constant.ManageMessageId.SaveHumanVictimDataSuccess });
             }
 
 

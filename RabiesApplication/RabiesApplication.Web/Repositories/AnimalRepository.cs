@@ -28,6 +28,23 @@ namespace RabiesApplication.Web.Repositories
             }
             if (animalId == null)
             {
+                var bite = Context.Bites.Include("Animals").First(b => b.Id.Equals(biteId));
+                if (bite != null)
+                {
+                    var animalWithNoId = bite.Animals.First();
+                    return new AnimalViewModel()
+                    {
+                        Id = animalWithNoId.Id,
+                        BiteId = biteId,
+                        Name = animalWithNoId.Name,
+                        Breed = animalWithNoId.Breed == null ? string.Empty : animalWithNoId.Breed.Description,
+                        Species = animalWithNoId.Species.Description,
+                        OwnerId = animalWithNoId.AnimalOwnerId
+                    };
+                }
+
+
+                //Context.Animals.Include("Breed").Include("Species").Where(animal => animal.Bites.All(bite => bite.Id.Equals(biteId))).FirstOrDefault(aa => aa.Id.Equals(animalId));
                 return null;
             }
 
