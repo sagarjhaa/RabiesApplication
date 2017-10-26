@@ -18,7 +18,7 @@
     <thead class="thead-dark">
         <tr>
             <th>
-                Pet Owner
+                Animal Owner
             </th>
             <th>
                 Animal Name
@@ -45,7 +45,9 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PetOwner)
+                    @*@Html.DisplayFor(modelItem => item.PetOwner)*@
+                    @Html.ActionLink(item.AnimalOwner,"AnimalOwnerForm","AnimalOwners",new { animalOwnerId =item.AnimalOwnerId},null)
+
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.AnimalName)

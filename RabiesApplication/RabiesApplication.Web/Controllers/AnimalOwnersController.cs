@@ -59,24 +59,46 @@ namespace RabiesApplication.Web.Controllers
             return View("AnimalOwnerForm",animalOwnerFormViewModel);
         }
 
-        //// POST: AnimalOwners/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Save(AnimalOwner animalOwner)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.AnimalOwner.Add(animalOwner);
-        //        await db.SaveChangesAsync();
-        //        return RedirectToAction("Index");
-        //    }
+        // POST: AnimalOwners/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Save(AnimalOwnerFormViewModel animalOwnerFormViewModel)
+        {
+            var PreviousUrl = System.Web.HttpContext.Current.Request.UrlReferrer.ToString();
 
-        //    ViewBag.CityId = new SelectList(db.Cities, "Id", "CityName", animalOwner.CityId);
-        //    ViewBag.StateId = new SelectList(db.States, "Id", "StateName", animalOwner.StateId);
-        //    return View(animalOwner);
-        //}
+            if (ModelState.IsValid)
+            {
+
+                var animalOwner = Mapper.Map<AnimalOwnerFormViewModel, AnimalOwner>(animalOwnerFormViewModel);
+
+                if (animalOwner.Id == null)
+                {
+                    await _animalOwnerRepository.Insert(animalOwner);
+                }
+                else
+                {
+                    await _animalOwnerRepository.Update(animalOwner);
+                }
+
+                await _animalOwnerRepository.SaveChangesAsync();
+
+                var biteId= Request.QueryString["biteId"];
+
+                if (biteId == null)
+                {
+                    return RedirectToAction("Index", "Bites");
+                }
+                return RedirectToAction("AnimalForm", "Animals", new {biteId = biteId});
+            }
+
+            animalOwnerFormViewModel.States = _statesRepository.GetStates();
+            animalOwnerFormViewModel.Counties = _countyRepository.GetCountiesByStateId(null);
+            animalOwnerFormViewModel.Cities = _citiesRepository.GetCitiesByState(null);
+
+            return View("AnimalOwnerForm",animalOwnerFormViewModel);
+        }
 
 
         //// GET: AnimalOwners/Delete/5

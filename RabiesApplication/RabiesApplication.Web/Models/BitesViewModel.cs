@@ -10,7 +10,8 @@ namespace RabiesApplication.Web.Models
     public class BitesViewModel
     {
         public string Id { get; set; }
-        public string PetOwner { get; set; }
+        public string AnimalOwnerId { get; set; }
+        public string AnimalOwner { get; set; }
         public string AnimalId { get; set; }
         public string AnimalName { get; set; }
         [DisplayFormat(DataFormatString = Constant.DateFormat)]

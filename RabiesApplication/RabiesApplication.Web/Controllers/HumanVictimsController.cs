@@ -79,14 +79,12 @@ namespace RabiesApplication.Web.Controllers
                 return RedirectToAction("Details", "Bites", new { biteId = humanVictim.BiteId, Message = Constant.ManageMessageId.SaveHumanVictimDataSuccess });
             }
 
-            var humanVicitmViewModel = new HumanVictimFormViewModel
-            {
-                States = _statesRepository.All(),
-                Counties = _countyRepository.All(),
-                Cities = _citiesRepository.All()
-            };
 
-            return View("HumanVictimForm", humanVicitmViewModel);
+            humanVictimViewModel.States = _statesRepository.All();
+            humanVictimViewModel.Counties = _countyRepository.All();
+            humanVictimViewModel.Cities = _citiesRepository.All();
+            
+            return View("HumanVictimForm", humanVictimViewModel);
         }
 
         // GET: HumanVictims/Delete/5

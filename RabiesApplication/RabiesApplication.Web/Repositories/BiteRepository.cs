@@ -65,7 +65,8 @@ namespace RabiesApplication.Web.Repositories
                          select new BitesViewModel
                          {
                              Id = bite.Id,
-                             PetOwner = o.FirstName + " " + o.LastName,
+                             AnimalOwnerId = o.Id,
+                             AnimalOwner = o.FirstName + " " + o.LastName,
                              AnimalId = bite.Animals.FirstOrDefault().Id,
                              AnimalName = bite.Animals.FirstOrDefault().Name,
                              BiteDate = bite.BiteDate,
