@@ -669,7 +669,7 @@
     <Content Include="Views\Shared\_AnimalDetails.cshtml" />
     <Content Include="Views\PetOwners\PetOwnerForm.cshtml" />
     <Content Include="Views\PetOwners\Delete.cshtml" />
-    <Content Include="Views\Shared\_PetOwner.cshtml" />
+    <Content Include="Views\Shared\_AnimalOwner.cshtml" />
     <Content Include="Views\Vets\VetForm.cshtml" />
     <Content Include="Views\Vets\Delete.cshtml" />
     <Content Include="Views\Vets\Index.cshtml" />

@@ -97,7 +97,7 @@
     <div class="col form-inline">
         <h4>Animal Owner Information</h4>
     
-        @if (Model.AnimalOwner != null)
+        @*@if (Model.AnimalOwner != null)
             {
             @Html.ActionLink("Add Animal Owner", "AnimalOwnerForm", "AnimalOwners", null, htmlAttributes: new { @class = "btn btn-sm btn-outline-dark  disabled" })
         }
@@ -107,7 +107,7 @@
             {
                 @Html.ActionLink("Add Animal Owner", "AnimalOwnerForm", "AnimalOwners", new { animalId = Model.Animal.Id }, htmlAttributes: new { @class = "btn btn-sm btn-outline-primary " })
             }
-        }
+        }*@
     </div>
 </div>
 
@@ -126,7 +126,7 @@
     <div class="col-md-6">
         @if (Model.AnimalOwner != null)
         {
-            @Html.Partial("_PetOwner", Model.AnimalOwner)
+            @Html.Partial("_AnimalOwner", Model.AnimalOwner)
         }
         else
         {

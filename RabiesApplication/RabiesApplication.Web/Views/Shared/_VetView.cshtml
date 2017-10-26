@@ -10,7 +10,7 @@
             <th>@Html.DisplayNameFor(model => model.Zip)</th>
             <th>@Html.DisplayNameFor(model => model.Phone1)</th>
             <th>@Html.DisplayNameFor(model => model.Phone2)</th>
-            <th></th>
+            <th>Action</th>
         </tr>
         
         
@@ -21,7 +21,7 @@
             <td>@Html.DisplayFor(model => model.Zip)</td>
             <td>@Html.DisplayFor(model => model.Phone1)</td>
             <td>@Html.DisplayFor(model => model.Phone2)</td>
-            <td>@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |@Html.ActionLink("Back to List", "Index")</td>
+            <td>@Html.ActionLink("Edit", "VetForm","Vets", new { vetId = Model.Id },htmlAttributes:new {@class="btn btn-outline-primary btn-sm"})</td>
         </tr>
         
     </table>
