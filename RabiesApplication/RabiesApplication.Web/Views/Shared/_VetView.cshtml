@@ -1,7 +1,7 @@
 ﻿@model RabiesApplication.Web.ViewModels.VetViewModel
 
 <div>
-    <table class="table table-condensed table-bordered table-striped">
+    <table class="table table-condensed table-bordered table-hover table-striped ">
         
         <tr>
             <th>@Html.DisplayNameFor(model => model.Name)</th>
@@ -10,6 +10,7 @@
             <th>@Html.DisplayNameFor(model => model.Zip)</th>
             <th>@Html.DisplayNameFor(model => model.Phone1)</th>
             <th>@Html.DisplayNameFor(model => model.Phone2)</th>
+            <th></th>
         </tr>
         
         
@@ -20,13 +21,9 @@
             <td>@Html.DisplayFor(model => model.Zip)</td>
             <td>@Html.DisplayFor(model => model.Phone1)</td>
             <td>@Html.DisplayFor(model => model.Phone2)</td>
-            
+            <td>@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |@Html.ActionLink("Back to List", "Index")</td>
         </tr>
         
     </table>
 
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

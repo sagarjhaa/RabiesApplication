@@ -27,12 +27,12 @@ namespace RabiesApplication.Models
         public string Addressline2 { get; set; }
         public string CityId { get; set; }
 
-        public City City { get; set; }
+        public virtual City City { get; set; }
         
         public string CountyId { get; set; }
         public string StateId { get; set; }
 
-        public State State { get; set; }
+        public virtual State State { get; set; }
         [Required]
         public int? Zipcode { get; set; }
         public string Contactnumber1 { get; set; }
