@@ -68,51 +68,68 @@ namespace RabiesApplication.Web.Controllers
             return View(vetFormViewModel);
         }
 
-        //// POST: Vets/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Create([Bind(Include = "Id,RowVersion,FirstName,LastName,Dateofbirth,Age,Addressline1,Addressline2,CityId,CountyId,StateId,Zipcode,Contactnumber1,Contactnumber2,Comments,Active,RecordCreated,RecordEdited,EmployeeCreatedId,EmployeeEditedId")] Vet vet)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Vets.Add(vet);
-        //        await db.SaveChangesAsync();
-        //        return RedirectToAction("Index");
-        //    }
+        // POST: Vets/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Save(VetFormViewModel vetFormViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var vet = Mapper.Map<VetFormViewModel, Vet>(vetFormViewModel);
 
-        //    ViewBag.CityId = new SelectList(db.Cities, "Id", "CityName", vet.CityId);
-        //    ViewBag.StateId = new SelectList(db.States, "Id", "StateName", vet.StateId);
-        //    return View(vet);
-        //}
+                if (vet.Id == null)
+                {
+                    await _vetRepository.Insert(vet);
+                }
+                else
+                {
+                    await _vetRepository.Update(vet);
+                }
+                await _vetRepository.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+
+            vetFormViewModel.States = _statesRepository.GetStates();
+            vetFormViewModel.Counties = _countyRepository.GetCountiesByStateId(vetFormViewModel.StateId);
+            vetFormViewModel.Cities = _citiesRepository.GetCitiesByState(vetFormViewModel.StateId);
+            return View("VetForm",vetFormViewModel);
+        }
 
 
-        //// GET: Vets/Delete/5
-        //public async Task<ActionResult> Delete(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Vet vet = await db.Vets.FindAsync(id);
-        //    if (vet == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(vet);
-        //}
+        // GET: Vets/Delete/5
+        public async Task<ActionResult> Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Vet vet = await _vetRepository.GetById(id);
+            if (vet == null)
+            {
+                return HttpNotFound();
+            }
+            var vetFormViewModel = Mapper.Map<Vet,VetFormViewModel>(vet);
+            vetFormViewModel.States = _statesRepository.GetStates();
+            vetFormViewModel.Counties = _countyRepository.GetCountiesByStateId(vetFormViewModel.StateId);
+            vetFormViewModel.Cities = _citiesRepository.GetCitiesByState(vetFormViewModel.StateId);
 
-        //// POST: Vets/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> DeleteConfirmed(string id)
-        //{
-        //    Vet vet = await db.Vets.FindAsync(id);
-        //    db.Vets.Remove(vet);
-        //    await db.SaveChangesAsync();
-        //    return RedirectToAction("Index");
-        //}
+            return View(vetFormViewModel);
+        }
+
+        // POST: Vets/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(string id)
+        {
+            Vet vet = await _vetRepository.GetById(id);
+            vet.Active = false;
+            await _vetRepository.Update(vet);
+            await _vetRepository.SaveChangesAsync();
+            
+            return RedirectToAction("Index");
+        }
 
         //protected override void Dispose(bool disposing)
         //{
