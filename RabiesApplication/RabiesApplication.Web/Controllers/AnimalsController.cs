@@ -128,7 +128,11 @@ namespace RabiesApplication.Web.Controllers
         public ActionResult SelectAnimal(string biteId)
         {
             ViewBag.BiteId = biteId;
-            return View();
+            var animalListViewModel = new AnimalListViewModel()
+            {
+                BiteId = biteId
+            };
+            return View(animalListViewModel);
         }
 
         public JsonResult GetAnimalIdList()
@@ -156,10 +160,11 @@ namespace RabiesApplication.Web.Controllers
 
 
         [HttpPost]
-        public ActionResult link(AnimalListViewModel vm)
+        public ActionResult Link(AnimalListViewModel animalvm)
         {
-            var animalId = vm.AnimalId;
-            var biteId = vm.BiteId;
+            var animalId = animalvm.AnimalId;//Request["selectedAnimalId"];
+            var biteId = animalvm.BiteId;//Request[" BiteId"];
+  
 
             var animal = _animalRepository.GetById(animalId).Result;
             var addToBite = _animalRepository.Context.Bites.Find(biteId);

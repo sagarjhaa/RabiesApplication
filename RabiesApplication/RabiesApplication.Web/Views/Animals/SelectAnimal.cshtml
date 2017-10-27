@@ -1,30 +1,30 @@
-﻿@*@model RabiesApplication.Web.ViewModels.AnimalListViewModel*@
-
+﻿@model RabiesApplication.Web.ViewModels.AnimalListViewModel
 @{
     ViewBag.Title = "title";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>title</h2>
+<h2>Select Animal</h2>
 
 <script src="~/Scripts/knockout-3.4.2.debug.js"></script>
 
 
-@using (Html.BeginForm("link", "Animals"))
+@using (Html.BeginForm("Link", "Animals"))
 {
 
-    @Html.Hidden("BiteId",(object)ViewBag.BiteId)
+    @*@Html.Hidden("BiteId",(object)ViewBag.BiteId)*@
+    @Html.HiddenFor(model => model.BiteId);
 
     <div class="row form-group">
         <div class="col-3">
-            <select id="animalId" data-bind="value:selectedanimal,options: $root.animals,optionsText:'Name',optionsCaption:'Choose Animal'
-                               " class="form-control"></select>
+            <select id="animalId" data-bind="value:selectedanimal,options: $root.animals,optionsText:'Name',optionsCaption:'Choose Animal'" class="form-control"></select>
         </div>
         <div class="col-md-3">
-            <input type="submit" value="Save" class="btn btn-success btn-block"/>
+            <input type="submit" value="Save" class="btn btn-success btn-block" data-bind="attr : {'disabled' : isDisabled()}"/>
         </div>
         <div class="col-md-3">
-            @*<p data-bind="text:selectedanimal().Id"></p>*@
+            <input type="hidden" id="AnimalId" name="AnimalId" data-bind="value:selectedanimalId()" />
+            @*<input  id="selectedAnimalId" data-bind="value:isDisabled()" />*@
         </div>
     </div>
     
@@ -97,82 +97,77 @@
     </div>
 </div>
 
+<br />
+
 <div class="row">
-    <div class="col">
+    <div class="col form-inline">
 
-        @Html.Label("Sex", htmlAttributes: new { @class = "control-label col" })
-        <div class="col-md-9">
-            
-                <input type="checkbox" data-bind="value:Sex" class="form-control" disabled="disabled" />
-            
+        <div class="form-check">
+            <label class="form-check-label">
+                @Html.Label("Sex", htmlAttributes: new { @class = "control-label col" })
+                <input type="checkbox" data-bind="checked:Sex" disabled="disabled" />
+            </label>
         </div>
-
     </div>
-    <div class="col">
+    <div class="col form-inline">
 
-        @Html.Label("IsVacinated", htmlAttributes: new { @class = "control-label col" })
-        <div class="col-md-9">
-            <div class="checkbox">
-                @Html.Editor("IsVacinated")
-            </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                @Html.Label("IsVacinated", htmlAttributes: new { @class = "control-label col" })
+                <input type="checkbox" data-bind="checked:IsVacinated" disabled="disabled" />
+            </label>
         </div>
-
     </div>
 </div>
 
 <div class="row">
-    <div class="col">
-
-        @Html.Label("IsVacinatedPost", htmlAttributes: new { @class = "control-label col" })
-        <div class="col-md-9">
-            <div class="checkbox">
-                @Html.Editor("IsVacinatedPost")
-            </div>
+    <div class="col form-inline">
+        <div class="form-check">
+            <label class="form-check-label">
+                @Html.Label("IsVacinatedPost", htmlAttributes: new { @class = "control-label col" })
+                <input type="checkbox" data-bind="checked:IsVacinatedPost" disabled="disabled" />
+            </label>
         </div>
 
     </div>
-    <div class="col">
-
-        @Html.Label("IsVacinatedPrior", htmlAttributes: new { @class = "control-label col" })
-        <div class="col-md-9">
-            <div class="checkbox">
-                @Html.Editor("IsVacinatedPrior")
-            </div>
+    <div class="col form-inline">
+        <div class="form-check">
+            <label class="form-check-label">
+                @Html.Label("IsVacinatedPrior", htmlAttributes: new { @class = "control-label col" })
+                <input type="checkbox" data-bind="checked:IsVacinatedPrior" disabled="disabled" />
+            </label>
         </div>
-
     </div>
 </div>
 
 <div class="row">
-    <div class="col">
+    <div class="col form-inline">
 
-
-        @Html.Label("IsQuarantine", htmlAttributes: new { @class = "control-label col" })
-        <div class="col-md-9">
-            <div class="checkbox">
-                @Html.Editor("IsQuarantine")
-            </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                @Html.Label("IsQuarantine", htmlAttributes: new {@class = "control-label col"})
+                <input type="checkbox" data-bind="checked:IsQuarantine" disabled="disabled"/>
+            </label>
         </div>
-
     </div>
-    <div class="col">
 
-        @Html.Label("IsQuarantineCompleted", htmlAttributes: new { @class = "control-label col" })
-        <div class="col-md-9">
-            <div class="checkbox">
-                @Html.Editor("IsQuarantineCompleted")
-            </div>
+    <div class="col form-inline">
+        <div class="form-check">
+            <label class="form-check-label">
+                @Html.Label("IsQuarantineCompleted", htmlAttributes: new { @class = "control-label col" })
+                <input type="checkbox" data-bind="checked:IsQuarantineCompleted" disabled="disabled" />
+            </label>
         </div>
-
     </div>
 </div>
 
+<br />
 <div class="row">
     <div class="col">
 
         @Html.Label("VaccineDate", htmlAttributes: new { @class = "control-label col" })
         <div class="col-md-9">
-            @Html.Editor("VaccineDate", new { htmlAttributes = new { @class = "form-control" } })
+            <input data-bind="value:VaccineDate" class="form-control" disabled="disabled" />
         </div>
 
     </div>
@@ -180,7 +175,7 @@
 
         @Html.Label("VaccineExpirationDate", htmlAttributes: new { @class = "control-label col" })
         <div class="col-md-9">
-            @Html.Editor("VaccineExpirationDate", new { htmlAttributes = new { @class = "form-control" } })
+            <input data-bind="value:VaccineExpirationDate" class="form-control" disabled="disabled" />
         </div>
 
 
@@ -192,7 +187,7 @@
 
         @Html.Label("QuarantineVerification", htmlAttributes: new {@class = "control-label col"})
         <div class="col-md-9">
-            @Html.Editor("QuarantineVerification", new {htmlAttributes = new {@class = "form-control"}})
+            <input data-bind="value:QuarantineVerification" class="form-control" disabled="disabled" />
         </div>
 
     </div>
@@ -212,10 +207,9 @@
                 var self = this;
 
                 this.animals = ko.observable();
-                this.name = ko.observable('sagar');
                 this.selectedanimal = ko.observable();
-
-                
+                self.isDisabled = ko.observable(true);
+                self.selectedanimalId = ko.observable();
 
                 this.Name = ko.observable();
                 this.OwnerName = ko.observable();
@@ -224,6 +218,14 @@
                 this.TagNumber = ko.observable();
                 this.Vet = ko.observable();
                 this.Sex = ko.observable();
+                this.IsVacinated = ko.observable();
+                this.IsVacinatedPost = ko.observable();
+                this.IsVacinatedPrior = ko.observable();
+                this.IsQuarantine = ko.observable();
+                this.IsQuarantineCompleted = ko.observable();
+                this.VaccineDate = ko.observable();
+                this.VaccineExpirationDate = ko.observable();
+                this.QuarantineVerification = ko.observable();
 
 
                 this.getAnimalIdList = function () {
@@ -240,6 +242,14 @@
                     self.TagNumber(result.ViewModel.TagNumber);
                     self.Vet(result.Vet);
                     self.Sex(result.ViewModel.Sex);
+                    self.IsVacinated(result.ViewModel.IsVacinated);
+                    self.IsVacinated(result.ViewModel.IsVacinatedPost);
+                    self.IsVacinatedPrior(result.ViewModel.IsVacinatedPrior);
+                    self.IsQuarantine(result.ViewModel.IsQuarantine);
+                    self.IsQuarantineCompleted(result.ViewModel.IsQuarantineCompleted);
+                    self.VaccineDate(result.ViewModel.VaccineDate);
+                    self.VaccineExpirationDate(result.ViewModel.VaccineExpirationDate);
+                    self.QuarantineVerification(result.ViewModel.QuarantineVerification);
                 }
 
                 this.getAnimalData = function (animalId) {
@@ -256,7 +266,15 @@
                 this.getAnimalIdList();
                 this.selectedanimal.subscribe(function (newValue) {
                     // Handle a change here, e.g. update something on the server with Ajax.
-                    //alert('myfield changed to ' + newValue.Id);
+
+                    self.isDisabled(true);
+                    if (newValue.Id.length > 0) {
+                        self.isDisabled(false);
+                    }
+
+
+                    self.selectedanimalId(newValue.Id);
+
                     self.getAnimalData(newValue.Id);
                 });
 
