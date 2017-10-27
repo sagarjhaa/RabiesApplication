@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using AutoMapper;
 using RabiesApplication.Models;
@@ -127,15 +128,32 @@ namespace RabiesApplication.Web.Controllers
         public ActionResult SelectAnimal(string biteId)
         {
             ViewBag.BiteId = biteId;
+            return View();
+        }
 
-         var animalListViewModel = new AnimalListViewModel()
+        public JsonResult GetAnimalIdList()
+        {
+            var Animals = _animalRepository.GetAnimalIds();
+            return  Json(Animals, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetJsonAnimalById(string animalId)
+        {
+            var animalDb = _animalRepository.GetById(animalId).Result;
+            var animalFormViewModel = Mapper.Map<Animal, AnimalFormViewModel>(animalDb);
+
+            var finalResult = new
             {
-                BiteId = biteId,
-                Animals = _animalRepository.GetAnimalIds()
+                OwnerName  = animalDb.AnimalOwner != null ?animalDb.AnimalOwner.LastName + " " + animalDb.AnimalOwner.FirstName : null,
+                Breed = animalDb.Breed?.Description,
+                Species = animalDb.Species?.Description,
+                Vet = animalDb.Vet?.FirstName,
+                ViewModel  = animalFormViewModel
             };
 
-            return View(animalListViewModel);
+            return Json(finalResult, JsonRequestBehavior.AllowGet);
         }
+
 
         [HttpPost]
         public ActionResult link(AnimalListViewModel vm)

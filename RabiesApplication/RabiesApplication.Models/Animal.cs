@@ -19,14 +19,14 @@ namespace RabiesApplication.Models
         [ForeignKey("AnimalOwner")]
         public string AnimalOwnerId { get; set; }
 
-        public AnimalOwner AnimalOwner { get; set; }
+        public virtual AnimalOwner AnimalOwner { get; set; }
 
         public ICollection<Bite> Bites { get; set; }
         
         [DisplayName("Vet")]
         public string VetId { get; set; }
 
-        public Vet Vet { get; set; }
+        public virtual Vet Vet { get; set; }
 
         [Required]
         [DisplayName("Sepecies")]

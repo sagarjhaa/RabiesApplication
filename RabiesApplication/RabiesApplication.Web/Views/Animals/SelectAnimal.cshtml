@@ -1,4 +1,4 @@
-﻿@model RabiesApplication.Web.ViewModels.AnimalListViewModel
+﻿@*@model RabiesApplication.Web.ViewModels.AnimalListViewModel*@
 
 @{
     ViewBag.Title = "title";
@@ -7,15 +7,267 @@
 
 <h2>title</h2>
 
+<script src="~/Scripts/knockout-3.4.2.debug.js"></script>
 
 
 @using (Html.BeginForm("link", "Animals"))
 {
 
-    @Html.HiddenFor(m => m.BiteId)
+    @Html.Hidden("BiteId",(object)ViewBag.BiteId)
 
-    @Html.DropDownListFor(model => model.AnimalId, new SelectList(Model.Animals), htmlAttributes: new { @class = "form-control" })
-
-    <input type="submit" value="Save" class="btn btn-success btn-block" />
-
+    <div class="row form-group">
+        <div class="col-3">
+            <select id="animalId" data-bind="value:selectedanimal,options: $root.animals,optionsText:'Name',optionsCaption:'Choose Animal'
+                               " class="form-control"></select>
+        </div>
+        <div class="col-md-3">
+            <input type="submit" value="Save" class="btn btn-success btn-block"/>
+        </div>
+        <div class="col-md-3">
+            @*<p data-bind="text:selectedanimal().Id"></p>*@
+        </div>
+    </div>
+    
 }
+
+<hr/>
+
+<div class="row">
+    <div class="col">
+
+        @Html.Label("Name", htmlAttributes: new { @class = "control-label col" })
+        <div class="col-md-9">
+            <input data-bind="value:Name" class="form-control" disabled="disabled"/>
+        </div>
+
+    </div>
+    <div class="col ">
+
+        @Html.Label("AnimalOwnerId", htmlAttributes: new { @class = "control-label col" })
+        <div class="col-9">
+            <input  data-bind="value:OwnerName" class="form-control" disabled="disabled"/>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </div>
+
+
+</div>
+
+<div class="row">
+
+    <div class="col">
+
+        @Html.Label("SpeciesId", htmlAttributes: new { @class = "control-label col" })
+        <div class="col-md-9">
+            <input data-bind="value:Species" class="form-control" disabled="disabled" />
+        </div>
+
+    </div>
+
+    <div class="col">
+
+        @Html.Label("BreedId", htmlAttributes: new { @class = "control-label col" })
+        <div class="col-md-9">
+            <input data-bind="value:Breed" class="form-control" disabled="disabled" />
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col">
+
+        @Html.Label("TagNumber", htmlAttributes: new { @class = "control-label col" })
+        <div class="col-md-9">
+            <input data-bind="value:TagNumber" class="form-control" disabled="disabled" />
+        </div>
+
+    </div>
+    <div class="col">
+
+        @Html.Label("VetId", htmlAttributes: new { @class = "control-label col" })
+        <div class="col-md-9">
+            <input data-bind="value:Vet" class="form-control" disabled="disabled" />
+        </div>
+
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+
+        @Html.Label("Sex", htmlAttributes: new { @class = "control-label col" })
+        <div class="col-md-9">
+            
+                <input type="checkbox" data-bind="value:Sex" class="form-control" disabled="disabled" />
+            
+        </div>
+
+    </div>
+    <div class="col">
+
+        @Html.Label("IsVacinated", htmlAttributes: new { @class = "control-label col" })
+        <div class="col-md-9">
+            <div class="checkbox">
+                @Html.Editor("IsVacinated")
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+
+        @Html.Label("IsVacinatedPost", htmlAttributes: new { @class = "control-label col" })
+        <div class="col-md-9">
+            <div class="checkbox">
+                @Html.Editor("IsVacinatedPost")
+            </div>
+        </div>
+
+    </div>
+    <div class="col">
+
+        @Html.Label("IsVacinatedPrior", htmlAttributes: new { @class = "control-label col" })
+        <div class="col-md-9">
+            <div class="checkbox">
+                @Html.Editor("IsVacinatedPrior")
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+
+
+        @Html.Label("IsQuarantine", htmlAttributes: new { @class = "control-label col" })
+        <div class="col-md-9">
+            <div class="checkbox">
+                @Html.Editor("IsQuarantine")
+            </div>
+        </div>
+
+    </div>
+    <div class="col">
+
+        @Html.Label("IsQuarantineCompleted", htmlAttributes: new { @class = "control-label col" })
+        <div class="col-md-9">
+            <div class="checkbox">
+                @Html.Editor("IsQuarantineCompleted")
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+
+        @Html.Label("VaccineDate", htmlAttributes: new { @class = "control-label col" })
+        <div class="col-md-9">
+            @Html.Editor("VaccineDate", new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+    </div>
+    <div class="col">
+
+        @Html.Label("VaccineExpirationDate", htmlAttributes: new { @class = "control-label col" })
+        <div class="col-md-9">
+            @Html.Editor("VaccineExpirationDate", new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+
+        @Html.Label("QuarantineVerification", htmlAttributes: new {@class = "control-label col"})
+        <div class="col-md-9">
+            @Html.Editor("QuarantineVerification", new {htmlAttributes = new {@class = "form-control"}})
+        </div>
+
+    </div>
+    <div class="col"></div>
+
+</div>
+
+
+
+
+<script>
+    $(document)
+        .ready(function () {
+            
+            function AnimalViewModel() {
+
+                var self = this;
+
+                this.animals = ko.observable();
+                this.name = ko.observable('sagar');
+                this.selectedanimal = ko.observable();
+
+                
+
+                this.Name = ko.observable();
+                this.OwnerName = ko.observable();
+                this.Species = ko.observable();
+                this.Breed = ko.observable();
+                this.TagNumber = ko.observable();
+                this.Vet = ko.observable();
+                this.Sex = ko.observable();
+
+
+                this.getAnimalIdList = function () {
+                    $.get('/Animals/GetAnimalIdList', this.animals);
+                }
+
+                
+
+                this.setData = function(result) {
+                    self.Name(result.ViewModel.Name);
+                    self.OwnerName(result.OwnerName);
+                    self.Species(result.Species);
+                    self.Breed(result.Breed);
+                    self.TagNumber(result.ViewModel.TagNumber);
+                    self.Vet(result.Vet);
+                    self.Sex(result.ViewModel.Sex);
+                }
+
+                this.getAnimalData = function (animalId) {
+                    $.ajax({
+                        url: '/Animals/GetJsonAnimalById',
+                        data: { animalId: animalId },
+                        success: function (result) {
+                            self.setData(result);
+                        }
+                    });
+                }
+
+
+                this.getAnimalIdList();
+                this.selectedanimal.subscribe(function (newValue) {
+                    // Handle a change here, e.g. update something on the server with Ajax.
+                    //alert('myfield changed to ' + newValue.Id);
+                    self.getAnimalData(newValue.Id);
+                });
+
+            }
+
+            
+
+            ko.applyBindings(new AnimalViewModel());
+
+        });
+
+    
+
+</script>

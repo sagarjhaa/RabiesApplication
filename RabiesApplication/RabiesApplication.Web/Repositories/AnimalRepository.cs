@@ -60,11 +60,35 @@ namespace RabiesApplication.Web.Repositories
             };
         }
 
-        public List<string> GetAnimalIds()
+        public List<object> GetAnimalIds()
         {
-            return Context.Animals.Select(a => a.Id).ToList();
+            List<object> animalIds = (from a in Context.Animals
+                                      join ao in Context.AnimalOwner on a.AnimalOwnerId equals  ao.Id
+                                      orderby a.Name
+                                      select new
+                                      {
+                                          Id = a.Id,
+                                          Name = a.Name + " - " + ao.LastName + " "  + ao.FirstName
+                                      }).AsEnumerable<object>().ToList();
+
+            return animalIds;
         }
 
+        public AnimalViewModel GetAnimalData(string animalId)
+        {
+            var a = Context.Animals.Include("Breed").Include("Species").FirstOrDefault(aa => aa.Id.Equals(animalId));
+            if (a == null)
+                return null;
+
+            return new AnimalViewModel()
+            {
+                Id = a.Id,
+                Name = a.Name,
+                Breed = a.Breed == null ? string.Empty : a.Breed.Description,
+                Species = a.Species.Description,
+                OwnerId = a.AnimalOwnerId
+            };
+        }
 
         //public IQueryable<Animal> GetAllPetVictims(string biteId)
         //{
