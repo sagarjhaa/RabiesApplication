@@ -15,6 +15,7 @@ namespace RabiesApplication.Web
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/respond.js",
                         "~/Scripts/DataTables/dataTables.min.js",
+                        "~/Scripts/toastr.js",
                         "~/Scripts/knockout-3.4.2"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -33,7 +34,8 @@ namespace RabiesApplication.Web
                       "~/Content/Site.css",
                       //"~/Content/bootstrap-theme.css",
                       //"~/Content/bootswatch/readable/bootstrap.css",
-                      "~/Content/DataTables/css/dataTables.bootstrap4.css"
+                      "~/Content/DataTables/css/dataTables.bootstrap4.css",
+                      "~/Content/toastr.css"
                       ));
         }
     }

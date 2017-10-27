@@ -70,10 +70,14 @@ namespace RabiesApplication.Web.Controllers
                 if (humanVictim.Id == null)
                 {
                     await _humanVictimRepository.Insert(humanVictim);
+                    TempData["Message"] = "Victim added successfully.";
+                    TempData["MessageType"] = "success";
                 }
                 else
                 {
                     await _humanVictimRepository.Update(humanVictim);
+                    TempData["Message"] = "Victim updated successfully.";
+                    TempData["MessageType"] = "success";
                 }
 
                 await _humanVictimRepository.SaveChangesAsync();
@@ -121,6 +125,8 @@ namespace RabiesApplication.Web.Controllers
             var biteId = humanVictim.BiteId;
             await _humanVictimRepository.DeleteAsync(humanVictim.Id);
             await _humanVictimRepository.SaveChangesAsync();
+            TempData["Message"] = "Victim deleted successfully.";
+            TempData["MessageType"] = "success";
             return RedirectToAction("Details","Bites",new { biteId = biteId });
         }
 
