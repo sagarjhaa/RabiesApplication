@@ -46,5 +46,15 @@ namespace RabiesApplication.Web.Models
         SixMonthQ
     }
 
+    public enum LettersDays
+    {
+        TenDayQSame = 10,
+        TenDayQDifferent =10,
+        TenDayQShelter = 10,
+        FourFiveDayQ = 45,
+        WildUnknownAnimal = 0,
+        SixMonthQ = 6
+    }
+
 
 }
