@@ -200,6 +200,8 @@
     <Compile Include="App_Start\MappingProfile.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="BusinessLogic\ComposeLetter.cs" />
+    <Compile Include="BusinessLogic\GenerateAction.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnimalOwnersController.cs" />
     <Compile Include="Controllers\AnimalsController.cs" />
@@ -682,7 +684,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="BusinessLogic\" />
     <Folder Include="Interfaces\" />
     <Folder Include="LettersSent\" />
   </ItemGroup>
