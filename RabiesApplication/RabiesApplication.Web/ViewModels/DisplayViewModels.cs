@@ -30,6 +30,7 @@ namespace RabiesApplication.Web.ViewModels
         public string Status { get; set; }
         [DisplayFormat(DataFormatString = Constant.DateFormat,ApplyFormatInEditMode = true)]
         public DateTimeOffset BiteDate { get; set; }
+
         [DisplayFormat(DataFormatString = Constant.DateFormat,ApplyFormatInEditMode = true)]
         public DateTimeOffset ReportDate { get; set; }
         public string Comments { get; set; }
@@ -95,7 +96,7 @@ namespace RabiesApplication.Web.ViewModels
         public string Comments { get; set; }
         public string DocumentId { get; set; }
 
-        [DisplayFormat(DataFormatString = Constant.DateHourFormat)]
+        [DisplayFormat(DataFormatString = Constant.DateHourFormat,ApplyFormatInEditMode = true)]
         public DateTimeOffset RecordCreated { get; set; }
     }
 

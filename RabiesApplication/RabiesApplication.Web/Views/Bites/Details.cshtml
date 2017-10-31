@@ -25,9 +25,9 @@
 
     <div class="row form-group">
         <div class="col"><h6>@Html.DisplayNameFor(model => model.Bite.BiteDate)</h6></div>
-        <div class="col">@Html.TextBoxFor(model => model.Bite.BiteDate, new { @class = "form-control", disabled = "disabled" })</div>
+        <div class="col">@Html.TextBoxFor(model => model.Bite.BiteDate,Constant.DateFormat, new { @class = "form-control", disabled = "disabled" })</div>
         <div class="col"><h6>@Html.DisplayNameFor(model => model.Bite.ReportDate)</h6></div>
-        <div class="col">@Html.TextBoxFor(model => model.Bite.ReportDate, new { @class = "form-control", disabled = "disabled" })</div>
+        <div class="col">@Html.TextBoxFor(model => model.Bite.ReportDate, Constant.DateFormat, new { @class = "form-control", disabled = "disabled" })</div>
     </div>
 
     <div class="row form-group">
