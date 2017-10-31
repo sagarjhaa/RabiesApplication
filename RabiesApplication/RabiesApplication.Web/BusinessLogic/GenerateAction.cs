@@ -28,7 +28,16 @@ namespace RabiesApplication.Web.BusinessLogic
             var action = Mapper.Map<ActionEventArgs, Action>(e);
 
             _actionRepository.Insert(action);
-            _actionRepository.SaveChangesAsync();
+            try
+            {
+                _actionRepository.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                
+                throw;
+            }
+
 
         }
       

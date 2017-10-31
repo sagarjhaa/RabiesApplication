@@ -13,6 +13,7 @@ namespace RabiesApplication.Web.Models
 
         public const string OrganizationCcbh = "1";
         public const string DateFormat = "{0:MM-dd-yyy}";
+        public const string DateHourFormat = "{0:MM-dd-yyy hh:mm:ss}";
 
         #region HELPER
 

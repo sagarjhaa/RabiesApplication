@@ -39,11 +39,7 @@ namespace RabiesApplication.Web.BusinessLogic
         protected Animal Animal;
         protected AnimalOwner AnimalOwner;
 
-        public ActionEventArgs internalAction = new ActionEventArgs()
-        {
-            ActionType = ActionTypes.Letter,
-            Active = Constant.Active,
-        };
+        public ActionEventArgs internalAction { get; set; }
 
         public Letter()
         {
@@ -56,6 +52,11 @@ namespace RabiesApplication.Web.BusinessLogic
             Bite = _biteRepository.GetByIdWithAnimal(biteId);
             Animal = _AnimalRepository.GetById(Bite.Animals.First().Id).Result;
             AnimalOwner = Animal.AnimalOwner;
+            internalAction = new ActionEventArgs()
+            {
+                ActionType = ActionTypes.Letter,
+                Active = Constant.Active,
+            };
         }
 
         private static float PointToInches(float point)
@@ -71,7 +72,7 @@ namespace RabiesApplication.Web.BusinessLogic
 
         }
 
-        public virtual string CreateLetter(){return string.Empty;}
+        public virtual void CreateLetter(){}
 
         protected void PrintAddress()
         {
@@ -136,10 +137,10 @@ namespace RabiesApplication.Web.BusinessLogic
         protected void SaveFile()
         {
             StringBuilder filename = new StringBuilder();
-            
-            //filename.Append(Bite.Id + "_").Append(Bite.BiteDate.Value.ToString("yy-MM-dd")).Append(DateTime.Now.ToString("hh-mm")).Append(".docx");
 
-            filename.Append(new Guid()).Append(".docx");
+            filename.Append(Bite.Id + "_").Append(Bite.BiteDate.Value.ToString("yy-MM-dd")).Append(DateTime.Now.ToString("hh-mm")).Append(".docx");
+
+            //filename.Append(new Guid()).Append(".docx");
             //Todo : Need to save the binary data to a table for reproduction of all communications.
             Document.SaveAs(DocumentSavePath + filename);
             WordApplication.Application.Quit();
@@ -172,7 +173,7 @@ namespace RabiesApplication.Web.BusinessLogic
         {
         }
 
-        public override string CreateLetter()
+        public override void CreateLetter()
         {
             
             AddHeaderImage();
@@ -278,19 +279,13 @@ namespace RabiesApplication.Web.BusinessLogic
             #endregion
 
 
-            //ActionEventArgs action = new ActionEventArgs
-            //{
-            //    BiteId = Bite.Id,
-            //    ActionType = ActionTypes.Letter,
-            //    Comments = "Letter sent Ten Day Quarantine Owner Victim same",
-            //    Active = Constant.Active,
-            //};
-            //OnLetterGenerated(action);
+            internalAction.BiteId = Bite.Id;
+            internalAction.Comments = "Letter sent Ten Day Quarantine Owner Victim Same.";
 
 
-          
+
             //Save Document
-            return SaveFile();
+            SaveFile();
 
         }
     }
@@ -299,7 +294,7 @@ namespace RabiesApplication.Web.BusinessLogic
     {
         public TenDayQuarantineLetterDifferent(string biteId): base(biteId) {}
 
-        public override string CreateLetter()
+        public override void CreateLetter()
         {
             AddHeaderImage();
 
@@ -412,7 +407,7 @@ namespace RabiesApplication.Web.BusinessLogic
             internalAction.Comments = "Letter sent Ten Day Quarantine Owner Victim different.";
 
             //Save Document
-            return SaveFile();
+            SaveFile();
         }
     }
 
@@ -420,7 +415,7 @@ namespace RabiesApplication.Web.BusinessLogic
     {
         public WildUnknowAnimal(string biteId): base(biteId){}
 
-        public override string CreateLetter()
+        public override void CreateLetter()
         {
             AddHeaderImage();
             PrintAddress(AnimalOwner);
@@ -457,15 +452,10 @@ namespace RabiesApplication.Web.BusinessLogic
 
             AddFooterContact();
 
-            ActionEventArgs action = new ActionEventArgs
-            {
-                BiteId = Bite.Id,
-                ActionType = ActionTypes.Letter,
-                Comments = "Letter sent Ten Day Quarantine Owner Victim same",
-                Active = Constant.Active,
-            };
+            internalAction.BiteId = Bite.Id;
+            internalAction.Comments = "Letter sent Ten Day Quarantine Owner Victim different.";
 
-            return SaveFile();
+            SaveFile();
         }
     }
 
@@ -473,7 +463,7 @@ namespace RabiesApplication.Web.BusinessLogic
     {
         public SixMonthQuarantine(string biteId): base(biteId){}
 
-        public override string CreateLetter()
+        public override void CreateLetter()
         {
             AddHeaderImage();
             PrintAddress(AnimalOwner);
@@ -513,7 +503,7 @@ namespace RabiesApplication.Web.BusinessLogic
 
             AddFooterContact();
 
-            return SaveFile();
+             SaveFile();
         }
     }
 
@@ -521,7 +511,7 @@ namespace RabiesApplication.Web.BusinessLogic
     {
         public TenDayQuarantineShelter(string biteId): base(biteId){}
 
-        public override string CreateLetter()
+        public override void CreateLetter()
         {
             AddHeaderImage();
             PrintAddress();
@@ -566,7 +556,7 @@ namespace RabiesApplication.Web.BusinessLogic
 
             AddFooterContact();
 
-            return SaveFile();
+            SaveFile();
         }
     }
 
@@ -574,7 +564,7 @@ namespace RabiesApplication.Web.BusinessLogic
     {
         public FourFiveDayQuarantine(string biteId): base(biteId){}
 
-        public override string CreateLetter()
+        public override void CreateLetter()
         {
             AddHeaderImage();
             PrintAddress();
@@ -606,7 +596,7 @@ namespace RabiesApplication.Web.BusinessLogic
             WordApplication.Selection.TypeText("Thank you for your coorperation. Please contact me with any questions or concerns that you may have." + Environment.NewLine);
 
             AddFooterContact();
-            return SaveFile();
+            SaveFile();
         }
     }
 
@@ -619,7 +609,7 @@ namespace RabiesApplication.Web.BusinessLogic
     {
         public NonCompliance_OwnerVictimDifferent_No_Quarantine_No_Vaccination(string biteId): base(biteId){}
 
-        public override string CreateLetter()
+        public override void CreateLetter()
         {
             AddHeaderImage();
             PrintAddress();
@@ -647,7 +637,7 @@ namespace RabiesApplication.Web.BusinessLogic
             WordApplication.Selection.TypeText("Sincerely," + Environment.NewLine);
             AddFooterContact();
 
-            return SaveFile();
+            SaveFile();
         }
     }
 
@@ -658,7 +648,7 @@ namespace RabiesApplication.Web.BusinessLogic
             
         }
 
-        public override string CreateLetter()
+        public override void CreateLetter()
         {
             AddHeaderImage();
 
@@ -682,7 +672,7 @@ namespace RabiesApplication.Web.BusinessLogic
             WordApplication.Selection.TypeText("Sincerely," + Environment.NewLine);
             AddFooterContact();
 
-            return SaveFile();
+            SaveFile();
         }
     }
 
@@ -690,7 +680,7 @@ namespace RabiesApplication.Web.BusinessLogic
     {
         public NonCompliance_OwnerVictimDifferent_No_Vaccine(string biteId): base(biteId){}
 
-        public override string CreateLetter()
+        public override void CreateLetter()
         {
             AddHeaderImage();
 
@@ -714,7 +704,7 @@ namespace RabiesApplication.Web.BusinessLogic
             WordApplication.Selection.TypeText("Sincerely," + Environment.NewLine);
             AddFooterContact();
 
-            return SaveFile();
+            SaveFile();
         }
     }
 
@@ -722,7 +712,7 @@ namespace RabiesApplication.Web.BusinessLogic
     {
         public NonComplaince_OwnerVictimSame_No_Quarantine_No_Vaccine(string biteId): base(biteId){}
 
-        public override string CreateLetter()
+        public override void CreateLetter()
         {
             AddHeaderImage();
 
@@ -750,7 +740,7 @@ namespace RabiesApplication.Web.BusinessLogic
 
             AddFooterContact();
 
-            return SaveFile();
+            SaveFile();
         }
     }
 
@@ -761,7 +751,7 @@ namespace RabiesApplication.Web.BusinessLogic
             
         }
 
-        public override string CreateLetter()
+        public override void CreateLetter()
         {
             AddHeaderImage();
 
@@ -781,7 +771,7 @@ namespace RabiesApplication.Web.BusinessLogic
 
             AddFooterContact();
 
-            return SaveFile();
+            SaveFile();
         }
     }
 
@@ -789,7 +779,7 @@ namespace RabiesApplication.Web.BusinessLogic
     {
         public NonCompliance_OwnerVictimSame_No_Vaccine(string biteId): base(biteId){}
 
-        public override string CreateLetter()
+        public override void CreateLetter()
         {
             AddHeaderImage();
 
@@ -814,7 +804,7 @@ namespace RabiesApplication.Web.BusinessLogic
             WordApplication.Selection.TypeText("Sincerely," + Environment.NewLine);
             AddFooterContact();
 
-            return SaveFile();
+            SaveFile();
         }
     }
 

@@ -18,6 +18,8 @@ namespace RabiesApplication.Web.ViewModels
         public AnimalOwnerViewModel AnimalOwner { get; set; }
 
         public VetViewModel Vet { get; set; }
+
+        public IEnumerable<ActionListViewModel> Actions { get; set; }
     }
 
 
@@ -84,5 +86,17 @@ namespace RabiesApplication.Web.ViewModels
         public string AnimalId { get; set; }
     }
 
+
+    public class ActionListViewModel
+    {
+        public string Id { get; set; }
+        public string BiteId { get; set; }
+        public string ActionType { get; set; }
+        public string Comments { get; set; }
+        public string DocumentId { get; set; }
+
+        [DisplayFormat(DataFormatString = Constant.DateHourFormat)]
+        public DateTimeOffset RecordCreated { get; set; }
+    }
 
 }

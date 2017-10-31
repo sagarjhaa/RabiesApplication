@@ -31,6 +31,8 @@ namespace RabiesApplication.Web.Controllers
         private readonly AnimalRepository _animalRepository = new AnimalRepository();
         private readonly AnimalOwnerRepository _animalOwnerRepository = new AnimalOwnerRepository();
         private readonly VetRepository _vetRepository = new VetRepository();
+        private readonly ActionRepository _actionRepository = new ActionRepository();
+
         //private readonly PetOwnerRepository _petOwnerRepository = new PetOwnerRepository();
         //private readonly ActionRepository _actionRepository = new ActionRepository();
 
@@ -99,6 +101,7 @@ namespace RabiesApplication.Web.Controllers
             var bite = _biteRepository.GetBiteJustViewModel(biteId);
             var humanVicitm = _humanVictimRepository.GetHumanVictimViewModelByBiteId(bite.Id);
             var animal = _animalRepository.GetAnimalByBiteId(bite.Id, animalId);
+            var actions = _actionRepository.GetActionsByBiteId(biteId);
 
             VetViewModel vet = null;
             AnimalOwnerViewModel animalOwner = null;
@@ -115,7 +118,8 @@ namespace RabiesApplication.Web.Controllers
                 Animal = animal,
                 HumanVictims = humanVicitm,
                 AnimalOwner = animalOwner,
-                Vet = vet
+                Vet = vet,
+                Actions = actions
             };
 
 
@@ -274,13 +278,25 @@ namespace RabiesApplication.Web.Controllers
         }
 
 
-        //public FileStreamResult GetDocument(string documentId)
-        //{
-        //    string path = HttpContext.Server.MapPath("~") + "LettersSent\\" + documentId;
-        //    FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
-        //    return File(fs, "application/vnd.openxmlformats-officedocument.wordprocessingml.document",documentId);
-        //}
+        public ActionResult DocumentDownload(string documentId)
+        {
+            if (documentId == null)
+            {
+                return HttpNotFound("Wrong data");
 
+            }
+
+            var document = _actionRepository.Context.Actions.Where(a => a.DocumentId.Equals(documentId));
+            if (document == null)
+            {
+                return HttpNotFound("Document not found");
+            }
+
+           string DocumentSavePath = Server.MapPath("~") + "LettersSent\\" + documentId;
+           byte[] fileBytes = System.IO.File.ReadAllBytes(@DocumentSavePath);
+           return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet);
+
+        }
 
     }
 }

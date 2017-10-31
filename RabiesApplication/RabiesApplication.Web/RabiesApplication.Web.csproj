@@ -686,6 +686,7 @@
     <Content Include="Views\AnimalOwners\AnimalOwnerForm.cshtml" />
     <Content Include="Views\AnimalOwners\Delete.cshtml" />
     <None Include="Views\Animals\SelectAnimal.cshtml" />
+    <Content Include="Views\Shared\_ActionView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

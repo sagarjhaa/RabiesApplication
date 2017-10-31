@@ -153,6 +153,7 @@
     </div>
 </div>
 
+
 <hr class="border border-info" />
 
 <div class="row">
@@ -189,6 +190,23 @@
                 </select>
                 <button class="btn btn-sm btn-primary" type="submit">Generate Letter</button>
             </div>
+        }
+    </div>
+</div>
+
+
+<hr class="border border-info" />
+
+<div class="row">
+    <div class="col">
+        <h4>Actions</h4>
+        @if (Model.Actions != null)
+        {
+            @Html.Partial("_ActionView", Model.Actions)
+        }
+        else
+        {
+            <h4>No Vet information</h4>
         }
     </div>
 </div>

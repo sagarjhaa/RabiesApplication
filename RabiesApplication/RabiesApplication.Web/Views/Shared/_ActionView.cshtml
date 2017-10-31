@@ -1,0 +1,32 @@
+﻿@model IEnumerable<RabiesApplication.Web.ViewModels.ActionListViewModel>
+
+<div>
+    <table class="table table-condensed table-bordered table-hover table-striped ">
+        
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.ActionType)</th>
+            <th>@Html.DisplayNameFor(model => model.Comments)</th>
+            <th>@Html.DisplayNameFor(model => model.DocumentId)</th>
+            <th>@Html.DisplayNameFor(model => model.RecordCreated)</th>
+            <th>Action</th>
+        </tr>
+
+
+        @foreach(var item in Model) { 
+        <tr>
+            <td>@Html.DisplayFor(model => item.ActionType)</td>
+            <td>@Html.DisplayFor(model => item.Comments)</td>
+            <td>
+                @if (item.DocumentId != null)
+                {
+                    @Html.ActionLink("Document", "DocumentDownload", "Bites",new {documentId = item.DocumentId},htmlAttributes:new {@class="btn btn-default"})
+                }
+
+                @*@Html.DisplayFor(model => item.DocumentId)*@
+            </td>
+            <td>@Html.DisplayFor(model => item.RecordCreated)</td>
+        </tr>
+        }
+    </table>
+
+</div>
