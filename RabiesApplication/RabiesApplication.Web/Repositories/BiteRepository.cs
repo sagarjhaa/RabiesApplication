@@ -13,15 +13,10 @@ namespace RabiesApplication.Web.Repositories
 {
     public class BiteRepository : ActiveRepository<Bite>
     {
-     
-        //public Task BiteDetailsWithAnimal(string biteId)
-        //{
-        //    var bite =  base.Context.Bites.Where(b => b.Id.Equals(biteId));
-
-        //    var biteWithAnimal = bite.Where(b => b.Animals.Where(a => !a.IsVictim)).ToListAsync();
-
-        //    return biteWithAnimal;
-        //}
+        public Bite GetByIdWithAnimal(string id)
+        {
+            return base.All().Include("Animals").First(b => b.Id.Equals(id));
+        }
 
         public override IQueryable<Bite> All()
         {

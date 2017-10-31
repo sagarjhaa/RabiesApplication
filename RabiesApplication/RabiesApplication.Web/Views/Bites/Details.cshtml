@@ -157,11 +157,22 @@
 
 <div class="row">
     <div class="col-md-6">
-        @using (Html.BeginForm("GenerateLetter", "Bites", new { biteId = Model.Bite.Id }))
+        @using (Html.BeginForm("GenerateLetter", "Bites", new { biteId = Model.Bite.Id,animalId = Model.Animal.Id }))
         {
             <div class="form-inline">
                 <h4>Initial Letters</h4>
-                @Html.DropDownList("Letter Type", EnumHelper.GetSelectList(typeof(Letters)), "Select One", htmlAttributes: new {@class = "form-control"})
+
+                <select id="Letter Type" name="Letter Type" class = "form-control">
+                    <option value=""></option>
+                    <option value="1">A</option>
+                    <option value="2">B</option>
+                    <option value="3">C</option>
+                    <option value="4">D</option>
+                    <option value="5">E</option>
+                    <option value="6">F</option>
+                </select>
+
+                @*@Html.DropDownList("Letter Type", EnumHelper.GetSelectList(typeof(Letters)), "Select One", htmlAttributes: new {@class = "form-control"})*@
                 <button class="btn btn-sm btn-primary" type="submit">Generate Letter</button>
             </div>
         }

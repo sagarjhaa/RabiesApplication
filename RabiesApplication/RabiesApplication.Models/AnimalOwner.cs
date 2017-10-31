@@ -40,15 +40,15 @@ namespace RabiesApplication.Models
         [DisplayName("City")]
         public string CityId { get; set; }
 
-        public City City { get; set; }
+        public virtual City City { get; set; }
 
         [DisplayName("County")]
-        public string CountyId { get; set; }
+        public virtual string CountyId { get; set; }
 
         [DisplayName("State")]
         public string StateId { get; set; }
 
-        public State State { get; set; }
+        public virtual State State { get; set; }
 
         [Required]
         public int? Zipcode { get; set; }

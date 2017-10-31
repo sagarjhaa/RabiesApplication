@@ -14,6 +14,7 @@ using RabiesApplication.Web.Repositories;
 using RabiesApplication.Web.ViewModels;
 using Action = RabiesApplication.Models.Action;
 using PagedList;
+using RabiesApplication.Web.BusinessLogic;
 
 namespace RabiesApplication.Web.Controllers
 {
@@ -244,37 +245,33 @@ namespace RabiesApplication.Web.Controllers
         ////    return View(bite);
         ////}
 
-        //public ActionResult GenerateLetter(string biteId,FormCollection form)
-        //{
-        //    if (biteId == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
+        public ActionResult GenerateLetter(string biteId,string animalId, FormCollection form)
+        {
+            if (biteId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
 
 
-        //    var selectedLetter = form["Letter Type"];
+            var selectedLetter = form["Letter Type"];
 
 
-        //    try
-        //    {
-        //        int result;
-        //        int.TryParse(selectedLetter, out result);
-        //        ActionsHelper.SaveActions(ActionsHelper.GenerateSendLetterAction(biteId, result));
-        //    }
-        //    catch (Exception)
-        //    {
+            try
+            {
+                int result;
+                int.TryParse(selectedLetter, out result);
+                new GenerateLetter().GenerateSendLetterAction(biteId, animalId, result);
+            }
+            catch (Exception)
+            {
 
-        //        throw;
-        //    }
+                throw;
+            }
 
+            return RedirectToAction("Details", new { biteId = biteId });
 
-
-
-
-        //    return RedirectToAction("Details", new { biteId = biteId});
-
-        //}
+        }
 
 
         //public FileStreamResult GetDocument(string documentId)

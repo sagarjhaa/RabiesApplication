@@ -267,6 +267,10 @@
     <Compile Include="Migrations\201710241837403_AddEmail_HumanVictim.Designer.cs">
       <DependentUpon>201710241837403_AddEmail_HumanVictim.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710311428124_AddActionsTable.cs" />
+    <Compile Include="Migrations\201710311428124_AddActionsTable.Designer.cs">
+      <DependentUpon>201710311428124_AddActionsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BitesViewModel.cs" />
@@ -274,6 +278,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ActionRepository.cs" />
     <Compile Include="Repositories\ActiveRepository.cs" />
     <Compile Include="Repositories\AnimalOwnerRepository.cs" />
     <Compile Include="Repositories\AnimalRepository.cs" />
@@ -774,6 +779,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710241837403_AddEmail_HumanVictim.resx">
       <DependentUpon>201710241837403_AddEmail_HumanVictim.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710311428124_AddActionsTable.resx">
+      <DependentUpon>201710311428124_AddActionsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

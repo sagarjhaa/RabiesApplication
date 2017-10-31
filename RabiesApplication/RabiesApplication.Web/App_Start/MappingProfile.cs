@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using RabiesApplication.Models;
+using RabiesApplication.Web.BusinessLogic;
 using RabiesApplication.Web.ViewModels;
+using Action = RabiesApplication.Models.Action;
 
 namespace RabiesApplication.Web.App_Start
 {
@@ -29,6 +31,10 @@ namespace RabiesApplication.Web.App_Start
 
             CreateMap<Vet, VetFormViewModel>();
             CreateMap<VetFormViewModel, Vet>();
+
+
+            CreateMap<ActionEventArgs, Action>();
+
 
             //CreateMap<AnimalFormViewModel,Animal>();
             //CreateMap<Animal,AnimalFormViewModel>();
