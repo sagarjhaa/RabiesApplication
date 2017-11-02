@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using RabiesApplication.Models;
 using RabiesApplication.Web.ViewModels;
 
@@ -7,6 +9,12 @@ namespace RabiesApplication.Web.Repositories
 {
     public class AnimalOwnerRepository : AuditRepository<AnimalOwner>
     {
+        public List<AnimalOwner> All()
+        {
+            return Context.AnimalOwner.OrderBy(a => a.FirstName).ToList();
+        }
+
+
         public Dictionary<string, string> GetAnimalOwners()
         {
             return  Context.AnimalOwner

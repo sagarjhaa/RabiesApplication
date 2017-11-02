@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using PagedList;
 using RabiesApplication.Models;
 using RabiesApplication.Web;
 using RabiesApplication.Web.Repositories;
@@ -24,7 +25,15 @@ namespace RabiesApplication.Web.Controllers
         private readonly CitiesRepository _citiesRepository = new CitiesRepository();
 
 
-    
+        public ActionResult AnimalOwners(int? pageNo)
+        {
+            var animalOwners = _animalOwnerRepository.All().ToList();
+
+            int sizeOfPage = 10;
+            int noOfPage = (pageNo ?? 1);
+
+            return View(animalOwners.ToPagedList(noOfPage, sizeOfPage));
+        }
 
         // GET: AnimalOwners/Create
         public ActionResult AnimalOwnerForm(string animalOwnerId,string biteId)

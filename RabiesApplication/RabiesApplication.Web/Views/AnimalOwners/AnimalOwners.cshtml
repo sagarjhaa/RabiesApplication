@@ -1,0 +1,90 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<RabiesApplication.Models.AnimalOwner>
+
+@{
+    ViewBag.Title = "AnimalOwners";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AnimalOwners</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-sm table-condensed table-hover">
+    <tr class="thead-dark">
+        <th>
+            First Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            Addressline1
+        </th>
+
+        <th>
+            Addressline2
+        </th>
+        <th>
+            City
+        </th>
+        <th>
+            State
+        </th>
+        <th>
+            ZipCode
+        </th>
+        <th>
+            Contact1
+        </th>
+        <th>
+            Contact2
+        </th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Addressline1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Addressline2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City.CityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State.StateName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Zipcode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contactnumber1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contactnumber2)
+            </td>
+
+
+            <td>
+                @Html.ActionLink("Edit", "AnimalOwnerForm", new { animalOwnerId = item.Id }, htmlAttributes: new { @class = "btn btn-sm btn-outline-primary" }) |
+                @Html.ActionLink("Delete", "AnimalOwners", new { animalOwnerId = item.Id }, htmlAttributes: new { @class = "btn btn-sm btn-outline-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, pageNo => Url.Action("AnimalOwners", new { pageNo }))

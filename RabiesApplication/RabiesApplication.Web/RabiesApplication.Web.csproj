@@ -693,6 +693,7 @@
     <Content Include="Views\Shared\_VetView.cshtml" />
     <Content Include="Views\AnimalOwners\AnimalOwnerForm.cshtml" />
     <Content Include="Views\AnimalOwners\Delete.cshtml" />
+    <Content Include="Views\AnimalOwners\AnimalOwners.cshtml" />
     <None Include="Views\Animals\SelectAnimal.cshtml" />
     <Content Include="Views\Shared\_ActionView.cshtml" />
   </ItemGroup>
