@@ -129,11 +129,6 @@
         {
             @Html.Partial("_AnimalOwner", Model.AnimalOwner)
         }
-        else
-        {
-            <h4> Add Pet Owner Information..</h4>
-        }
-
     </div>
 </div>
 
@@ -157,41 +152,48 @@
 <hr class="border border-info" />
 
 <div class="row">
-    <div class="col-md-6">
-        @using (Html.BeginForm("GenerateLetter", "Bites", new { biteId = Model.Bite.Id,animalId = Model.Animal.Id }))
-        {
-            <div class="form-inline">
-                <h4>Initial Letters</h4>
+    @if (Model.Animal != null)
+    {
+        <div class="col-md-6">
+            @using (Html.BeginForm("GenerateLetter", "Bites", new {biteId = Model.Bite.Id, animalId = Model.Animal.Id}))
+            {
+                <div class="form-inline">
+                    <h4>Initial Letters</h4>
 
-                <select id="Letter Type" name="Letter Type" class = "form-control" required="required">
-                    <option value="">Select Letter</option>
-                    <option value="1">10 Day Quarantine Same</option>
-                    <option value="2">10 Day Quarantine Different</option>
-                    <option value="3">10 Day Quarantine Shelter</option>
-                    <option value="4">45 Day Quarantine</option>
-                    <option value="5">6 months Quarantine</option>
-                </select>
-                <button class="btn btn-sm btn-primary" type="submit">Generate Letter</button>
-            </div>
-        }
-    </div>
-    <div class="col-md-6">
-        @using (Html.BeginForm("GenerateLetter", "Bites", new { biteId = Model.Bite.Id }))
-        {
-            <div class="form-inline">
-                <h4>Followup Letters</h4>
-                <select id="Letter Type" name="Letter Type" class="form-control" required="required">
-                    <option value="">Select Letter</option>
-                    <option value="1">Ten Day Quarantine Same</option>
-                    <option value="2">Ten Day Quarantine Different</option>
-                    <option value="3">Ten Day Quarantine Shelter</option>
-                    <option value="4">45 Day Quarantine</option>
-                    <option value="5">6 months Quarantine</option>
-                </select>
-                <button class="btn btn-sm btn-primary" type="submit">Generate Letter</button>
-            </div>
-        }
-    </div>
+                    <select id="Letter Type" name="Letter Type" class="form-control" required="required">
+                        <option value="">Select Letter</option>
+                        <option value="1">10 Day Quarantine Same</option>
+                        <option value="2">10 Day Quarantine Different</option>
+                        <option value="3">10 Day Quarantine Shelter</option>
+                        <option value="4">45 Day Quarantine</option>
+                        <option value="5">6 months Quarantine</option>
+                    </select>
+                    <button class="btn btn-sm btn-primary" type="submit">Generate Letter</button>
+                </div>
+            }
+        </div>
+        <div class="col-md-6">
+            @using (Html.BeginForm("GenerateLetter", "Bites", new {biteId = Model.Bite.Id}))
+            {
+                <div class="form-inline">
+                    <h4>Followup Letters</h4>
+                    <select id="Letter Type" name="Letter Type" class="form-control" required="required">
+                        <option value="">Select Letter</option>
+                        <option value="1">Ten Day Quarantine Same</option>
+                        <option value="2">Ten Day Quarantine Different</option>
+                        <option value="3">Ten Day Quarantine Shelter</option>
+                        <option value="4">45 Day Quarantine</option>
+                        <option value="5">6 months Quarantine</option>
+                    </select>
+                    <button class="btn btn-sm btn-primary" type="submit">Generate Letter</button>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p> Please add animal details to generate letter</p>
+    }
 </div>
 
 
