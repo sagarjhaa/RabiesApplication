@@ -74,5 +74,40 @@ namespace RabiesApplication.Models
         public ICollection<Animal> Animals { get; set; }
 
         //public virtual ICollection<Action> Actions { get; set; }
+
+
+
+
+
+
+        [DisplayName("Vaccinated?")]
+        public bool IsVacinated { get; set; }
+
+        [DisplayName("Vaccine Date")]
+        public DateTime? VaccineDate { get; set; }
+
+        [DisplayName("Vacc. Expiration Date")]
+        public DateTime? VaccineExpirationDate { get; set; }
+
+        [DisplayName("Tag Number")]
+        public int? TagNumber { get; set; }
+
+        [DisplayName("Vaccine Post")]
+        public bool IsVacinatedPost { get; set; }
+        [DisplayName("Vaccine Prior")]
+        public bool IsVacinatedPrior { get; set; }
+
+        [DisplayName("Quarantine?")]
+        public bool IsQuarantine { get; set; }
+
+        [DisplayName("Quarantine Complete?")]
+        public bool IsQuarantineCompleted { get; set; }
+
+        [DisplayName("Quarantine Verification")]
+        public string QuarantineVerification { get; set; }
+
+        [DisplayName("Vaccine Verification")]
+        public string VaccineVerification { get; set; }
+
     }
 }

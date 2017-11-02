@@ -271,6 +271,14 @@
     <Compile Include="Migrations\201710311428124_AddActionsTable.Designer.cs">
       <DependentUpon>201710311428124_AddActionsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711021356403_RemoveColumnsFromAnimal.cs" />
+    <Compile Include="Migrations\201711021356403_RemoveColumnsFromAnimal.Designer.cs">
+      <DependentUpon>201711021356403_RemoveColumnsFromAnimal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711021358193_AddColumnsToBites.cs" />
+    <Compile Include="Migrations\201711021358193_AddColumnsToBites.Designer.cs">
+      <DependentUpon>201711021358193_AddColumnsToBites.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BitesViewModel.cs" />
@@ -783,6 +791,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710311428124_AddActionsTable.resx">
       <DependentUpon>201710311428124_AddActionsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711021356403_RemoveColumnsFromAnimal.resx">
+      <DependentUpon>201711021356403_RemoveColumnsFromAnimal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711021358193_AddColumnsToBites.resx">
+      <DependentUpon>201711021358193_AddColumnsToBites.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -15,21 +15,21 @@ namespace RabiesApplication.Models.CustomValidation
     {
         protected override ValidationResult IsValid(object value,ValidationContext validationContext)
         {
-            var pet = Mapper.Map<AnimalFormViewModel,Animal>((AnimalFormViewModel)validationContext.ObjectInstance);
+            //var pet = Mapper.Map<AnimalFormViewModel,Animal>((AnimalFormViewModel)validationContext.ObjectInstance);
 
-            if (!pet.IsVacinated)
-            {
-                if (!pet.VaccineDate.HasValue && !pet.VaccineExpirationDate.HasValue)
-                {
-                    return ValidationResult.Success;
-                }
-                return new ValidationResult("Remove Vaccination dates when pet not vaccinated");
-            }
+            //if (!pet.IsVacinated)
+            //{
+            //    if (!pet.VaccineDate.HasValue && !pet.VaccineExpirationDate.HasValue)
+            //    {
+            //        return ValidationResult.Success;
+            //    }
+            //    return new ValidationResult("Remove Vaccination dates when pet not vaccinated");
+            //}
 
-            if (!(pet.VaccineDate.HasValue && pet.VaccineExpirationDate.HasValue))
-            {
-                return new ValidationResult("Please enter Vaccination Date and  Expiration Date");
-            }
+            //if (!(pet.VaccineDate.HasValue && pet.VaccineExpirationDate.HasValue))
+            //{
+            //    return new ValidationResult("Please enter Vaccination Date and  Expiration Date");
+            //}
 
             return ValidationResult.Success;
         }

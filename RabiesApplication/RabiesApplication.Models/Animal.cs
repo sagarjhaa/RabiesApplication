@@ -45,31 +45,31 @@ namespace RabiesApplication.Models
         //Todo check if needs to add SprayNeuter
         public bool Sex { get; set; }
 
-        [DisplayName("Vaccinated?")]
-        public bool IsVacinated { get; set; }
+        //[DisplayName("Vaccinated?")]
+        //public bool IsVacinated { get; set; }
 
-        [DisplayName("Vaccine Date")]
-        public DateTime? VaccineDate { get; set; }
+        //[DisplayName("Vaccine Date")]
+        //public DateTime? VaccineDate { get; set; }
 
-        [DisplayName("Vacc. Expiration Date")]
-        public DateTime? VaccineExpirationDate { get; set; }
+        //[DisplayName("Vacc. Expiration Date")]
+        //public DateTime? VaccineExpirationDate { get; set; }
 
-        [DisplayName("Tag Number")]
-        public int? TagNumber { get; set; }
+        //[DisplayName("Tag Number")]
+        //public int? TagNumber { get; set; }
 
-        [DisplayName("Vaccine Post")]
-        public bool IsVacinatedPost { get; set; }
-        [DisplayName("Vaccine Prior")]
-        public bool IsVacinatedPrior { get; set; }
+        //[DisplayName("Vaccine Post")]
+        //public bool IsVacinatedPost { get; set; }
+        //[DisplayName("Vaccine Prior")]
+        //public bool IsVacinatedPrior { get; set; }
 
-        [DisplayName("Quarantine?")]
-        public bool IsQuarantine { get; set; }
+        //[DisplayName("Quarantine?")]
+        //public bool IsQuarantine { get; set; }
 
-        [DisplayName("Quarantine Complete?")]
-        public bool IsQuarantineCompleted { get; set; }
+        //[DisplayName("Quarantine Complete?")]
+        //public bool IsQuarantineCompleted { get; set; }
 
-        [DisplayName("Quarantine Verification")]
-        public string QuarantineVerification { get; set; }
+        //[DisplayName("Quarantine Verification")]
+        //public string QuarantineVerification { get; set; }
 
         public DateTimeOffset RecordCreated { get; set; }
         public DateTimeOffset? RecordEdited { get; set; }
