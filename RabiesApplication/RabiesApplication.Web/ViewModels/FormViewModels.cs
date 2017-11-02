@@ -53,6 +53,20 @@ namespace RabiesApplication.Web.ViewModels
         public IEnumerable<State> States { get; set; }
         public IEnumerable<BiteStatus> BiteStatuses { get; set; }
         public Dictionary<string,string> Employees { get; set; }
+
+
+
+        public bool IsVacinated { get; set; }
+        [IfVacinatedCheckDates]
+        public DateTime? VaccineDate { get; set; }
+        [IfVacinatedCheckDates]
+        public DateTime? VaccineExpirationDate { get; set; }
+        public int? TagNumber { get; set; }
+        public bool IsVacinatedPost { get; set; }
+        public bool IsVacinatedPrior { get; set; }
+        public bool IsQuarantine { get; set; }
+        public bool IsQuarantineCompleted { get; set; }
+        public string QuarantineVerification { get; set; }
     }
 
 
@@ -106,17 +120,7 @@ namespace RabiesApplication.Web.ViewModels
         public string BreedId { get; set; }
         public string VetId { get; set; }
         public bool Sex { get; set; }
-        public bool IsVacinated { get; set; }
-        [IfVacinatedCheckDates]
-        public DateTime? VaccineDate { get; set; }
-        [IfVacinatedCheckDates]
-        public DateTime? VaccineExpirationDate { get; set; }
-        public int? TagNumber { get; set; }
-        public bool IsVacinatedPost { get; set; }
-        public bool IsVacinatedPrior { get; set; }
-        public bool IsQuarantine { get; set; }
-        public bool IsQuarantineCompleted { get; set; }
-        public string QuarantineVerification { get; set; }
+        
         public DateTimeOffset RecordCreated { get; set; }
         public DateTimeOffset? RecordEdited { get; set; }
         public string EmployeeCreatedId { get; set; }
