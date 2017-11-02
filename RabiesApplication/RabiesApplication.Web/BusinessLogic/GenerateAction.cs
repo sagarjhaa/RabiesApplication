@@ -37,23 +37,18 @@ namespace RabiesApplication.Web.BusinessLogic
                 
                 throw;
             }
-
-
         }
-      
+    }
 
-        public static void SaveActions(Action action)
+    public class ReminderHelper
+    {
+        private static readonly  BiteRepository _BiteRepository = new BiteRepository();
+
+
+        public void OnLetterGenerated(object source, ReminderEventArgs e)
         {
-            if (action.Id == null)
-            {
-                _actionRepository.Insert(action);
-            }
-            else
-            {
-                _actionRepository.Update(action);
-            }
             
-            _actionRepository.SaveChangesAsync();
         }
+
     }
 }

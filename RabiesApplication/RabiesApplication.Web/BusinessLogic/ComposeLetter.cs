@@ -25,6 +25,13 @@ namespace RabiesApplication.Web.BusinessLogic
         public bool Active { get; set; }
     }
 
+    public class ReminderEventArgs : EventArgs
+    {
+        public string BiteId { get; set; }
+
+        public string ToDate { get; set; }
+    }
+
     public class Letter
     {
         protected Application WordApplication = new Application();
