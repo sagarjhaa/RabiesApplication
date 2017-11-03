@@ -12,11 +12,13 @@ namespace RabiesApplication.Web.Repositories
 {
     public class AnimalRepository : AuditRepository<Animal>
     {
+        //Get Animal Details with the Bites Included
         public override Task<Animal> GetById(string animalId)
         {
             return Context.Animals.Include("Bites").FirstOrDefaultAsync(a => a.Id.Equals(animalId));
         }
 
+        //Get Animal Details for bite view details
         public AnimalViewModel GetAnimalByBiteId(string biteId,string animalId)
         {
             if (biteId == null)
@@ -60,20 +62,22 @@ namespace RabiesApplication.Web.Repositories
             };
         }
 
+        //Get List of Names of Animal Owner and Animal for the Selection Page.
         public List<object> GetAnimalIds()
         {
             List<object> animalIds = (from a in Context.Animals
                                       join ao in Context.AnimalOwner on a.AnimalOwnerId equals  ao.Id
-                                      orderby a.Name
+                                      orderby ao.FirstName
                                       select new
                                       {
                                           Id = a.Id,
-                                          Name = a.Name + " - " + ao.LastName + " "  + ao.FirstName
+                                          Name = ao.LastName + " "  + ao.FirstName + " - " +a.Name
                                       }).AsEnumerable<object>().ToList();
 
             return animalIds;
         }
 
+        //No Clue where this is being used. Can remove in future
         public AnimalViewModel GetAnimalData(string animalId)
         {
             var a = Context.Animals.Include("Breed").Include("Species").FirstOrDefault(aa => aa.Id.Equals(animalId));
