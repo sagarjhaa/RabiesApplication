@@ -62,8 +62,9 @@ namespace RabiesApplication.Web.Controllers
 
             var animalOwnerFormViewModel = Mapper.Map<AnimalOwner, AnimalOwnerFormViewModel>(animalOwnerFormViewModelDb);
             animalOwnerFormViewModel.States = _statesRepository.GetStates();
-            animalOwnerFormViewModel.Counties = _countyRepository.GetCountiesByStateId(null);
-            animalOwnerFormViewModel.Cities = _citiesRepository.GetCitiesByState(null);
+            animalOwnerFormViewModel.Counties = _countyRepository.GetCountiesByStateId(animalOwnerFormViewModel.StateId);
+            animalOwnerFormViewModel.Cities = _citiesRepository.GetCitiesByState(animalOwnerFormViewModel.StateId);
+            animalOwnerFormViewModel.AnimalList = GetAnimalsByOwnerId(animalOwnerId);
 
             return View("AnimalOwnerForm",animalOwnerFormViewModel);
         }
@@ -109,6 +110,11 @@ namespace RabiesApplication.Web.Controllers
             return View("AnimalOwnerForm",animalOwnerFormViewModel);
         }
 
+
+        public IEnumerable<AnimalListByOwner> GetAnimalsByOwnerId(string animalOwnerId)
+        {
+            return _animalOwnerRepository.GetAnimalsByOwnerId(animalOwnerId);
+        }
 
         //// GET: AnimalOwners/Delete/5
         //public async Task<ActionResult> Delete(string id)

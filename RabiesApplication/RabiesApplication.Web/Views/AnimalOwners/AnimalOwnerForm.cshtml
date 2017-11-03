@@ -165,10 +165,32 @@
     </div>
 }
 
+<hr/>
+<h4>Owner's Animals</h4>
+<table class="table table-bordered table-condensed table-hover table-striped">
+    <tr>
+        <td>Animal Name</td>
+        <td>Breed</td>
+        <td>Species</td>
+        <td>BiteCount</td>
+    </tr>
+    @foreach (var item in Model.AnimalList)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Breed</td>
+            <td>@item.Species</td>
+            <td>@item.BiteCount</td>
+        </tr>
+    }
+</table>
+
+
+
+
 <script>
 
-    $(document)
-        .ready(function () {
+    $(document).ready(function () {
 
             $("[id~='StateId']").change(function () {
                 var state = this;
@@ -190,7 +212,6 @@
             }
         });
     }
-
 
     function SetCounties(result) {
         var countySelect = $("[id~='CountyId']");
@@ -225,6 +246,16 @@
             citySelect.append(string);
         }
     }
+
+
+    function AnimalList() {
+        this.Name = ko.observable();
+        this.species = ko.observable();
+        this.breed = ko.observable();
+        this.Bites = ko.obserable();
+    }
+
+    ko.applyBindings(new AnimalList());
 
 
 </script>

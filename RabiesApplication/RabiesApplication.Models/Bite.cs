@@ -9,6 +9,10 @@ namespace RabiesApplication.Models
 {
     public class Bite : IActive,IModel,IAuditable
     {
+        public Bite()
+        {
+            Animals = new List<Animal>();
+        }
         public string Id { get; set; }
         
 

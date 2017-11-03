@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using RabiesApplication.Models;
 using RabiesApplication.Web.ViewModels;
 
@@ -44,6 +45,32 @@ namespace RabiesApplication.Web.Repositories
 
 
             return owner.FirstOrDefault();
+        }
+
+
+        public IEnumerable<AnimalListByOwner> GetAnimalsByOwnerId(string animalOwnerId)
+        {
+            if (animalOwnerId == null)
+            {
+                return  (from a in Context.Animals
+                           select new AnimalListByOwner()
+                           {
+                               Name =  a.Name,
+                               Breed = a.Breed.Description,
+                               Species = a.Species.Description,
+                               BiteCount = a.Bites.Count
+                           }).Include("Bites").OrderByDescending(a => a.BiteCount).ToList();
+            }
+
+            return (from a in Context.Animals
+                    where a.AnimalOwnerId.Equals(animalOwnerId)
+                    select new AnimalListByOwner()
+                    {
+                        Name = a.Name,
+                        Breed = a.Breed.Description,
+                        Species = a.Species.Description,
+                        BiteCount = a.Bites.Count
+                    }).OrderByDescending(a => a.BiteCount).ToList();
         }
     }
 }

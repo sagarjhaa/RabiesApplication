@@ -184,6 +184,20 @@ namespace RabiesApplication.Web.ViewModels
         public IEnumerable<State> States { get; set; }
         public IEnumerable<City> Cities { get; set; }
         public IEnumerable<County> Counties { get; set; }
+
+
+        public IEnumerable<AnimalListByOwner> AnimalList { get; set; }
+
+
+
+    }
+
+    public class AnimalListByOwner
+    {
+        public string Name { get; set; }
+        public string Breed { get; set; }
+        public string Species { get; set; }
+        public int BiteCount { get; set; }
     }
 
     public class VetFormViewModel
