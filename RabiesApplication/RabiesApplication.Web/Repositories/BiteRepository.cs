@@ -36,7 +36,7 @@ namespace RabiesApplication.Web.Repositories
         }
 
         //Get All the bites for the index page.
-        public IEnumerable<BitesViewModel> GetBiteIndexView()
+        public IEnumerable<BitesIndexViewModel> GetBiteIndexView()
         {
             var bites = (from bite in Context.Bites
 
@@ -49,7 +49,7 @@ namespace RabiesApplication.Web.Repositories
                          join owner in Context.AnimalOwner on bite.Animals.FirstOrDefault().AnimalOwnerId equals owner.Id into owners
                          from o in owners.DefaultIfEmpty()
                          where bite.Active.Equals(Constant.Active)
-                         select new BitesViewModel
+                         select new BitesIndexViewModel
                          {
                              Id = bite.Id,
                              AnimalOwnerId = o.Id,

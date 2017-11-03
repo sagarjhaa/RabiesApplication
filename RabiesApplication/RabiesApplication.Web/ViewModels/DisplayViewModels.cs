@@ -9,6 +9,24 @@ using Action = RabiesApplication.Models.Action;
 
 namespace RabiesApplication.Web.ViewModels
 {
+    public class BitesIndexViewModel
+    {
+        public string Id { get; set; }
+        public string AnimalOwnerId { get; set; }
+        public string AnimalOwner { get; set; }
+        public string AnimalId { get; set; }
+        public string AnimalName { get; set; }
+        [DisplayFormat(DataFormatString = Constant.DateFormat)]
+        public DateTimeOffset? BiteDate { get; set; }
+        public string City { get; set; }
+
+        public string VictimId { get; set; }
+        public string VictimName { get; set; }
+        public string Status { get; set; }
+        [DisplayFormat(DataFormatString = Constant.DateFormat)]
+        public DateTimeOffset RecordCreated { get; set; }
+    }
+
     public class BiteDetailsViewModel
     {
         
