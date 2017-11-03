@@ -10,12 +10,13 @@ namespace RabiesApplication.Web.Repositories
 {
     public class AnimalOwnerRepository : AuditRepository<AnimalOwner>
     {
+        //Get the List of AnimalOwner for the index page.
         public List<AnimalOwner> All()
         {
             return Context.AnimalOwner.OrderBy(a => a.FirstName).ToList();
         }
 
-
+        //Get list of AnimalOwners Names for the Animals Page.
         public Dictionary<string, string> GetAnimalOwners()
         {
             return  Context.AnimalOwner
@@ -24,9 +25,9 @@ namespace RabiesApplication.Web.Repositories
                 .ToDictionary(ao => ao.Id, ao => ao.Name);
         }
 
+        //Get AnimalOwner view to be shown on the details page.
         public AnimalOwnerViewModel GetOwnerByAnimalId(string animalOwnerId)
         {
-
             var owner = (from o in Context.AnimalOwner
                     where o.Id.Equals(animalOwnerId)
                     join s in Context.States on o.StateId equals s.Id into states
@@ -47,7 +48,7 @@ namespace RabiesApplication.Web.Repositories
             return owner.FirstOrDefault();
         }
 
-
+        //Get the animals for the AnimalOwner details page.
         public IEnumerable<AnimalListByOwner> GetAnimalsByOwnerId(string animalOwnerId)
         {
             if (animalOwnerId == null)
