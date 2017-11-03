@@ -13,25 +13,16 @@ namespace RabiesApplication.Web.Repositories
 {
     public class BiteRepository : ActiveRepository<Bite>
     {
+        //Get Bite Detail with Animal Included for the letters purpose
         public Bite GetByIdWithAnimal(string id)
         {
             return base.All().Include("Animals").First(b => b.Id.Equals(id));
         }
 
-        public override IQueryable<Bite> All()
-        {
-            return base.All().Where(b => b.Active.Equals(Constant.Active)).Include("City").Include("State").Include("BiteStatus").OrderByDescending(b => b.BiteDate);
-        }
-
+        //Get the biteviewModel for the details page.
         public BiteJustViewModel GetBiteJustViewModel(string biteId)
         {
-            var b =
-                Context.Bites
-                    .Include("City")
-                    .Include("State")
-                    .Include("BiteStatus")
-                    .FirstOrDefault(bite => bite.Id.Equals(biteId));
-
+            var b =All().FirstOrDefault(bite => bite.Id.Equals(biteId));
 
             return new BiteJustViewModel()
             {
@@ -44,6 +35,7 @@ namespace RabiesApplication.Web.Repositories
             };
         }
 
+        //Get All the bites for the index page.
         public IEnumerable<BitesViewModel> GetBiteIndexView()
         {
             var bites = (from bite in Context.Bites
@@ -76,5 +68,10 @@ namespace RabiesApplication.Web.Repositories
 
         }
 
+        //Used currently at the GetBiteJustViewModel
+        public override IQueryable<Bite> All()
+        {
+            return base.All().Where(b => b.Active.Equals(Constant.Active)).Include("City").Include("State").Include("BiteStatus").OrderByDescending(b => b.BiteDate);
+        }
     }
 }
