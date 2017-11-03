@@ -6,6 +6,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using AutoMapper;
+using Microsoft.Ajax.Utilities;
 using RabiesApplication.Models;
 //using RabiesApplication.Web.BusinessLogic;
 using RabiesApplication.Web.Hubs;
@@ -33,10 +34,7 @@ namespace RabiesApplication.Web.Controllers
         private readonly VetRepository _vetRepository = new VetRepository();
         private readonly ActionRepository _actionRepository = new ActionRepository();
 
-        //private readonly PetOwnerRepository _petOwnerRepository = new PetOwnerRepository();
-        //private readonly ActionRepository _actionRepository = new ActionRepository();
 
-        // GET: Bites
         public ActionResult Index(int? pageNo)
         {
             var bites = _biteRepository.GetBiteIndexView(); //All().ToList();
@@ -81,19 +79,6 @@ namespace RabiesApplication.Web.Controllers
             return View(biteViewModel);
         }
 
-        public JsonResult  GetCitiesByStateId(string stateId)
-        {
-            var cities = _citiesRepository.GetCitiesByState(stateId);
-            return  Json(cities,JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult GetCountiesByStateId(string stateId)
-        {
-            var counties = _countiesRepository.GetCountiesByStateId(stateId);
-            return Json(counties,JsonRequestBehavior.AllowGet);
-        }
-
-
         public ViewResult Details(string biteId,string animalId)
         {
 
@@ -127,7 +112,6 @@ namespace RabiesApplication.Web.Controllers
             //return Json(bitedetailsViewModel, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: Bites/Save
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Save(BiteFormViewModel biteViewModel)
@@ -255,12 +239,7 @@ namespace RabiesApplication.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-
-
             var selectedLetter = form["Letter Type"];
-
-
             try
             {
                 int result;
@@ -272,11 +251,8 @@ namespace RabiesApplication.Web.Controllers
 
                 throw;
             }
-
             return RedirectToAction("Details", new { biteId = biteId });
-
         }
-
 
         public ActionResult DocumentDownload(string documentId)
         {
@@ -286,16 +262,30 @@ namespace RabiesApplication.Web.Controllers
 
             }
 
-            var document = _actionRepository.Context.Actions.Where(a => a.DocumentId.Equals(documentId));
-            if (document == null)
+            var document = _actionRepository.Context.Actions.First(a => a.DocumentId.Equals(documentId));
+            if(document == null)
             {
                 return HttpNotFound("Document not found");
             }
 
-           string DocumentSavePath = Server.MapPath("~") + "LettersSent\\" + documentId;
-           byte[] fileBytes = System.IO.File.ReadAllBytes(@DocumentSavePath);
+           string documentSavePath = Server.MapPath("~") + "LettersSent\\" + documentId;
+           byte[] fileBytes = System.IO.File.ReadAllBytes(documentSavePath);
            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet);
 
+        }
+
+
+
+        public JsonResult GetCitiesByStateId(string stateId)
+        {
+            var cities = _citiesRepository.GetCitiesByState(stateId);
+            return Json(cities, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCountiesByStateId(string stateId)
+        {
+            var counties = _countiesRepository.GetCountiesByStateId(stateId);
+            return Json(counties, JsonRequestBehavior.AllowGet);
         }
 
     }
