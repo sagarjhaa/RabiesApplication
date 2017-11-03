@@ -25,8 +25,7 @@ namespace RabiesApplication.Web.Controllers
         private readonly CountiesRepository _countyRepository = new CountiesRepository();
         private readonly CitiesRepository _citiesRepository = new CitiesRepository();
 
-
-        // GET: Vets
+        //Index
         public ActionResult Index(int? pageNo)
         {
             var vets = _vetRepository.All().ToList();
@@ -37,8 +36,7 @@ namespace RabiesApplication.Web.Controllers
             return View(vets.ToPagedList(noOfPage, sizeOfPage));
         }
 
-
-        ////GET: Vets/Create
+        //Add or Edit
         public ActionResult VetForm(string vetId)
         {
             if (vetId == null)
@@ -68,9 +66,7 @@ namespace RabiesApplication.Web.Controllers
             return View(vetFormViewModel);
         }
 
-        // POST: Vets/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //Post
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Save(VetFormViewModel vetFormViewModel)
@@ -97,8 +93,7 @@ namespace RabiesApplication.Web.Controllers
             return View("VetForm",vetFormViewModel);
         }
 
-
-        // GET: Vets/Delete/5
+        //Delete Confirmation
         public async Task<ActionResult> Delete(string id)
         {
             if (id == null)
@@ -118,7 +113,7 @@ namespace RabiesApplication.Web.Controllers
             return View(vetFormViewModel);
         }
 
-        // POST: Vets/Delete/5
+        //Deactivate
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(string id)
