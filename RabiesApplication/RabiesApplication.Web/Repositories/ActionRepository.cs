@@ -11,10 +11,9 @@ using Action = RabiesApplication.Models.Action;
 
 namespace RabiesApplication.Web.Repositories
 {
-   
-
     public class ActionRepository : ActiveRepository<Action>
     {
+        //Return the actions for bite details page, order by RecordCreated
         public IEnumerable<ActionListViewModel> GetActionsByBiteId(string biteId)
         {
             if (biteId == null)
@@ -29,18 +28,11 @@ namespace RabiesApplication.Web.Repositories
                 {
                     Id = a.Id,
                     BiteId = a.BiteId,
-                    DocumentId = a.DocumentId ,//== null ? a.DocumentId: a.DocumentId,
+                    DocumentId = a.DocumentId,
                     ActionType = a.ActionType,
                     Comments = a.Comments,
                     RecordCreated = a.RecordCreated
                 }).ToList();
-            
-            //return All().Where(a=> a.Active.Equals(Constant.Active))
-            //                .Where(a => a.BiteId.Equals(biteId))
-            //                .OrderBy(a => a.RecordCreated);
-
-
-            
             
         }
     }
