@@ -17,7 +17,7 @@ namespace RabiesApplication.Web.Controllers
         private readonly CountiesRepository _countyRepository = new CountiesRepository();
         private readonly CitiesRepository _citiesRepository = new CitiesRepository();
        
-        // GET: HumanVictims/Create
+        //Add and Edit        
         public ActionResult HumanVictimForm(string biteId,string victimId)
         {
 
@@ -55,9 +55,8 @@ namespace RabiesApplication.Web.Controllers
             return new HttpNotFoundResult("Cannot find the victim");
         }
 
-        // POST: HumanVictims/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        //Save
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Save(HumanVictimFormViewModel humanVictimViewModel)
@@ -92,7 +91,8 @@ namespace RabiesApplication.Web.Controllers
             return View("HumanVictimForm", humanVictimViewModel);
         }
 
-        // GET: HumanVictims/Delete/5
+        
+        //Delete Confirmation
         public async Task<ActionResult> Delete(string victimId)
         {
             if (victimId == null)
@@ -116,7 +116,8 @@ namespace RabiesApplication.Web.Controllers
             return View(humanVictimFormViewModel);
         }
 
-        // POST: HumanVictims/Delete/5
+
+        //Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(string victimId)
