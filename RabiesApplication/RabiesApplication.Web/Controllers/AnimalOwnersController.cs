@@ -35,7 +35,6 @@ namespace RabiesApplication.Web.Controllers
             return View(animalOwners.ToPagedList(noOfPage, sizeOfPage));
         }
 
-        // GET: AnimalOwners/Create
         public ActionResult AnimalOwnerForm(string animalOwnerId,string biteId)
         {
             @ViewBag.BiteId = biteId;
@@ -69,9 +68,6 @@ namespace RabiesApplication.Web.Controllers
             return View("AnimalOwnerForm",animalOwnerFormViewModel);
         }
 
-        // POST: AnimalOwners/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Save(AnimalOwnerFormViewModel animalOwnerFormViewModel)
@@ -111,44 +107,10 @@ namespace RabiesApplication.Web.Controllers
         }
 
 
-        public IEnumerable<AnimalListByOwner> GetAnimalsByOwnerId(string animalOwnerId)
+        private IEnumerable<AnimalListByOwner> GetAnimalsByOwnerId(string animalOwnerId)
         {
             return _animalOwnerRepository.GetAnimalsByOwnerId(animalOwnerId);
         }
 
-        //// GET: AnimalOwners/Delete/5
-        //public async Task<ActionResult> Delete(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    AnimalOwner animalOwner = await db.AnimalOwner.FindAsync(id);
-        //    if (animalOwner == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(animalOwner);
-        //}
-
-        //// POST: AnimalOwners/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> DeleteConfirmed(string id)
-        //{
-        //    AnimalOwner animalOwner = await db.AnimalOwner.FindAsync(id);
-        //    db.AnimalOwner.Remove(animalOwner);
-        //    await db.SaveChangesAsync();
-        //    return RedirectToAction("Index");
-        //}
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
     }
 }
