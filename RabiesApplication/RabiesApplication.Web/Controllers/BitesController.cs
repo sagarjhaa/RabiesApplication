@@ -86,7 +86,7 @@ namespace RabiesApplication.Web.Controllers
             var bite = _biteRepository.GetBiteJustViewModel(biteId);
             var humanVicitm = _humanVictimRepository.GetHumanVictimViewModelByBiteId(bite.Id);
             var animal = _animalRepository.GetAnimalByBiteId(bite.Id, animalId);
-            var actions = _actionRepository.GetActionsByBiteId(biteId);
+            var actions = _actionRepository.GetActionsByBiteId(biteId).Take(5);
 
             VetViewModel vet = null;
             AnimalOwnerViewModel animalOwner = null;

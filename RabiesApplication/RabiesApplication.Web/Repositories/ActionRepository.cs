@@ -32,7 +32,7 @@ namespace RabiesApplication.Web.Repositories
                     ActionType = a.ActionType,
                     Comments = a.Comments,
                     RecordCreated = a.RecordCreated
-                }).ToList();
+                }).OrderByDescending(a => a.RecordCreated).ToList();
             
         }
     }
