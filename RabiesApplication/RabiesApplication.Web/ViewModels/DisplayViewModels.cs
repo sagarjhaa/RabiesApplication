@@ -51,6 +51,9 @@ namespace RabiesApplication.Web.ViewModels
         [DisplayFormat(DataFormatString = Constant.DateFormat,ApplyFormatInEditMode = true)]
         public DateTimeOffset ReportDate { get; set; }
         public string Comments { get; set; }
+
+        public DateTime ReminderTime { get; set; }
+
     }
 
     public class HumanVictimViewModel

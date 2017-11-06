@@ -22,9 +22,11 @@ namespace RabiesApplication.Web.Repositories
         //Get the biteviewModel for the details page.
         public BiteDetailViewModel GetBiteJustViewModel(string biteId)
         {
-            var b =All().FirstOrDefault(bite => bite.Id.Equals(biteId));
 
-            return new BiteDetailViewModel()
+            var b = All().FirstOrDefault(bite => bite.Id.Equals(biteId));
+            var investigation = Context.Investigations.FirstOrDefault(i => i.BiteId.Equals(biteId));
+
+            var returnValue =new BiteDetailViewModel()
             {
                 Id = b.Id,
                 City = b.City.CityName,
@@ -33,6 +35,11 @@ namespace RabiesApplication.Web.Repositories
                 ReportDate = b.BiteReportDate.Value,
                 Comments = b.Comments
             };
+
+
+            if (investigation?.ReminderDate != null) returnValue.ReminderTime = investigation.ReminderDate.Value;
+
+            return returnValue;
         }
 
         //Get All the bites for the index page.

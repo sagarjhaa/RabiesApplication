@@ -31,8 +31,15 @@
     </div>
 
     <div class="row form-group">
-        <div class="col-3"><h6>@Html.DisplayNameFor(model => model.Bite.Comments)</h6></div>
-        <div class="col-6">@Html.TextAreaFor(model => model.Bite.Comments,htmlAttributes:new {@class="form-control",disabled="disabled"})</div>
+        <div class="col-3"><h6>@Html.DisplayNameFor(model => model.Bite.Comments)</h6>
+        </div>
+        <div class="col-6">@Html.TextAreaFor(model => model.Bite.Comments, htmlAttributes: new {@class = "form-control", disabled = "disabled"})</div>
+    </div>
+
+
+    <div class="row form-group">
+        <div class="col-3"><h6>@Html.DisplayNameFor(model => model.Bite.ReminderTime)</h6></div>
+        <div class="col-3">@Html.TextBoxFor(model => model.Bite.ReminderTime, htmlAttributes: new { @class = "form-control", disabled = "disabled" })</div>
     </div>
 
 

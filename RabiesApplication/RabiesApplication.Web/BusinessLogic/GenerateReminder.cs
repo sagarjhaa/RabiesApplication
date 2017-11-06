@@ -19,14 +19,14 @@ namespace RabiesApplication.Web.BusinessLogic
         {
             var reminder = Mapper.Map<ReminderEventArgs, Investigation>(e);
 
-            var investigationDb = _investigationRepository.Context.Investigations.First(b => b.BiteId.Equals(reminder.BiteId));
+            var investigationDb = _investigationRepository.Context.Investigations.FirstOrDefault(b => b.BiteId.Equals(reminder.BiteId));
 
             if (investigationDb != null)
             {
                 reminder.Id = investigationDb.Id;
+                _investigationRepository.Context.Entry(investigationDb).State = EntityState.Detached;
             }
-
-            _investigationRepository.Context.Entry(investigationDb).State = EntityState.Detached;
+            
 
             if (reminder.Id == null)
             {

@@ -250,10 +250,10 @@ namespace RabiesApplication.Web.Controllers
                 TempData["Message"] = "Letter is generated and Reminder is set";
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 TempData["MessageType"] = Constant.Error;
-                TempData["Message"] = "Error occurred !!!.";
+                TempData["Message"] = "Error occurred !!!. " + ex.Message ;
             }
             return RedirectToAction("Details", new { biteId = biteId });
         }
