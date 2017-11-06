@@ -58,6 +58,7 @@
     <Compile Include="Interfaces\IOrganizationBase.cs" />
     <Compile Include="Interfaces\IOrganizationModel.cs" />
     <Compile Include="Interfaces\IPerson.cs" />
+    <Compile Include="Investigation.cs" />
     <Compile Include="Organization.cs" />
     <Compile Include="Interfaces\IModel.cs" />
     <Compile Include="AnimalOwner.cs" />
