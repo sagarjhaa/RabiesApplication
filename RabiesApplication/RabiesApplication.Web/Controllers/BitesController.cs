@@ -245,11 +245,15 @@ namespace RabiesApplication.Web.Controllers
                 int result;
                 int.TryParse(selectedLetter, out result);
                 new GenerateLetter().GenerateSendLetterAction(biteId, animalId, result);
+
+                TempData["MessageType"] = Constant.Success;
+                TempData["Message"] = "Letter is generated and Reminder is set";
+
             }
             catch (Exception)
             {
-
-                throw;
+                TempData["MessageType"] = Constant.Error;
+                TempData["Message"] = "Error occurred !!!.";
             }
             return RedirectToAction("Details", new { biteId = biteId });
         }

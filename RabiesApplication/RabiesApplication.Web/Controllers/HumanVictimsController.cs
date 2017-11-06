@@ -70,13 +70,13 @@ namespace RabiesApplication.Web.Controllers
                 {
                     await _humanVictimRepository.Insert(humanVictim);
                     TempData["Message"] = "Victim added successfully.";
-                    TempData["MessageType"] = "success";
+                    TempData["MessageType"] = Constant.Success;
                 }
                 else
                 {
                     await _humanVictimRepository.Update(humanVictim);
                     TempData["Message"] = "Victim updated successfully.";
-                    TempData["MessageType"] = "success";
+                    TempData["MessageType"] = Constant.Success;
                 }
 
                 await _humanVictimRepository.SaveChangesAsync();

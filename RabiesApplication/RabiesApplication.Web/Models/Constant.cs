@@ -15,6 +15,9 @@ namespace RabiesApplication.Web.Models
         public const string DateFormat = "{0:MM-dd-yyy}";
         public const string DateHourFormat = "{0:MM-dd-yyy hh:mm:ss}";
 
+        public static string Success = "success";
+        public static string Error = "error";
+
         #region HELPER
 
         public enum ManageMessageId
@@ -56,7 +59,7 @@ namespace RabiesApplication.Web.Models
 
     }
 
-
+    
 
     public static class ActionTypes
     {
