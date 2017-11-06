@@ -39,7 +39,17 @@
 
     <div class="row form-group">
         <div class="col-3"><h6>@Html.DisplayNameFor(model => model.Bite.ReminderTime)</h6></div>
-        <div class="col-3">@Html.TextBoxFor(model => model.Bite.ReminderTime, htmlAttributes: new { @class = "form-control", disabled = "disabled" })</div>
+
+        @if (!DateTime.Equals(default(DateTime), Model.Bite.ReminderTime))
+        {
+            <div class="col-3">@Html.TextBoxFor(model => model.Bite.ReminderTime, "{0:dddddd MM/dd/yyyy  }", htmlAttributes: new {@class = "form-control", disabled = "disabled"})</div>
+        }
+        else
+        {
+            <div class="col-3">No reminder set</div>
+        }
+
+
     </div>
 
 
