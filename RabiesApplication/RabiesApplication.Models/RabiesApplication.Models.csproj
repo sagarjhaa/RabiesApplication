@@ -54,7 +54,6 @@
     <Compile Include="Interfaces\IActive.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Interfaces\IEmployeeBase.cs" />
-    <Compile Include="Interfaces\Investigation.cs" />
     <Compile Include="Interfaces\IOrganizationBase.cs" />
     <Compile Include="Interfaces\IOrganizationModel.cs" />
     <Compile Include="Interfaces\IPerson.cs" />

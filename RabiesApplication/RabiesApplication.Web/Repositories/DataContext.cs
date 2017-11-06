@@ -24,7 +24,7 @@ namespace RabiesApplication.Web
         public DbSet<AnimalOwner> AnimalOwner { get; set; }
 
         public DbSet<Action> Actions { get; set; }
-        //public DbSet<Investigation> Investigations { get; set; }
+        public DbSet<Investigation> Investigations { get; set; }
         //public DbSet<Specimen> Specimens { get; set; }
 
         public DbSet<Species> Species { get; set; }

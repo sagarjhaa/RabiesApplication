@@ -3,7 +3,7 @@ using RabiesApplication.Models.Interfaces;
 
 namespace RabiesApplication.Models
 {
-    public class Investigation : IModel
+    public class Investigation : IModel,IAuditable
     {
         public string Id { get; set; }
         public string BiteId { get; set; }
