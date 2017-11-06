@@ -20,11 +20,11 @@ namespace RabiesApplication.Web.Repositories
         }
 
         //Get the biteviewModel for the details page.
-        public BiteJustViewModel GetBiteJustViewModel(string biteId)
+        public BiteDetailViewModel GetBiteJustViewModel(string biteId)
         {
             var b =All().FirstOrDefault(bite => bite.Id.Equals(biteId));
 
-            return new BiteJustViewModel()
+            return new BiteDetailViewModel()
             {
                 Id = b.Id,
                 City = b.City.CityName,

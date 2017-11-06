@@ -30,7 +30,7 @@ namespace RabiesApplication.Web.ViewModels
     public class BiteDetailsViewModel
     {
         
-        public BiteJustViewModel Bite { get; set; }
+        public BiteDetailViewModel Bite { get; set; }
         public IEnumerable<HumanVictimViewModel> HumanVictims { get; set; }
         public AnimalViewModel Animal { get; set; }
         public AnimalOwnerViewModel AnimalOwner { get; set; }
@@ -40,8 +40,7 @@ namespace RabiesApplication.Web.ViewModels
         public IEnumerable<ActionListViewModel> Actions { get; set; }
     }
 
-
-    public class BiteJustViewModel
+    public class BiteDetailViewModel
     {
         public string Id { get; set; }
         public string City { get; set; }
@@ -104,7 +103,6 @@ namespace RabiesApplication.Web.ViewModels
         public string BiteId { get; set; }
         public string AnimalId { get; set; }
     }
-
 
     public class ActionListViewModel
     {
