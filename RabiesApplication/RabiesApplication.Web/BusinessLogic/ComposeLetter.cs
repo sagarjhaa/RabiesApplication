@@ -42,15 +42,15 @@ namespace RabiesApplication.Web.BusinessLogic
         private static readonly string DocumentSavePath = HttpContext.Current.Server.MapPath("~")+ "LettersSent\\";
         private static readonly string HeaderImage = HttpContext.Current.Server.MapPath("~/Content/images/Header_Ccbh.png");
 
-        private static readonly BiteRepository _biteRepository = new BiteRepository();
-        private static readonly AnimalRepository _AnimalRepository = new AnimalRepository();
+        private static readonly BiteRepository BiteRepository = new BiteRepository();
+        private static readonly AnimalRepository AnimalRepository = new AnimalRepository();
     
         protected Bite Bite;       
         protected Animal Animal;
         protected AnimalOwner AnimalOwner;
 
-        public ActionEventArgs internalAction { get; set; }
-        public ReminderEventArgs internalReminder { get; set; }
+        public ActionEventArgs InternalAction { get; set; }
+        public ReminderEventArgs InternalReminder { get; set; }
 
         public Letter()
         {
@@ -60,16 +60,16 @@ namespace RabiesApplication.Web.BusinessLogic
         public Letter(string biteId)
         {
             Document = WordApplication.Documents.Add();
-            Bite = _biteRepository.GetByIdWithAnimal(biteId);
-            Animal = _AnimalRepository.GetById(Bite.Animals.First().Id).Result;
+            Bite = BiteRepository.GetByIdWithAnimal(biteId);
+            Animal = AnimalRepository.GetById(Bite.Animals.First().Id).Result;
             AnimalOwner = Animal.AnimalOwner;
-            internalAction = new ActionEventArgs()
+            InternalAction = new ActionEventArgs()
             {
                 BiteId = biteId,
                 ActionType = ActionTypes.Letter,
                 Active = Constant.Active,
             };
-            internalReminder = new ReminderEventArgs()
+            InternalReminder = new ReminderEventArgs()
             {
                 BiteId = biteId,
                 LetterSentDate = DateTime.Now
@@ -164,9 +164,9 @@ namespace RabiesApplication.Web.BusinessLogic
             //Letter generated successfully and saved
             //Can raise the event for action.
 
-            internalAction.DocumentId = filename.ToString();
-            OnLetterGenerated(internalAction);
-            OnReminderGenerated(internalReminder);
+            InternalAction.DocumentId = filename.ToString();
+            OnLetterGenerated(InternalAction);
+            OnReminderGenerated(InternalReminder);
         }
 
         public delegate void LetterGeneratedEventHandler(object source, ActionEventArgs args);
@@ -308,11 +308,9 @@ namespace RabiesApplication.Web.BusinessLogic
             #endregion
 
 
-            internalAction.Comments = "Letter sent Ten Day Quarantine Owner Victim Same.";
-            internalReminder.QuarantineLetterSent = "Ten Day Quarantine Letter Owner Victim Same";
-            internalReminder.FollowUpDays = 10;
-            internalReminder.ReminderDate =Bite.BiteDate.Value.AddDays(10).Date;
-
+            InternalAction.Comments = InternalReminder.QuarantineLetterSent = LettersInfo.SameLetterDescription;
+            InternalReminder.FollowUpDays = LettersInfo.Days10;
+            InternalReminder.ReminderDate = Bite.BiteDate.Value.AddDays(LettersInfo.Days10).Date;
 
             //Save Document
             SaveFile();
@@ -422,23 +420,9 @@ namespace RabiesApplication.Web.BusinessLogic
             AddFooterContact();
             #endregion
 
-
-            //ActionEventArgs action = new ActionEventArgs
-            //{
-            //    BiteId = Bite.Id,
-            //    ActionType = ActionTypes.Letter,
-            //    Comments = "Letter sent Ten Day Quarantine Owner Victim different.",
-            //    Active =Constant.Active,
-            //};
-
-            //OnLetterGenerated(action);
-
-            internalAction.BiteId = Bite.Id;
-            internalAction.Comments = "Letter sent Ten Day Quarantine Owner Victim different.";
-
-            internalReminder.QuarantineLetterSent = "Letter sent Ten Day Quarantine Owner Victim different.";
-            internalReminder.FollowUpDays = 10;
-            internalReminder.ReminderDate = Bite.BiteDate.Value.AddDays(10).Date;
+            InternalAction.Comments = InternalReminder.QuarantineLetterSent = LettersInfo.DifferentLetterDescription;
+            InternalReminder.FollowUpDays = LettersInfo.Days10;
+            InternalReminder.ReminderDate = Bite.BiteDate.Value.AddDays(LettersInfo.Days10).Date;
 
             //Save Document
             SaveFile();
@@ -486,8 +470,9 @@ namespace RabiesApplication.Web.BusinessLogic
 
             AddFooterContact();
 
-            internalAction.BiteId = Bite.Id;
-            internalAction.Comments = "Letter sent Ten Day Quarantine Owner Victim different.";
+            InternalAction.Comments = InternalReminder.QuarantineLetterSent = LettersInfo.WildUnknownLetterDescription;
+            //InternalReminder.FollowUpDays = LettersInfo.Days10;
+            //InternalReminder.ReminderDate = Bite.BiteDate.Value.AddDays(LettersInfo.Days10).Date;
 
             SaveFile();
         }
@@ -537,7 +522,13 @@ namespace RabiesApplication.Web.BusinessLogic
 
             AddFooterContact();
 
-             SaveFile();
+
+            InternalAction.Comments = InternalReminder.QuarantineLetterSent = LettersInfo.SixMonthLetterDescription;
+            InternalReminder.FollowUpDays = LettersInfo.Months6;
+            InternalReminder.ReminderDate = Bite.BiteDate.Value.AddMonths(LettersInfo.Months6).Date;
+
+
+            SaveFile();
         }
     }
 
@@ -590,6 +581,11 @@ namespace RabiesApplication.Web.BusinessLogic
 
             AddFooterContact();
 
+            InternalAction.Comments = InternalReminder.QuarantineLetterSent = LettersInfo.ShelterLetterDescription;
+            InternalReminder.FollowUpDays = LettersInfo.Days10;
+            InternalReminder.ReminderDate = Bite.BiteDate.Value.AddDays(LettersInfo.Days10).Date;
+
+
             SaveFile();
         }
     }
@@ -630,6 +626,12 @@ namespace RabiesApplication.Web.BusinessLogic
             WordApplication.Selection.TypeText("Thank you for your coorperation. Please contact me with any questions or concerns that you may have." + Environment.NewLine);
 
             AddFooterContact();
+
+            InternalAction.Comments = InternalReminder.QuarantineLetterSent = LettersInfo.FourFiveLetterDescription;
+            InternalReminder.FollowUpDays = LettersInfo.Days45;
+            InternalReminder.ReminderDate = Bite.BiteDate.Value.AddDays(LettersInfo.Days45).Date;
+
+
             SaveFile();
         }
     }
