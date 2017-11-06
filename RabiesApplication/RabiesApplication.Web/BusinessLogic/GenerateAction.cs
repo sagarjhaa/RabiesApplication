@@ -23,18 +23,4 @@ namespace RabiesApplication.Web.BusinessLogic
         }
     }
 
-    public class ReminderHelper
-    {
-        private static readonly  InvestigationRepository _investigationRepository = new InvestigationRepository();
-
-        public void OnReminderGenerated(object source, ReminderEventArgs e)
-        {
-            var reminder = Mapper.Map<ReminderEventArgs, Investigation>(e);
-
-            _investigationRepository.Insert(reminder);
-            _investigationRepository.SaveChangesAsync();
-
-        }
-
-    }
 }

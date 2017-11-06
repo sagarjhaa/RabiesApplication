@@ -203,6 +203,7 @@
     <Compile Include="BusinessLogic\ComposeLetter.cs" />
     <Compile Include="BusinessLogic\GenerateAction.cs" />
     <Compile Include="BusinessLogic\GenerateLetter.cs" />
+    <Compile Include="BusinessLogic\GenerateReminder.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnimalOwnersController.cs" />
     <Compile Include="Controllers\AnimalsController.cs" />
