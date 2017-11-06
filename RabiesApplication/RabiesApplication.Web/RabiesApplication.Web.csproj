@@ -298,6 +298,7 @@
     <Compile Include="Repositories\BiteRepository.cs" />
     <Compile Include="Repositories\DataContext.cs" />
     <Compile Include="Repositories\HumanVictimRepository.cs" />
+    <Compile Include="Repositories\InvestigationRepository.cs" />
     <Compile Include="Repositories\LookupRepository.cs" />
     <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\ModelRepository.cs" />
