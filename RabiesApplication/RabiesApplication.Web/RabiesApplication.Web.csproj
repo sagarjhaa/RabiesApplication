@@ -635,6 +635,7 @@
     <Content Include="Scripts\knockout-3.4.2.debug.js" />
     <Content Include="Scripts\knockout-3.4.2.js" />
     <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\modalDocument.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper.min.js" />
@@ -709,6 +710,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="LettersSentTemp\" />
     <Folder Include="LettersSent\" />
   </ItemGroup>
   <ItemGroup>

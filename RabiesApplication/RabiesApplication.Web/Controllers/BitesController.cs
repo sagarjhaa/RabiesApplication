@@ -258,6 +258,18 @@ namespace RabiesApplication.Web.Controllers
             return RedirectToAction("Details", new { biteId = biteId });
         }
 
+
+        public string GetPath(string documentId)
+        {
+            if (documentId == null)
+            {
+                return "Not Found";
+
+            }
+
+            return  Server.MapPath("~") + "LettersSent\\" + documentId;
+        }
+
         public ActionResult DocumentDownload(string documentId)
         {
             if (documentId == null)
@@ -266,7 +278,7 @@ namespace RabiesApplication.Web.Controllers
 
             }
 
-            var document = _actionRepository.Context.Actions.First(a => a.DocumentId.Equals(documentId));
+            var document = _actionRepository.Context.Actions.First(a => a.DocumentId.Equals(documentId.Trim()));
             if(document == null)
             {
                 return HttpNotFound("Document not found");
@@ -274,7 +286,7 @@ namespace RabiesApplication.Web.Controllers
 
            string documentSavePath = Server.MapPath("~") + "LettersSent\\" + documentId;
            byte[] fileBytes = System.IO.File.ReadAllBytes(documentSavePath);
-           return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet,"Document.docx");
+           return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet,"Document.jpeg");
 
         }
 
