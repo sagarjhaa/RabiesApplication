@@ -1,5 +1,6 @@
 ﻿using System;
 using AutoMapper;
+using RabiesApplication.Models;
 using Action = RabiesApplication.Models.Action;
 using RabiesApplication.Web.Models;
 using RabiesApplication.Web.Repositories;
@@ -18,26 +19,21 @@ namespace RabiesApplication.Web.BusinessLogic
             var action = Mapper.Map<ActionEventArgs, Action>(e);
 
             _actionRepository.Insert(action);
-            try
-            {
-                _actionRepository.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                
-                throw;
-            }
+            _actionRepository.SaveChangesAsync();
         }
     }
 
     public class ReminderHelper
     {
-        private static readonly  BiteRepository _BiteRepository = new BiteRepository();
+        private static readonly  InvestigationRepository _investigationRepository = new InvestigationRepository();
 
-
-        public void OnLetterGenerated(object source, ReminderEventArgs e)
+        public void OnReminderGenerated(object source, ReminderEventArgs e)
         {
-            
+            var reminder = Mapper.Map<ReminderEventArgs, Investigation>(e);
+
+            _investigationRepository.Insert(reminder);
+            _investigationRepository.SaveChangesAsync();
+
         }
 
     }

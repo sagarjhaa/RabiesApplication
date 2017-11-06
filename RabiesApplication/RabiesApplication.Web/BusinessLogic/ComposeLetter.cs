@@ -27,9 +27,12 @@ namespace RabiesApplication.Web.BusinessLogic
 
     public class ReminderEventArgs : EventArgs
     {
+        public string Id { get; set; }
         public string BiteId { get; set; }
-
-        public string ToDate { get; set; }
+        public string QuarantineLetterSent { get; set; }
+        public DateTime LetterSentDate { get; set; }
+        public int FollowUpDays { get; set; }
+        public DateTime ReminderDate { get; set; }
     }
 
     public class Letter
@@ -47,6 +50,7 @@ namespace RabiesApplication.Web.BusinessLogic
         protected AnimalOwner AnimalOwner;
 
         public ActionEventArgs internalAction { get; set; }
+        public ReminderEventArgs internalReminder { get; set; }
 
         public Letter()
         {
@@ -64,6 +68,7 @@ namespace RabiesApplication.Web.BusinessLogic
                 ActionType = ActionTypes.Letter,
                 Active = Constant.Active,
             };
+            internalReminder = new ReminderEventArgs();
         }
 
         private static float PointToInches(float point)
@@ -156,17 +161,29 @@ namespace RabiesApplication.Web.BusinessLogic
 
             internalAction.DocumentId = filename.ToString();
             OnLetterGenerated(internalAction);
+            OnReminderGenerated(internalReminder);
         }
 
         public delegate void LetterGeneratedEventHandler(object source, ActionEventArgs args);
+        public delegate void ReminderGeneratedEventHandler(object source, ReminderEventArgs args);
 
         public event LetterGeneratedEventHandler LetterGenerated;
+        public event ReminderGeneratedEventHandler ReminderGenerated;
 
         protected virtual void OnLetterGenerated(ActionEventArgs action)
         {
             if (LetterGenerated != null)
             {
                 LetterGenerated(this, action);
+            }
+        }
+
+
+        protected virtual void OnReminderGenerated(ReminderEventArgs reminder)
+        {
+            if (ReminderGenerated != null)
+            {
+                ReminderGenerated(this, reminder);
             }
         }
     }
@@ -289,6 +306,11 @@ namespace RabiesApplication.Web.BusinessLogic
             internalAction.BiteId = Bite.Id;
             internalAction.Comments = "Letter sent Ten Day Quarantine Owner Victim Same.";
 
+            internalReminder.BiteId = Bite.Id;
+            internalReminder.QuarantineLetterSent = "Ten Day Quarantine Letter Owner Victim Same";
+            internalReminder.LetterSentDate = DateTime.Now;
+            internalReminder.FollowUpDays = 10;
+            internalReminder.ReminderDate =Bite.BiteDate.Value.AddDays(10).Date;
 
 
             //Save Document
@@ -825,6 +847,7 @@ namespace RabiesApplication.Web.BusinessLogic
                 case (int)Letters.TenDayQSame:
                     var same = new TenDayQuarantineLetterSame(biteId);
                     same.LetterGenerated += new ActionsHelper().OnLetterGenerated;
+                    same.ReminderGenerated += new ReminderHelper().OnReminderGenerated;
                     same.CreateLetter();
                     break;
 

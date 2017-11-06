@@ -34,6 +34,7 @@ namespace RabiesApplication.Web.App_Start
 
 
             CreateMap<ActionEventArgs, Action>();
+            CreateMap<ReminderEventArgs, Investigation>();
 
 
             //CreateMap<AnimalFormViewModel,Animal>();
