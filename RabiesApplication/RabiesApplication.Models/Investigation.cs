@@ -15,6 +15,8 @@ namespace RabiesApplication.Models
 
         public int FollowUpDays { get; set; }
 
+        public DateTime? ReminderDate { get; set; }
+
         public DateTimeOffset RecordCreated { get; set; }
         public DateTimeOffset? RecordEdited { get; set; }
         public string EmployeeCreatedId { get; set; }
