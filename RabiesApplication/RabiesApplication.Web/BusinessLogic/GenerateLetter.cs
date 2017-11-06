@@ -18,6 +18,7 @@ namespace RabiesApplication.Web.BusinessLogic
                 case (int)Letters.TenDayQDifferent:
                     var different = new TenDayQuarantineLetterDifferent(biteId);
                     different.LetterGenerated += new ActionsHelper().OnLetterGenerated;
+                    different.ReminderGenerated += new ReminderHelper().OnReminderGenerated;
                     different.CreateLetter();
                     break;
 

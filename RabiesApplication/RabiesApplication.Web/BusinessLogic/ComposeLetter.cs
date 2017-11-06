@@ -65,10 +65,15 @@ namespace RabiesApplication.Web.BusinessLogic
             AnimalOwner = Animal.AnimalOwner;
             internalAction = new ActionEventArgs()
             {
+                BiteId = biteId,
                 ActionType = ActionTypes.Letter,
                 Active = Constant.Active,
             };
-            internalReminder = new ReminderEventArgs();
+            internalReminder = new ReminderEventArgs()
+            {
+                BiteId = biteId,
+                LetterSentDate = DateTime.Now
+        };
         }
 
         private static float PointToInches(float point)
@@ -303,12 +308,8 @@ namespace RabiesApplication.Web.BusinessLogic
             #endregion
 
 
-            internalAction.BiteId = Bite.Id;
             internalAction.Comments = "Letter sent Ten Day Quarantine Owner Victim Same.";
-
-            internalReminder.BiteId = Bite.Id;
             internalReminder.QuarantineLetterSent = "Ten Day Quarantine Letter Owner Victim Same";
-            internalReminder.LetterSentDate = DateTime.Now;
             internalReminder.FollowUpDays = 10;
             internalReminder.ReminderDate =Bite.BiteDate.Value.AddDays(10).Date;
 
@@ -434,6 +435,10 @@ namespace RabiesApplication.Web.BusinessLogic
 
             internalAction.BiteId = Bite.Id;
             internalAction.Comments = "Letter sent Ten Day Quarantine Owner Victim different.";
+
+            internalReminder.QuarantineLetterSent = "Letter sent Ten Day Quarantine Owner Victim different.";
+            internalReminder.FollowUpDays = 10;
+            internalReminder.ReminderDate = Bite.BiteDate.Value.AddDays(10).Date;
 
             //Save Document
             SaveFile();
