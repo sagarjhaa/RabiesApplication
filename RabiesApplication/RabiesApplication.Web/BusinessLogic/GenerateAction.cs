@@ -7,16 +7,6 @@ using RabiesApplication.Web.Repositories;
 namespace RabiesApplication.Web.BusinessLogic
 {
 
-    public static class ActionTypes
-    {
-        public static string Letter = "Letter";
-        public static string Phone = "Phone";
-        public static string Visit = "Visit";
-        public static string Email = "Email";
-        public static string Fax = "Fax";
-    }
-
-
     public class ActionsHelper
     {
         private static readonly ActionRepository _actionRepository = new ActionRepository();

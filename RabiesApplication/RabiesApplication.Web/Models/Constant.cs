@@ -30,12 +30,6 @@ namespace RabiesApplication.Web.Models
         #endregion
     }
 
-    public static class BiteStatusConstant
-    {
-        public const string New = "1";
-        public const string Open = "2";
-    }
-
     public enum Letters
     {
         TenDayQSame = 1,
@@ -44,6 +38,16 @@ namespace RabiesApplication.Web.Models
         FourFiveDayQ,
         WildUnknownAnimal,
         SixMonthQ
+    }
+
+
+    public static class ActionTypes
+    {
+        public static string Letter = "Letter";
+        public static string Phone = "Phone";
+        public static string Visit = "Visit";
+        public static string Email = "Email";
+        public static string Fax = "Fax";
     }
 
     public enum LettersDays
