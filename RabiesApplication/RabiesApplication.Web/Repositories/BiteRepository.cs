@@ -80,5 +80,82 @@ namespace RabiesApplication.Web.Repositories
         {
             return base.All().Where(b => b.Active.Equals(Constant.Active)).Include("City").Include("State").Include("BiteStatus").OrderByDescending(b => b.BiteDate);
         }
+
+
+
+
+
+
+        //Report Queuries
+        public List<BiteDetailViewModel> OpenReportWithNoDetails()
+        {
+            var bites = All()
+                .Where(b => b.BiteStatus.Description.Trim().Equals("Open"))
+                .Where(b => b.QuarantineVerification.Equals(null))
+                .Where(b => b.VaccineVerification.Equals(null))
+                .Where(b => b.BiteDate.Value.AddDays(10).Date <= DateTimeOffset.Now.Date)
+                .Select(b => new BiteDetailViewModel()
+                {
+                    Id = b.Id,
+                    City = b.City.CityName,
+                    Status = b.BiteStatus.Description,
+                    BiteDate = b.BiteDate.Value,
+                    ReportDate = b.BiteReportDate.Value,
+                    Comments = b.Comments,
+                    QuarantineVerification = b.QuarantineVerification,
+                    VaccinationVerification = b.VaccineVerification
+                }).ToList();
+
+            return bites;
+        }
+
+        public List<BiteDetailViewModel> OpenReportWithNoQuarantine()
+        {
+            var bites = All()
+                .Where(b => b.BiteStatus.Description.Trim().Equals("Open"))
+                .Where(b => b.QuarantineVerification.Equals(null))
+                .Where(b => b.VaccineVerification != null)
+                .Where(b => b.BiteDate.Value.AddDays(10).Date <= DateTimeOffset.Now.Date)
+                .Select(b => new BiteDetailViewModel()
+                {
+                    Id = b.Id,
+                    City = b.City.CityName,
+                    Status = b.BiteStatus.Description,
+                    BiteDate = b.BiteDate.Value,
+                    ReportDate = b.BiteReportDate.Value,
+                    Comments = b.Comments,
+                    QuarantineVerification = b.QuarantineVerification,
+                    VaccinationVerification = b.VaccineVerification
+                }).ToList();
+
+            return bites;
+        }
+
+        public List<BiteDetailViewModel> OpenReportWithNoVaccination()
+        {
+            var bites = All()
+                        .Where(b => b.BiteStatus.Description.Trim().Equals("Open"))
+                        .Where(b => b.QuarantineVerification != null)
+                        .Where(b => b.VaccineVerification.Equals(null))
+                        .Where(b => b.BiteDate.Value.AddDays(10).Date <= DateTimeOffset.Now.Date)
+                        .Select(b => new BiteDetailViewModel()
+                        {
+                            Id = b.Id,
+                            City = b.City.CityName,
+                            Status = b.BiteStatus.Description,
+                            BiteDate = b.BiteDate.Value,
+                            ReportDate = b.BiteReportDate.Value,
+                            Comments = b.Comments,
+                            QuarantineVerification = b.QuarantineVerification,
+                            VaccinationVerification = b.VaccineVerification
+                        }).ToList();
+
+            return bites;
+        }
+
+
+        //One more query for animals sent to testing with open report
+
+
     }
 }

@@ -54,6 +54,8 @@ namespace RabiesApplication.Web.ViewModels
 
         public DateTime ReminderTime { get; set; }
 
+        public string QuarantineVerification { get; set; }
+        public string VaccinationVerification { get; set; }
     }
 
     public class HumanVictimViewModel
