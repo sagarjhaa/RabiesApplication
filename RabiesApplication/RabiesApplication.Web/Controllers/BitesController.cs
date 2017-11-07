@@ -247,7 +247,7 @@ namespace RabiesApplication.Web.Controllers
                 new GenerateLetter().GenerateSendLetterAction(biteId, animalId, result);
 
                 TempData["MessageType"] = Constant.Success;
-                TempData["Message"] = "Letter is generated and Reminder is set";
+                TempData["Message"] = "Letter is generated and Reminder is set.";
 
             }
             catch (Exception ex)

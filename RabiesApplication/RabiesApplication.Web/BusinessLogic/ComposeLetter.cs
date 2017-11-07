@@ -193,6 +193,31 @@ namespace RabiesApplication.Web.BusinessLogic
                 ReminderGenerated(this, reminder);
             }
         }
+
+
+
+        public DateTime CalculateReminderDate(int count, string unit)
+        {
+            //count,unit => 10 days | count,unit => 2 months
+            var reminderDate = new DateTime();
+
+            if (unit.ToLower().Equals("days"))
+            {
+                reminderDate = Bite.BiteDate.Value.AddDays(count).Date;
+            }
+            else if (unit.ToLower().Equals("month"))
+            {
+                reminderDate = Bite.BiteDate.Value.AddMonths(count).Date;
+            }
+
+            while (reminderDate.DayOfWeek == DayOfWeek.Sunday || reminderDate.DayOfWeek == DayOfWeek.Saturday)
+            {
+                reminderDate = reminderDate.AddDays(1);
+            }
+
+            return reminderDate;
+        }
+
     }
 
     /// <summary>
@@ -312,7 +337,7 @@ namespace RabiesApplication.Web.BusinessLogic
 
             InternalAction.Comments = InternalReminder.QuarantineLetterSent = LettersInfo.SameLetterDescription;
             InternalReminder.FollowUpDays = LettersInfo.Days10;
-            InternalReminder.ReminderDate = Bite.BiteDate.Value.AddDays(LettersInfo.Days10).Date;
+            InternalReminder.ReminderDate = CalculateReminderDate(LettersInfo.Days10, "days");
 
             //Save Document
             SaveFile();
@@ -424,112 +449,9 @@ namespace RabiesApplication.Web.BusinessLogic
 
             InternalAction.Comments = InternalReminder.QuarantineLetterSent = LettersInfo.DifferentLetterDescription;
             InternalReminder.FollowUpDays = LettersInfo.Days10;
-            InternalReminder.ReminderDate = Bite.BiteDate.Value.AddDays(LettersInfo.Days10).Date;
+            InternalReminder.ReminderDate = CalculateReminderDate(LettersInfo.Days10, "days");
 
             //Save Document
-            SaveFile();
-        }
-    }
-
-    public class WildUnknowAnimal : Letter
-    {
-        public WildUnknowAnimal(string biteId): base(biteId){}
-
-        public override void CreateLetter()
-        {
-            AddHeaderImage();
-            PrintAddress(AnimalOwner);
-
-            #region Greeting
-            WordApplication.Selection.TypeText("Dear Mr. or Ms.:" + Environment.NewLine);
-            #endregion
-
-            string firstParagraph =
-                "As part of our Rabies Prevention Program, The Cuyahoga County Board of Health investigates all reported" +
-                "animal bites and potential rabies exposures. We were notified you were bitten by a "+ Animal.Species.Description +" on "+ BiteDate + "." +
-                " Every effort should be made to locate the animal so that it can be properly quarantined or tested for rabies." + Environment.NewLine;
-
-            string secondParagraph =
-                "Please contact us upon receiving this letter to provide any additional information you may have regarding the whereabouts of the " +
-                "animal. If the animal is a stray, it may be possible for your local animal control office to capture it and submit it to our office" +
-                " for rabies testing. If the animal belongs to someone, then our office can contact the owner to verify the health of the animal" +
-                " and its rabies vaccination record. If the animal belong to you, then you will simply be required to quarantine the animal for 10 days and then" +
-                " provide proof of a rabies vaccination." + Environment.NewLine;
-
-            string thirdParagraph =
-                "Rabies is aninfectious disease that is fatal once symptoms begin. The risk for rabies can be controlled by minimizing animal bites" +
-                " and exposires and by keeping pets vaccinatied againt the virus. The board of Health recommends that you seek the necessary medical treatment to help prevent" +
-                " potential infection. You should also consult with your physician to discuss the risks associated with your potential rabies exposure and whether post-" +
-                "exposure prophylaxis should be administered." + Environment.NewLine;
-
-            string fourthParagraph =
-                "Thank you for your cooperation in this matter." + Environment.NewLine;
-
-            WordApplication.Selection.TypeText(firstParagraph);
-            WordApplication.Selection.TypeText(secondParagraph);
-            WordApplication.Selection.TypeText(thirdParagraph);
-            WordApplication.Selection.TypeText(fourthParagraph);
-
-            AddFooterContact();
-
-            InternalAction.Comments = InternalReminder.QuarantineLetterSent = LettersInfo.WildUnknownLetterDescription;
-            //InternalReminder.FollowUpDays = LettersInfo.Days10;
-            //InternalReminder.ReminderDate = Bite.BiteDate.Value.AddDays(LettersInfo.Days10).Date;
-
-            SaveFile();
-        }
-    }
-
-    public class SixMonthQuarantine : Letter
-    {
-        public SixMonthQuarantine(string biteId): base(biteId){}
-
-        public override void CreateLetter()
-        {
-            AddHeaderImage();
-            PrintAddress(AnimalOwner);
-
-            WordApplication.Selection.TypeText("Dear Mr. or Ms.:");
-            //Todo Check this space
-            string firstParagraph =
-                "Our office has received a report that your pet "+"Sagar" +" was bitten,scratched, or otherwise exposed to [an opossum] on "+ BiteDate + "." + Environment.NewLine;
-
-            string secondParagarph =
-                "Ohio law* requires us to follow up on this report because [opossums] can carry rabies and pass it on dogs, who can then pass it to people" +
-                ". Rabies is a very serious disease that will almost always kill people if they don't receive immediate medical help after being exposed." + Environment.NewLine;
-
-            string thirdParagraph =
-                "Because the [opossum] cannot be tested for rabies, and because your pet does not have an up to date rabies vaccination, Ohio law* required that your pet" +
-                " be euthanized by a veterinarian and send for rabies testing OR that it be quarantined for 6 months, starting the day of the incident." + Environment.NewLine;
-
-            WordApplication.Selection.TypeText("");
-            WordApplication.Selection.TypeText("To properly quarantine your pet, your must do these things:" + Environment.NewLine);
-            WordApplication.Selection.TypeText("Contact your veterinarian to arrange for a rabies vaccination to be given to your pet immediately." + Environment.NewLine);
-            WordApplication.Selection.TypeText("Keep your pet confined at home or at an approved kennel." + Environment.NewLine);
-            WordApplication.Selection.TypeText("Keep your pet away from people and other animals." + Environment.NewLine);
-            WordApplication.Selection.TypeText("Watch your pet to be sure it stays healthy." + Environment.NewLine);
-            WordApplication.Selection.TypeText("If your pet starts to show signs of illness or strange behaviour, immediately call your vet and our office." + Environment.NewLine);
-
-            WordApplication.Selection.TypeText("");
-            WordApplication.Selection.TypeText("After the 6 month quarantine:" + Environment.NewLine);
-            WordApplication.Selection.TypeText("If your pet successfully completes the quarantine, please fill out the Rabies Vaccination & Quarantine " +
-                                               "Release form. An animal that successfully completes the quarantine is one that is still alive and showing no signs " +
-                                               "of illness or strange behaviour." + Environment.NewLine);
-            WordApplication.Selection.TypeText("Check the box for Yes, my animal successfully compelted the quarantine period." + Environment.NewLine);
-            WordApplication.Selection.TypeText("Complete the rabies vaccination information." + Environment.NewLine);
-            WordApplication.Selection.TypeText("Sign and date the form." + Environment.NewLine);
-            WordApplication.Selection.TypeText("Send the form to our office by mail, fax or email." + Environment.NewLine);
-
-            WordApplication.Selection.TypeText("Thank you for your cooperation. Please contact me with any questions or concers that you may have.");
-
-            AddFooterContact();
-
-
-            InternalAction.Comments = InternalReminder.QuarantineLetterSent = LettersInfo.SixMonthLetterDescription;
-            InternalReminder.FollowUpDays = LettersInfo.Months6;
-            InternalReminder.ReminderDate = Bite.BiteDate.Value.AddMonths(LettersInfo.Months6).Date;
-
-
             SaveFile();
         }
     }
@@ -585,7 +507,7 @@ namespace RabiesApplication.Web.BusinessLogic
 
             InternalAction.Comments = InternalReminder.QuarantineLetterSent = LettersInfo.ShelterLetterDescription;
             InternalReminder.FollowUpDays = LettersInfo.Days10;
-            InternalReminder.ReminderDate = Bite.BiteDate.Value.AddDays(LettersInfo.Days10).Date;
+            InternalReminder.ReminderDate = CalculateReminderDate(LettersInfo.Days10, "days");
 
 
             SaveFile();
@@ -631,7 +553,110 @@ namespace RabiesApplication.Web.BusinessLogic
 
             InternalAction.Comments = InternalReminder.QuarantineLetterSent = LettersInfo.FourFiveLetterDescription;
             InternalReminder.FollowUpDays = LettersInfo.Days45;
-            InternalReminder.ReminderDate = Bite.BiteDate.Value.AddDays(LettersInfo.Days45).Date;
+            InternalReminder.ReminderDate = CalculateReminderDate(LettersInfo.Days45, "days");
+
+
+            SaveFile();
+        }
+    }
+
+    public class WildUnknowAnimal : Letter
+    {
+        public WildUnknowAnimal(string biteId) : base(biteId) { }
+
+        public override void CreateLetter()
+        {
+            AddHeaderImage();
+            PrintAddress(AnimalOwner);
+
+            #region Greeting
+            WordApplication.Selection.TypeText("Dear Mr. or Ms.:" + Environment.NewLine);
+            #endregion
+
+            string firstParagraph =
+                "As part of our Rabies Prevention Program, The Cuyahoga County Board of Health investigates all reported" +
+                "animal bites and potential rabies exposures. We were notified you were bitten by a " + Animal.Species.Description + " on " + BiteDate + "." +
+                " Every effort should be made to locate the animal so that it can be properly quarantined or tested for rabies." + Environment.NewLine;
+
+            string secondParagraph =
+                "Please contact us upon receiving this letter to provide any additional information you may have regarding the whereabouts of the " +
+                "animal. If the animal is a stray, it may be possible for your local animal control office to capture it and submit it to our office" +
+                " for rabies testing. If the animal belongs to someone, then our office can contact the owner to verify the health of the animal" +
+                " and its rabies vaccination record. If the animal belong to you, then you will simply be required to quarantine the animal for 10 days and then" +
+                " provide proof of a rabies vaccination." + Environment.NewLine;
+
+            string thirdParagraph =
+                "Rabies is aninfectious disease that is fatal once symptoms begin. The risk for rabies can be controlled by minimizing animal bites" +
+                " and exposires and by keeping pets vaccinatied againt the virus. The board of Health recommends that you seek the necessary medical treatment to help prevent" +
+                " potential infection. You should also consult with your physician to discuss the risks associated with your potential rabies exposure and whether post-" +
+                "exposure prophylaxis should be administered." + Environment.NewLine;
+
+            string fourthParagraph =
+                "Thank you for your cooperation in this matter." + Environment.NewLine;
+
+            WordApplication.Selection.TypeText(firstParagraph);
+            WordApplication.Selection.TypeText(secondParagraph);
+            WordApplication.Selection.TypeText(thirdParagraph);
+            WordApplication.Selection.TypeText(fourthParagraph);
+
+            AddFooterContact();
+
+            InternalAction.Comments = InternalReminder.QuarantineLetterSent = LettersInfo.WildUnknownLetterDescription;
+            //InternalReminder.FollowUpDays = LettersInfo.Days10;
+            //InternalReminder.ReminderDate = Bite.BiteDate.Value.AddDays(LettersInfo.Days10).Date;
+
+            SaveFile();
+        }
+    }
+
+    public class SixMonthQuarantine : Letter
+    {
+        public SixMonthQuarantine(string biteId) : base(biteId) { }
+
+        public override void CreateLetter()
+        {
+            AddHeaderImage();
+            PrintAddress(AnimalOwner);
+
+            WordApplication.Selection.TypeText("Dear Mr. or Ms.:");
+            //Todo Check this space
+            string firstParagraph =
+                "Our office has received a report that your pet " + "Sagar" + " was bitten,scratched, or otherwise exposed to [an opossum] on " + BiteDate + "." + Environment.NewLine;
+
+            string secondParagarph =
+                "Ohio law* requires us to follow up on this report because [opossums] can carry rabies and pass it on dogs, who can then pass it to people" +
+                ". Rabies is a very serious disease that will almost always kill people if they don't receive immediate medical help after being exposed." + Environment.NewLine;
+
+            string thirdParagraph =
+                "Because the [opossum] cannot be tested for rabies, and because your pet does not have an up to date rabies vaccination, Ohio law* required that your pet" +
+                " be euthanized by a veterinarian and send for rabies testing OR that it be quarantined for 6 months, starting the day of the incident." + Environment.NewLine;
+
+            WordApplication.Selection.TypeText("");
+            WordApplication.Selection.TypeText("To properly quarantine your pet, your must do these things:" + Environment.NewLine);
+            WordApplication.Selection.TypeText("Contact your veterinarian to arrange for a rabies vaccination to be given to your pet immediately." + Environment.NewLine);
+            WordApplication.Selection.TypeText("Keep your pet confined at home or at an approved kennel." + Environment.NewLine);
+            WordApplication.Selection.TypeText("Keep your pet away from people and other animals." + Environment.NewLine);
+            WordApplication.Selection.TypeText("Watch your pet to be sure it stays healthy." + Environment.NewLine);
+            WordApplication.Selection.TypeText("If your pet starts to show signs of illness or strange behaviour, immediately call your vet and our office." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("");
+            WordApplication.Selection.TypeText("After the 6 month quarantine:" + Environment.NewLine);
+            WordApplication.Selection.TypeText("If your pet successfully completes the quarantine, please fill out the Rabies Vaccination & Quarantine " +
+                                               "Release form. An animal that successfully completes the quarantine is one that is still alive and showing no signs " +
+                                               "of illness or strange behaviour." + Environment.NewLine);
+            WordApplication.Selection.TypeText("Check the box for Yes, my animal successfully compelted the quarantine period." + Environment.NewLine);
+            WordApplication.Selection.TypeText("Complete the rabies vaccination information." + Environment.NewLine);
+            WordApplication.Selection.TypeText("Sign and date the form." + Environment.NewLine);
+            WordApplication.Selection.TypeText("Send the form to our office by mail, fax or email." + Environment.NewLine);
+
+            WordApplication.Selection.TypeText("Thank you for your cooperation. Please contact me with any questions or concers that you may have.");
+
+            AddFooterContact();
+
+
+            InternalAction.Comments = InternalReminder.QuarantineLetterSent = LettersInfo.SixMonthLetterDescription;
+            InternalReminder.FollowUpDays = LettersInfo.Months6;
+            InternalReminder.ReminderDate = CalculateReminderDate(LettersInfo.Months6, "month");
 
 
             SaveFile();
@@ -642,7 +667,7 @@ namespace RabiesApplication.Web.BusinessLogic
     /// <summary>
     /// Non Compliance letter / Follow up letter
     /// </summary>
-    
+
     public class NonCompliance_OwnerVictimDifferent_No_Quarantine_No_Vaccination : Letter
     {
         public NonCompliance_OwnerVictimDifferent_No_Quarantine_No_Vaccination(string biteId): base(biteId){}
