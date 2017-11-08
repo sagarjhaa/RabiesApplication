@@ -87,13 +87,16 @@ namespace RabiesApplication.Web.Repositories
 
 
         //Report Queuries
-        public List<BiteDetailViewModel> OpenReportWithNoDetails()
+        public IEnumerable<BiteDetailViewModel> OpenReportWithNoDetails()
         {
+
+            var targetDate = DateTime.Now.Date.AddDays(-10);
+
             var bites = All()
                 .Where(b => b.BiteStatus.Description.Trim().Equals("Open"))
                 .Where(b => b.QuarantineVerification.Equals(null))
                 .Where(b => b.VaccineVerification.Equals(null))
-                .Where(b => b.BiteDate.Value.AddDays(10).Date <= DateTimeOffset.Now.Date)
+                .Where(b => b.BiteDate.Value <= targetDate)
                 .Select(b => new BiteDetailViewModel()
                 {
                     Id = b.Id,
@@ -109,13 +112,15 @@ namespace RabiesApplication.Web.Repositories
             return bites;
         }
 
-        public List<BiteDetailViewModel> OpenReportWithNoQuarantine()
+        public IEnumerable<BiteDetailViewModel> OpenReportWithNoQuarantine()
         {
+            var targetDate = DateTime.Now.Date.AddDays(-10);
+
             var bites = All()
                 .Where(b => b.BiteStatus.Description.Trim().Equals("Open"))
-                .Where(b => b.QuarantineVerification.Equals(null))
+                .Where(b => b.QuarantineVerification.Equals(null)) 
                 .Where(b => b.VaccineVerification != null)
-                .Where(b => b.BiteDate.Value.AddDays(10).Date <= DateTimeOffset.Now.Date)
+                .Where(b => b.BiteDate.Value <= targetDate)
                 .Select(b => new BiteDetailViewModel()
                 {
                     Id = b.Id,
@@ -131,13 +136,15 @@ namespace RabiesApplication.Web.Repositories
             return bites;
         }
 
-        public List<BiteDetailViewModel> OpenReportWithNoVaccination()
+        public IEnumerable<BiteDetailViewModel> OpenReportWithNoVaccination()
         {
+            var targetDate = DateTime.Now.Date.AddDays(-10);
+
             var bites = All()
                         .Where(b => b.BiteStatus.Description.Trim().Equals("Open"))
                         .Where(b => b.QuarantineVerification != null)
                         .Where(b => b.VaccineVerification.Equals(null))
-                        .Where(b => b.BiteDate.Value.AddDays(10).Date <= DateTimeOffset.Now.Date)
+                        .Where(b => b.BiteDate.Value <= targetDate)
                         .Select(b => new BiteDetailViewModel()
                         {
                             Id = b.Id,

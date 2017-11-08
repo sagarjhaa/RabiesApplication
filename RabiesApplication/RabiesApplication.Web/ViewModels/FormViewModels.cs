@@ -67,6 +67,7 @@ namespace RabiesApplication.Web.ViewModels
         public bool IsQuarantine { get; set; }
         public bool IsQuarantineCompleted { get; set; }
         public string QuarantineVerification { get; set; }
+        public string VaccineVerification { get; set; }
     }
 
 

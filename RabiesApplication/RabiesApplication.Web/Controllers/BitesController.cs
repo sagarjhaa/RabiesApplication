@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -289,6 +290,33 @@ namespace RabiesApplication.Web.Controllers
            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet,"Document.jpeg");
 
         }
+
+
+
+        public ActionResult OpenReportWithNoDetails(int? pageNo,string reportName)
+        {
+            ViewBag.reportName = reportName;
+
+            var bites = new List<BiteDetailViewModel>();
+            if (reportName.Equals("OpenReportWithNoDetails"))
+            {
+                 bites = (List<BiteDetailViewModel>) _biteRepository.OpenReportWithNoDetails();
+            }
+            else if (reportName.Equals("OpenReportWithNoQuarantine"))
+            {
+                 bites = (List<BiteDetailViewModel>) _biteRepository.OpenReportWithNoQuarantine();
+            }
+            else if (reportName.Equals("OpenReportWithNoVaccination"))
+            {
+                 bites = (List<BiteDetailViewModel>) _biteRepository.OpenReportWithNoVaccination();
+            }
+
+            int sizeOfPage = 10;
+            int noOfPage = (pageNo ?? 1);
+
+            return View(bites.ToPagedList(noOfPage, sizeOfPage));
+        }
+
 
 
 

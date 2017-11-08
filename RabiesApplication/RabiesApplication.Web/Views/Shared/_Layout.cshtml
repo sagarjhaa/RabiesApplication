@@ -32,16 +32,24 @@
                 <li class="nav-item">
                     @Html.ActionLink("Bites", "Index", "Bites", null, htmlAttributes: new {@class = "nav-link"})
                 </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Veterinarian List", "Index", "Vets", null, htmlAttributes: new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Animal Owners List", "AnimalOwners", "AnimalOwners", null, htmlAttributes: new { @class = "nav-link" })
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
+                        Reports
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
+                        @Html.ActionLink("Bite with no Quarantine & Vaccine", "OpenReportWithNoDetails", "Bites", new { reportName = "OpenReportWithNoDetails" }, htmlAttributes: new { @class = "dropdown-item" })
+                        @Html.ActionLink("Bite with no Quarantine", "OpenReportWithNoDetails", "Bites", new { reportName = "OpenReportWithNoQuarantine" }, htmlAttributes: new { @class = "dropdown-item" })
+                        @Html.ActionLink("Bite with no Vaccine", "OpenReportWithNoDetails", "Bites", new { reportName = "OpenReportWithNoVaccination" }, htmlAttributes: new { @class = "dropdown-item" })
+                        @*<a class="dropdown-item" href="#">Another action</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Something else here</a>
-                        <a class="dropdown-toggle" id="targetLink" data-toggle="dropdown" href="#">Updates <span id="targetSpan" class="badge"></span></a>
+                        <a class="dropdown-toggle" id="targetLink" data-toggle="dropdown" href="#">Updates <span id="targetSpan" class="badge"></span></a>*@
                     </div>
                 </li>
             }

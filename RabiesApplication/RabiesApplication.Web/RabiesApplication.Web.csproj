@@ -706,6 +706,7 @@
     <Content Include="Views\AnimalOwners\AnimalOwners.cshtml" />
     <None Include="Views\Animals\SelectAnimal.cshtml" />
     <Content Include="Views\Shared\_ActionView.cshtml" />
+    <Content Include="Views\Bites\OpenReportWithNoDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
