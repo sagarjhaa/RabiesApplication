@@ -287,7 +287,7 @@ namespace RabiesApplication.Web.Controllers
 
            string documentSavePath = Server.MapPath("~") + "LettersSent\\" + documentId;
            byte[] fileBytes = System.IO.File.ReadAllBytes(documentSavePath);
-           return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet,"Document.jpeg");
+           return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet,"Document.docx");
 
         }
 
