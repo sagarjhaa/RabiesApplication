@@ -6,7 +6,7 @@ $("#btnschedular")
         $("#datepicker").val(null);
 
         $("#num").val(null);
-        $("#calculatedDate").val(null);
+        $("#calculatedDate").html(null);
         
         $("#schedular").modal("toggle");
     });
