@@ -3,6 +3,11 @@
 $("#btnschedular")
     .click(function () {
         $("#datepicker").datepicker();
+        $("#datepicker").val(null);
+
+        $("#num").val(null);
+        $("#calculatedDate").val(null);
+        
         $("#schedular").modal("toggle");
     });
 
@@ -51,26 +56,32 @@ function calculateDate() {
 
 
 $("#reminderSave")
-    .click(function () {
-        var investigation = {
-            BiteId: $("#hdnBiteId").val(),
-            Id: $("#hdnInvestigationId").val(),
-            QuarantineLetterSent: $("#comments").val(),
-            LetterSentDate: moment.now(),
-            FollowUpDays: 0,
-            ReminderDate: $("#calculatedDate").html()
-        };
-       
-        $.ajax({
-            url: '/Bites/SaveReminder',
-            method: "post",
-            data: investigation
-        }).done(function (data) {
-            $("#hdnInvestigationId").val(data);
-            $("#Bite_ReminderTime").val($("#calculatedDate").html());
-            $("#schedular").modal("toggle");
-            toastr["success"]("Reminder has been saved");
-        });
+    .click(function () {        
+        if (!Boolean($("#calculatedDate").html())) {
+            toastr["error"]("Please select some date");
+        } else {
+
+            var investigation = {
+                BiteId: $("#hdnBiteId").val(),
+                Id: $("#hdnInvestigationId").val(),
+                QuarantineLetterSent: $("#comments").val(),
+                LetterSentDate: moment.now(),
+                FollowUpDays: 0,
+                ReminderDate: $("#calculatedDate").html()
+            };
+
+            $.ajax({
+                    url: '/Bites/SaveReminder',
+                    method: "post",
+                    data: investigation
+                })
+                .done(function(data) {
+                    $("#hdnInvestigationId").val(data);
+                    $("#Bite_ReminderTime").val(investigation.ReminderDate);
+                    $("#schedular").modal("toggle");
+                    toastr["success"]("Reminder has been saved");
+                });
+        }
     });
 
 $(document).onkeyup = function (e) {

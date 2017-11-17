@@ -12,7 +12,7 @@
         <div class="col form-inline">
             <h4 class="Display1">Bite Details</h4>
             @Html.ActionLink("Edit", "BiteForm", new { id = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-sm btn-outline-primary" }) |
-            @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-sm btn-outline-primary" })
+            @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-sm btn-outline-primary" })|
             <input type="button" id="btnschedular" value="Schedular" class="btn btn-sm btn-success" />
         </div>
     </div>
@@ -48,7 +48,7 @@
         }
         else
         {
-            <div class="col-3">No reminder set</div>
+            <div class="col-3"><input id="Bite_ReminderTime" value="No reminder set" class="form-control" disabled = "disabled"/></div>
         }
 
 
@@ -238,7 +238,10 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Schedule reminder</h5>
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Schedule reminder
+                    <span class="text-muted" style="font-size: medium">( Bite date : @Model.Bite.BiteDate.ToString("d") )</span>
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -267,16 +270,9 @@
 
                 <br/>
                 <p >You will be reminded on : <span id="calculatedDate" class="text-primary" required></span></p>
-
                 <br/>
-
                 Comments:
-                <textarea rows="5" id="comments" value="" class="form-control">
-                    
-                </textarea>
-
-
-
+                <textarea rows="5" id="comments" value="" class="form-control"></textarea>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
