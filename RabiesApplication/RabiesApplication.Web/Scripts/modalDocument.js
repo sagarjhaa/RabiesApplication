@@ -55,6 +55,7 @@ $("#reminderSave")
 
         var investigation = {
             BiteId: $("#hdnBiteId").val(),
+            Id: $("#hdnInvestigationId").val(),
             QuarantineLetterSent: $("#comments").val(),
             LetterSentDate: moment.now(),
             FollowUpDays : 0,
@@ -67,7 +68,7 @@ $("#reminderSave")
             url: '/Bites/SaveReminder',
             method: "post",
             data: investigation
-        })
+        });
 
 
     });

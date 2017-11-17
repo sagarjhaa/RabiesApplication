@@ -43,6 +43,9 @@ namespace RabiesApplication.Web.ViewModels
     public class BiteDetailViewModel
     {
         public string Id { get; set; }
+
+        public string InvestigationId { get; set; }
+
         public string City { get; set; }
         public string Status { get; set; }
         [DisplayFormat(DataFormatString = Constant.DateFormat,ApplyFormatInEditMode = true)]

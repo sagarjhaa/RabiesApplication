@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -34,6 +35,7 @@ namespace RabiesApplication.Web.Controllers
         private readonly AnimalOwnerRepository _animalOwnerRepository = new AnimalOwnerRepository();
         private readonly VetRepository _vetRepository = new VetRepository();
         private readonly ActionRepository _actionRepository = new ActionRepository();
+        private readonly InvestigationRepository _investigationRepository = new InvestigationRepository();
 
 
         public ActionResult Index(int? pageNo)
@@ -335,8 +337,27 @@ namespace RabiesApplication.Web.Controllers
         public void SaveReminder(Investigation inv)
         {
             
+            if (inv.Id == null)
+            {
+                inv.LetterSentDate = DateTime.Now;
+                _investigationRepository.Insert(inv);
+            }
+            else
+            {
+                var investigation_Db = _investigationRepository.GetById(inv.Id).Result;
+                investigation_Db.LetterSentDate = DateTime.Now;
+                investigation_Db.FollowUpDays = 0;
+                investigation_Db.QuarantineLetterSent = inv.QuarantineLetterSent;
+                investigation_Db.ReminderDate = inv.ReminderDate;
+
+                _investigationRepository.Update(investigation_Db);
+
+                //_investigationRepository.Context.Entry(investigation_Db).State = EntityState.Modified;
+            }
+            
+            
+            _investigationRepository.Context.SaveChangesAsync();
         }
-
-
+        
     }
 }

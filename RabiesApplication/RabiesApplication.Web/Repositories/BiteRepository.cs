@@ -37,7 +37,11 @@ namespace RabiesApplication.Web.Repositories
             };
 
 
-            if (investigation?.ReminderDate != null) returnValue.ReminderTime = investigation.ReminderDate.Value;
+            if (investigation?.ReminderDate != null)
+            {
+                returnValue.InvestigationId = investigation.Id;
+                returnValue.ReminderTime = investigation.ReminderDate.Value;
+            }
 
             return returnValue;
         }
