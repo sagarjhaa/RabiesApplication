@@ -334,7 +334,7 @@ namespace RabiesApplication.Web.Controllers
             return Json(counties, JsonRequestBehavior.AllowGet);
         }
 
-        public void SaveReminder(Investigation inv)
+        public string SaveReminder(Investigation inv)
         {
             
             if (inv.Id == null)
@@ -344,20 +344,22 @@ namespace RabiesApplication.Web.Controllers
             }
             else
             {
-                var investigation_Db = _investigationRepository.GetById(inv.Id).Result;
-                investigation_Db.LetterSentDate = DateTime.Now;
-                investigation_Db.FollowUpDays = 0;
-                investigation_Db.QuarantineLetterSent = inv.QuarantineLetterSent;
-                investigation_Db.ReminderDate = inv.ReminderDate;
+                var investigationDb = _investigationRepository.GetById(inv.Id).Result;
+                investigationDb.LetterSentDate = DateTime.Now;
+                investigationDb.FollowUpDays = 0;
+                investigationDb.QuarantineLetterSent = inv.QuarantineLetterSent;
+                investigationDb.ReminderDate = inv.ReminderDate;
 
-                _investigationRepository.Update(investigation_Db);
+                _investigationRepository.Update(investigationDb);
 
                 //_investigationRepository.Context.Entry(investigation_Db).State = EntityState.Modified;
             }
             
             
             _investigationRepository.Context.SaveChangesAsync();
+
+            return inv.Id;
+
         }
-        
     }
 }

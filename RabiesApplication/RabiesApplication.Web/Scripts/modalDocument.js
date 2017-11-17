@@ -8,9 +8,9 @@ $("#btnschedular")
 
 
 $("#datepicker")
-    .change(function() {
+    .change(function () {
         $("#num").val(null);
-        $("#calculatedDate").html(null);
+        $("#calculatedDate").html($(this).val());
     });
 
 $("#num")
@@ -51,24 +51,33 @@ function calculateDate() {
 
 
 $("#reminderSave")
-    .click(function() {
-
+    .click(function () {
         var investigation = {
             BiteId: $("#hdnBiteId").val(),
             Id: $("#hdnInvestigationId").val(),
             QuarantineLetterSent: $("#comments").val(),
             LetterSentDate: moment.now(),
-            FollowUpDays : 0,
+            FollowUpDays: 0,
             ReminderDate: $("#calculatedDate").html()
         };
-
-        console.log(investigation);
-
+       
         $.ajax({
             url: '/Bites/SaveReminder',
             method: "post",
             data: investigation
+        }).done(function (data) {
+            $("#hdnInvestigationId").val(data);
+            $("#Bite_ReminderTime").val($("#calculatedDate").html());
+            $("#schedular").modal("toggle");
+            toastr["success"]("Reminder has been saved");
         });
-
-
     });
+
+$(document).onkeyup = function (e) {
+    var e = e || window.event; // for IE to cover IEs window event-object
+    if (e.altKey && e.which === 82) {
+        e.preventDefault();
+        $("#datepicker").datepicker();
+        $("#schedular").modal("toggle");
+    }
+}
