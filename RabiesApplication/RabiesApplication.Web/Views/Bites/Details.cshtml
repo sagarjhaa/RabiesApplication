@@ -15,25 +15,26 @@
             @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-sm btn-outline-primary" })
         </div>
     </div>
-    <hr/>
+    <hr />
     <div class="row form-group">
         <div class="col"><h6>@Html.DisplayNameFor(model => model.Bite.Status)</h6></div>
-        <div class="col">@Html.TextBoxFor(model => model.Bite.Status,new { @class = "form-control",disabled="disabled"})</div>
+        <div class="col">@Html.TextBoxFor(model => model.Bite.Status, new { @class = "form-control", disabled = "disabled" })</div>
         <div class="col"><h6>@Html.DisplayNameFor(model => model.Bite.City)</h6></div>
         <div class="col">@Html.TextBoxFor(model => model.Bite.City, new { @class = "form-control", disabled = "disabled" })</div>
     </div>
 
     <div class="row form-group">
         <div class="col"><h6>@Html.DisplayNameFor(model => model.Bite.BiteDate)</h6></div>
-        <div class="col">@Html.TextBoxFor(model => model.Bite.BiteDate,Constant.DateFormat, new { @class = "form-control", disabled = "disabled" })</div>
+        <div class="col">@Html.TextBoxFor(model => model.Bite.BiteDate, Constant.DateFormat, new { @class = "form-control", disabled = "disabled" })</div>
         <div class="col"><h6>@Html.DisplayNameFor(model => model.Bite.ReportDate)</h6></div>
         <div class="col">@Html.TextBoxFor(model => model.Bite.ReportDate, Constant.DateFormat, new { @class = "form-control", disabled = "disabled" })</div>
     </div>
 
     <div class="row form-group">
-        <div class="col-3"><h6>@Html.DisplayNameFor(model => model.Bite.Comments)</h6>
+        <div class="col-3">
+            <h6>@Html.DisplayNameFor(model => model.Bite.Comments)</h6>
         </div>
-        <div class="col-6">@Html.TextAreaFor(model => model.Bite.Comments, htmlAttributes: new {@class = "form-control", disabled = "disabled"})</div>
+        <div class="col-6">@Html.TextAreaFor(model => model.Bite.Comments, htmlAttributes: new { @class = "form-control", disabled = "disabled" })</div>
     </div>
 
 
@@ -42,7 +43,7 @@
 
         @if (!DateTime.Equals(default(DateTime), Model.Bite.ReminderTime))
         {
-            <div class="col-3">@Html.TextBoxFor(model => model.Bite.ReminderTime, "{0:dddddd MM/dd/yyyy  }", htmlAttributes: new {@class = "form-control", disabled = "disabled"})</div>
+            <div class="col-3">@Html.TextBoxFor(model => model.Bite.ReminderTime, "{0:dddddd MM/dd/yyyy  }", htmlAttributes: new { @class = "form-control", disabled = "disabled" })</div>
         }
         else
         {
@@ -54,19 +55,19 @@
 
 
 </div>
-<hr class="border border-info"/>
+<hr class="border border-info" />
 
 <div class="row">
     <div class="col form-inline">
         <h4>Human Victims</h4>
-        @Html.ActionLink("Add Human Victim", "HumanVictimForm", "HumanVictims", new {biteId = Model.Bite.Id}, htmlAttributes: new {@class = "btn btn-sm btn-outline-primary"})
+        @Html.ActionLink("Add Human Victim", "HumanVictimForm", "HumanVictims", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-sm btn-outline-primary" })
     </div>
 </div>
 
 <div class="row">
-   
+
     <div class="col">
-       
+
         @if (Model.HumanVictims.Any())
         {
             @Html.Partial("_HumanVictimList", Model.HumanVictims)
@@ -78,20 +79,20 @@
     </div>
 
     @*<div class="col-md-6">
-        <p class="">
-            <h3>Pet Victims</h3>
-            @Html.ActionLink("Add Pet Information", "PetForm", "Animals", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-sm btn-primary " })
-        </p>
-        @if (Model.Pets.Any())
-        {
-            @Html.Partial("_PetsList", Model.Pets)
-        }
-        else
-        {
-            <h4> Is there any pet victims?..Add here</h4>
-        }
+            <p class="">
+                <h3>Pet Victims</h3>
+                @Html.ActionLink("Add Pet Information", "PetForm", "Animals", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-sm btn-primary " })
+            </p>
+            @if (Model.Pets.Any())
+            {
+                @Html.Partial("_PetsList", Model.Pets)
+            }
+            else
+            {
+                <h4> Is there any pet victims?..Add here</h4>
+            }
 
-    </div>*@
+        </div>*@
 </div>
 
 <hr class="border border-info" />
@@ -101,12 +102,12 @@
 
         @if (Model.Animal != null)
         {
-            @Html.ActionLink("Add Animal Information", "AnimalForm", "Animals", new {biteId = Model.Bite.Id}, htmlAttributes: new {@class = "btn btn-sm btn-outline-dark disabled"})
+            @Html.ActionLink("Add Animal Information", "AnimalForm", "Animals", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-sm btn-outline-dark disabled" })
         }
         else
         {
             @Html.ActionLink("Select Animal", "SelectAnimal", "Animals", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-sm btn-outline-primary " })
-            @Html.ActionLink("Add Animal Information", "AnimalForm", "Animals", new {biteId = Model.Bite.Id}, htmlAttributes: new {@class = "btn btn-sm btn-outline-primary "})
+            @Html.ActionLink("Add Animal Information", "AnimalForm", "Animals", new { biteId = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-sm btn-outline-primary " })
         }
     </div>
 
@@ -114,18 +115,18 @@
 
     <div class="col form-inline">
         <h4>Animal Owner Information</h4>
-    
+
         @*@if (Model.AnimalOwner != null)
-            {
-            @Html.ActionLink("Add Animal Owner", "AnimalOwnerForm", "AnimalOwners", null, htmlAttributes: new { @class = "btn btn-sm btn-outline-dark  disabled" })
-        }
-        else
-        {
-            if (Model.Animal != null)
-            {
-                @Html.ActionLink("Add Animal Owner", "AnimalOwnerForm", "AnimalOwners", new { animalId = Model.Animal.Id }, htmlAttributes: new { @class = "btn btn-sm btn-outline-primary " })
+                {
+                @Html.ActionLink("Add Animal Owner", "AnimalOwnerForm", "AnimalOwners", null, htmlAttributes: new { @class = "btn btn-sm btn-outline-dark  disabled" })
             }
-        }*@
+            else
+            {
+                if (Model.Animal != null)
+                {
+                    @Html.ActionLink("Add Animal Owner", "AnimalOwnerForm", "AnimalOwners", new { animalId = Model.Animal.Id }, htmlAttributes: new { @class = "btn btn-sm btn-outline-primary " })
+                }
+            }*@
     </div>
 </div>
 
@@ -149,7 +150,7 @@
     </div>
 </div>
 
-<hr class="border border-info"/>
+<hr class="border border-info" />
 
 <div class="row">
     <div class="col">
@@ -172,7 +173,7 @@
     @if (Model.Animal != null)
     {
         <div class="col-md-6">
-            @using (Html.BeginForm("GenerateLetter", "Bites", new {biteId = Model.Bite.Id, animalId = Model.Animal.Id}))
+            @using (Html.BeginForm("GenerateLetter", "Bites", new { biteId = Model.Bite.Id, animalId = Model.Animal.Id }))
             {
                 <div class="form-inline">
                     <h4>Initial Letters</h4>
@@ -191,7 +192,7 @@
             }
         </div>
         <div class="col-md-6">
-            @using (Html.BeginForm("GenerateLetter", "Bites", new {biteId = Model.Bite.Id}))
+            @using (Html.BeginForm("GenerateLetter", "Bites", new { biteId = Model.Bite.Id }))
             {
                 <div class="form-inline">
                     <h4>Followup Letters</h4>
@@ -232,24 +233,61 @@
 </div>
 
 
+<input type="button" id="btnschedular" value="Schedular" class="btn btn-sm btn-success" />
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="schedular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Schedule reminder</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <iframe src="http://www.axmag.com/download/pdfurl-guide.pdf" id="docFrame" frameborder="0"></iframe>
+                <input type="hidden" id="hdnBiteId" value="@Model.Bite.Id" />
+                <p class="form-inline">
+                    Remind me on (date): <input type="text" id="datepicker" class="form-control">
+                </p>
+
+                <p class="text-center text-primary">------------------Or------------------</p>
+
+                <div class="row form-inline">
+                    <div class="col-4">Remind me after:</div>
+
+                    <input type="number" min="1" max="31" id="num" class="col-2 form-control">
+                    --
+                    <select id="numtype" class="col-3 form-control">
+                        <option value="d">Days</option>
+                        <option value="w">Week</option>
+                        <option value="M">Month</option>
+                        <option value="y">Year</option>
+                    </select>
+                </div>
+
+                <br/>
+                <p >You will be reminded on : <span id="calculatedDate" class="text-primary"></span></p>
+
+                <br/>
+
+                Comments:
+                <textarea rows="5" id="comments" value="" class="form-control">
+                    
+                </textarea>
+
+
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" id="reminderSave">Save changes</button>
             </div>
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="~/Scripts/moment.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 <script src="~/Scripts/modalDocument.js"></script>

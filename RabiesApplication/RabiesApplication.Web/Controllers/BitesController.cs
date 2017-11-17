@@ -332,5 +332,11 @@ namespace RabiesApplication.Web.Controllers
             return Json(counties, JsonRequestBehavior.AllowGet);
         }
 
+        public void SaveReminder(Investigation inv)
+        {
+            
+        }
+
+
     }
 }
