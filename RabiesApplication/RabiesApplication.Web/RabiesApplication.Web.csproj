@@ -540,8 +540,9 @@
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.min.js.map" />
-    <Content Include="LettersSent\IL_Same_Template.pdf" />
-    <Content Include="LettersSent\IL_Wild_Template.pdf" />
+    <Content Include="LetterTemplate\IL_Different_Template.pdf" />
+    <Content Include="LetterTemplate\IL_Same_Template.pdf" />
+    <Content Include="LetterTemplate\IL_Wild_Template.pdf" />
     <None Include="Properties\PublishProfiles\Rabies - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
@@ -719,7 +720,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Interfaces\" />
-    <Folder Include="LettersSentTemp\" />
+    <Folder Include="LettersSent\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
