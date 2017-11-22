@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Design;
 using System.Configuration;
 using System.Globalization;
 using System.IO;
@@ -7,11 +8,13 @@ using System.Text;
 using Microsoft.Office.Interop.Word;
 using System.Web;
 using System.Web.DynamicData;
+using iTextSharp.text.pdf;
 using Microsoft.Office.Core;
 using Microsoft.Owin.Security;
 using RabiesApplication.Models;
 using RabiesApplication.Web.Models;
 using RabiesApplication.Web.Repositories;
+using System = Microsoft.Office.Interop.Word.System;
 
 namespace RabiesApplication.Web.BusinessLogic
 {
@@ -153,20 +156,26 @@ namespace RabiesApplication.Web.BusinessLogic
             WordApplication.Selection.TypeText("sshort@ccbh.net" + Environment.NewLine);
         }
 
-        protected void SaveFile()
+        protected void SaveFile(string file = "")
         {
-            StringBuilder filename = new StringBuilder();
-
-            filename.Append(Bite.Id + "_").Append(Bite.BiteDate.Value.ToString("yy-MM-dd")).Append(DateTime.Now.ToString("hh-mm")).Append(".docx");
-
+            if (file == null)
+            {
+                file = Bite.Id + "_"
+                    + Bite.BiteDate.Value.ToString("yy-MM-dd")
+                    + DateTime.Now.ToString("hh-mm")
+                    + ".pdf";
+            }
+            
             //filename.Append(new Guid()).Append(".docx");
             //Todo : Need to save the binary data to a table for reproduction of all communications.
-            Document.SaveAs(DocumentSavePath + filename);
-            WordApplication.Application.Quit();
+
+            //Document.SaveAs(DocumentSavePath + filename);
+            //WordApplication.Application.Quit();
+
             //Letter generated successfully and saved
             //Can raise the event for action.
 
-            InternalAction.DocumentId = filename.ToString();
+            InternalAction.DocumentId = file;
             OnLetterGenerated(InternalAction);
             OnReminderGenerated(InternalReminder);
         }
@@ -232,107 +241,139 @@ namespace RabiesApplication.Web.BusinessLogic
         public override void CreateLetter()
         {
             
-            AddHeaderImage();
+            //AddHeaderImage();
 
-            PrintAddress(AnimalOwner);
+            //PrintAddress(AnimalOwner);
 
-            #region Greeting
-            WordApplication.Selection.TypeText("Dear Mr. or Ms.:" + Environment.NewLine);
-            #endregion
+            //#region Greeting
+            //WordApplication.Selection.TypeText("Dear Mr. or Ms.:" + Environment.NewLine);
+            //#endregion
 
-            #region FirstParagraph
-
-            
-
-            //var date = Bite.BiteDate.Value.ToString(Constant.DateFormat);
-            string firstparagraph= "Our office has received a report that your pet" +
-                                    " '"+ Animal.Name +"' bit you, a family member, or a member " +
-                                    "of your household on "+ BiteDate + "." + Environment.NewLine;
-
+            //#region FirstParagraph
 
             
-            WordApplication.Selection.TypeText(firstparagraph);
-            #endregion
 
-            #region SecondParagraph
-
-            string secondparagraph = "Ohio law* requires us to follow up on this report because dogs, cats, and other animals can carry rabies" +
-                                    " and pass it on to people and animals through a bite or scratch. Rabies is a very serious disease." +
-                                    " There is no treatment once symptoms begin and the disease can kill you." + Environment.NewLine;
-            WordApplication.Selection.TypeText(secondparagraph);
-            #endregion
-
-            #region ThirdParagraph
-            WordApplication.Selection.Font.Bold = 10;
-            string thirdparagraph = "Ohio law* says that:" + Environment.NewLine;
-            WordApplication.Selection.TypeText(thirdparagraph);
-
-            WordApplication.Selection.Range.ListFormat.ApplyBulletDefault();
-            WordApplication.Selection.Range.Paragraphs.SpaceBefore = (float)0.00;
-            WordApplication.Selection.TypeText("You must quarantine your pet for 10 days, starting the day of the incident, and" + Environment.NewLine);
-            WordApplication.Selection.TypeText("You must show proof that your pet has a current rabies vaccination from a veterinarian." + Environment.NewLine);
-
-            WordApplication.Selection.Range.ListFormat.RemoveNumbers();
-            WordApplication.Selection.Font.Bold = 0;
-            WordApplication.Selection.Range.Paragraphs.SpaceBefore = (float)10.00;
-
-            #endregion
-
-            #region ForthParagraph
-
-            WordApplication.Selection.Font.Bold = 10;
-            WordApplication.Selection.TypeText("To quarantine your pet, you must do these things:" + Environment.NewLine);
-            WordApplication.Selection.Font.Bold = 0;
-            WordApplication.Selection.Range.ListFormat.ApplyBulletDefault();
-            WordApplication.Selection.Range.Paragraphs.SpaceBefore = (float)0.00;
-
-            WordApplication.Selection.TypeText("Keep your pet at home or at an approved kennel." + Environment.NewLine);
-            WordApplication.Selection.TypeText("Keep your pet away from people and other animals." + Environment.NewLine);
-            WordApplication.Selection.TypeText("Watch your pet to be sure it stays healthy. If your pet starts to show signs of illness or strange behavior," +
-                                               " please call your vet and our office immediately." + Environment.NewLine);
-            WordApplication.Selection.TypeText("If you decide to have your pet put down or if your pet dies, then it must be tested for rabies. Contact" +
-                                               " your vet and our office to determine the procedures for testing." + Environment.NewLine);
-
-            WordApplication.Selection.Range.ListFormat.RemoveNumbers();
-            WordApplication.Selection.Font.Bold = 0;
-            WordApplication.Selection.Range.Paragraphs.SpaceBefore = (float)10.00;
-
-            #endregion
-
-            #region FifthParagraph
-
-            WordApplication.Selection.Font.Bold = 10;
-            WordApplication.Selection.TypeText("At the end of the 10 days:" + Environment.NewLine);
-            WordApplication.Selection.Font.Bold = 0;
-            WordApplication.Selection.Range.ListFormat.ApplyBulletDefault();
-            WordApplication.Selection.Range.Paragraphs.SpaceBefore = (float)0.00;
-
-            WordApplication.Selection.TypeText("Our office will contact you to make sure that your pet has successfully completed the quarantine. An" +
-                                               " animal that successfully completes the quarantine is one that is still alive and showing no signs of illness" +
-                                               " or strange behavior." + Environment.NewLine);
+            ////var date = Bite.BiteDate.Value.ToString(Constant.DateFormat);
+            //string firstparagraph= "Our office has received a report that your pet" +
+            //                        " '"+ Animal.Name +"' bit you, a family member, or a member " +
+            //                        "of your household on "+ BiteDate + "." + Environment.NewLine;
 
 
-            WordApplication.Selection.TypeText("If your pet has a current rabies vaccination: Fill out the Pet Owner Section of the enclosed Rabies " +
-                                               "Vaccination & Quarantine Release form and send it to us by mail, " +
-                                               "fax at 216-676-1316, or email at sshort@ccbh.net. Please be sure to check the box for " +
-                                               "Yes, my animal successfully completed the quarantine." + Environment.NewLine);
+            
+            //WordApplication.Selection.TypeText(firstparagraph);
+            //#endregion
+
+            //#region SecondParagraph
+
+            //string secondparagraph = "Ohio law* requires us to follow up on this report because dogs, cats, and other animals can carry rabies" +
+            //                        " and pass it on to people and animals through a bite or scratch. Rabies is a very serious disease." +
+            //                        " There is no treatment once symptoms begin and the disease can kill you." + Environment.NewLine;
+            //WordApplication.Selection.TypeText(secondparagraph);
+            //#endregion
+
+            //#region ThirdParagraph
+            //WordApplication.Selection.Font.Bold = 10;
+            //string thirdparagraph = "Ohio law* says that:" + Environment.NewLine;
+            //WordApplication.Selection.TypeText(thirdparagraph);
+
+            //WordApplication.Selection.Range.ListFormat.ApplyBulletDefault();
+            //WordApplication.Selection.Range.Paragraphs.SpaceBefore = (float)0.00;
+            //WordApplication.Selection.TypeText("You must quarantine your pet for 10 days, starting the day of the incident, and" + Environment.NewLine);
+            //WordApplication.Selection.TypeText("You must show proof that your pet has a current rabies vaccination from a veterinarian." + Environment.NewLine);
+
+            //WordApplication.Selection.Range.ListFormat.RemoveNumbers();
+            //WordApplication.Selection.Font.Bold = 0;
+            //WordApplication.Selection.Range.Paragraphs.SpaceBefore = (float)10.00;
+
+            //#endregion
+
+            //#region ForthParagraph
+
+            //WordApplication.Selection.Font.Bold = 10;
+            //WordApplication.Selection.TypeText("To quarantine your pet, you must do these things:" + Environment.NewLine);
+            //WordApplication.Selection.Font.Bold = 0;
+            //WordApplication.Selection.Range.ListFormat.ApplyBulletDefault();
+            //WordApplication.Selection.Range.Paragraphs.SpaceBefore = (float)0.00;
+
+            //WordApplication.Selection.TypeText("Keep your pet at home or at an approved kennel." + Environment.NewLine);
+            //WordApplication.Selection.TypeText("Keep your pet away from people and other animals." + Environment.NewLine);
+            //WordApplication.Selection.TypeText("Watch your pet to be sure it stays healthy. If your pet starts to show signs of illness or strange behavior," +
+            //                                   " please call your vet and our office immediately." + Environment.NewLine);
+            //WordApplication.Selection.TypeText("If you decide to have your pet put down or if your pet dies, then it must be tested for rabies. Contact" +
+            //                                   " your vet and our office to determine the procedures for testing." + Environment.NewLine);
+
+            //WordApplication.Selection.Range.ListFormat.RemoveNumbers();
+            //WordApplication.Selection.Font.Bold = 0;
+            //WordApplication.Selection.Range.Paragraphs.SpaceBefore = (float)10.00;
+
+            //#endregion
+
+            //#region FifthParagraph
+
+            //WordApplication.Selection.Font.Bold = 10;
+            //WordApplication.Selection.TypeText("At the end of the 10 days:" + Environment.NewLine);
+            //WordApplication.Selection.Font.Bold = 0;
+            //WordApplication.Selection.Range.ListFormat.ApplyBulletDefault();
+            //WordApplication.Selection.Range.Paragraphs.SpaceBefore = (float)0.00;
+
+            //WordApplication.Selection.TypeText("Our office will contact you to make sure that your pet has successfully completed the quarantine. An" +
+            //                                   " animal that successfully completes the quarantine is one that is still alive and showing no signs of illness" +
+            //                                   " or strange behavior." + Environment.NewLine);
+
+
+            //WordApplication.Selection.TypeText("If your pet has a current rabies vaccination: Fill out the Pet Owner Section of the enclosed Rabies " +
+            //                                   "Vaccination & Quarantine Release form and send it to us by mail, " +
+            //                                   "fax at 216-676-1316, or email at sshort@ccbh.net. Please be sure to check the box for " +
+            //                                   "Yes, my animal successfully completed the quarantine." + Environment.NewLine);
 
 
 
-            WordApplication.Selection.TypeText("If your pet does not have a rabies vaccination: You are required to take your pet to a " +
-                                               "veterinarian on or shortly after day 10 to receive a rabies vaccination and to have the release " +
-                                               "form completed. Your pet must stay in quarantine until our office receives the completed release " +
-                                               "form from the veterinarian." + Environment.NewLine);
+            //WordApplication.Selection.TypeText("If your pet does not have a rabies vaccination: You are required to take your pet to a " +
+            //                                   "veterinarian on or shortly after day 10 to receive a rabies vaccination and to have the release " +
+            //                                   "form completed. Your pet must stay in quarantine until our office receives the completed release " +
+            //                                   "form from the veterinarian." + Environment.NewLine);
 
-            WordApplication.Selection.Range.ListFormat.RemoveNumbers();
-            WordApplication.Selection.Font.Bold = 0;
-            WordApplication.Selection.Range.Paragraphs.SpaceBefore = (float)10.00;
-            #endregion
+            //WordApplication.Selection.Range.ListFormat.RemoveNumbers();
+            //WordApplication.Selection.Font.Bold = 0;
+            //WordApplication.Selection.Range.Paragraphs.SpaceBefore = (float)10.00;
+            //#endregion
 
-            #region ContactInfomration
-            WordApplication.Selection.TypeText("Thank you for your cooperation. Please contact us at 216-201-2001 ext. 1253 with questions.");
-            AddFooterContact();
-            #endregion
+            //#region ContactInfomration
+            //WordApplication.Selection.TypeText("Thank you for your cooperation. Please contact us at 216-201-2001 ext. 1253 with questions.");
+            //AddFooterContact();
+            //#endregion
+
+            var templateFile = HttpContext.Current.Server.MapPath("~/LettersSent/IL_Same_Template.pdf");
+
+            //newFile.Append(Bite.Id + "_").Append(Bite.BiteDate.Value.ToString("yy-MM-dd")).Append(DateTime.Now.ToString("hh-mm")).Append(".pdf");
+
+            var filename = Bite.Id + "-" + Bite.BiteDate.Value.ToString("yy-MM-dd") + "-" + DateTime.Now.ToString("hh-mm") + ".pdf";
+            var newFile = HttpContext.Current.Server.MapPath("~/LettersSent/" + filename) ;
+
+            if (File.Exists(newFile))
+            {
+                File.Delete(newFile);
+            }
+
+
+
+            var reader = new PdfReader(templateFile);
+            var stamper = new PdfStamper(reader,new FileStream(newFile,FileMode.Create));
+            stamper.AcroFields.SetField("date", DateTime.Now.ToString("d"));
+            stamper.AcroFields.SetField("name",AnimalOwner.LastName +  " " + AnimalOwner.FirstName);
+            stamper.AcroFields.SetField("address", AnimalOwner.Addressline1 + " " + AnimalOwner.Addressline2);
+            stamper.AcroFields.SetField("cisazi",
+                AnimalOwner.City.CityName + "," + AnimalOwner.State.StateName + "," + AnimalOwner.Zipcode.ToString());
+
+
+            stamper.AcroFields.SetField("fullname", AnimalOwner.LastName + " " + AnimalOwner.FirstName);
+            stamper.AcroFields.SetField("animalname", Animal.Name);
+            stamper.AcroFields.SetField("bitedate", Bite.BiteDate.Value.ToString("d"));
+
+            stamper.FormFlattening = true;
+
+            stamper.Close();
+            reader.Close();
 
 
             InternalAction.Comments = InternalReminder.QuarantineLetterSent = LettersInfo.SameLetterDescription;
@@ -340,7 +381,7 @@ namespace RabiesApplication.Web.BusinessLogic
             InternalReminder.ReminderDate = CalculateReminderDate(LettersInfo.Days10, "days");
 
             //Save Document
-            SaveFile();
+            SaveFile(filename);
 
         }
     }

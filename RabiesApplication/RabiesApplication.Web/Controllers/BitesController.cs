@@ -23,7 +23,7 @@ namespace RabiesApplication.Web.Controllers
 {
     public class BitesController : Controller
     {
-        
+
         private readonly BiteRepository _biteRepository = new BiteRepository();
         private readonly StatesRepository _statesRepository = new StatesRepository();
         private readonly CitiesRepository _citiesRepository = new CitiesRepository();
@@ -45,7 +45,7 @@ namespace RabiesApplication.Web.Controllers
             int sizeOfPage = 10;
             int noOfPage = (pageNo ?? 1);
 
-            return View(bites.ToPagedList(noOfPage,sizeOfPage));
+            return View(bites.ToPagedList(noOfPage, sizeOfPage));
         }
 
         public async Task<ActionResult> BiteForm(string id)
@@ -62,27 +62,27 @@ namespace RabiesApplication.Web.Controllers
 
                 return View(newBiteViewModel);
             }
-           
+
             var biteDb = await _biteRepository.GetById(id);
 
             if (biteDb == null)
             {
                 return HttpNotFound();
             }
-            
-            
-            var biteViewModel = Mapper.Map<Bite,BiteFormViewModel>(biteDb);
+
+
+            var biteViewModel = Mapper.Map<Bite, BiteFormViewModel>(biteDb);
             biteViewModel.Employees = _employeeRepository.GetEmployeeDict();
             biteViewModel.BiteStatuses = _biteStatusRepository.All();
             biteViewModel.States = _statesRepository.All().OrderBy(s => s.StateName);
             biteViewModel.Cities = _citiesRepository.GetCitiesByState(biteDb.StateId);
 
-           
+
 
             return View(biteViewModel);
         }
 
-        public ViewResult Details(string biteId,string animalId)
+        public ViewResult Details(string biteId, string animalId)
         {
 
 
@@ -98,7 +98,7 @@ namespace RabiesApplication.Web.Controllers
                 animalOwner = _animalOwnerRepository.GetOwnerByAnimalId(animal.OwnerId);
                 vet = _vetRepository.GetVetDetails(animal.Id);
             }
-            
+
 
             var bitedetailsViewModel = new BiteDetailsViewModel
             {
@@ -236,7 +236,7 @@ namespace RabiesApplication.Web.Controllers
         ////    return View(bite);
         ////}
 
-        public ActionResult GenerateLetter(string biteId,string animalId, FormCollection form)
+        public ActionResult GenerateLetter(string biteId, string animalId, FormCollection form)
         {
             if (biteId == null)
             {
@@ -256,7 +256,7 @@ namespace RabiesApplication.Web.Controllers
             catch (Exception ex)
             {
                 TempData["MessageType"] = Constant.Error;
-                TempData["Message"] = "Error occurred !!!. " + ex.Message ;
+                TempData["Message"] = "Error occurred !!!. " + ex.Message;
             }
             return RedirectToAction("Details", new { biteId = biteId });
         }
@@ -270,7 +270,7 @@ namespace RabiesApplication.Web.Controllers
 
             }
 
-            return  Server.MapPath("~") + "LettersSent\\" + documentId;
+            return Server.MapPath("~") + "LettersSent\\" + documentId;
         }
 
         public ActionResult DocumentDownload(string documentId)
@@ -278,39 +278,36 @@ namespace RabiesApplication.Web.Controllers
             if (documentId == null)
             {
                 return HttpNotFound("Wrong data");
-
             }
 
             var document = _actionRepository.Context.Actions.First(a => a.DocumentId.Equals(documentId.Trim()));
-            if(document == null)
+            if (document == null)
             {
                 return HttpNotFound("Document not found");
             }
 
-           string documentSavePath = Server.MapPath("~") + "LettersSent\\" + documentId;
-           byte[] fileBytes = System.IO.File.ReadAllBytes(documentSavePath);
-           return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet,"Document.docx");
-
+            string documentSavePath = Server.MapPath("~") + "LettersSent\\" + documentId;
+            return File(documentSavePath, "application/pdf");
         }
 
 
 
-        public ActionResult OpenReportWithNoDetails(int? pageNo,string reportName)
+        public ActionResult OpenReportWithNoDetails(int? pageNo, string reportName)
         {
             ViewBag.reportName = reportName;
 
             var bites = new List<BiteDetailViewModel>();
             if (reportName.Equals("OpenReportWithNoDetails"))
             {
-                 bites = (List<BiteDetailViewModel>) _biteRepository.OpenReportWithNoDetails();
+                bites = (List<BiteDetailViewModel>)_biteRepository.OpenReportWithNoDetails();
             }
             else if (reportName.Equals("OpenReportWithNoQuarantine"))
             {
-                 bites = (List<BiteDetailViewModel>) _biteRepository.OpenReportWithNoQuarantine();
+                bites = (List<BiteDetailViewModel>)_biteRepository.OpenReportWithNoQuarantine();
             }
             else if (reportName.Equals("OpenReportWithNoVaccination"))
             {
-                 bites = (List<BiteDetailViewModel>) _biteRepository.OpenReportWithNoVaccination();
+                bites = (List<BiteDetailViewModel>)_biteRepository.OpenReportWithNoVaccination();
             }
 
             int sizeOfPage = 10;
@@ -336,7 +333,7 @@ namespace RabiesApplication.Web.Controllers
 
         public string SaveReminder(Investigation inv)
         {
-            
+
             if (inv.Id == null)
             {
                 inv.LetterSentDate = DateTime.Now;
@@ -354,8 +351,8 @@ namespace RabiesApplication.Web.Controllers
 
                 //_investigationRepository.Context.Entry(investigation_Db).State = EntityState.Modified;
             }
-            
-            
+
+
             _investigationRepository.Context.SaveChangesAsync();
 
             return inv.Id;

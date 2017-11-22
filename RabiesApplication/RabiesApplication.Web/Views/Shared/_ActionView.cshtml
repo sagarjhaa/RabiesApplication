@@ -19,7 +19,7 @@
             <td>
                 @if (item.DocumentId != null)
                 {
-                    @Html.ActionLink("Document", "DocumentDownload", "Bites",new {documentId = item.DocumentId},htmlAttributes:new {@class="btn btn-default"})
+                    @Html.ActionLink("Document", "DocumentDownload", "Bites",new {documentId = item.DocumentId},htmlAttributes:new {@class="btn btn-default", target = "_blank" })
                 }
 
                 @*@Html.DisplayFor(model => item.DocumentId)*@
@@ -27,7 +27,7 @@
             <td>@Html.DisplayFor(model => item.RecordCreated)</td>
             <td>
                 @*<button id="@item.DocumentId" type="button" class="btn btn-primary" >Launch demo modal</button>*@
-                <a href="@Url.Content("../LettersSent/" + @item.DocumentId)" target="_blank" class="btn btn-primary">doc</a>
+                @*<a href="@Url.Content("../LettersSent/" + @item.DocumentId)" target="_blank" class="btn btn-primary">doc</a>*@
             </td>
         </tr>
         }
