@@ -22,33 +22,33 @@ namespace RabiesApplication.Web.BusinessLogic
                     different.CreateLetter();
                     break;
 
-                case (int)Letters.TenDayQShelter:
-                    var shelter = new TenDayQuarantineShelter(biteId);
-                    shelter.LetterGenerated += new ActionsHelper().OnLetterGenerated;
-                    shelter.ReminderGenerated += new ReminderHelper().OnReminderGenerated;
-                    shelter.CreateLetter();
-                    break;
+                //case (int)Letters.TenDayQShelter:
+                //    var shelter = new TenDayQuarantineShelter(biteId);
+                //    shelter.LetterGenerated += new ActionsHelper().OnLetterGenerated;
+                //    shelter.ReminderGenerated += new ReminderHelper().OnReminderGenerated;
+                //    shelter.CreateLetter();
+                //    break;
 
-                case (int)Letters.FourFiveDayQ:
-                    var wildAnimal1 = new FourFiveDayQuarantine(biteId);
-                    wildAnimal1.LetterGenerated += new ActionsHelper().OnLetterGenerated;
-                    wildAnimal1.ReminderGenerated += new ReminderHelper().OnReminderGenerated;
-                    wildAnimal1.CreateLetter();
-                    break;
+                //case (int)Letters.FourFiveDayQ:
+                //    var wildAnimal1 = new FourFiveDayQuarantine(biteId);
+                //    wildAnimal1.LetterGenerated += new ActionsHelper().OnLetterGenerated;
+                //    wildAnimal1.ReminderGenerated += new ReminderHelper().OnReminderGenerated;
+                //    wildAnimal1.CreateLetter();
+                //    break;
 
-                case (int)Letters.SixMonthQ:
-                    var wildAnimal2 = new SixMonthQuarantine(biteId);
-                    wildAnimal2.LetterGenerated += new ActionsHelper().OnLetterGenerated;
-                    wildAnimal2.ReminderGenerated += new ReminderHelper().OnReminderGenerated;
-                    wildAnimal2.CreateLetter();
-                    break;
+                //case (int)Letters.SixMonthQ:
+                //    var wildAnimal2 = new SixMonthQuarantine(biteId);
+                //    wildAnimal2.LetterGenerated += new ActionsHelper().OnLetterGenerated;
+                //    wildAnimal2.ReminderGenerated += new ReminderHelper().OnReminderGenerated;
+                //    wildAnimal2.CreateLetter();
+                //    break;
 
-                case (int)Letters.WildUnknownAnimal:
-                    var wildAnimal3 = new WildUnknowAnimal(biteId);
-                    wildAnimal3.LetterGenerated += new ActionsHelper().OnLetterGenerated;
-                    wildAnimal3.ReminderGenerated += new ReminderHelper().OnReminderGenerated;
-                    wildAnimal3.CreateLetter();
-                    break;
+                //case (int)Letters.WildUnknownAnimal:
+                //    var wildAnimal3 = new WildUnknowAnimal(biteId);
+                //    wildAnimal3.LetterGenerated += new ActionsHelper().OnLetterGenerated;
+                //    wildAnimal3.ReminderGenerated += new ReminderHelper().OnReminderGenerated;
+                //    wildAnimal3.CreateLetter();
+                //    break;
             }
         }
     }

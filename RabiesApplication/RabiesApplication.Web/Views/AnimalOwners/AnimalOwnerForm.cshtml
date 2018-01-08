@@ -174,14 +174,19 @@
         <td>Species</td>
         <td>BiteCount</td>
     </tr>
-    @foreach (var item in Model.AnimalList)
+    @if (Model.AnimalList != null)
     {
-        <tr>
-            <td>@item.Name</td>
-            <td>@item.Breed</td>
-            <td>@item.Species</td>
-            <td>@item.BiteCount</td>
-        </tr>
+
+
+        foreach (var item in Model.AnimalList)
+         {
+             <tr>
+                 <td>@item.Name</td>
+                 <td>@item.Breed</td>
+                 <td>@item.Species</td>
+                 <td>@item.BiteCount</td>
+             </tr>
+         }
     }
 </table>
 
