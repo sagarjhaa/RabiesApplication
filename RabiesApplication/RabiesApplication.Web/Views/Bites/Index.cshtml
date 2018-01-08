@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<RabiesApplication.Web.ViewModels.BitesIndexViewModel>
+﻿@*@model PagedList.IPagedList<RabiesApplication.Web.ViewModels.BitesIndexViewModel>*@
 @using PagedList.Mvc
 
 @{
@@ -16,71 +16,63 @@
 
 <table class="table table-sm table-condensed table-hover">
     <thead class="thead-dark">
-        <tr>
-            <th>
-                Animal Owner
-            </th>
-            <th>
-                Animal Name
-            </th>
-            <th>
-                BiteDate
-            </th>
-            <th>
-                City
-            </th>
-            <th>
-                Victim Name
-            </th>
-            <th>
-                Status
-            </th>
-            <th>
-                Actions
-            </th>
-        </tr>
+    <tr>
+        <th>
+            Id
+        </th>
+        <th>
+            Animal Owner
+        </th>
+        <th>
+            Animal Name
+        </th>
+        <th>
+            BiteDate
+        </th>
+        <th>
+            City
+        </th>
+        <th>
+            Victim Name
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @*@foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @*@Html.DisplayFor(modelItem => item.PetOwner)*@
-                    @Html.ActionLink(item.AnimalOwner,"AnimalOwnerForm","AnimalOwners",new { animalOwnerId =item.AnimalOwnerId},null)
-
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AnimalName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BiteDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.City)
-                </td>
-                <td>
-                    @Html.ActionLink(item.VictimName, "HumanVictimForm", "HumanVictims", new { biteId = item.Id, victimId = item.VictimId }, null)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
+            <tr>*@
+                @*<td>@item.Id.Substring(@item.Id.Length-4,4)</td>*@
+                @*@Html.DisplayFor(modelItem => item.PetOwner)*@
+                @*<td>@Html.ActionLink(item.AnimalOwner, "AnimalOwnerForm", "AnimalOwners", new { animalOwnerId = item.AnimalOwnerId }, null)</td>*@
+                @*<td>@Html.DisplayFor(modelItem => item.AnimalName)</td>*@
+                @*<td>@Html.DisplayFor(modelItem => item.BiteDate)</td>*@
+                @*<td>@Html.DisplayFor(modelItem => item.City)</td>*@
+                @*<td>@Html.ActionLink(item.VictimName, "HumanVictimForm", "HumanVictims", new {biteId = item.Id, victimId = item.VictimId}, null)</td>*@
+                @*<td>@Html.DisplayFor(modelItem => item.Status)</td>*@
 
 
 
 
-                <td>
+                @*<td>*@
 
-                    @Html.ActionLink("Edit", "BiteForm", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-sm btn-outline-primary" }) |
-                    @Html.ActionLink("Details", "Details", new { biteId = item.Id, animalId = item.AnimalId }, htmlAttributes: new { @class = "btn btn-sm btn-outline-warning" }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-sm btn-outline-danger" })
-                </td>
-            </tr>
-        }
+                    @*@Html.ActionLink("Edit", "BiteForm", new {id = item.Id}, htmlAttributes: new {@class = "btn btn-sm btn-outline-primary"}) |*@
+                    @*@Html.ActionLink("Details", "Details", new {biteId = item.Id, animalId = item.AnimalId}, htmlAttributes: new {@class = "btn btn-sm btn-outline-warning"}) |*@
+                    @*@Html.ActionLink("Delete", "Delete", new {id = item.Id}, htmlAttributes: new {@class = "btn btn-sm btn-outline-danger"})*@
+                @*</td>*@
+            @*</tr>
+        }*@
     </tbody>
 
 </table>
 
 <br />
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-@Html.PagedListPager(Model, pageNo => Url.Action("Index", new { pageNo }))@*, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))*@
+@Html.PagedListPager(Model, pageNo => Url.Action("Index", new { pageNo }))*@
+@*, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))*@

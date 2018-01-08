@@ -40,12 +40,18 @@ namespace RabiesApplication.Web.Controllers
 
         public ActionResult Index(int? pageNo)
         {
-            var bites = _biteRepository.GetBiteIndexView(); //All().ToList();
+            //var bites = _biteRepository.GetBiteIndexView(); //All().ToList();            
+            //int sizeOfPage = 10;
+            //int noOfPage = (pageNo ?? 1);
 
-            int sizeOfPage = 10;
-            int noOfPage = (pageNo ?? 1);
+            //return View(bites.ToPagedList(noOfPage, sizeOfPage));
+            return View();
+        }
 
-            return View(bites.ToPagedList(noOfPage, sizeOfPage));
+        public ActionResult GetBites()
+        {
+            var bites = _biteRepository.GetBiteIndexView(); //All().ToList();       
+            return Json(bites, JsonRequestBehavior.AllowGet);
         }
 
         public async Task<ActionResult> BiteForm(string id)
