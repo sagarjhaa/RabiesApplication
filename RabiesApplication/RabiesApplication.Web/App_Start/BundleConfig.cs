@@ -14,7 +14,7 @@ namespace RabiesApplication.Web
                         "~/Scripts/popper.min.js",
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/respond.js",
-                        "~/Scripts/DataTables/dataTables.min.js",
+                        "~/Scripts/DataTables/jquery.dataTables.min.js",
                         "~/Scripts/toastr.js",
                         "~/Scripts/knockout-3.4.2"));
 
@@ -34,7 +34,7 @@ namespace RabiesApplication.Web
                       "~/Content/Site.css",
                       //"~/Content/bootstrap-theme.css",
                       //"~/Content/bootswatch/readable/bootstrap.css",
-                      "~/Content/DataTables/css/dataTables.bootstrap4.css",
+                      "~/Content/DataTables/css/jquery.dataTables.min.css",
                       "~/Content/toastr.css"
                       ));
         }

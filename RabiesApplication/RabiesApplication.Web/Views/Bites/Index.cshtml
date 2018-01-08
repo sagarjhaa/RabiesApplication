@@ -6,6 +6,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+
+
 <div class="row">
     <div class="col form-inline">
         <h4>Bites List</h4>
@@ -14,7 +17,7 @@
 </div>
 <br />
 
-<table class="table table-sm table-condensed table-hover">
+<table class="table  table-condensed table-hover" id="bites">
     <thead class="thead-dark">
     <tr>
         <th>
@@ -39,7 +42,10 @@
             Status
         </th>
         <th>
-            Actions
+            Edit
+        </th>
+        <th>
+            Details
         </th>
     </tr>
     </thead>
@@ -76,3 +82,62 @@
 
 @Html.PagedListPager(Model, pageNo => Url.Action("Index", new { pageNo }))*@
 @*, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))*@
+
+@section scripts{
+<script>
+
+    $("#bites").DataTable({
+        "ajax": {
+            "url": "Bites/GetBites/",
+            "type": "GET",
+            "dataSrc": ""
+        },
+
+        "columns": [
+            {
+                "data": "Id",
+                "render":function(data) {
+                    return data.substr(data.length - 4, 4);
+                }
+
+            },
+            {
+                "data": "",
+                "render": function (data,type,row) {
+                    return '<a href="/AnimalOwners/AnimalOwnerForm?animalOwnerId=' + row.AnimalOwnerId + '">' + row.AnimalOwner + '</a>';
+                }
+            },
+            { "data": "AnimalName" },
+            { "data": "BiteDate" },
+            { "data": "City" },
+            {
+                "data": "VictimName",
+                "render": function (data, type, row) {
+                    return '<a href="/HumanVictims/HumanVictimForm?victimId=' + row.VictimId + '">' + row.VictimName + '</a>';
+                }
+            },
+            { "data": "Status" }
+            , {
+                "data": "Id",
+                "render":function(data) {
+                    return '<a href="/Bites/BiteForm/' + data + '"class="btn btn-sm btn-outline-primary">Edit</a>';
+                }
+            }
+            , {
+                "data": "",
+                "render": function (data,type,row) {
+                    return '<a href="/Bites/Details?biteId=' + row.Id + '&animalId=' + row.animalId + '"class="btn btn-sm btn-outline-warning">Details</a>';
+                    //return '<a href="/Bites/BiteForm/' + data + '"class="btn btn-sm btn-outline-primary">Edit</a>';
+                }
+            }
+            //, {
+            //    "data": "Id",
+            //    "render": function (data) {
+            //        return '<a href="/Bites/BiteForm/' + data + '"class="btn btn-sm btn-outline-primary">Edit</a>';
+            //    }
+            //}
+        ]
+    });
+
+</script>
+}
