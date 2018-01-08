@@ -1,11 +1,11 @@
-/*! Responsive 2.1.1
+/*! Responsive 2.1.0
  * 2014-2016 SpryMedia Ltd - datatables.net/license
  */
 
 /**
  * @summary     Responsive
  * @description Responsive tables plug-in for DataTables
- * @version     2.1.1
+ * @version     2.1.0
  * @file        dataTables.responsive.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
@@ -166,7 +166,7 @@ $.extend( Responsive.prototype, {
 		// new data is added
 		dtPrivateSettings.oApi._fnCallbackReg( dtPrivateSettings, 'aoRowCreatedCallback', function (tr, data, idx) {
 			if ( $.inArray( false, that.s.current ) !== -1 ) {
-				$('>td, >th', tr).each( function ( i ) {
+				$('td, th', tr).each( function ( i ) {
 					var idx = dt.column.index( 'toData', i );
 
 					if ( that.s.current[idx] === false ) {
@@ -234,23 +234,6 @@ $.extend( Responsive.prototype, {
 		dt.on( 'column-sizing.dtr', function () {
 			that._resizeAuto();
 			that._resize();
-		});
-
-		// On Ajax reload we want to reopen any child rows which are displayed
-		// by responsive
-		dt.on( 'preXhr.dtr', function () {
-			var rowIds = [];
-			dt.rows().every( function () {
-				if ( this.child.isShown() ) {
-					rowIds.push( this.id(true) );
-				}
-			} );
-
-			dt.one( 'draw.dtr', function () {
-				dt.rows( rowIds ).every( function () {
-					that._detailsDisplay( this, false );
-				} );
-			} );
 		});
 
 		dt.on( 'init.dtr', function (e, settings, details) {
@@ -615,7 +598,7 @@ $.extend( Responsive.prototype, {
 				}
 
 				// Check that the row is actually a DataTable's controlled node
-				if ( $.inArray( $(this).closest('tr').get(0), dt.rows().nodes().toArray() ) === -1 ) {
+				if ( ! dt.row( $(this).closest('tr') ).length ) {
 					return;
 				}
 
@@ -924,12 +907,6 @@ $.extend( Responsive.prototype, {
 			':eq('+target+')' :
 			target;
 
-		// This is a bit of a hack - we need to limit the selected nodes to just
-		// those of this table
-		if ( selector === 'td:first-child, th:first-child' ) {
-			selector = '>td:first-child, >th:first-child';
-		}
-
 		$( selector, dt.rows( { page: 'current' } ).nodes() )
 			.attr( 'tabIndex', ctx.iTabIndex )
 			.data( 'dtr-keyboard', 1 );
@@ -1085,7 +1062,7 @@ Responsive.renderer = {
 			} ).join('');
 
 			return data ?
-				$('<ul data-dtr-index="'+rowIdx+'" class="dtr-details"/>').append( data ) :
+				$('<ul data-dtr-index="'+rowIdx+'"/>').append( data ) :
 				false;
 		}
 	},
@@ -1103,7 +1080,7 @@ Responsive.renderer = {
 					'</tr>';
 			} ).join('');
 
-			return $('<table class="'+options.tableClass+' dtr-details" width="100%"/>').append( data );
+			return $('<table class="'+options.tableClass+'" width="100%"/>').append( data );
 		}
 	}
 };
@@ -1224,7 +1201,7 @@ Api.register( 'responsive.hasHidden()', function () {
  * @name Responsive.version
  * @static
  */
-Responsive.version = '2.1.1';
+Responsive.version = '2.1.0';
 
 
 $.fn.dataTable.Responsive = Responsive;
