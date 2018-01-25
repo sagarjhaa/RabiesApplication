@@ -18,7 +18,7 @@
             @Html.DisplayNameFor(model => model.Zip)
         </th>
       
-        <th></th>
+        <th>Action</th>
     </tr>
 
 @*@foreach (var model in Model) {*@
@@ -41,8 +41,7 @@
         
      
         <td>
-            @*@Html.ActionLink("Edit", "AnimalOwnerForm","AnimalOwners", new { animalId= Model.Id},null) |*@
-            @*@Html.ActionLink("Delete", "Delete","AnimalOwners", new { ownerId= Model.Id },null)*@
+            @Html.ActionLink("Edit", "AnimalOwnerForm","AnimalOwners", new { animalOwnerId = Model.Id},htmlAttributes:new {@class = "btn btn-outline-primary btn-sm"}) 
         </td>
     </tr>
 
