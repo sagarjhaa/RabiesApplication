@@ -2,7 +2,7 @@
 @model RabiesApplication.Web.ViewModels.BiteDetailsViewModel
 
 @{
-    ViewBag.Title = "Bite Details";
+    ViewBag.Title = "Incident Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,7 +10,7 @@
 <div id="BiteInformation" class="container">
     <div class="row">
         <div class="col form-inline">
-            <h4 class="Display1">Bite Details</h4>
+            <h4 class="Display1">Incident Details</h4>
             @Html.ActionLink("Edit", "BiteForm", new { id = Model.Bite.Id }, htmlAttributes: new { @class = "btn btn-sm btn-outline-primary" }) |
             @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-sm btn-outline-primary" })|
             <input type="button" id="btnschedular" value="Schedular" class="btn btn-sm btn-success" />
